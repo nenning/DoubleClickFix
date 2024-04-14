@@ -29,59 +29,59 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InteractiveForm));
-            textBox = new TextBox();
-            label1 = new Label();
-            textBox1 = new TextBox();
-            button1 = new Button();
+            logTextBox = new TextBox();
+            delayLabel = new Label();
+            delayTextBox = new TextBox();
+            saveButton = new Button();
             SuspendLayout();
             // 
             // textBox
             // 
-            textBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBox.Location = new Point(12, 124);
-            textBox.Multiline = true;
-            textBox.Name = "textBox";
-            textBox.ReadOnly = true;
-            textBox.ScrollBars = ScrollBars.Vertical;
-            textBox.Size = new Size(554, 445);
-            textBox.TabIndex = 0;
-            textBox.Text = "Elapsed time in milliseconds between two mouse clicks:\r\n";
+            logTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            logTextBox.Location = new Point(12, 124);
+            logTextBox.Multiline = true;
+            logTextBox.Name = "textBox";
+            logTextBox.ReadOnly = true;
+            logTextBox.ScrollBars = ScrollBars.Vertical;
+            logTextBox.Size = new Size(554, 445);
+            logTextBox.TabIndex = 0;
+            logTextBox.Text = "Elapsed time in milliseconds between two mouse clicks:\r\n";
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 48);
-            label1.Name = "label1";
-            label1.Size = new Size(268, 25);
-            label1.TabIndex = 1;
-            label1.Text = "Minimal double-click speed [ms]";
+            delayLabel.AutoSize = true;
+            delayLabel.Location = new Point(12, 48);
+            delayLabel.Name = "label1";
+            delayLabel.Size = new Size(268, 25);
+            delayLabel.TabIndex = 1;
+            delayLabel.Text = "Minimal double-click speed [ms]";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(309, 45);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(82, 31);
-            textBox1.TabIndex = 2;
+            delayTextBox.Location = new Point(309, 45);
+            delayTextBox.Name = "textBox1";
+            delayTextBox.Size = new Size(82, 31);
+            delayTextBox.TabIndex = 2;
             // 
             // button1
             // 
-            button1.Location = new Point(427, 40);
-            button1.Name = "button1";
-            button1.Size = new Size(117, 41);
-            button1.TabIndex = 3;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            saveButton.Location = new Point(427, 40);
+            saveButton.Name = "button1";
+            saveButton.Size = new Size(117, 41);
+            saveButton.TabIndex = 3;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += button1_Click;
             // 
             // InteractiveForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(578, 590);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
-            Controls.Add(textBox);
+            Controls.Add(saveButton);
+            Controls.Add(delayTextBox);
+            Controls.Add(delayLabel);
+            Controls.Add(logTextBox);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "InteractiveForm";
             Text = "Fix wrong double mouse clicks";
@@ -91,10 +91,10 @@
 
         #endregion
 
-        private TextBox textBox;
-        private Label label1;
-        private TextBox textBox1;
-        private Button button1;
+        private TextBox logTextBox;
+        private Label delayLabel;
+        private TextBox delayTextBox;
+        private Button saveButton;
 
         public event Action<int> OnSave;
         private int minDelay;
@@ -107,10 +107,13 @@
             set
             {
                 minDelay = value;
-                this.textBox1.Text = value.ToString();
+                this.delayTextBox.Text = value.ToString();
             }
         }
-        public Button Button { get { return button1; } }
-        public TextBox TextBox { get {  return textBox; } }
+        public Button Button { get { return saveButton; } }
+        public void Log(string text)
+        {
+            logTextBox.AppendText(text + Environment.NewLine);
+        }
     }
 }

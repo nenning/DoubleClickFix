@@ -1,8 +1,6 @@
 using System.Configuration;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using System.Drawing;
 using static DoubleClickFix.NativeMethods;
 
 namespace DoubleClickFix
@@ -33,16 +31,18 @@ namespace DoubleClickFix
                 {
                     if (form.Visible)
                     {
-                        form.TextBox.AppendText(text + Environment.NewLine);
+                        form.Log(text);
                     }
                 };
 
                 form.FormClosing += HideFormInsteadOfClosing;
                 form.MinDelay = minimumDelayMilliseconds;
                 form.OnSave += UpdateAppSettings;
-                NotifyIcon notifyIcon = new();
-                notifyIcon.Icon = new Icon("app.ico");
-                notifyIcon.Text = "Double-click fix";
+                NotifyIcon notifyIcon = new()
+                {
+                    Icon = new Icon("app.ico"),
+                    Text = "Double-click fix"
+                };
                 notifyIcon.DoubleClick += (sender, e) => form.Show();
                 ContextMenuStrip contextMenuStrip = new();
                 ToolStripMenuItem exitMenuItem = new("Exit");
@@ -115,9 +115,9 @@ namespace DoubleClickFix
         }
         static void UpdateAppSettings(int value)
         {
-            if (value <= 0 && value >= windowsDoubleClickTimeMilliseconds)
+            if (value <= 0 || value >= windowsDoubleClickTimeMilliseconds)
             {
-                log("invalid value - not saved.");
+                log($"Invalid value - not saved. Valid range: [0..{windowsDoubleClickTimeMilliseconds}]");
                 return;
             }
             minimumDelayMilliseconds = value;
@@ -165,11 +165,10 @@ namespace DoubleClickFix
             }
             if (ignore)
             {
-                log("ignored double click: " + timeDifference);
+                log("ignored double click: " + timeDifference + " ms");
             }
             return ignore;
         }
-
 
     }
 }
