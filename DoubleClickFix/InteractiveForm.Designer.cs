@@ -71,7 +71,7 @@
             saveButton.TabIndex = 3;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
-            saveButton.Click += button1_Click;
+            saveButton.Click += OnSaveButtonClicked;
             // 
             // InteractiveForm
             // 
@@ -96,24 +96,5 @@
         private TextBox delayTextBox;
         private Button saveButton;
 
-        public event Action<int> OnSave;
-        private int minDelay;
-        public int MinDelay
-        {
-            get
-            {
-                return minDelay;
-            }
-            set
-            {
-                minDelay = value;
-                this.delayTextBox.Text = value.ToString();
-            }
-        }
-        public Button Button { get { return saveButton; } }
-        public void Log(string text)
-        {
-            logTextBox.AppendText(text + Environment.NewLine);
-        }
     }
 }

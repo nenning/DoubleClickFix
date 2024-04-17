@@ -26,6 +26,7 @@ namespace DoubleClickFix
             try
             {
                 hookID = SetHook(mouseProc);
+
                 InteractiveForm form = new();
                 log = text =>
                 {
@@ -34,31 +35,8 @@ namespace DoubleClickFix
                         form.Log(text);
                     }
                 };
-
-                form.FormClosing += HideFormInsteadOfClosing;
                 form.MinDelay = minimumDelayMilliseconds;
                 form.OnSave += UpdateAppSettings;
-                NotifyIcon notifyIcon = new()
-                {
-                    Icon = new Icon("app.ico"),
-                    Text = "Double-click fix"
-                };
-                notifyIcon.DoubleClick += (sender, e) => form.Show();
-                ContextMenuStrip contextMenuStrip = new();
-                ToolStripMenuItem exitMenuItem = new("Exit");
-                exitMenuItem.Click += (sender, e) =>
-                {
-                    notifyIcon.Visible = false;
-                    Application.Exit();
-                };
-                contextMenuStrip.Items.Add(exitMenuItem);
-                ToolStripMenuItem debugMenuItem = new("Show Debug View");
-                debugMenuItem.Click += (sender, e) => form.Show();
-
-                contextMenuStrip.Items.Add(debugMenuItem);
-                notifyIcon.ContextMenuStrip = contextMenuStrip;
-                notifyIcon.Visible = true;
-
                 if (Debugger.IsAttached || args.Length > 0 && (args.Contains("-interactive") || args.Contains("-i")))
                 {
                     form.Visible = true;
@@ -73,17 +51,6 @@ namespace DoubleClickFix
             }
         }
 
-        private static void HideFormInsteadOfClosing(object? sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                e.Cancel = true;
-                if (sender != null)
-                {
-                    ((Form)sender).Hide();
-                }
-            }
-        }
         private static void EnsureSingleInstance()
         {
             if (!mutex.WaitOne(TimeSpan.Zero, true))
