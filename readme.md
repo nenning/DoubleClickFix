@@ -1,10 +1,8 @@
 Contains a workaround for broken mouses that sometimes send a double-click instead of a single click.
+You can fine-tune the minimal delay between two click in the user interface, which can be opened by double-clicking the Windows tray icon. 
 
-Parameters
- -i (or -interactive): interactive mode to display the timespan between two mouse clicks
- 
 Configuration
-- app.config contains the minimum delay in milliseconds that has to be between two mouse clicks. Of the time difference is less than this, the double-click is ignored and only a single click is considered.
+- app.config contains the minimum delay in milliseconds that has to be between two mouse clicks. If the time difference is less than this, the double-click is ignored and only a single click is considered.
  
 Scripts
-- registry files to register or unregister the application to launch at Windows startup.
+- batch files to register or unregister the application to launch at Windows startup.
