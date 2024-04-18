@@ -27,7 +27,7 @@ namespace DoubleClickFix
             {
                 hookID = SetHook(mouseProc);
 
-                InteractiveForm form = new();
+                InteractiveForm form = new(new Startup());
                 log = text =>
                 {
                     if (form.Visible)

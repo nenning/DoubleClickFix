@@ -1,3 +1,4 @@
+using Microsoft.Win32;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
@@ -7,11 +8,14 @@ namespace DoubleClickFix
     {
         public event Action<int>? OnSave;
         private int minDelay;
+        private readonly Startup startup;
 
-        public InteractiveForm()
+        public InteractiveForm(Startup startup)
         {
+            this.startup = startup;
             InitializeComponent();
             SetupTrayIcon();
+            this.runAtStartupCheckBox.Checked = startup.IsRegistered();
         }
 
         private void SetupTrayIcon()
@@ -49,6 +53,19 @@ namespace DoubleClickFix
         }
         private void OnSaveButtonClicked(object sender, EventArgs e)
         {
+            bool success;
+            if (runAtStartupCheckBox.Checked)
+            {
+                success = startup.Register();
+            }
+            else
+            {
+                success = startup.Unregister();
+            }
+            if (!success)
+            {
+                Log("Failed to write to startup registry.");
+            }
             int minValue;
             if (this.OnSave != null && int.TryParse(delayTextBox.Text, out minValue))
             {
@@ -71,6 +88,14 @@ namespace DoubleClickFix
         public void Log(string text)
         {
             logTextBox.AppendText(text + Environment.NewLine);
+        }
+
+        private void logTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (logTextBox.TextLength > logTextBox.MaxLength - 1000)
+            {
+                logTextBox.Clear();
+            }
         }
     }
 }
