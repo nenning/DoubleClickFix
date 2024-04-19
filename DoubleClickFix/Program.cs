@@ -12,23 +12,17 @@ namespace DoubleClickFix
         static void Main(string[] args)
         {
             var settings = new Settings(args, logger);
-            if (settings.UseHook)
+            if (settings.UseHook && !mutex.WaitOne(TimeSpan.Zero, true))
             {
-                if (!mutex.WaitOne(TimeSpan.Zero, true))
-                {
-                    MessageBox.Show(Resources.AppAlreadyRunning, "Double-click fix");
-                    return;
-                }
+                MessageBox.Show(Resources.AppAlreadyRunning, "Double-click fix");
+                return;
             }
-            MouseHook mouseHook = new(logger, settings);
+            MouseHook mouseHook = new(settings, logger);
             try
             {
-                if (settings.UseHook)
-                {
-                    mouseHook.Install();
-                }
+                mouseHook.Install();
 
-                InteractiveForm form = new(new StartupRegistry(), logger, settings);
+                InteractiveForm form = new(new StartupRegistry(), settings, logger);
                 if (settings.IsInteractive)
                 {
                     form.Visible = true;
@@ -41,15 +35,17 @@ namespace DoubleClickFix
             }
             finally
             {
+                mouseHook.Uninstall();
                 if (settings.UseHook)
                 {
                     try
                     {
-                        mouseHook.Uninstall();
                         mutex.ReleaseMutex();
-                    } catch { }
+                    }
+                    catch { }
                 }
             }
         }
+
     }
 }

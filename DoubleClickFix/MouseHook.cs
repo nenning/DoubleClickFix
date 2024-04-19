@@ -5,7 +5,7 @@ using static DoubleClickFix.NativeMethods;
 
 namespace DoubleClickFix
 {
-    internal class MouseHook(ILogger logger, Settings settings)
+    internal class MouseHook(Settings settings, ILogger logger)
     {
         private const int WH_MOUSE_LL = 14;
         private const int WM_LBUTTONDOWN = 0x0201;
@@ -14,7 +14,7 @@ namespace DoubleClickFix
 
         public void Install()
         {
-            if (hookID == IntPtr.Zero)
+            if (settings.UseHook && hookID == IntPtr.Zero)
             {
                 hookID = SetHook(this.HookCallback);
             }
@@ -22,7 +22,7 @@ namespace DoubleClickFix
 
         public void Uninstall()
         {
-            if (hookID != IntPtr.Zero)
+            if (settings.UseHook && hookID != IntPtr.Zero)
             {
                 UnhookWindowsHookEx(hookID);
                 hookID = IntPtr.Zero;

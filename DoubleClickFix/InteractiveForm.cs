@@ -12,10 +12,11 @@ namespace DoubleClickFix
         private readonly StartupRegistry startup;
         private readonly Settings settings;
 
-        public InteractiveForm(StartupRegistry startup, Logger logger, Settings settings)
+        public InteractiveForm(StartupRegistry startup, Settings settings, Logger logger)
         {
             this.startup = startup;
             this.settings = settings;
+
             InitializeComponent();
             this.FormClosing += HideFormInsteadOfClosing;
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
@@ -102,6 +103,8 @@ namespace DoubleClickFix
         private void ExitMenuClick(object sender, EventArgs e)
         {
             notifyIcon.Visible = false;
+            // make sure the icon is removed from the system tray
+            notifyIcon.Dispose(); 
             Application.Exit();
         }
     }
