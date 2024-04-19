@@ -138,7 +138,6 @@ Esegui un doppio clic e osserva quanto tempo durano i tuoi doppi clic e quelli s
 Quindi aumenta la velocità minima per includere quelli sbagliati, ma mantienila al di sotto della tua velocità. 
 
 Mostra i log e il tempo trascorso in millisecondi tra due clic del mouse:
-
 </value>
   </data>
   <data name="notifyIcon.Text" xml:space="preserve">
