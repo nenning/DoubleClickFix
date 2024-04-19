@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using DoubleClickFix.Properties;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using static DoubleClickFix.NativeMethods;
 
@@ -53,11 +54,11 @@ namespace DoubleClickFix
             bool ignore = timeDifference < settings.MinimumDoubleClickDelayMilliseconds;
             if (ignore)
             {
-                logger.Log($"Ignored double click: {timeDifference} ms");
+                logger.Log($"{Resources.IgnoredDoubleClick}: {timeDifference} ms");
             }
             else if (timeDifference < settings.WindowsDoubleClickTimeMilliseconds)
             {
-                logger.Log(timeDifference.ToString());
+                logger.Log($"{timeDifference} ms");
             }
             return ignore;
         }

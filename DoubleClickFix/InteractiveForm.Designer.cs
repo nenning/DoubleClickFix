@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InteractiveForm));
             logTextBox = new TextBox();
             delayLabel = new Label();
@@ -36,57 +37,44 @@
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
             pictureBox1 = new PictureBox();
+            notifyIcon = new NotifyIcon(components);
+            notifyMenuStrip = new ContextMenuStrip(components);
+            showUiMenu = new ToolStripMenuItem();
+            exitMenu = new ToolStripMenuItem();
+            label1 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            notifyMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // logTextBox
             // 
-            logTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            logTextBox.Location = new Point(12, 277);
-            logTextBox.Multiline = true;
+            resources.ApplyResources(logTextBox, "logTextBox");
             logTextBox.Name = "logTextBox";
             logTextBox.ReadOnly = true;
-            logTextBox.ScrollBars = ScrollBars.Vertical;
-            logTextBox.Size = new Size(880, 607);
-            logTextBox.TabIndex = 0;
-            logTextBox.Text = resources.GetString("logTextBox.Text");
             logTextBox.TextChanged += LogTextBoxChanged;
             // 
             // delayLabel
             // 
-            delayLabel.AutoSize = true;
-            delayLabel.Location = new Point(23, 59);
+            resources.ApplyResources(delayLabel, "delayLabel");
             delayLabel.Name = "delayLabel";
-            delayLabel.Size = new Size(268, 25);
-            delayLabel.TabIndex = 1;
-            delayLabel.Text = "Minimal double-click speed [ms]";
             // 
             // delayTextBox
             // 
-            delayTextBox.Location = new Point(344, 56);
+            resources.ApplyResources(delayTextBox, "delayTextBox");
             delayTextBox.Name = "delayTextBox";
-            delayTextBox.Size = new Size(82, 31);
-            delayTextBox.TabIndex = 2;
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(309, 174);
+            resources.ApplyResources(saveButton, "saveButton");
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(117, 41);
-            saveButton.TabIndex = 3;
-            saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += OnSaveButtonClicked;
             // 
             // runAtStartupCheckBox
             // 
-            runAtStartupCheckBox.AutoSize = true;
-            runAtStartupCheckBox.Location = new Point(23, 111);
+            resources.ApplyResources(runAtStartupCheckBox, "runAtStartupCheckBox");
             runAtStartupCheckBox.Name = "runAtStartupCheckBox";
-            runAtStartupCheckBox.Size = new Size(150, 29);
-            runAtStartupCheckBox.TabIndex = 4;
-            runAtStartupCheckBox.Text = "Run at startup";
             runAtStartupCheckBox.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -95,39 +83,60 @@
             groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(runAtStartupCheckBox);
             groupBox1.Controls.Add(delayLabel);
-            groupBox1.Location = new Point(12, 12);
+            resources.ApplyResources(groupBox1, "groupBox1");
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(457, 238);
-            groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Settings";
             // 
             // pictureBox1
             // 
-            pictureBox1.BackgroundImageLayout = ImageLayout.None;
-            pictureBox1.Enabled = false;
+            resources.ApplyResources(pictureBox1, "pictureBox1");
             pictureBox1.Image = Properties.Resources.app;
-            pictureBox1.Location = new Point(653, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(239, 238);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
+            // 
+            // notifyIcon
+            // 
+            notifyIcon.ContextMenuStrip = notifyMenuStrip;
+            resources.ApplyResources(notifyIcon, "notifyIcon");
+            notifyIcon.MouseDoubleClick += NotifyIconDoubleClick;
+            // 
+            // notifyMenuStrip
+            // 
+            notifyMenuStrip.ImageScalingSize = new Size(24, 24);
+            notifyMenuStrip.Items.AddRange(new ToolStripItem[] { showUiMenu, exitMenu });
+            notifyMenuStrip.Name = "contextMenuStrip1";
+            resources.ApplyResources(notifyMenuStrip, "notifyMenuStrip");
+            // 
+            // showUiMenu
+            // 
+            showUiMenu.Name = "showUiMenu";
+            resources.ApplyResources(showUiMenu, "showUiMenu");
+            showUiMenu.Click += ShowUiMenuClick;
+            // 
+            // exitMenu
+            // 
+            exitMenu.Name = "exitMenu";
+            resources.ApplyResources(exitMenu, "exitMenu");
+            exitMenu.Click += ExitMenuClick;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(label1, "label1");
+            label1.Name = "label1";
             // 
             // InteractiveForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(904, 905);
+            Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(logTextBox);
             Controls.Add(groupBox1);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "InteractiveForm";
-            Text = "Fix wrong double mouse clicks";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            notifyMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -141,5 +150,10 @@
         private CheckBox runAtStartupCheckBox;
         private GroupBox groupBox1;
         private PictureBox pictureBox1;
+        private NotifyIcon notifyIcon;
+        private ContextMenuStrip notifyMenuStrip;
+        private ToolStripMenuItem showUiMenu;
+        private ToolStripMenuItem exitMenu;
+        private Label label1;
     }
 }

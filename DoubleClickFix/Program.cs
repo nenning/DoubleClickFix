@@ -1,3 +1,4 @@
+using DoubleClickFix.Properties;
 using System.Diagnostics;
 
 namespace DoubleClickFix
@@ -13,7 +14,11 @@ namespace DoubleClickFix
             var settings = new Settings(args, logger);
             if (settings.UseHook)
             {
-                EnsureSingleInstance();
+                if (!mutex.WaitOne(TimeSpan.Zero, true))
+                {
+                    MessageBox.Show(Resources.AppAlreadyRunning, "Double-click fix");
+                    return;
+                }
             }
             MouseHook mouseHook = new(logger, settings);
             try
@@ -46,15 +51,5 @@ namespace DoubleClickFix
                 }
             }
         }
-
-        private static void EnsureSingleInstance()
-        {
-            if (!mutex.WaitOne(TimeSpan.Zero, true))
-            {
-                MessageBox.Show("Another instance of the application is already running.", "DoubleClickFix");
-                Application.Exit();
-            }
-        }
-
     }
 }

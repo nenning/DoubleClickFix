@@ -1,11 +1,13 @@
-﻿using System.Configuration;
+﻿using DoubleClickFix.Properties;
+using System.Configuration;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace DoubleClickFix
 {
     public class Settings
     {
-        private const string SettingsKey = "MinimumDelayMilliseconds";
+        private const string SettingsKey = "minimumDelayMilliseconds";
         private readonly int windowsDoubleClickTimeMilliseconds = GetWindowsMaximumDoubleClickTime();
         private readonly ILogger logger;
         private int minimumDelayMilliseconds = GetMinimumDelayFromAppSettings();
@@ -15,6 +17,7 @@ namespace DoubleClickFix
             this.logger = logger;
             UseHook = !Debugger.IsAttached || args.Length == 0 || !args.Contains("-nohook");
             IsInteractive = Debugger.IsAttached || args.Length > 0 && (args.Contains("-interactive") || args.Contains("-i"));
+            ApplyLanguageOverride();
         }
 
         /// <summary>
@@ -27,7 +30,7 @@ namespace DoubleClickFix
         {
             if (value <= 0 || value >= windowsDoubleClickTimeMilliseconds)
             {
-                logger.Log($"Invalid value - not saved. Valid range: [0..{windowsDoubleClickTimeMilliseconds}]");
+                logger.Log($"{Resources.InvalidDelayValue}: [0..{windowsDoubleClickTimeMilliseconds}]");
                 return;
             }
             try
@@ -37,10 +40,10 @@ namespace DoubleClickFix
                 configuration.AppSettings.Settings[SettingsKey].Value = value.ToString();
                 configuration.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("appSettings");
-                logger.Log("Settings saved.");
+                logger.Log(Resources.SettingsSaved);
             } catch (Exception ex)
             {
-                logger.Log("Error: " + ex.ToString());
+                logger.Log($"{Resources.Error}: " + ex.ToString());
             }
         }
 
@@ -71,6 +74,26 @@ namespace DoubleClickFix
                 minimumDelay = 142;
             }
             return minimumDelay;
+        }
+
+        private static void ApplyLanguageOverride()
+        {
+            try
+            {
+                string? value = ConfigurationManager.AppSettings["languageOverride"];
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    CultureInfo culture = new CultureInfo(value);
+                    Application.CurrentCulture = culture;
+                    CultureInfo.DefaultThreadCurrentCulture = culture;
+                    CultureInfo.DefaultThreadCurrentUICulture = culture;
+                    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(culture.Name);
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(culture.Name);
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }

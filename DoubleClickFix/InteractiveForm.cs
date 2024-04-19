@@ -1,3 +1,4 @@
+using DoubleClickFix.Properties;
 using Microsoft.Win32;
 using System.Resources;
 using System.Runtime.CompilerServices;
@@ -16,38 +17,19 @@ namespace DoubleClickFix
             this.startup = startup;
             this.settings = settings;
             InitializeComponent();
-            SetupTrayIcon();
+            this.FormClosing += HideFormInsteadOfClosing;
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
-
             logger.AddLogger(text => Log(text));
-
             this.MinDelay = settings.MinimumDoubleClickDelayMilliseconds;
-
         }
 
-        private void SetupTrayIcon()
+        private void ShowForm()
         {
-            this.FormClosing += HideFormInsteadOfClosing;
-            NotifyIcon notifyIcon = new()
-            {
-                Icon = this.Icon,
-                Text = "Double-click fix"
-            };
-            notifyIcon.DoubleClick += (sender, e) => this.Show();
-            ContextMenuStrip contextMenuStrip = new();
-            ToolStripMenuItem exitMenuItem = new("Exit");
-            exitMenuItem.Click += (sender, e) =>
-            {
-                notifyIcon.Visible = false;
-                Application.Exit();
-            };
-            contextMenuStrip.Items.Add(exitMenuItem);
-            ToolStripMenuItem debugMenuItem = new("Show UI");
-            debugMenuItem.Click += (sender, e) => this.Show();
-
-            contextMenuStrip.Items.Add(debugMenuItem);
-            notifyIcon.ContextMenuStrip = contextMenuStrip;
-            notifyIcon.Visible = true;
+            this.Show();
+            if (this.WindowState == FormWindowState.Minimized) {
+                this.WindowState = FormWindowState.Normal;
+            }
+            this.BringToFront();
         }
 
         private void HideFormInsteadOfClosing(object? sender, FormClosingEventArgs e)
@@ -71,7 +53,7 @@ namespace DoubleClickFix
             }
             if (!success)
             {
-                Log("Failed to write to startup registry.");
+                Log(Resources.WritingRegistryFailed);
             }
             if (int.TryParse(delayTextBox.Text, out int minValue))
             {
@@ -105,6 +87,22 @@ namespace DoubleClickFix
             {
                 logTextBox.Clear();
             }
+        }
+
+        private void NotifyIconDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.ShowForm();
+        }
+
+        private void ShowUiMenuClick(object sender, EventArgs e)
+        {
+            this.ShowForm();
+        }
+
+        private void ExitMenuClick(object sender, EventArgs e)
+        {
+            notifyIcon.Visible = false;
+            Application.Exit();
         }
     }
 }

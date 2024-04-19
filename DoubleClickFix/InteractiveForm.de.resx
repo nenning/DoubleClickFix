@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,26 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="app" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\app.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Doppelklick-Fix</value>
   </data>
-  <data name="AppAlreadyRunning" xml:space="preserve">
-    <value>Another instance of the application is already running.</value>
+  <data name="delayLabel.Text" xml:space="preserve">
+    <value>Minimale Doppelklick-Geschwindigkeit [ms]</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
+  <data name="exitMenu.Text" xml:space="preserve">
+    <value>Applikation beenden</value>
   </data>
-  <data name="IgnoredDoubleClick" xml:space="preserve">
-    <value>Ignored double click</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
-  <data name="InvalidDelayValue" xml:space="preserve">
-    <value>Invalid value - not saved. Valid range</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Diese Applikation verhindert von defekten Mäusen generierte Doppelklicks.</value>
   </data>
-  <data name="SettingsSaved" xml:space="preserve">
-    <value>Settings saved.</value>
+  <data name="logTextBox.Text" xml:space="preserve">
+    <value>Verwenden Sie diese Benutzeroberfläche, um die minimale Doppelklick-Geschwindigkeit für Ihre Maus einzustellen. 
+Führen Sie einen Doppelklick aus und beobachten Sie, wie lange diese und die von Maus generierten Fehlklicks dauern. 
+Erhöhen Sie dann die minimale Geschwindigkeit, um die Fehlklicks einzuschließen, halten Sie sie jedoch unter Ihrer Doppelklick-Geschwindigkeit.
+
+Zeigt die Logs und die verstrichene Zeit in Millisekunden zwischen zwei Mausklicks an:
+</value>
   </data>
-  <data name="WritingRegistryFailed" xml:space="preserve">
-    <value>Failed to write to startup registry.</value>
+  <data name="notifyIcon.Text" xml:space="preserve">
+    <value>Doppelklick-Fix</value>
+  </data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve">
+    <value>Beim Starten von Windows ausführen</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="showUiMenu.Text" xml:space="preserve">
+    <value>Benutzeroberfläche anzeigen</value>
   </data>
 </root>

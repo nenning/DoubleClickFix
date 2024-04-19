@@ -69,5 +69,59 @@ namespace DoubleClickFix.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Another instance of the application is already running..
+        /// </summary>
+        internal static string AppAlreadyRunning {
+            get {
+                return ResourceManager.GetString("AppAlreadyRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignored double click.
+        /// </summary>
+        internal static string IgnoredDoubleClick {
+            get {
+                return ResourceManager.GetString("IgnoredDoubleClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid value - not saved. Valid range.
+        /// </summary>
+        internal static string InvalidDelayValue {
+            get {
+                return ResourceManager.GetString("InvalidDelayValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings saved..
+        /// </summary>
+        internal static string SettingsSaved {
+            get {
+                return ResourceManager.GetString("SettingsSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to write to startup registry..
+        /// </summary>
+        internal static string WritingRegistryFailed {
+            get {
+                return ResourceManager.GetString("WritingRegistryFailed", resourceCulture);
+            }
+        }
     }
 }
