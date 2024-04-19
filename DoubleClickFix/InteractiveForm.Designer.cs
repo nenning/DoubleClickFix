@@ -35,18 +35,20 @@
             saveButton = new Button();
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
+            pictureBox1 = new PictureBox();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // logTextBox
             // 
             logTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            logTextBox.Location = new Point(12, 273);
+            logTextBox.Location = new Point(12, 277);
             logTextBox.Multiline = true;
             logTextBox.Name = "logTextBox";
             logTextBox.ReadOnly = true;
             logTextBox.ScrollBars = ScrollBars.Vertical;
-            logTextBox.Size = new Size(880, 611);
+            logTextBox.Size = new Size(880, 607);
             logTextBox.TabIndex = 0;
             logTextBox.Text = resources.GetString("logTextBox.Text");
             logTextBox.TextChanged += LogTextBoxChanged;
@@ -69,7 +71,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(309, 169);
+            saveButton.Location = new Point(309, 174);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(117, 41);
             saveButton.TabIndex = 3;
@@ -95,16 +97,29 @@
             groupBox1.Controls.Add(delayLabel);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(473, 238);
+            groupBox1.Size = new Size(457, 238);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Settings";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Enabled = false;
+            pictureBox1.Image = Properties.Resources.app;
+            pictureBox1.Location = new Point(653, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(239, 238);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
             // 
             // InteractiveForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(904, 905);
+            Controls.Add(pictureBox1);
             Controls.Add(logTextBox);
             Controls.Add(groupBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -112,6 +127,7 @@
             Text = "Fix wrong double mouse clicks";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -124,5 +140,6 @@
         private Button saveButton;
         private CheckBox runAtStartupCheckBox;
         private GroupBox groupBox1;
+        private PictureBox pictureBox1;
     }
 }

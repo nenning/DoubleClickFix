@@ -38,8 +38,11 @@ namespace DoubleClickFix
             {
                 if (settings.UseHook)
                 {
-                    mouseHook.Uninstall();
-                    mutex.ReleaseMutex();
+                    try
+                    {
+                        mouseHook.Uninstall();
+                        mutex.ReleaseMutex();
+                    } catch { }
                 }
             }
         }
