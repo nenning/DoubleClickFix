@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "DoubleClickFix -nohook": {
+      "commandName": "Project",
+      "commandLineArgs": "-nohook"
+    },
+    "DoubleClickFix": {
+      "commandName": "Project"
+    }
+  }
+}

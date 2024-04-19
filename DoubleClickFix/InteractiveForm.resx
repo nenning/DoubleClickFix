@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="logTextBox.Text" xml:space="preserve">
+    <value>Use this UI to fine-tune the minimum double-click speed for your mouse. 
+Double-click and observe how long your double-clicks and the wrong ones take. 
+Then increase the minimum speed to include the wrong ones, but keep it below your speed.
+
+Shows the logs and the elapsed time in milliseconds between two mouse clicks:
+</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -48,7 +48,7 @@
             logTextBox.ScrollBars = ScrollBars.Vertical;
             logTextBox.Size = new Size(880, 611);
             logTextBox.TabIndex = 0;
-            logTextBox.Text = "Elapsed time in milliseconds between two mouse clicks:\r\n";
+            logTextBox.Text = resources.GetString("logTextBox.Text");
             logTextBox.TextChanged += LogTextBoxChanged;
             // 
             // delayLabel
