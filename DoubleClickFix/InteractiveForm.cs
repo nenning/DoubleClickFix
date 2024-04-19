@@ -7,16 +7,22 @@ namespace DoubleClickFix
 {
     public partial class InteractiveForm : Form
     {
-        public event Action<int>? OnSave;
         private int minDelay;
-        private readonly Startup startup;
+        private readonly StartupRegistry startup;
+        private readonly Settings settings;
 
-        public InteractiveForm(Startup startup)
+        public InteractiveForm(StartupRegistry startup, Logger logger, Settings settings)
         {
             this.startup = startup;
+            this.settings = settings;
             InitializeComponent();
             SetupTrayIcon();
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
+
+            logger.AddLogger(text => Log(text));
+
+            this.MinDelay = settings.MinimumDoubleClickDelayMilliseconds;
+
         }
 
         private void SetupTrayIcon()
@@ -36,7 +42,7 @@ namespace DoubleClickFix
                 Application.Exit();
             };
             contextMenuStrip.Items.Add(exitMenuItem);
-            ToolStripMenuItem debugMenuItem = new("Show Debug View");
+            ToolStripMenuItem debugMenuItem = new("Show UI");
             debugMenuItem.Click += (sender, e) => this.Show();
 
             contextMenuStrip.Items.Add(debugMenuItem);
@@ -67,10 +73,9 @@ namespace DoubleClickFix
             {
                 Log("Failed to write to startup registry.");
             }
-            int minValue;
-            if (this.OnSave != null && int.TryParse(delayTextBox.Text, out minValue))
+            if (int.TryParse(delayTextBox.Text, out int minValue))
             {
-                this.OnSave(minValue);
+                settings.UpdateAppSettings(minValue);
             }
         }
 
@@ -83,15 +88,18 @@ namespace DoubleClickFix
             set
             {
                 minDelay = value;
-                this.delayTextBox.Text = value.ToString();
+                delayTextBox.Text = value.ToString();
             }
         }
         public void Log(string text)
         {
-            logTextBox.AppendText(text + Environment.NewLine);
+            if (!IsDisposed && Visible)
+            {
+                logTextBox.AppendText(text + Environment.NewLine);
+            }
         }
 
-        private void logTextBox_TextChanged(object sender, EventArgs e)
+        private void LogTextBoxChanged(object sender, EventArgs e)
         {
             if (logTextBox.TextLength > logTextBox.MaxLength - 1000)
             {

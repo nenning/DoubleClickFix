@@ -3,12 +3,12 @@ using System.Diagnostics;
 
 namespace DoubleClickFix
 {
-    public class Startup
+    public class StartupRegistry
     {
         private const string registryPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
         private const string registryKey = @"DoubleClickFix";
 
-        private readonly string registryValue = Process.GetCurrentProcess().MainModule!.FileName;
+        private readonly string registryValue = Environment.ProcessPath!;
 
         public bool IsRegistered()
         {

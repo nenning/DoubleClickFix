@@ -49,7 +49,7 @@
             logTextBox.Size = new Size(880, 611);
             logTextBox.TabIndex = 0;
             logTextBox.Text = "Elapsed time in milliseconds between two mouse clicks:\r\n";
-            logTextBox.TextChanged += logTextBox_TextChanged;
+            logTextBox.TextChanged += LogTextBoxChanged;
             // 
             // delayLabel
             // 
