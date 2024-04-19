@@ -62,14 +62,14 @@
             // 
             // delayTextBox
             // 
-            delayTextBox.Location = new Point(310, 56);
+            delayTextBox.Location = new Point(344, 56);
             delayTextBox.Name = "delayTextBox";
             delayTextBox.Size = new Size(82, 31);
             delayTextBox.TabIndex = 2;
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(275, 178);
+            saveButton.Location = new Point(309, 169);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(117, 41);
             saveButton.TabIndex = 3;
@@ -95,7 +95,7 @@
             groupBox1.Controls.Add(delayLabel);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(424, 238);
+            groupBox1.Size = new Size(473, 238);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Settings";

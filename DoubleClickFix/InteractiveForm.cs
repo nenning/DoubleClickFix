@@ -1,4 +1,5 @@
 using Microsoft.Win32;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
@@ -23,7 +24,7 @@ namespace DoubleClickFix
             this.FormClosing += HideFormInsteadOfClosing;
             NotifyIcon notifyIcon = new()
             {
-                Icon = new Icon("app.ico"),
+                Icon = this.Icon,
                 Text = "Double-click fix"
             };
             notifyIcon.DoubleClick += (sender, e) => this.Show();
