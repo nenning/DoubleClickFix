@@ -52,6 +52,7 @@
             resources.ApplyResources(logTextBox, "logTextBox");
             logTextBox.Name = "logTextBox";
             logTextBox.ReadOnly = true;
+            logTextBox.TabStop = false;
             logTextBox.TextChanged += LogTextBoxChanged;
             // 
             // delayLabel

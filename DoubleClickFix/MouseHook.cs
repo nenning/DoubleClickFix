@@ -1,72 +1,116 @@
 ﻿using DoubleClickFix.Properties;
+using Microsoft.Win32;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using static DoubleClickFix.NativeMethods;
 
 namespace DoubleClickFix
 {
-    internal class MouseHook(Settings settings, ILogger logger)
+    internal class MouseHook : IDisposable
     {
         private const int WH_MOUSE_LL = 14;
         private const int WM_LBUTTONDOWN = 0x0201;
-        private IntPtr hookID = IntPtr.Zero;
-        private uint lastClickTime;
+        private const int WM_LBUTTONUP = 0x0202;
 
-        public void Install()
+        private readonly Settings settings;
+        private readonly ILogger logger;
+
+        // make sure we keep a reference so it's not garbage collected
+        private LowLevelMouseProc? mouseProc;
+        private IntPtr hookHandle = IntPtr.Zero;
+
+        private uint previousUpTime = 0;
+
+        public MouseHook(Settings settings, ILogger logger)
         {
-            if (settings.UseHook && hookID == IntPtr.Zero)
+            this.settings = settings;
+            this.logger = logger;
+            SystemEvents.PowerModeChanged += OnPowerModeChanged;
+        }
+
+        public bool Install()
+        {
+            if (settings.UseHook && hookHandle == IntPtr.Zero)
             {
-                hookID = SetHook(this.HookCallback);
+                mouseProc = this.HookCallback;
+                hookHandle = SetHook(mouseProc);
             }
+            return hookHandle != IntPtr.Zero;
         }
 
         public void Uninstall()
         {
-            if (settings.UseHook && hookID != IntPtr.Zero)
+            if (settings.UseHook && hookHandle != IntPtr.Zero)
             {
-                UnhookWindowsHookEx(hookID);
-                hookID = IntPtr.Zero;
+                UnhookWindowsHookEx(hookHandle);
+                hookHandle = IntPtr.Zero;
+                mouseProc = null;
             }
         }
 
+        private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        {
+            // TODO check if we really need this.
+            switch (e.Mode)
+            {
+                case PowerModes.Suspend:
+                    // logger.Log("System is going to sleep (suspend). Uninstalling mouse hook.");
+                    Uninstall();
+                    // logger.Log("Uninstalled.");
+                    break;
+                case PowerModes.Resume:
+                    // logger.Log("System is waking up from sleep (resume). Installing mouse hook.");
+                    bool success = Install();
+                    // logger.Log("Result: " + success);
+                    break;
+                default:
+                    break;
+            }
+        }
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode >= 0 && wParam == (IntPtr)WM_LBUTTONDOWN)
+            // We take the elapsed time between the last mouse up and the current mouse down event.
+            // If it's smaller than the minimal delay, we ignore the current mouse down event.
+            // TODO we should keep this as fast as possible. Make logging async.
+            if (nCode >= 0 && (wParam == (IntPtr)WM_LBUTTONDOWN || wParam == (IntPtr)WM_LBUTTONUP))
             {
-                MSLLHOOKSTRUCT? hookStruct = Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT)) as MSLLHOOKSTRUCT?;
-                if (hookStruct != null && IgnoreDoubleClick(hookStruct.Value))
+                MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT))!;
+                if (wParam == (IntPtr)WM_LBUTTONDOWN)
                 {
-                    // Ignore the second click
-                    return (IntPtr)1;
+                    long timeDifference = hookStruct.time - previousUpTime;
+                    bool ignore = timeDifference < settings.MinimumDoubleClickDelayMilliseconds;
+                    if (ignore)
+                    {
+                        logger.Log($"{Resources.IgnoredDoubleClick}: {timeDifference} ms");
+                        previousUpTime = 0;
+                        return (IntPtr)1;
+                    } else
+                    {
+                        if (timeDifference < settings.WindowsDoubleClickTimeMilliseconds)
+                        {
+                            logger.Log($"{timeDifference} ms");
+                        }
+                    }
                 }
-                if (hookStruct != null)
+                else if (wParam == (IntPtr)WM_LBUTTONUP)
                 {
-                    // Store the timestamp of this click for future comparison
-                    lastClickTime = hookStruct.Value.time;
+                    previousUpTime = hookStruct.time;
+
                 }
             }
-            return CallNextHookEx(hookID, nCode, wParam, lParam);
+            return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
         }
-
-        private bool IgnoreDoubleClick(MSLLHOOKSTRUCT hookStruct)
-        {
-            long timeDifference = hookStruct.time - lastClickTime;
-            bool ignore = timeDifference < settings.MinimumDoubleClickDelayMilliseconds;
-            if (ignore)
-            {
-                logger.Log($"{Resources.IgnoredDoubleClick}: {timeDifference} ms");
-            }
-            else if (timeDifference < settings.WindowsDoubleClickTimeMilliseconds)
-            {
-                logger.Log($"{timeDifference} ms");
-            }
-            return ignore;
-        }
-
         private static IntPtr SetHook(LowLevelMouseProc proc)
         {
-            using ProcessModule curModule = Process.GetCurrentProcess().MainModule!;
-            return SetWindowsHookEx(WH_MOUSE_LL, proc, GetModuleHandle(curModule.ModuleName), 0);
+            using ProcessModule currentModule = Process.GetCurrentProcess().MainModule!;
+            return SetWindowsHookEx(WH_MOUSE_LL, proc, GetModuleHandle(currentModule.ModuleName), 0);
+        }
+
+        public void Dispose()
+        {
+            SystemEvents.PowerModeChanged -= OnPowerModeChanged;
+            Uninstall();
         }
     }
 }

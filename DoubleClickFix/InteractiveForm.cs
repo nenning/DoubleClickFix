@@ -27,7 +27,8 @@ namespace DoubleClickFix
         private void ShowForm()
         {
             this.Show();
-            if (this.WindowState == FormWindowState.Minimized) {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
                 this.WindowState = FormWindowState.Normal;
             }
             this.BringToFront();
@@ -76,6 +77,7 @@ namespace DoubleClickFix
         }
         public void Log(string text)
         {
+            // TODO no logs when just minimized
             if (!IsDisposed && Visible)
             {
                 logTextBox.AppendText(text + Environment.NewLine);
@@ -104,7 +106,7 @@ namespace DoubleClickFix
         {
             notifyIcon.Visible = false;
             // make sure the icon is removed from the system tray
-            notifyIcon.Dispose(); 
+            notifyIcon.Dispose();
             Application.Exit();
         }
     }
