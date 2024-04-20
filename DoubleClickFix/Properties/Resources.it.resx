@@ -135,4 +135,7 @@
   <data name="WritingRegistryFailed" xml:space="preserve">
     <value>Impossibile scrivere nel registro di avvio.</value>
   </data>
+  <data name="HookNotInstalled" xml:space="preserve">
+    <value>Installazione fallita.</value>
+  </data>
 </root>

@@ -127,6 +127,9 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="HookNotInstalled" xml:space="preserve">
+    <value>Setup failed.</value>
+  </data>
   <data name="IgnoredDoubleClick" xml:space="preserve">
     <value>Ignored double click</value>
   </data>

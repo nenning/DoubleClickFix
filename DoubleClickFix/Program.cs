@@ -29,7 +29,7 @@ namespace DoubleClickFix
                 {
                     form.Text = "No mouse hook installed!";
                     form.BackColor = Color.DarkRed;
-                    logger.Log("Error: No mouse hook installed!"); // TODO tranlsate
+                    logger.Log($"{Resources.Error}: {Resources.HookNotInstalled}");
                 }
                 Application.Run();
             }

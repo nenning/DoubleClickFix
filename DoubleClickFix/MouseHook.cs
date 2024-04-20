@@ -72,7 +72,6 @@ namespace DoubleClickFix
         {
             // We take the elapsed time between the last mouse up and the current mouse down event.
             // If it's smaller than the minimal delay, we ignore the current mouse down event.
-            // TODO we should keep this as fast as possible. Make logging async.
             if (nCode >= 0 && (wParam == (IntPtr)WM_LBUTTONDOWN || wParam == (IntPtr)WM_LBUTTONUP))
             {
                 MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT))!;

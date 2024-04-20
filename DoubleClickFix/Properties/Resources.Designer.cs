@@ -89,6 +89,15 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No mouse hook installed..
+        /// </summary>
+        internal static string HookNotInstalled {
+            get {
+                return ResourceManager.GetString("HookNotInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ignored double click.
         /// </summary>
         internal static string IgnoredDoubleClick {

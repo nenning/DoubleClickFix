@@ -135,4 +135,7 @@
   <data name="WritingRegistryFailed" xml:space="preserve">
     <value>No se pudo escribir en el registro de inicio.</value>
   </data>
+  <data name="HookNotInstalled" xml:space="preserve">
+    <value>Error en la configuración.</value>
+  </data>
 </root>
