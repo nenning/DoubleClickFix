@@ -42,9 +42,17 @@
             showUiMenu = new ToolStripMenuItem();
             exitMenu = new ToolStripMenuItem();
             label1 = new Label();
+            descriptionTextBox = new TextBox();
+            richTextBox1 = new RichTextBox();
+            groupBox2 = new GroupBox();
+            groupBox3 = new GroupBox();
+            groupBox4 = new GroupBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             notifyMenuStrip.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // logTextBox
@@ -125,19 +133,62 @@
             resources.ApplyResources(label1, "label1");
             label1.Name = "label1";
             // 
+            // descriptionTextBox
+            // 
+            descriptionTextBox.BackColor = SystemColors.Control;
+            descriptionTextBox.BorderStyle = BorderStyle.None;
+            resources.ApplyResources(descriptionTextBox, "descriptionTextBox");
+            descriptionTextBox.Name = "descriptionTextBox";
+            descriptionTextBox.ReadOnly = true;
+            descriptionTextBox.TabStop = false;
+            // 
+            // richTextBox1
+            // 
+            resources.ApplyResources(richTextBox1, "richTextBox1");
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.ReadOnly = true;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(descriptionTextBox);
+            resources.ApplyResources(groupBox2, "groupBox2");
+            groupBox2.Name = "groupBox2";
+            groupBox2.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(logTextBox);
+            resources.ApplyResources(groupBox3, "groupBox3");
+            groupBox3.Name = "groupBox3";
+            groupBox3.TabStop = false;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(richTextBox1);
+            resources.ApplyResources(groupBox4, "groupBox4");
+            groupBox4.Name = "groupBox4";
+            groupBox4.TabStop = false;
+            // 
             // InteractiveForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(groupBox3);
             Controls.Add(label1);
+            Controls.Add(groupBox2);
             Controls.Add(pictureBox1);
-            Controls.Add(logTextBox);
             Controls.Add(groupBox1);
+            Controls.Add(groupBox4);
             Name = "InteractiveForm";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             notifyMenuStrip.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            groupBox4.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -156,5 +207,10 @@
         private ToolStripMenuItem showUiMenu;
         private ToolStripMenuItem exitMenu;
         private Label label1;
+        private TextBox descriptionTextBox;
+        private RichTextBox richTextBox1;
+        private GroupBox groupBox2;
+        private GroupBox groupBox3;
+        private GroupBox groupBox4;
     }
 }
