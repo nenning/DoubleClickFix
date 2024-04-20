@@ -130,15 +130,7 @@
     <value>Impostazioni</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Questa applicazione risolve i problemi con i mouse rotti che inviano doppio clic accidentali.</value>
-  </data>
-  <data name="logTextBox.Text" xml:space="preserve">
-    <value>Utilizza questa interfaccia utente per regolare la velocità minima del doppio clic per il tuo mouse. 
-Esegui un doppio clic e osserva quanto tempo durano i tuoi doppi clic e quelli sbagliati generati dal mouse. 
-Quindi aumenta la velocità minima per includere quelli sbagliati, ma mantienila al di sotto della tua velocità. 
-
-Mostra i log e il tempo trascorso in millisecondi tra due clic del mouse:
-</value>
+    <value>Risolvere i problemi con i mouse difettosi che inviano doppio clic accidentali.</value>
   </data>
   <data name="notifyIcon.Text" xml:space="preserve">
     <value>Correzione del doppio clic</value>
@@ -151,5 +143,23 @@ Mostra i log e il tempo trascorso in millisecondi tra due clic del mouse:
   </data>
   <data name="showUiMenu.Text" xml:space="preserve">
     <value>Mostra interfaccia utente</value>
+  </data>
+  <data name="descriptionTextBox.Text" xml:space="preserve">
+    <value>Regola la velocità di doppio clic del tuo mouse alla perfezione. Monitora la durata dei tuoi doppio clic e confrontala con i doppio clic difettosi. Regola finemente la velocità minima per includere i clic difettosi rimanendo al di sotto della tua velocità normale. Visualizza i log e il tempo trascorso tra i clic sulla sinistra. Testa il comportamento del tuo mouse con le impostazioni attuali sulla destra (clic singolo, doppio clic, selezione del testo).</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Descrizione</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Registri</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value>
   </data>
 </root>

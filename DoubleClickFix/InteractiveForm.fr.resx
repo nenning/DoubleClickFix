@@ -130,15 +130,7 @@
     <value>Paramètres</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Cette application corrige les problèmes de souris cassées envoyant des double-clics accidentels.</value>
-  </data>
-  <data name="logTextBox.Text" xml:space="preserve">
-    <value>Utilisez cette interface utilisateur pour ajuster la vitesse minimale de double-clic pour votre souris. 
-Double-cliquez et observez combien de temps durent vos double-clics et les mauvais. 
-Ensuite, augmentez la vitesse minimale pour inclure les mauvais, mais gardez-la en dessous de votre vitesse. 
-
-Affiche les journaux et le temps écoulé en millisecondes entre deux clics de souris:
-</value>
+    <value>Corrigez les problèmes avec les souris défectueuses envoyant des double-clics accidentels.</value>
   </data>
   <data name="notifyIcon.Text" xml:space="preserve">
     <value>Correction de double-clic</value>
@@ -151,5 +143,23 @@ Affiche les journaux et le temps écoulé en millisecondes entre deux clics de s
   </data>
   <data name="showUiMenu.Text" xml:space="preserve">
     <value>Afficher l'interface utilisateur</value>
+  </data>
+  <data name="descriptionTextBox.Text" xml:space="preserve">
+    <value>Ajustez la vitesse de double-clic de votre souris à la perfection. Surveillez la durée de vos double-clics et comparez-la avec les double-clics défectueux. Ajustez finement la vitesse minimale pour inclure les clics défectueux tout en restant en dessous de votre vitesse normale. Affichez les journaux et le temps écoulé entre les clics à gauche. Testez le comportement de votre souris avec les paramètres actuels à droite (clic simple, double-clic, sélection de texte).</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Journaux</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value>
   </data>
 </root>

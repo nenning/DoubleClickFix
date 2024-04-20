@@ -130,15 +130,7 @@
     <value>Configuraciones</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Esta aplicación soluciona problemas con ratones rotos que envían doble clics accidentales.</value>
-  </data>
-  <data name="logTextBox.Text" xml:space="preserve">
-    <value>Utilice esta IU para ajustar la velocidad mínima de doble clic para su ratón. 
-Realice doble clic y observe cuánto tiempo tardan los dobles clics y los clics incorrectos generados por el ratón. 
-Luego, aumente la velocidad mínima para incluir los clics incorrectos, pero manténgala por debajo de su velocidad. 
-
-Muestra los registros y el tiempo transcurrido en milisegundos entre dos clics de ratón:
-</value>
+    <value>Corrija problemas con ratones defectuosos que envían doble clics accidentales.</value>
   </data>
   <data name="notifyIcon.Text" xml:space="preserve">
     <value>Corrección de doble clic</value>
@@ -151,5 +143,23 @@ Muestra los registros y el tiempo transcurrido en milisegundos entre dos clics d
   </data>
   <data name="showUiMenu.Text" xml:space="preserve">
     <value>Mostrar interfaz de usuario</value>
+  </data>
+  <data name="descriptionTextBox.Text" xml:space="preserve">
+    <value>Ajuste la velocidad de doble clic de su ratón a la perfección. Monitoree la duración de sus doble clics y compárela con los doble clics defectuosos. Ajuste fino la velocidad mínima para incluir los clics defectuosos mientras se mantiene por debajo de su velocidad normal. Vea registros y tiempo transcurrido entre clics a la izquierda. Pruebe el comportamiento de su ratón con la configuración actual a la derecha (clic simple, doble clic, selección de texto).</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Registros</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Prueba</value>
+  </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value>
   </data>
 </root>

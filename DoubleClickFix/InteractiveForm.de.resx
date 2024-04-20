@@ -130,15 +130,7 @@
     <value>Einstellungen</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Diese Applikation verhindert von defekten Mäusen generierte Doppelklicks.</value>
-  </data>
-  <data name="logTextBox.Text" xml:space="preserve">
-    <value>Verwenden Sie diese Benutzeroberfläche, um die minimale Doppelklick-Geschwindigkeit für Ihre Maus einzustellen. 
-Führen Sie einen Doppelklick aus und beobachten Sie, wie lange diese und die von Maus generierten Fehlklicks dauern. 
-Erhöhen Sie dann die minimale Geschwindigkeit, um die Fehlklicks einzuschließen, halten Sie sie jedoch unter Ihrer Doppelklick-Geschwindigkeit.
-
-Zeigt die Logs und die verstrichene Zeit in Millisekunden zwischen zwei Mausklicks an:
-</value>
+    <value>Beheben Sie Probleme mit defekten Mäusen, die versehentlich Doppelklicks senden.</value>
   </data>
   <data name="notifyIcon.Text" xml:space="preserve">
     <value>Doppelklick-Fix</value>
@@ -151,5 +143,23 @@ Zeigt die Logs und die verstrichene Zeit in Millisekunden zwischen zwei Mausklic
   </data>
   <data name="showUiMenu.Text" xml:space="preserve">
     <value>Benutzeroberfläche anzeigen</value>
+  </data>
+  <data name="descriptionTextBox.Text" xml:space="preserve">
+    <value>Passen Sie die Doppelklickgeschwindigkeit Ihrer Maus perfekt an. Überwachen Sie die Dauer Ihrer Doppelklicks und vergleichen Sie sie mit den fehlerhaften Doppelklicks. Feinabstimmung der Mindestgeschwindigkeit, um die fehlerhaften Klicks einzuschließen, während Sie unter Ihrer normalen Geschwindigkeit bleiben. Zeigen Sie Protokolle und verstrichene Zeit zwischen Klicks links an. Testen Sie das Verhalten Ihrer Maus mit den aktuellen Einstellungen rechts (Einfachklick, Doppelklick, Textauswahl).</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Protokolle</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value>
   </data>
 </root>
