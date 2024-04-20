@@ -1,8 +1,4 @@
 using DoubleClickFix.Properties;
-using Microsoft.Win32;
-using System.Resources;
-using System.Runtime.CompilerServices;
-using System.Windows.Forms;
 
 namespace DoubleClickFix
 {
@@ -22,6 +18,19 @@ namespace DoubleClickFix
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
             logger.AddLogger(text => Log(text));
             this.MinDelay = settings.MinimumDoubleClickDelayMilliseconds;
+        }
+
+        private void Log(string message)
+        {
+            if (!IsDisposed && InvokeRequired)
+            {
+                Invoke(new Action<string>(Log), message);
+                return;
+            }
+            if (!IsDisposed && Visible)
+            {
+                logTextBox.AppendText(message + Environment.NewLine);
+            }
         }
 
         private void ShowForm()
@@ -75,15 +84,6 @@ namespace DoubleClickFix
                 delayTextBox.Text = value.ToString();
             }
         }
-        public void Log(string text)
-        {
-            // TODO no logs when just minimized
-            if (!IsDisposed && Visible)
-            {
-                logTextBox.AppendText(text + Environment.NewLine);
-            }
-        }
-
         private void LogTextBoxChanged(object sender, EventArgs e)
         {
             if (logTextBox.TextLength > logTextBox.MaxLength - 1000)
