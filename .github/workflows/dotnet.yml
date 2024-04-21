@@ -30,7 +30,11 @@ jobs:
       run: |
         mkdir Release
         Copy-Item -Path DoubleClickFix/DoubleClickFix/bin/Release/net8.0-windows/* -Destination Release/ -Recurse        
-        7z a -tzip DoubleClickFix.zip Release/*
+      shell: pwsh
+
+    - name: Create ZIP file
+      run: Compress-Archive -Path Release/* -DestinationPath DoubleClickFix.zip
+      shell: pwsh
 
     - name: Create Release
       id: create_release
