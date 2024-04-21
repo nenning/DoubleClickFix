@@ -26,7 +26,6 @@ namespace DoubleClickFix
         {
             this.settings = settings;
             this.logger = logger;
-            SystemEvents.PowerModeChanged += OnPowerModeChanged;
         }
 
         public bool Install()
@@ -49,25 +48,14 @@ namespace DoubleClickFix
             }
         }
 
-        private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        /// <summary>
+        /// Same as calling Uninstall().
+        /// </summary>
+        public void Dispose()
         {
-            // TODO check if we really need this.
-            switch (e.Mode)
-            {
-                case PowerModes.Suspend:
-                    // logger.Log("System is going to sleep (suspend). Uninstalling mouse hook.");
-                    Uninstall();
-                    // logger.Log("Uninstalled.");
-                    break;
-                case PowerModes.Resume:
-                    // logger.Log("System is waking up from sleep (resume). Installing mouse hook.");
-                    bool success = Install();
-                    // logger.Log("Result: " + success);
-                    break;
-                default:
-                    break;
-            }
+            Uninstall();
         }
+
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             // We take the elapsed time between the last mouse up and the current mouse down event.
@@ -100,16 +88,11 @@ namespace DoubleClickFix
             }
             return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
         }
+
         private static IntPtr SetHook(LowLevelMouseProc proc)
         {
             using ProcessModule currentModule = Process.GetCurrentProcess().MainModule!;
             return SetWindowsHookEx(WH_MOUSE_LL, proc, GetModuleHandle(currentModule.ModuleName), 0);
-        }
-
-        public void Dispose()
-        {
-            SystemEvents.PowerModeChanged -= OnPowerModeChanged;
-            Uninstall();
         }
     }
 }
