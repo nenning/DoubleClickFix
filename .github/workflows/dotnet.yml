@@ -1,19 +1,18 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: Create release
+name: Build and Release
 
 on:
   push:
     tags:
-      - '*'
-
+      - 'v*' # Trigger on version tags (e.g., v1.0.0)
+  
 permissions:
   contents: write
   
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
@@ -26,6 +25,12 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore --configuration Release
+
+    - name: Package binaries
+      run: |
+        mkdir Release
+        cp -a bin/Release/. Release/
+        7z a -tzip DoubleClickFix.zip Release/*
 
     - name: Create Release
       id: create_release
@@ -40,3 +45,13 @@ jobs:
           - Add your release notes here
         draft: false
         prerelease: false
+
+    - name: Upload release assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./DoubleClickFix.zip
+        asset_name: DoubleClickFix.zip
+        asset_content_type: application/zip    
