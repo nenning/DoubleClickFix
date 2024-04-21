@@ -29,7 +29,7 @@ jobs:
     - name: Package binaries
       run: |
         mkdir Release
-        cp -a bin/Release/. Release/
+        Copy-Item -Path bin/Release/* -Destination Release/ -Recurse
         7z a -tzip DoubleClickFix.zip Release/*
 
     - name: Create Release
