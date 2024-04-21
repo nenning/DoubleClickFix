@@ -7,6 +7,10 @@ using static DoubleClickFix.NativeMethods;
 
 namespace DoubleClickFix
 {
+    /// <summary>
+    /// TODO: try using a mouse hook on a high prio background thread to reduce the risk of unhooking by Windows because of a timeout.
+    /// See https://stackoverflow.com/a/49965969
+    /// </summary>
     internal class MouseHook : IDisposable
     {
         private const int WH_MOUSE_LL = 14;
@@ -21,6 +25,7 @@ namespace DoubleClickFix
         private IntPtr hookHandle = IntPtr.Zero;
 
         private uint previousUpTime = 0;
+        private uint ignoredClicks = 0;
 
         public MouseHook(Settings settings, ILogger logger)
         {
@@ -51,18 +56,17 @@ namespace DoubleClickFix
 
         private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
-            // TODO check if we really need this.
+            // not strictly necessary, but in case of a mouse hook timeout, at least we get the hook back on resume. 
             switch (e.Mode)
             {
                 case PowerModes.Suspend:
-                    // logger.Log("System is going to sleep (suspend). Uninstalling mouse hook.");
                     Uninstall();
-                    // logger.Log("Uninstalled.");
                     break;
                 case PowerModes.Resume:
-                    // logger.Log("System is waking up from sleep (resume). Installing mouse hook.");
-                    bool success = Install();
-                    // logger.Log("Result: " + success);
+                    if (!Install())
+                    {
+                        logger.Log("Failed to reinstall mouse hook after Windows resume."); // TODO translate.
+                    }
                     break;
                 default:
                     break;
@@ -81,7 +85,8 @@ namespace DoubleClickFix
                     bool ignore = timeDifference < settings.MinimumDoubleClickDelayMilliseconds;
                     if (ignore)
                     {
-                        logger.Log($"{Resources.IgnoredDoubleClick}: {timeDifference} ms");
+                        ignoredClicks++;
+                        logger.Log($"{Resources.IgnoredDoubleClick}: {timeDifference} ms ({ignoredClicks})");
                         previousUpTime = 0;
                         return (IntPtr)1;
                     } else

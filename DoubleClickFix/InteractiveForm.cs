@@ -27,7 +27,7 @@ namespace DoubleClickFix
                 Invoke(new Action<string>(Log), message);
                 return;
             }
-            if (!IsDisposed && Visible)
+            if (!IsDisposed)
             {
                 logTextBox.AppendText(message + Environment.NewLine);
             }
