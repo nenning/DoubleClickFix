@@ -29,7 +29,7 @@ jobs:
     - name: Package binaries
       run: |
         mkdir Release
-        Copy-Item -Path DoubleClickFix/DoubleClickFix/bin/Release/net8.0-windows/* -Destination Release/ -Recurse        
+        Copy-Item -Path DoubleClickFix/bin/Release/net8.0-windows/* -Destination Release/ -Recurse        
       shell: pwsh
 
     - name: Create ZIP file
