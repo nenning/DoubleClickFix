@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoubleClickFix", "DoubleCli
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44D09EFA-D9D4-4444-AD6A-65EEE4A6BAB9}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 		readme.md = readme.md
 	EndProjectSection
 EndProject
@@ -25,8 +26,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_SortFileContentOnSave = True
-		RESX_PrefixTranslations = False
 		SolutionGuid = {15AF5431-11C5-4898-8A12-C84036E17F36}
+		RESX_PrefixTranslations = False
+		RESX_SortFileContentOnSave = True
 	EndGlobalSection
 EndGlobal
