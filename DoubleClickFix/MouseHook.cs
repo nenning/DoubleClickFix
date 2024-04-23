@@ -36,14 +36,14 @@ namespace DoubleClickFix
         private LowLevelMouseProc? mouseProc;
         private IntPtr hookHandle = IntPtr.Zero;
 
-        private MouseButtons observedButtons = MouseButtons.Left;
-        //private uint previousUpTime = 0;
+        private readonly HashSet<int> observedMessages = new();
         Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
         private uint ignoredClicks = 0;
 
         public MouseHook(Settings settings, ILogger logger)
         {
             this.settings = settings;
+            SettingsChanged();
             settings.RegisterSettingsChangedListener(SettingsChanged);
             this.logger = logger;
             SystemEvents.PowerModeChanged += OnPowerModeChanged;
@@ -51,8 +51,26 @@ namespace DoubleClickFix
 
         private void SettingsChanged()
         {
-            // TODO 
-            Debug.WriteLine("setting changed" + DateTime.Now);
+            observedMessages.Clear();
+            if (settings.LeftThreshold >= 0) { 
+                observedMessages.Add(WM_LBUTTONDOWN);
+                observedMessages.Add(WM_LBUTTONUP);
+            }
+            if (settings.RightThreshold >= 0)
+            {
+                observedMessages.Add(WM_RBUTTONDOWN);
+                observedMessages.Add(WM_RBUTTONUP);
+            }
+            if (settings.MiddleThreshold >= 0)
+            {
+                observedMessages.Add(WM_MBUTTONDOWN);
+                observedMessages.Add(WM_MBUTTONDOWN);
+            }
+            if (settings.X1Threshold >= 0 || settings.X2Threshold >= 0)
+            {
+                observedMessages.Add(WM_XBUTTONDOWN);
+                observedMessages.Add(WM_XBUTTONUP);
+            }
         }
 
         public bool Install()
@@ -63,17 +81,6 @@ namespace DoubleClickFix
                 hookHandle = SetHook(mouseProc);
             }
             return hookHandle != IntPtr.Zero;
-        }
-
-        //private Windows.Forms.
-        public MouseButtons ObservedButtons
-        {
-            get => observedButtons; 
-            set
-            {
-                observedButtons = value;
-
-            }
         }
         public void Uninstall()
         {
@@ -106,56 +113,46 @@ namespace DoubleClickFix
   
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            // TODO: make dynamic depending on selection
-            HashSet<int> supportedValues = new() { WM_LBUTTONDOWN, WM_LBUTTONUP, WM_RBUTTONDOWN, WM_RBUTTONUP, WM_MBUTTONDOWN, WM_MBUTTONUP, WM_XBUTTONDOWN, WM_XBUTTONUP };
-
-            // TODO: make nicer (lookup)
-            if (nCode >= 0 && supportedValues.TryGetValue((int)wParam, out _))
+            if (nCode >= 0 && observedMessages.TryGetValue((int)wParam, out _))
             {
                 MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT))!;
-
                 bool buttonUp = false;
                 bool buttonDown = false;
                 MouseButtons button = MouseButtons.None;
-                if (wParam == WM_LBUTTONDOWN)
+                switch (wParam)
                 {
-                    buttonDown = true;
-                    button = MouseButtons.Left;
-                }
-                else if (wParam == WM_LBUTTONUP)
-                {
-                    buttonUp = true;
-                    button = MouseButtons.Left;
-                }
-                else if (wParam == WM_RBUTTONDOWN)
-                {
-                    buttonDown = true;
-                    button = MouseButtons.Right;
-                }
-                else if (wParam == WM_RBUTTONUP)
-                {
-                    buttonUp = true;
-                    button = MouseButtons.Right;
-                }
-                else if (wParam == WM_MBUTTONDOWN)
-                {
-                    buttonDown = true;
-                    button = MouseButtons.Middle;
-                }
-                else if (wParam == WM_MBUTTONUP)
-                {
-                    buttonUp = true;
-                    button = MouseButtons.Middle;
-                }
-                else if (wParam == WM_XBUTTONDOWN)
-                {
-                    buttonDown = true;
-                    button = GetXButton(hookStruct.mouseData);
-                }
-                else if (wParam == WM_XBUTTONUP)
-                {
-                    buttonUp = true;
-                    button = GetXButton(hookStruct.mouseData);
+                    case WM_LBUTTONDOWN:
+                        buttonDown = true;
+                        button = MouseButtons.Left;
+                        break;
+                    case WM_LBUTTONUP:
+                        buttonUp = true;
+                        button = MouseButtons.Left;
+                        break;
+                    case WM_RBUTTONDOWN:
+                        buttonDown = true;
+                        button = MouseButtons.Right;
+                        break;
+                    case WM_RBUTTONUP:
+                        buttonUp = true;
+                        button = MouseButtons.Right;
+                        break;
+                    case WM_MBUTTONDOWN:
+                        buttonDown = true;
+                        button = MouseButtons.Middle;
+                        break;
+                    case WM_MBUTTONUP:
+                        buttonUp = true;
+                        button = MouseButtons.Middle;
+                        break;
+                    case WM_XBUTTONDOWN:
+                        buttonDown = true;
+                        button = GetXButton(hookStruct.mouseData);
+                        break;
+                    case WM_XBUTTONUP:
+                        buttonUp = true;
+                        button = GetXButton(hookStruct.mouseData);
+                        break;
                 }
                 if (button != MouseButtons.None)
                 {

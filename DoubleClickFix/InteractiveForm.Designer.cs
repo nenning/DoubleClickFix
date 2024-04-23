@@ -70,7 +70,7 @@
             logTextBox.Name = "logTextBox";
             logTextBox.ReadOnly = true;
             logTextBox.TabStop = false;
-            logTextBox.TextChanged += LogTextBoxChanged;
+            logTextBox.TextChanged += OnLogTextBoxChanged;
             // 
             // delayLabel
             // 
@@ -116,14 +116,14 @@
             thresholdSlider.Minimum = -1;
             thresholdSlider.Name = "thresholdSlider";
             thresholdSlider.TickFrequency = 10;
-            thresholdSlider.ValueChanged += ThresholdValueChanged;
+            thresholdSlider.ValueChanged += OnThresholdValueChanged;
             // 
             // buttonEnabledCheckBox
             // 
             resources.ApplyResources(buttonEnabledCheckBox, "buttonEnabledCheckBox");
             buttonEnabledCheckBox.Name = "buttonEnabledCheckBox";
             buttonEnabledCheckBox.UseVisualStyleBackColor = true;
-            buttonEnabledCheckBox.CheckedChanged += ButtonEnabledCheckedChanged;
+            buttonEnabledCheckBox.CheckedChanged += OnButtonEnabledCheckedChanged;
             // 
             // comboBox1
             // 
@@ -131,7 +131,7 @@
             comboBox1.Items.AddRange(new object[] { resources.GetString("comboBox1.Items"), resources.GetString("comboBox1.Items1"), resources.GetString("comboBox1.Items2"), resources.GetString("comboBox1.Items3"), resources.GetString("comboBox1.Items4") });
             resources.ApplyResources(comboBox1, "comboBox1");
             comboBox1.Name = "comboBox1";
-            comboBox1.SelectedIndexChanged += SelectedMouseButtonChanged;
+            comboBox1.SelectedIndexChanged += OnSelectedMouseButtonChanged;
             // 
             // x2
             // 
@@ -169,14 +169,14 @@
             pictureBox1.Image = Properties.Resources.app;
             pictureBox1.Name = "pictureBox1";
             pictureBox1.TabStop = false;
-            pictureBox1.MouseEnter += ShowTestControls;
-            pictureBox1.MouseLeave += HideTestControls;
+            pictureBox1.MouseEnter += OnShowTestControls;
+            pictureBox1.MouseLeave += OnHideTestControls;
             // 
             // notifyIcon
             // 
             notifyIcon.ContextMenuStrip = notifyMenuStrip;
             resources.ApplyResources(notifyIcon, "notifyIcon");
-            notifyIcon.MouseDoubleClick += NotifyIconDoubleClick;
+            notifyIcon.MouseDoubleClick += OnNotifyIconDoubleClick;
             // 
             // notifyMenuStrip
             // 
@@ -189,13 +189,13 @@
             // 
             showUiMenu.Name = "showUiMenu";
             resources.ApplyResources(showUiMenu, "showUiMenu");
-            showUiMenu.Click += ShowUiMenuClick;
+            showUiMenu.Click += OnShowUiMenuClick;
             // 
             // exitMenu
             // 
             exitMenu.Name = "exitMenu";
             resources.ApplyResources(exitMenu, "exitMenu");
-            exitMenu.Click += ExitMenuClick;
+            exitMenu.Click += OnExitMenuClick;
             // 
             // label1
             // 
@@ -216,8 +216,8 @@
             resources.ApplyResources(richTextBox1, "richTextBox1");
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
-            richTextBox1.MouseEnter += ShowTestControls;
-            richTextBox1.MouseLeave += HideTestControls;
+            richTextBox1.MouseEnter += OnShowTestControls;
+            richTextBox1.MouseLeave += OnHideTestControls;
             // 
             // groupBox2
             // 

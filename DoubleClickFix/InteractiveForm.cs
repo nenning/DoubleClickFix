@@ -6,6 +6,7 @@ namespace DoubleClickFix
     {
         private readonly StartupRegistry startup;
         private readonly Settings settings;
+        private readonly System.Windows.Forms.Timer debounceTimer;
 
         public InteractiveForm(StartupRegistry startup, Settings settings, Logger logger)
         {
@@ -13,8 +14,12 @@ namespace DoubleClickFix
             this.settings = settings;
 
             InitializeComponent();
-            InitializeDebounceTimer();
-            this.FormClosing += HideFormInsteadOfClosing;
+
+            debounceTimer = new();
+            debounceTimer.Interval = 100;
+            debounceTimer.Tick += OnDebounceTimerTick;
+
+            this.FormClosing += OnHideFormInsteadOfClosing;
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
             logger.AddLogger(text => Log(text));
             SetupPictureBox();
@@ -23,14 +28,14 @@ namespace DoubleClickFix
 
         public void SetupPictureBox()
         {
-            pictureBox1.MouseDown += PictureBox1_MouseDown;
-            pictureBox1.MouseUp += PictureBox1_MouseUp;
-            richTextBox1.MouseDown += PictureBox1_MouseDown;
-            richTextBox1.MouseUp += PictureBox1_MouseUp;
-            HideTestControls(this, EventArgs.Empty);
+            pictureBox1.MouseDown += OnTestMouseDown;
+            pictureBox1.MouseUp += OnTestMouseUp;
+            richTextBox1.MouseDown += OnTestMouseDown;
+            richTextBox1.MouseUp += OnTestMouseUp;
+            OnHideTestControls(this, EventArgs.Empty);
         }
 
-        private void PictureBox1_MouseDown(object? sender, MouseEventArgs e)
+        private void OnTestMouseDown(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -54,7 +59,7 @@ namespace DoubleClickFix
             }
         }
 
-        private void PictureBox1_MouseUp(object? sender, MouseEventArgs e)
+        private void OnTestMouseUp(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -101,7 +106,7 @@ namespace DoubleClickFix
             this.BringToFront();
         }
 
-        private void HideFormInsteadOfClosing(object? sender, FormClosingEventArgs e)
+        private void OnHideFormInsteadOfClosing(object? sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -112,13 +117,6 @@ namespace DoubleClickFix
         private void OnSaveButtonClicked(object? sender, EventArgs e)
         {
             bool success;
-
-            var buttons = (left.Checked ? MouseButtons.Left : 0)
-                        | (right.Checked ? MouseButtons.Right : 0)
-                        | (middle.Checked ? MouseButtons.Middle : 0)
-                        | (x1.Checked ? MouseButtons.XButton1 : 0)
-                        | (x2.Checked ? MouseButtons.XButton2 : 0);
-
             if (runAtStartupCheckBox.Checked)
             {
                 success = startup.Register();
@@ -131,14 +129,10 @@ namespace DoubleClickFix
             {
                 Log(Resources.WritingRegistryFailed);
             }
-            // TODO set settings in the event handlers?
-            if (int.TryParse(delayTextBox.Text, out int minValue))
-            {
-                settings.Save();
-            }
+            settings.Save();
         }
 
-        private void LogTextBoxChanged(object? sender, EventArgs e)
+        private void OnLogTextBoxChanged(object? sender, EventArgs e)
         {
             if (logTextBox.TextLength > logTextBox.MaxLength - 1000)
             {
@@ -146,17 +140,17 @@ namespace DoubleClickFix
             }
         }
 
-        private void NotifyIconDoubleClick(object? sender, MouseEventArgs e)
+        private void OnNotifyIconDoubleClick(object? sender, MouseEventArgs e)
         {
             this.ShowForm();
         }
 
-        private void ShowUiMenuClick(object? sender, EventArgs e)
+        private void OnShowUiMenuClick(object? sender, EventArgs e)
         {
             this.ShowForm();
         }
 
-        private void ExitMenuClick(object? sender, EventArgs e)
+        private void OnExitMenuClick(object? sender, EventArgs e)
         {
             notifyIcon.Visible = false;
             // make sure the icon is removed from the system tray
@@ -164,7 +158,7 @@ namespace DoubleClickFix
             Application.Exit();
         }
 
-        private void SelectedMouseButtonChanged(object sender, EventArgs e)
+        private void OnSelectedMouseButtonChanged(object sender, EventArgs e)
         {
             thresholdSlider.Minimum = -1;
             thresholdSlider.Maximum = Math.Min(200, settings.WindowsDoubleClickTimeMilliseconds);
@@ -192,7 +186,7 @@ namespace DoubleClickFix
             thresholdSlider.Value = threshold;
         }
 
-        private void ShowTestControls(object sender, EventArgs e)
+        private void OnShowTestControls(object sender, EventArgs e)
         {
             left.Show();
             right.Show();
@@ -206,7 +200,7 @@ namespace DoubleClickFix
             x2.Checked = settings.X2Threshold >= 0;
         }
 
-        private void HideTestControls(object sender, EventArgs e)
+        private void OnHideTestControls(object sender, EventArgs e)
         {
             left.Hide();
             right.Hide();
@@ -216,7 +210,7 @@ namespace DoubleClickFix
             pictureBox1.Invalidate();
         }
 
-        private void ThresholdValueChanged(object sender, EventArgs e)
+        private void OnThresholdValueChanged(object sender, EventArgs e)
         {
             this.delayTextBox.Text = thresholdSlider.Value.ToString();
             bool enabled = thresholdSlider.Value >= 0;
@@ -227,14 +221,6 @@ namespace DoubleClickFix
             ResetDebounceTimer();
         }
 
-        private System.Windows.Forms.Timer debounceTimer;
-        private void InitializeDebounceTimer()
-        {
-            debounceTimer = new();
-            debounceTimer.Interval = 100;
-            debounceTimer.Tick += DebounceTimer_Tick;
-        }
-
         private void ResetDebounceTimer()
         {
             // Restart the debounce timer whenever the TrackBar value changes
@@ -242,7 +228,7 @@ namespace DoubleClickFix
             debounceTimer.Start();
         }
 
-        private void DebounceTimer_Tick(object sender, EventArgs e)
+        private void OnDebounceTimerTick(object sender, EventArgs e)
         {
             UpdateSettings();
             debounceTimer.Stop();
@@ -271,7 +257,7 @@ namespace DoubleClickFix
             }
         }
 
-        private void ButtonEnabledCheckedChanged(object sender, EventArgs e)
+        private void OnButtonEnabledCheckedChanged(object sender, EventArgs e)
         {
             if (!buttonEnabledCheckBox.Checked)
             {
