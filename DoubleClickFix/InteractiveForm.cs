@@ -1,6 +1,5 @@
 using DoubleClickFix.Properties;
 using System.Diagnostics;
-
 namespace DoubleClickFix
 {
     public partial class InteractiveForm : Form
@@ -14,6 +13,7 @@ namespace DoubleClickFix
             this.settings = settings;
 
             InitializeComponent();
+            InitializeDebounceTimer();
             this.FormClosing += HideFormInsteadOfClosing;
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
             logger.AddLogger(text => Log(text));
@@ -224,13 +224,33 @@ namespace DoubleClickFix
             {
                 buttonEnabledCheckBox.Checked = enabled;
             }
+            ResetDebounceTimer();
+        }
+
+        private System.Windows.Forms.Timer debounceTimer;
+        private void InitializeDebounceTimer()
+        {
+            debounceTimer = new();
+            debounceTimer.Interval = 100;
+            debounceTimer.Tick += DebounceTimer_Tick;
+        }
+
+        private void ResetDebounceTimer()
+        {
+            // Restart the debounce timer whenever the TrackBar value changes
+            debounceTimer.Stop();
+            debounceTimer.Start();
+        }
+
+        private void DebounceTimer_Tick(object sender, EventArgs e)
+        {
             UpdateSettings();
+            debounceTimer.Stop();
         }
 
         private void UpdateSettings()
         {
             int threshold = thresholdSlider.Value;
-            // TODO debounce
             switch (comboBox1.SelectedIndex)
             {
                 case 0:
