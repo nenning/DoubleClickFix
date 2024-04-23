@@ -1,10 +1,10 @@
 using DoubleClickFix.Properties;
+using System.Diagnostics;
 
 namespace DoubleClickFix
 {
     public partial class InteractiveForm : Form
     {
-        private int minDelay;
         private readonly StartupRegistry startup;
         private readonly Settings settings;
 
@@ -17,8 +17,8 @@ namespace DoubleClickFix
             this.FormClosing += HideFormInsteadOfClosing;
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
             logger.AddLogger(text => Log(text));
-            this.MinDelay = settings.MinimumDoubleClickDelayMilliseconds;
             SetupPictureBox();
+            this.comboBox1.SelectedIndex = 0;
         }
 
         public void SetupPictureBox()
@@ -27,6 +27,7 @@ namespace DoubleClickFix
             pictureBox1.MouseUp += PictureBox1_MouseUp;
             richTextBox1.MouseDown += PictureBox1_MouseDown;
             richTextBox1.MouseUp += PictureBox1_MouseUp;
+            HideTestControls(this, EventArgs.Empty);
         }
 
         private void PictureBox1_MouseDown(object? sender, MouseEventArgs e)
@@ -130,26 +131,13 @@ namespace DoubleClickFix
             {
                 Log(Resources.WritingRegistryFailed);
             }
-            // TODO set settings here, or live in the event handlers?
+            // TODO set settings in the event handlers?
             if (int.TryParse(delayTextBox.Text, out int minValue))
             {
-                settings.MinimumDoubleClickDelayMilliseconds = minValue;
                 settings.Save();
             }
         }
 
-        public int MinDelay
-        {
-            get
-            {
-                return minDelay;
-            }
-            set
-            {
-                minDelay = value;
-                delayTextBox.Text = value.ToString();
-            }
-        }
         private void LogTextBoxChanged(object? sender, EventArgs e)
         {
             if (logTextBox.TextLength > logTextBox.MaxLength - 1000)
@@ -176,5 +164,99 @@ namespace DoubleClickFix
             Application.Exit();
         }
 
+        private void SelectedMouseButtonChanged(object sender, EventArgs e)
+        {
+            thresholdSlider.Minimum = -1;
+            thresholdSlider.Maximum = Math.Min(200, settings.WindowsDoubleClickTimeMilliseconds);
+            int threshold = -1;
+            var index = comboBox1.SelectedIndex;
+            switch (index)
+            {
+                case 0:
+                    threshold = settings.LeftThreshold;
+                    break;
+                case 1:
+                    threshold = settings.RightThreshold;
+                    break;
+                case 2:
+                    threshold = settings.MiddleThreshold;
+                    break;
+                case 3:
+                    threshold = settings.X1Threshold;
+                    break;
+                case 4:
+                    threshold = settings.X2Threshold;
+                    break;
+            }
+            buttonEnabledCheckBox.Checked = threshold >= 0;
+            thresholdSlider.Value = threshold;
+        }
+
+        private void ShowTestControls(object sender, EventArgs e)
+        {
+            left.Show();
+            right.Show();
+            middle.Show();
+            x1.Show();
+            x2.Show();
+            left.Checked = settings.LeftThreshold >= 0;
+            right.Checked = settings.RightThreshold >= 0;
+            middle.Checked = settings.MiddleThreshold >= 0;
+            x1.Checked = settings.X1Threshold >= 0;
+            x2.Checked = settings.X2Threshold >= 0;
+        }
+
+        private void HideTestControls(object sender, EventArgs e)
+        {
+            left.Hide();
+            right.Hide();
+            middle.Hide();
+            x1.Hide();
+            x2.Hide();
+            pictureBox1.Invalidate();
+        }
+
+        private void ThresholdValueChanged(object sender, EventArgs e)
+        {
+            this.delayTextBox.Text = thresholdSlider.Value.ToString();
+            bool enabled = thresholdSlider.Value >= 0;
+            if (enabled != buttonEnabledCheckBox.Checked)
+            {
+                buttonEnabledCheckBox.Checked = enabled;
+            }
+            UpdateSettings();
+        }
+
+        private void UpdateSettings()
+        {
+            int threshold = thresholdSlider.Value;
+            // TODO debounce
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    settings.LeftThreshold = threshold;
+                    break;
+                case 1:
+                    settings.RightThreshold = threshold;
+                    break;
+                case 2:
+                    settings.MiddleThreshold = threshold;
+                    break;
+                case 3:
+                    settings.X1Threshold = threshold;
+                    break;
+                case 4:
+                    settings.X2Threshold = threshold;
+                    break;
+            }
+        }
+
+        private void ButtonEnabledCheckedChanged(object sender, EventArgs e)
+        {
+            if (!buttonEnabledCheckBox.Checked)
+            {
+                thresholdSlider.Value = -1;
+            }
+        }
     }
 }

@@ -36,6 +36,9 @@
             saveButton = new Button();
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
+            thresholdSlider = new TrackBar();
+            buttonEnabledCheckBox = new CheckBox();
+            comboBox1 = new ComboBox();
             x2 = new CheckBox();
             x1 = new CheckBox();
             middle = new CheckBox();
@@ -53,6 +56,7 @@
             groupBox3 = new GroupBox();
             groupBox4 = new GroupBox();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)thresholdSlider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             notifyMenuStrip.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -93,11 +97,9 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(x2);
-            groupBox1.Controls.Add(x1);
-            groupBox1.Controls.Add(middle);
-            groupBox1.Controls.Add(right);
-            groupBox1.Controls.Add(left);
+            groupBox1.Controls.Add(thresholdSlider);
+            groupBox1.Controls.Add(buttonEnabledCheckBox);
+            groupBox1.Controls.Add(comboBox1);
             groupBox1.Controls.Add(delayTextBox);
             groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(runAtStartupCheckBox);
@@ -105,6 +107,31 @@
             resources.ApplyResources(groupBox1, "groupBox1");
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
+            // 
+            // thresholdSlider
+            // 
+            thresholdSlider.LargeChange = 20;
+            resources.ApplyResources(thresholdSlider, "thresholdSlider");
+            thresholdSlider.Maximum = 200;
+            thresholdSlider.Minimum = -1;
+            thresholdSlider.Name = "thresholdSlider";
+            thresholdSlider.TickFrequency = 10;
+            thresholdSlider.ValueChanged += ThresholdValueChanged;
+            // 
+            // buttonEnabledCheckBox
+            // 
+            resources.ApplyResources(buttonEnabledCheckBox, "buttonEnabledCheckBox");
+            buttonEnabledCheckBox.Name = "buttonEnabledCheckBox";
+            buttonEnabledCheckBox.UseVisualStyleBackColor = true;
+            buttonEnabledCheckBox.CheckedChanged += ButtonEnabledCheckedChanged;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { resources.GetString("comboBox1.Items"), resources.GetString("comboBox1.Items1"), resources.GetString("comboBox1.Items2"), resources.GetString("comboBox1.Items3"), resources.GetString("comboBox1.Items4") });
+            resources.ApplyResources(comboBox1, "comboBox1");
+            comboBox1.Name = "comboBox1";
+            comboBox1.SelectedIndexChanged += SelectedMouseButtonChanged;
             // 
             // x2
             // 
@@ -142,6 +169,8 @@
             pictureBox1.Image = Properties.Resources.app;
             pictureBox1.Name = "pictureBox1";
             pictureBox1.TabStop = false;
+            pictureBox1.MouseEnter += ShowTestControls;
+            pictureBox1.MouseLeave += HideTestControls;
             // 
             // notifyIcon
             // 
@@ -187,6 +216,8 @@
             resources.ApplyResources(richTextBox1, "richTextBox1");
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
+            richTextBox1.MouseEnter += ShowTestControls;
+            richTextBox1.MouseLeave += HideTestControls;
             // 
             // groupBox2
             // 
@@ -204,6 +235,11 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(x2);
+            groupBox4.Controls.Add(x1);
+            groupBox4.Controls.Add(middle);
+            groupBox4.Controls.Add(left);
+            groupBox4.Controls.Add(right);
             groupBox4.Controls.Add(richTextBox1);
             groupBox4.Controls.Add(pictureBox1);
             resources.ApplyResources(groupBox4, "groupBox4");
@@ -222,6 +258,7 @@
             Name = "InteractiveForm";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)thresholdSlider).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             notifyMenuStrip.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
@@ -229,6 +266,7 @@
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -257,5 +295,8 @@
         private CheckBox x2;
         private CheckBox x1;
         private CheckBox middle;
+        private ComboBox comboBox1;
+        private CheckBox buttonEnabledCheckBox;
+        private TrackBar thresholdSlider;
     }
 }

@@ -51,7 +51,8 @@ namespace DoubleClickFix
 
         private void SettingsChanged()
         {
-            throw new NotImplementedException();
+            // TODO 
+            Debug.WriteLine("setting changed" + DateTime.Now);
         }
 
         public bool Install()
