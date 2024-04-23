@@ -55,7 +55,7 @@ namespace DoubleClickFix
             if (settings.MiddleThreshold >= 0)
             {
                 observedMessages.Add(WM_MBUTTONDOWN);
-                observedMessages.Add(WM_MBUTTONDOWN);
+                observedMessages.Add(WM_MBUTTONUP);
             }
             if (settings.X1Threshold >= 0 || settings.X2Threshold >= 0)
             {
@@ -161,7 +161,8 @@ namespace DoubleClickFix
                         if (ignore)
                         {
                             ignoredClicks++;
-                            logger.Log($"{Resources.IgnoredDoubleClick}: {timeDifference} ms ({button} {ignoredClicks})");
+                            string buttonText = TranslateButton(button);
+                            logger.Log($"{Resources.IgnoredDoubleClick}: {timeDifference} ms ({buttonText} {ignoredClicks})");
                             previousUpTime[button] = 0;
                             return (IntPtr)1;
                         }
@@ -169,7 +170,9 @@ namespace DoubleClickFix
                         {
                             if (timeDifference < settings.WindowsDoubleClickTimeMilliseconds)
                             {
-                                logger.Log($"{timeDifference} ms");
+                                string buttonText = TranslateButton(button);
+
+                                logger.Log($"{timeDifference} ms ({buttonText})");
                             }
                         }
                     }
@@ -183,7 +186,19 @@ namespace DoubleClickFix
             return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
         }
 
-        private static MouseButtons GetXButton(uint mouseData)
+        private string TranslateButton(MouseButtons button)
+        {
+            switch (button) {
+                case MouseButtons.Left: return Resources.Left;
+                case MouseButtons.Right: return Resources.Right;
+                case MouseButtons.Middle: return Resources.Middle;
+                case MouseButtons.XButton1: return Resources.X1;
+                case MouseButtons.XButton2: return Resources.X2;
+                default: return "?";
+            }
+        }
+
+        private MouseButtons GetXButton(uint mouseData)
         {
             const int MK_XBUTTON1_DOWN = 0x0020;
             const int MK_XBUTTON2_DOWN = 0x0040;
@@ -192,11 +207,11 @@ namespace DoubleClickFix
 
             ushort loWord = unchecked((ushort)(ulong)mouseData);
             ushort hiWord = unchecked((ushort)((ulong)mouseData >> 16));
-            if ((loWord & MK_XBUTTON1_DOWN) != 0 || (hiWord & XBUTTON1_UP) != 0)
+            if (settings.X1Threshold >=0 && ((loWord & MK_XBUTTON1_DOWN) != 0 || (hiWord & XBUTTON1_UP) != 0))
             {
                 return MouseButtons.XButton1;
             }
-            else if ((loWord & MK_XBUTTON2_DOWN) != 0 || (hiWord & XBUTTON2_UP) != 0)
+            else if (settings.X2Threshold >= 0 && ((loWord & MK_XBUTTON2_DOWN) != 0 || (hiWord & XBUTTON2_UP) != 0))
             {
                 return MouseButtons.XButton2;
             }

@@ -20,7 +20,6 @@ namespace DoubleClickFix
                 Interval = 100
             };
             debounceTimer.Tick += OnDebounceTimerTick;
-
             this.FormClosing += OnHideFormInsteadOfClosing;
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
             logger.AddLogger(text => Log(text));
@@ -162,8 +161,6 @@ namespace DoubleClickFix
 
         private void OnSelectedMouseButtonChanged(object sender, EventArgs e)
         {
-            thresholdSlider.Minimum = -1;
-            thresholdSlider.Maximum = Math.Min(200, settings.WindowsDoubleClickTimeMilliseconds);
             int threshold = -1;
             var index = comboBox1.SelectedIndex;
             switch (index)
@@ -264,6 +261,9 @@ namespace DoubleClickFix
             if (!buttonEnabledCheckBox.Checked)
             {
                 thresholdSlider.Value = -1;
+            } else
+            {
+                thresholdSlider.Value = 50;
             }
         }
     }
