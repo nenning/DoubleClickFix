@@ -5,8 +5,8 @@ namespace DoubleClickFix
 {
     public class Logger : ILogger
     {
-        private readonly ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>();
-        private readonly ManualResetEventSlim logSignal = new ManualResetEventSlim(false);
+        private readonly ConcurrentQueue<string> logQueue = new();
+        private readonly ManualResetEventSlim logSignal = new(false);
         private Action<string> log;
 
         public Logger()

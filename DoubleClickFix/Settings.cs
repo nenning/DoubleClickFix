@@ -7,6 +7,7 @@ using System.Security.Principal;
 using System.Security;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Specialized;
+using System.Runtime.CompilerServices;
 
 namespace DoubleClickFix
 {
@@ -14,7 +15,6 @@ namespace DoubleClickFix
     {
         private readonly int windowsDoubleClickTimeMilliseconds = GetWindowsMaximumDoubleClickTime();
         private readonly ILogger logger;
-        private int minimumDelayMilliseconds = 50;
         private Action settingsChanged;
 
         public Settings(string[] args, ILogger logger)
@@ -23,7 +23,7 @@ namespace DoubleClickFix
             UseHook = !Debugger.IsAttached || args.Length == 0 || !args.Contains("-nohook");
             IsInteractive = Debugger.IsAttached || args.Length > 0 && (args.Contains("-interactive") || args.Contains("-i"));
             ApplyLanguageOverride();
-            ReadAppSettings();
+            Load();
             settingsChanged += this.OnSettingsChanged;
         }
 
@@ -101,10 +101,7 @@ namespace DoubleClickFix
         }
         private void FireSettingsChanged()
         {
-            if (settingsChanged != null)
-            {
-                settingsChanged();
-            }
+            settingsChanged?.Invoke();
         }
 
         /// <summary>
@@ -119,13 +116,11 @@ namespace DoubleClickFix
             {
                 var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 var settings = configuration.AppSettings.Settings;
-                // TODO check for existence) settings.AllKeys & settings.Add?
-                settings[nameof(minimumDelayMilliseconds)].Value = minimumDelayMilliseconds.ToString();
-                settings[nameof(leftThreshold)].Value = leftThreshold.ToString();
-                settings[nameof(rightThreshold)].Value = rightThreshold.ToString();
-                settings[nameof(middleThreshold)].Value = middleThreshold.ToString();
-                settings[nameof(x1Threshold)].Value = x1Threshold.ToString();
-                settings[nameof(x2Threshold)].Value = x2Threshold.ToString();
+                SaveSetting(settings, leftThreshold);
+                SaveSetting(settings, rightThreshold);
+                SaveSetting(settings, middleThreshold);
+                SaveSetting(settings, x1Threshold);
+                SaveSetting(settings, x2Threshold);
                 configuration.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("appSettings");
                 logger.Log(Resources.SettingsSaved);
@@ -135,9 +130,16 @@ namespace DoubleClickFix
             }
         }
 
-        public int MinimumDoubleClickDelayMilliseconds
+        private static void SaveSetting(KeyValueConfigurationCollection settings, int value, [CallerArgumentExpression(nameof(value))] string key = "")
         {
-            get => minimumDelayMilliseconds;
+            if (settings.AllKeys.Contains(key))
+            {
+                settings[key].Value = value.ToString();
+            }
+            else
+            {
+                settings.Add(key, value.ToString());
+            }
         }
         public int WindowsDoubleClickTimeMilliseconds
         {
@@ -154,19 +156,18 @@ namespace DoubleClickFix
             return doubleClickTime;
         }
 
-        private void ReadAppSettings()
+        private void Load()
         {
             var settings = ConfigurationManager.AppSettings!;
-            minimumDelayMilliseconds = GetAppSetting(settings, nameof(minimumDelayMilliseconds), minimumDelayMilliseconds);
-            leftThreshold = GetAppSetting(settings, nameof(leftThreshold), leftThreshold);
-            rightThreshold = GetAppSetting(settings, nameof(rightThreshold), rightThreshold);
-            middleThreshold = GetAppSetting(settings, nameof(middleThreshold), middleThreshold);
-            x1Threshold = GetAppSetting(settings, nameof(x1Threshold), x1Threshold);
-            x2Threshold = GetAppSetting(settings, nameof(x2Threshold), x2Threshold);
+            leftThreshold = LoadSetting(settings, leftThreshold);
+            rightThreshold = LoadSetting(settings, rightThreshold);
+            middleThreshold = LoadSetting(settings, middleThreshold);
+            x1Threshold = LoadSetting(settings, x1Threshold);
+            x2Threshold = LoadSetting(settings, x2Threshold);
         }
-        private static int GetAppSetting(NameValueCollection settings, string key, int currentValue)
+        private static int LoadSetting(NameValueCollection settings, int currentValue, [CallerArgumentExpression(nameof(currentValue))] string key = "")
         {
-            string? value = settings[nameof(key)];
+            string? value = settings[key];
             if (value == null || !int.TryParse(value, out int newValue))
             {
                 return currentValue;
@@ -181,7 +182,7 @@ namespace DoubleClickFix
                 string? value = ConfigurationManager.AppSettings["languageOverride"];
                 if (!string.IsNullOrWhiteSpace(value))
                 {
-                    CultureInfo culture = new CultureInfo(value);
+                    CultureInfo culture = new(value);
                     Application.CurrentCulture = culture;
                     CultureInfo.DefaultThreadCurrentCulture = culture;
                     CultureInfo.DefaultThreadCurrentUICulture = culture;

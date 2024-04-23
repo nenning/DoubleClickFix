@@ -15,8 +15,10 @@ namespace DoubleClickFix
 
             InitializeComponent();
 
-            debounceTimer = new();
-            debounceTimer.Interval = 100;
+            debounceTimer = new()
+            {
+                Interval = 100
+            };
             debounceTimer.Tick += OnDebounceTimerTick;
 
             this.FormClosing += OnHideFormInsteadOfClosing;
@@ -228,7 +230,7 @@ namespace DoubleClickFix
             debounceTimer.Start();
         }
 
-        private void OnDebounceTimerTick(object sender, EventArgs e)
+        private void OnDebounceTimerTick(object? sender, EventArgs e)
         {
             UpdateSettings();
             debounceTimer.Stop();

@@ -162,4 +162,37 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </value>
   </data>
+  <data name="x2.Text" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="x1.Text" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
+    <value>Correction activée</value>
+  </data>
+  <data name="comboBox1.Items" xml:space="preserve">
+    <value>Bouton gauche de la souris</value>
+  </data>
+  <data name="comboBox1.Items1" xml:space="preserve">
+    <value>Bouton droit de la souris</value>
+  </data>
+  <data name="comboBox1.Items2" xml:space="preserve">
+    <value>Bouton central de la souris</value>
+  </data>
+  <data name="comboBox1.Items3" xml:space="preserve">
+    <value>Bouton X1 de la souris</value>
+  </data>
+  <data name="comboBox1.Items4" xml:space="preserve">
+    <value>Bouton X2 de la souris</value>
+  </data>
+  <data name="middle.Text" xml:space="preserve">
+    <value>Milieu</value>
+  </data>
+  <data name="right.Text" xml:space="preserve">
+    <value>Droite</value>
+  </data>
+  <data name="left.Text" xml:space="preserve">
+    <value>Gauche</value>
+  </data>
 </root>
