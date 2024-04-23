@@ -36,6 +36,11 @@
             saveButton = new Button();
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
+            x2 = new CheckBox();
+            x1 = new CheckBox();
+            middle = new CheckBox();
+            right = new CheckBox();
+            left = new CheckBox();
             pictureBox1 = new PictureBox();
             notifyIcon = new NotifyIcon(components);
             notifyMenuStrip = new ContextMenuStrip(components);
@@ -88,6 +93,11 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(x2);
+            groupBox1.Controls.Add(x1);
+            groupBox1.Controls.Add(middle);
+            groupBox1.Controls.Add(right);
+            groupBox1.Controls.Add(left);
             groupBox1.Controls.Add(delayTextBox);
             groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(runAtStartupCheckBox);
@@ -95,6 +105,36 @@
             resources.ApplyResources(groupBox1, "groupBox1");
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
+            // 
+            // x2
+            // 
+            resources.ApplyResources(x2, "x2");
+            x2.Name = "x2";
+            x2.UseVisualStyleBackColor = true;
+            // 
+            // x1
+            // 
+            resources.ApplyResources(x1, "x1");
+            x1.Name = "x1";
+            x1.UseVisualStyleBackColor = true;
+            // 
+            // middle
+            // 
+            resources.ApplyResources(middle, "middle");
+            middle.Name = "middle";
+            middle.UseVisualStyleBackColor = true;
+            // 
+            // right
+            // 
+            resources.ApplyResources(right, "right");
+            right.Name = "right";
+            right.UseVisualStyleBackColor = true;
+            // 
+            // left
+            // 
+            resources.ApplyResources(left, "left");
+            left.Name = "left";
+            left.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -165,6 +205,7 @@
             // groupBox4
             // 
             groupBox4.Controls.Add(richTextBox1);
+            groupBox4.Controls.Add(pictureBox1);
             resources.ApplyResources(groupBox4, "groupBox4");
             groupBox4.Name = "groupBox4";
             groupBox4.TabStop = false;
@@ -176,7 +217,6 @@
             Controls.Add(groupBox3);
             Controls.Add(label1);
             Controls.Add(groupBox2);
-            Controls.Add(pictureBox1);
             Controls.Add(groupBox1);
             Controls.Add(groupBox4);
             Name = "InteractiveForm";
@@ -212,5 +252,10 @@
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private GroupBox groupBox4;
+        private CheckBox right;
+        private CheckBox left;
+        private CheckBox x2;
+        private CheckBox x1;
+        private CheckBox middle;
     }
 }

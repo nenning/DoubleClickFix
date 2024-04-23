@@ -18,6 +18,63 @@ namespace DoubleClickFix
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
             logger.AddLogger(text => Log(text));
             this.MinDelay = settings.MinimumDoubleClickDelayMilliseconds;
+            SetupPictureBox();
+        }
+
+        public void SetupPictureBox()
+        {
+            pictureBox1.MouseDown += PictureBox1_MouseDown;
+            pictureBox1.MouseUp += PictureBox1_MouseUp;
+            richTextBox1.MouseDown += PictureBox1_MouseDown;
+            richTextBox1.MouseUp += PictureBox1_MouseUp;
+        }
+
+        private void PictureBox1_MouseDown(object? sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                left.BackColor = Color.Red;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                right.BackColor = Color.Red;
+            }
+            else if (e.Button == MouseButtons.Middle)
+            {
+                middle.BackColor = Color.Red;
+            }
+            else if (e.Button == MouseButtons.XButton1)
+            {
+                x1.BackColor = Color.Red;
+            }
+            else if (e.Button == MouseButtons.XButton2)
+            {
+                x2.BackColor = Color.Red;
+            }
+        }
+
+        private void PictureBox1_MouseUp(object? sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                left.BackColor = Color.Transparent;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                right.BackColor = Color.Transparent;
+            }
+            else if (e.Button == MouseButtons.Middle)
+            {
+                middle.BackColor = Color.Transparent;
+            }
+            else if (e.Button == MouseButtons.XButton1)
+            {
+                x1.BackColor = Color.Transparent;
+            }
+            else if (e.Button == MouseButtons.XButton2)
+            {
+                x2.BackColor = Color.Transparent;
+            }
         }
 
         private void Log(string message)
@@ -51,9 +108,16 @@ namespace DoubleClickFix
                 this.Hide();
             }
         }
-        private void OnSaveButtonClicked(object sender, EventArgs e)
+        private void OnSaveButtonClicked(object? sender, EventArgs e)
         {
             bool success;
+
+            var buttons = (left.Checked ? MouseButtons.Left : 0)
+                        | (right.Checked ? MouseButtons.Right : 0)
+                        | (middle.Checked ? MouseButtons.Middle : 0)
+                        | (x1.Checked ? MouseButtons.XButton1 : 0)
+                        | (x2.Checked ? MouseButtons.XButton2 : 0);
+
             if (runAtStartupCheckBox.Checked)
             {
                 success = startup.Register();
@@ -66,9 +130,11 @@ namespace DoubleClickFix
             {
                 Log(Resources.WritingRegistryFailed);
             }
+            // TODO set settings here, or live in the event handlers?
             if (int.TryParse(delayTextBox.Text, out int minValue))
             {
-                settings.UpdateAppSettings(minValue);
+                settings.MinimumDoubleClickDelayMilliseconds = minValue;
+                settings.Save();
             }
         }
 
@@ -84,7 +150,7 @@ namespace DoubleClickFix
                 delayTextBox.Text = value.ToString();
             }
         }
-        private void LogTextBoxChanged(object sender, EventArgs e)
+        private void LogTextBoxChanged(object? sender, EventArgs e)
         {
             if (logTextBox.TextLength > logTextBox.MaxLength - 1000)
             {
@@ -92,22 +158,23 @@ namespace DoubleClickFix
             }
         }
 
-        private void NotifyIconDoubleClick(object sender, MouseEventArgs e)
+        private void NotifyIconDoubleClick(object? sender, MouseEventArgs e)
         {
             this.ShowForm();
         }
 
-        private void ShowUiMenuClick(object sender, EventArgs e)
+        private void ShowUiMenuClick(object? sender, EventArgs e)
         {
             this.ShowForm();
         }
 
-        private void ExitMenuClick(object sender, EventArgs e)
+        private void ExitMenuClick(object? sender, EventArgs e)
         {
             notifyIcon.Visible = false;
             // make sure the icon is removed from the system tray
             notifyIcon.Dispose();
             Application.Exit();
         }
+
     }
 }

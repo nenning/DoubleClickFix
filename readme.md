@@ -1,3 +1,4 @@
+TODO better description texts
 Contains a workaround for broken mouses that sometimes send a double-click instead of a single click.
 You can fine-tune the minimal delay between two click in the user interface, which can be opened by double-clicking the Windows tray icon. 
 You can also register the application to launch at Windows startup
