@@ -249,6 +249,30 @@
   <data name="&gt;&gt;runAtStartupCheckBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 82</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>932, 246</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="thresholdSlider.Location" type="System.Drawing.Point, System.Drawing">
     <value>406, 116</value>
   </data>
@@ -297,65 +321,41 @@
   <data name="&gt;&gt;buttonEnabledCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="comboBox1.Items" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Left mouse button</value>
   </data>
-  <data name="comboBox1.Items1" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve">
     <value>Right mouse button</value>
   </data>
-  <data name="comboBox1.Items2" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve">
     <value>Middle mouse button</value>
   </data>
-  <data name="comboBox1.Items3" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve">
     <value>X1 mouse button</value>
   </data>
-  <data name="comboBox1.Items4" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve">
     <value>X2 mouse button</value>
   </data>
-  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="mouseButtonComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>37, 57</value>
   </data>
-  <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mouseButtonComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>318, 33</value>
   </data>
-  <data name="comboBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="mouseButtonComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Name" xml:space="preserve">
-    <value>comboBox1</value>
+  <data name="&gt;&gt;mouseButtonComboBox.Name" xml:space="preserve">
+    <value>mouseButtonComboBox</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;mouseButtonComboBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mouseButtonComboBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;mouseButtonComboBox.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 82</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>932, 246</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="x2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -552,18 +552,6 @@
   <metadata name="notifyMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>285, 22</value>
   </metadata>
-  <data name="showUiMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
-  </data>
-  <data name="showUiMenu.Text" xml:space="preserve">
-    <value>Show user interface</value>
-  </data>
-  <data name="exitMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
-  </data>
-  <data name="exitMenu.Text" xml:space="preserve">
-    <value>Quit application</value>
-  </data>
   <data name="notifyMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 68</value>
   </data>
@@ -5089,6 +5077,18 @@
   </data>
   <data name="notifyIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="showUiMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 32</value>
+  </data>
+  <data name="showUiMenu.Text" xml:space="preserve">
+    <value>Show user interface</value>
+  </data>
+  <data name="exitMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 32</value>
+  </data>
+  <data name="exitMenu.Text" xml:space="preserve">
+    <value>Quit application</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

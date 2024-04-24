@@ -38,7 +38,7 @@
             groupBox1 = new GroupBox();
             thresholdSlider = new TrackBar();
             buttonEnabledCheckBox = new CheckBox();
-            comboBox1 = new ComboBox();
+            mouseButtonComboBox = new ComboBox();
             x2 = new CheckBox();
             x1 = new CheckBox();
             middle = new CheckBox();
@@ -99,7 +99,7 @@
             // 
             groupBox1.Controls.Add(thresholdSlider);
             groupBox1.Controls.Add(buttonEnabledCheckBox);
-            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(mouseButtonComboBox);
             groupBox1.Controls.Add(delayTextBox);
             groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(runAtStartupCheckBox);
@@ -125,13 +125,13 @@
             buttonEnabledCheckBox.UseVisualStyleBackColor = true;
             buttonEnabledCheckBox.CheckedChanged += OnButtonEnabledCheckedChanged;
             // 
-            // comboBox1
+            // mouseButtonComboBox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { resources.GetString("comboBox1.Items"), resources.GetString("comboBox1.Items1"), resources.GetString("comboBox1.Items2"), resources.GetString("comboBox1.Items3"), resources.GetString("comboBox1.Items4") });
-            resources.ApplyResources(comboBox1, "comboBox1");
-            comboBox1.Name = "comboBox1";
-            comboBox1.SelectedIndexChanged += OnSelectedMouseButtonChanged;
+            mouseButtonComboBox.FormattingEnabled = true;
+            mouseButtonComboBox.Items.AddRange(new object[] { resources.GetString("mouseButtonComboBox.Items"), resources.GetString("mouseButtonComboBox.Items1"), resources.GetString("mouseButtonComboBox.Items2"), resources.GetString("mouseButtonComboBox.Items3"), resources.GetString("mouseButtonComboBox.Items4") });
+            resources.ApplyResources(mouseButtonComboBox, "mouseButtonComboBox");
+            mouseButtonComboBox.Name = "mouseButtonComboBox";
+            mouseButtonComboBox.SelectedIndexChanged += OnSelectedMouseButtonChanged;
             // 
             // x2
             // 
@@ -295,7 +295,7 @@
         private CheckBox x2;
         private CheckBox x1;
         private CheckBox middle;
-        private ComboBox comboBox1;
+        private ComboBox mouseButtonComboBox;
         private CheckBox buttonEnabledCheckBox;
         private TrackBar thresholdSlider;
     }

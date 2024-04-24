@@ -1,5 +1,4 @@
 using DoubleClickFix.Properties;
-using System.Diagnostics;
 namespace DoubleClickFix
 {
     public partial class InteractiveForm : Form
@@ -20,14 +19,14 @@ namespace DoubleClickFix
                 Interval = 100
             };
             debounceTimer.Tick += OnDebounceTimerTick;
-            this.FormClosing += OnHideFormInsteadOfClosing;
+            this.FormClosing += OnFormClosing;
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
             logger.AddLogger(text => Log(text));
-            SetupPictureBox();
-            this.comboBox1.SelectedIndex = 0;
+            SetupTestArea();
+            this.mouseButtonComboBox.SelectedIndex = 0;
         }
 
-        public void SetupPictureBox()
+        private void SetupTestArea()
         {
             pictureBox1.MouseDown += OnTestMouseDown;
             pictureBox1.MouseUp += OnTestMouseUp;
@@ -38,49 +37,45 @@ namespace DoubleClickFix
 
         private void OnTestMouseDown(object? sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            switch (e.Button)
             {
-                left.BackColor = Color.Red;
-            }
-            else if (e.Button == MouseButtons.Right)
-            {
-                right.BackColor = Color.Red;
-            }
-            else if (e.Button == MouseButtons.Middle)
-            {
-                middle.BackColor = Color.Red;
-            }
-            else if (e.Button == MouseButtons.XButton1)
-            {
-                x1.BackColor = Color.Red;
-            }
-            else if (e.Button == MouseButtons.XButton2)
-            {
-                x2.BackColor = Color.Red;
+                case MouseButtons.Left:
+                    left.BackColor = Color.Red;
+                    break;
+                case MouseButtons.Right:
+                    right.BackColor = Color.Red;
+                    break;
+                case MouseButtons.Middle:
+                    middle.BackColor = Color.Red;
+                    break;
+                case MouseButtons.XButton1:
+                    x1.BackColor = Color.Red;
+                    break;
+                case MouseButtons.XButton2:
+                    x2.BackColor = Color.Red;
+                    break;
             }
         }
 
         private void OnTestMouseUp(object? sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            switch (e.Button)
             {
-                left.BackColor = Color.Transparent;
-            }
-            else if (e.Button == MouseButtons.Right)
-            {
-                right.BackColor = Color.Transparent;
-            }
-            else if (e.Button == MouseButtons.Middle)
-            {
-                middle.BackColor = Color.Transparent;
-            }
-            else if (e.Button == MouseButtons.XButton1)
-            {
-                x1.BackColor = Color.Transparent;
-            }
-            else if (e.Button == MouseButtons.XButton2)
-            {
-                x2.BackColor = Color.Transparent;
+                case MouseButtons.Left:
+                    left.BackColor = Color.Transparent;
+                    break;
+                case MouseButtons.Right:
+                    right.BackColor = Color.Transparent;
+                    break;
+                case MouseButtons.Middle:
+                    middle.BackColor = Color.Transparent;
+                    break;
+                case MouseButtons.XButton1:
+                    x1.BackColor = Color.Transparent;
+                    break;
+                case MouseButtons.XButton2:
+                    x2.BackColor = Color.Transparent;
+                    break;
             }
         }
 
@@ -107,7 +102,7 @@ namespace DoubleClickFix
             this.BringToFront();
         }
 
-        private void OnHideFormInsteadOfClosing(object? sender, FormClosingEventArgs e)
+        private void OnFormClosing(object? sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -162,7 +157,7 @@ namespace DoubleClickFix
         private void OnSelectedMouseButtonChanged(object sender, EventArgs e)
         {
             int threshold = -1;
-            var index = comboBox1.SelectedIndex;
+            var index = mouseButtonComboBox.SelectedIndex;
             switch (index)
             {
                 case 0:
@@ -236,7 +231,7 @@ namespace DoubleClickFix
         private void UpdateSettings()
         {
             int threshold = thresholdSlider.Value;
-            switch (comboBox1.SelectedIndex)
+            switch (mouseButtonComboBox.SelectedIndex)
             {
                 case 0:
                     settings.LeftThreshold = threshold;
@@ -263,7 +258,10 @@ namespace DoubleClickFix
                 thresholdSlider.Value = -1;
             } else
             {
-                thresholdSlider.Value = 50;
+                if (buttonEnabledCheckBox.Focused)
+                {
+                    thresholdSlider.Value = 50;
+                }
             }
         }
     }

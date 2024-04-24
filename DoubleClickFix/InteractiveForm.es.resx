@@ -171,19 +171,19 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
     <value>Corrección habilitada</value>
   </data>
-  <data name="comboBox1.Items" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Botón izquierdo del ratón</value>
   </data>
-  <data name="comboBox1.Items1" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve">
     <value>Botón derecho del ratón</value>
   </data>
-  <data name="comboBox1.Items2" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve">
     <value>Botón central del ratón</value>
   </data>
-  <data name="comboBox1.Items3" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve">
     <value>Botón X1 del ratón</value>
   </data>
-  <data name="comboBox1.Items4" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve">
     <value>Botón X2 del ratón</value>
   </data>
   <data name="middle.Text" xml:space="preserve">
