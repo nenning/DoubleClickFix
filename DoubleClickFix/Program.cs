@@ -1,4 +1,5 @@
 using DoubleClickFix.Properties;
+using System.Diagnostics;
 
 namespace DoubleClickFix
 {
@@ -12,7 +13,7 @@ namespace DoubleClickFix
             using Mutex mutex = new(true, "{F8049D9C-AD6B-4158-92A3-E537355EF536}");
             if (settings.UseHook && !mutex.WaitOne(TimeSpan.Zero, true))
             {
-                MessageBox.Show(Resources.AppAlreadyRunning, "Double-click fix"); // TODO translate
+                MessageBox.Show(Resources.AppAlreadyRunning, "Double-click fix");
                 return;
             }
 

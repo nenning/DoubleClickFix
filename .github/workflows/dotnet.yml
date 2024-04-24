@@ -45,10 +45,8 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: |
-          Release notes
-          Download the binaries, extract the DoubleClickFix.zip file and launch DoubleClickFix.exe.
-          This will launch a Windows tray icon. Double-click it to open the UI and fine-tune the settings.
-          Windows only. Requires .NET 8 run-time.  
+          Changes in this release:
+          - Add your release notes here
         draft: false
         prerelease: false
 

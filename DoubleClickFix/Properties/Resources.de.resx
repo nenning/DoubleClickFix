@@ -138,19 +138,4 @@
   <data name="HookNotInstalled" xml:space="preserve">
     <value>Einrichtung fehlgeschlagen.</value>
   </data>
-  <data name="Left" xml:space="preserve">
-    <value>links</value>
-  </data>
-  <data name="Middle" xml:space="preserve">
-    <value>Mitte</value>
-  </data>
-  <data name="Right" xml:space="preserve">
-    <value>rechts</value>
-  </data>
-  <data name="X1" xml:space="preserve">
-    <value>X1</value>
-  </data>
-  <data name="X2" xml:space="preserve">
-    <value>X2</value>
-  </data>
 </root>
