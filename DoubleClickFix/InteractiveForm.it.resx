@@ -162,4 +162,37 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </value>
   </data>
+  <data name="x2.Text" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="x1.Text" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
+    <value>Correzione abilitata</value>
+  </data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve">
+    <value>Pulsante sinistro del mouse</value>
+  </data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve">
+    <value>Pulsante destro del mouse</value>
+  </data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve">
+    <value>Pulsante centrale del mouse</value>
+  </data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve">
+    <value>Pulsante X1 del mouse</value>
+  </data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve">
+    <value>Pulsante X2 del mouse</value>
+  </data>
+  <data name="middle.Text" xml:space="preserve">
+    <value>Centro</value>
+  </data>
+  <data name="right.Text" xml:space="preserve">
+    <value>Destra</value>
+  </data>
+  <data name="left.Text" xml:space="preserve">
+    <value>Sinistra</value>
+  </data>
 </root>

@@ -138,4 +138,19 @@
   <data name="HookNotInstalled" xml:space="preserve">
     <value>Échec de l'installation.</value>
   </data>
+  <data name="X1" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="X2" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="Right" xml:space="preserve">
+    <value>droite</value>
+  </data>
+  <data name="Middle" xml:space="preserve">
+    <value>gauche</value>
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value>milieu</value>
+  </data>
 </root>
