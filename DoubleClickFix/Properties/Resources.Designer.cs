@@ -89,7 +89,7 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No mouse hook installed..
+        ///   Looks up a localized string similar to Setup failed..
         /// </summary>
         internal static string HookNotInstalled {
             get {
@@ -116,6 +116,33 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to left.
+        /// </summary>
+        internal static string Left {
+            get {
+                return ResourceManager.GetString("Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to middle.
+        /// </summary>
+        internal static string Middle {
+            get {
+                return ResourceManager.GetString("Middle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to right.
+        /// </summary>
+        internal static string Right {
+            get {
+                return ResourceManager.GetString("Right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings saved..
         /// </summary>
         internal static string SettingsSaved {
@@ -130,6 +157,24 @@ namespace DoubleClickFix.Properties {
         internal static string WritingRegistryFailed {
             get {
                 return ResourceManager.GetString("WritingRegistryFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X1.
+        /// </summary>
+        internal static string X1 {
+            get {
+                return ResourceManager.GetString("X1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X2.
+        /// </summary>
+        internal static string X2 {
+            get {
+                return ResourceManager.GetString("X2", resourceCulture);
             }
         }
     }

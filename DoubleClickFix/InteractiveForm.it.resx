@@ -120,9 +120,6 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Corrección de doble clic</value>
   </data>
-  <data name="delayLabel.Text" xml:space="preserve">
-    <value>Velocità minima di doppio clic [ms]</value>
-  </data>
   <data name="exitMenu.Text" xml:space="preserve">
     <value>Esci dall'applicazione</value>
   </data>
@@ -161,5 +158,41 @@
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </value>
+  </data>
+  <data name="x2.Text" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="x1.Text" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="middle.Text" xml:space="preserve">
+    <value>Centro</value>
+  </data>
+  <data name="right.Text" xml:space="preserve">
+    <value>Destra</value>
+  </data>
+  <data name="left.Text" xml:space="preserve">
+    <value>Sinistra</value>
+  </data>
+  <data name="thresholdLabel.Text" xml:space="preserve">
+    <value>Velocità minima di doppio clic [ms]</value>
+  </data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve">
+    <value>Pulsante centrale del mouse</value>
+  </data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve">
+    <value>Pulsante X1 del mouse</value>
+  </data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve">
+    <value>Pulsante X2 del mouse</value>
+  </data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve">
+    <value>Pulsante destro del mouse</value>
+  </data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve">
+    <value>Pulsante sinistro del mouse</value>
+  </data>
+  <data name="enableButtonCheckBox.Text" xml:space="preserve">
+    <value>Correzione abilitata</value>
   </data>
 </root>
