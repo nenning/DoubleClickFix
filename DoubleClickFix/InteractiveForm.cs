@@ -1,4 +1,5 @@
 using DoubleClickFix.Properties;
+using System.Diagnostics;
 namespace DoubleClickFix
 {
     public partial class InteractiveForm : Form
@@ -6,6 +7,7 @@ namespace DoubleClickFix
         private readonly StartupRegistry startup;
         private readonly Settings settings;
         private readonly System.Windows.Forms.Timer debounceTimer;
+        private readonly SynchronizationContext? syncContext;
 
         public InteractiveForm(StartupRegistry startup, Settings settings, Logger logger)
         {
@@ -21,7 +23,7 @@ namespace DoubleClickFix
             debounceTimer.Tick += OnDebounceTimerTick;
             this.FormClosing += OnFormClosing;
             this.runAtStartupCheckBox.Checked = startup.IsRegistered();
-            logger.AddLogger(text => Log(text));
+            logger.AddGuiLogger(text => Log(text));
             SetupTestArea();
             this.mouseButtonComboBox.SelectedIndex = 0;
         }
@@ -81,11 +83,6 @@ namespace DoubleClickFix
 
         private void Log(string message)
         {
-            if (!IsDisposed && InvokeRequired)
-            {
-                Invoke(new Action<string>(Log), message);
-                return;
-            }
             if (!IsDisposed)
             {
                 logTextBox.AppendText(message + Environment.NewLine);

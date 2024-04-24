@@ -7,21 +7,21 @@ namespace DoubleClickFix
     {
         private readonly ConcurrentQueue<string> logQueue = new();
         private readonly ManualResetEventSlim logSignal = new(false);
-        private Action<string> log;
-
+        private Action<string>? uiLog;
+        private SynchronizationContext? syncContext;
         public Logger()
         {
-            log += text => Debug.WriteLine(text);
             Task.Run(ProcessLogEntries);
-
         }
 
-        /// <summary>
-        /// Careful: the logger is called on a non-UI thread.
-        /// </summary>
-        public void AddLogger(Action<string> logger)
+        public void AddGuiLogger(Action<string> logger)
         {
-            this.log += logger;
+            syncContext = SynchronizationContext.Current;
+            if (syncContext == null)
+            {
+                Debug.WriteLine($"Logger loaded: syncContext is null!");
+            }
+            this.uiLog = logger;
         }
         public void Log(string message)
         {
@@ -36,7 +36,11 @@ namespace DoubleClickFix
                 logSignal.Wait();
                 if (logQueue.TryDequeue(out string? message))
                 {
-                    log(message);
+                    Debug.WriteLine(message);
+                    syncContext?.Post(status =>
+                    {
+                        uiLog?.Invoke(message);
+                    }, null);
                 }
                 else
                 {
