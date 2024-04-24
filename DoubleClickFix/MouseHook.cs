@@ -1,6 +1,5 @@
 ﻿using DoubleClickFix.Properties;
 using Microsoft.Win32;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using static DoubleClickFix.NativeMethods;
@@ -186,16 +185,17 @@ namespace DoubleClickFix
             return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
         }
 
-        private string TranslateButton(MouseButtons button)
+        private static string TranslateButton(MouseButtons button)
         {
-            switch (button) {
-                case MouseButtons.Left: return Resources.Left;
-                case MouseButtons.Right: return Resources.Right;
-                case MouseButtons.Middle: return Resources.Middle;
-                case MouseButtons.XButton1: return Resources.X1;
-                case MouseButtons.XButton2: return Resources.X2;
-                default: return "?";
-            }
+            return button switch
+            {
+                MouseButtons.Left => Resources.Left,
+                MouseButtons.Right => Resources.Right,
+                MouseButtons.Middle => Resources.Middle,
+                MouseButtons.XButton1 => Resources.X1,
+                MouseButtons.XButton2 => Resources.X2,
+                _ => "?",
+            };
         }
 
         private MouseButtons GetXButton(uint mouseData)

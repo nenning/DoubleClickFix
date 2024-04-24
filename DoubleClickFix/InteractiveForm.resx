@@ -147,55 +147,55 @@
   <data name="&gt;&gt;logTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="delayLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="thresholdLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="delayLabel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="thresholdLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>37, 116</value>
   </data>
-  <data name="delayLabel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="thresholdLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>268, 25</value>
   </data>
-  <data name="delayLabel.TabIndex" type="System.Int32, mscorlib">
+  <data name="thresholdLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="delayLabel.Text" xml:space="preserve">
+  <data name="thresholdLabel.Text" xml:space="preserve">
     <value>Minimal double-click speed [ms]</value>
   </data>
-  <data name="&gt;&gt;delayLabel.Name" xml:space="preserve">
-    <value>delayLabel</value>
+  <data name="&gt;&gt;thresholdLabel.Name" xml:space="preserve">
+    <value>thresholdLabel</value>
   </data>
-  <data name="&gt;&gt;delayLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;thresholdLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;delayLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;thresholdLabel.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;delayLabel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;thresholdLabel.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="delayTextBox.Enabled" type="System.Boolean, mscorlib">
+  <data name="thresholdTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="delayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="thresholdTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>788, 116</value>
   </data>
-  <data name="delayTextBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="thresholdTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 31</value>
   </data>
-  <data name="delayTextBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="thresholdTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;delayTextBox.Name" xml:space="preserve">
-    <value>delayTextBox</value>
+  <data name="&gt;&gt;thresholdTextBox.Name" xml:space="preserve">
+    <value>thresholdTextBox</value>
   </data>
-  <data name="&gt;&gt;delayTextBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;thresholdTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;delayTextBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;thresholdTextBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;delayTextBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;thresholdTextBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
@@ -249,15 +249,6 @@
   <data name="&gt;&gt;runAtStartupCheckBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="thresholdSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>406, 116</value>
-  </data>
-  <data name="thresholdSlider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 69</value>
-  </data>
-  <data name="thresholdSlider.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
   <data name="&gt;&gt;thresholdSlider.Name" xml:space="preserve">
     <value>thresholdSlider</value>
   </data>
@@ -270,67 +261,28 @@
   <data name="&gt;&gt;thresholdSlider.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="buttonEnabledCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;enableButtonCheckBox.Name" xml:space="preserve">
+    <value>enableButtonCheckBox</value>
   </data>
-  <data name="buttonEnabledCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>406, 59</value>
-  </data>
-  <data name="buttonEnabledCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 29</value>
-  </data>
-  <data name="buttonEnabledCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Correction enabled</value>
-  </data>
-  <data name="&gt;&gt;buttonEnabledCheckBox.Name" xml:space="preserve">
-    <value>buttonEnabledCheckBox</value>
-  </data>
-  <data name="&gt;&gt;buttonEnabledCheckBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;enableButtonCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonEnabledCheckBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;enableButtonCheckBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;buttonEnabledCheckBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;enableButtonCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="comboBox1.Items" xml:space="preserve">
-    <value>Left mouse button</value>
+  <data name="&gt;&gt;mouseButtonComboBox.Name" xml:space="preserve">
+    <value>mouseButtonComboBox</value>
   </data>
-  <data name="comboBox1.Items1" xml:space="preserve">
-    <value>Right mouse button</value>
-  </data>
-  <data name="comboBox1.Items2" xml:space="preserve">
-    <value>Middle mouse button</value>
-  </data>
-  <data name="comboBox1.Items3" xml:space="preserve">
-    <value>X1 mouse button</value>
-  </data>
-  <data name="comboBox1.Items4" xml:space="preserve">
-    <value>X2 mouse button</value>
-  </data>
-  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 57</value>
-  </data>
-  <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 33</value>
-  </data>
-  <data name="comboBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;comboBox1.Name" xml:space="preserve">
-    <value>comboBox1</value>
-  </data>
-  <data name="&gt;&gt;comboBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;mouseButtonComboBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comboBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mouseButtonComboBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;mouseButtonComboBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
@@ -356,6 +308,90 @@
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="thresholdSlider.Location" type="System.Drawing.Point, System.Drawing">
+    <value>406, 116</value>
+  </data>
+  <data name="thresholdSlider.Size" type="System.Drawing.Size, System.Drawing">
+    <value>316, 69</value>
+  </data>
+  <data name="thresholdSlider.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.Name" xml:space="preserve">
+    <value>thresholdSlider</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="enableButtonCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="enableButtonCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>406, 59</value>
+  </data>
+  <data name="enableButtonCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 29</value>
+  </data>
+  <data name="enableButtonCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="enableButtonCheckBox.Text" xml:space="preserve">
+    <value>Correction enabled</value>
+  </data>
+  <data name="&gt;&gt;enableButtonCheckBox.Name" xml:space="preserve">
+    <value>enableButtonCheckBox</value>
+  </data>
+  <data name="&gt;&gt;enableButtonCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;enableButtonCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;enableButtonCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve">
+    <value>Left mouse button</value>
+  </data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve">
+    <value>Right mouse button</value>
+  </data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve">
+    <value>Middle mouse button</value>
+  </data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve">
+    <value>X1 mouse button</value>
+  </data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve">
+    <value>X2 mouse button</value>
+  </data>
+  <data name="mouseButtonComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 57</value>
+  </data>
+  <data name="mouseButtonComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 33</value>
+  </data>
+  <data name="mouseButtonComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;mouseButtonComboBox.Name" xml:space="preserve">
+    <value>mouseButtonComboBox</value>
+  </data>
+  <data name="&gt;&gt;mouseButtonComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mouseButtonComboBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;mouseButtonComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="x2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -552,18 +588,6 @@
   <metadata name="notifyMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>285, 22</value>
   </metadata>
-  <data name="showUiMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
-  </data>
-  <data name="showUiMenu.Text" xml:space="preserve">
-    <value>Show user interface</value>
-  </data>
-  <data name="exitMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
-  </data>
-  <data name="exitMenu.Text" xml:space="preserve">
-    <value>Quit application</value>
-  </data>
   <data name="notifyMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 68</value>
   </data>
@@ -5089,6 +5113,18 @@
   </data>
   <data name="notifyIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="showUiMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 32</value>
+  </data>
+  <data name="showUiMenu.Text" xml:space="preserve">
+    <value>Show user interface</value>
+  </data>
+  <data name="exitMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 32</value>
+  </data>
+  <data name="exitMenu.Text" xml:space="preserve">
+    <value>Quit application</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

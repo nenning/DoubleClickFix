@@ -120,9 +120,6 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Doppelklick-Fix</value>
   </data>
-  <data name="delayLabel.Text" xml:space="preserve">
-    <value>Minimale Doppelklick-Geschwindigkeit [ms]</value>
-  </data>
   <data name="exitMenu.Text" xml:space="preserve">
     <value>Applikation beenden</value>
   </data>
@@ -177,22 +174,25 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="left.Text" xml:space="preserve">
     <value>Links</value>
   </data>
-  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
+  <data name="thresholdLabel.Text" xml:space="preserve">
+    <value>Minimale Doppelklick-Geschwindigkeit [ms]</value>
+  </data>
+  <data name="enableButtonCheckBox.Text" xml:space="preserve">
     <value>Korrektur aktiviert</value>
   </data>
-  <data name="comboBox1.Items" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Linke Maustaste</value>
   </data>
-  <data name="comboBox1.Items1" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve">
     <value>Rechte Maustaste</value>
   </data>
-  <data name="comboBox1.Items2" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve">
     <value>Mittlere Maustaste</value>
   </data>
-  <data name="comboBox1.Items3" xml:space="preserve">
-    <value>X1 Maustaste</value>
-  </data>
-  <data name="comboBox1.Items4" xml:space="preserve">
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve">
     <value>X2 Maustaste</value>
+  </data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve">
+    <value>X1 Maustaste</value>
   </data>
 </root>

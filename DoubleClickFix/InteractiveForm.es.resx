@@ -120,9 +120,6 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Corrección de doble clic</value>
   </data>
-  <data name="delayLabel.Text" xml:space="preserve">
-    <value>Velocidad mínima de doble clic [ms]</value>
-  </data>
   <data name="exitMenu.Text" xml:space="preserve">
     <value>Salir de la aplicación</value>
   </data>
@@ -168,24 +165,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="x1.Text" xml:space="preserve">
     <value>X1</value>
   </data>
-  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Corrección habilitada</value>
-  </data>
-  <data name="comboBox1.Items" xml:space="preserve">
-    <value>Botón izquierdo del ratón</value>
-  </data>
-  <data name="comboBox1.Items1" xml:space="preserve">
-    <value>Botón derecho del ratón</value>
-  </data>
-  <data name="comboBox1.Items2" xml:space="preserve">
-    <value>Botón central del ratón</value>
-  </data>
-  <data name="comboBox1.Items3" xml:space="preserve">
-    <value>Botón X1 del ratón</value>
-  </data>
-  <data name="comboBox1.Items4" xml:space="preserve">
-    <value>Botón X2 del ratón</value>
-  </data>
   <data name="middle.Text" xml:space="preserve">
     <value>Centro</value>
   </data>
@@ -194,5 +173,26 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   </data>
   <data name="left.Text" xml:space="preserve">
     <value>Izquierda</value>
+  </data>
+  <data name="thresholdLabel.Text" xml:space="preserve">
+    <value>Velocidad mínima de doble clic [ms]</value>
+  </data>
+  <data name="enableButtonCheckBox.Text" xml:space="preserve">
+    <value>Corrección habilitada</value>
+  </data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve">
+    <value>Botón izquierdo del ratón</value>
+  </data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve">
+    <value>Botón derecho del ratón</value>
+  </data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve">
+    <value>Botón central del ratón</value>
+  </data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve">
+    <value>Botón X1 del ratón</value>
+  </data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve">
+    <value>Botón X2 del ratón</value>
   </data>
 </root>

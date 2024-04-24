@@ -1,5 +1,4 @@
 using DoubleClickFix.Properties;
-using System.Security.Principal;
 
 namespace DoubleClickFix
 {

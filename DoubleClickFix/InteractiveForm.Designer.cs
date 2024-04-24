@@ -31,14 +31,14 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InteractiveForm));
             logTextBox = new TextBox();
-            delayLabel = new Label();
-            delayTextBox = new TextBox();
+            thresholdLabel = new Label();
+            thresholdTextBox = new TextBox();
             saveButton = new Button();
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
             thresholdSlider = new TrackBar();
-            buttonEnabledCheckBox = new CheckBox();
-            comboBox1 = new ComboBox();
+            enableButtonCheckBox = new CheckBox();
+            mouseButtonComboBox = new ComboBox();
             x2 = new CheckBox();
             x1 = new CheckBox();
             middle = new CheckBox();
@@ -72,22 +72,22 @@
             logTextBox.TabStop = false;
             logTextBox.TextChanged += OnLogTextBoxChanged;
             // 
-            // delayLabel
+            // thresholdLabel
             // 
-            resources.ApplyResources(delayLabel, "delayLabel");
-            delayLabel.Name = "delayLabel";
+            resources.ApplyResources(thresholdLabel, "thresholdLabel");
+            thresholdLabel.Name = "thresholdLabel";
             // 
-            // delayTextBox
+            // thresholdTextBox
             // 
-            resources.ApplyResources(delayTextBox, "delayTextBox");
-            delayTextBox.Name = "delayTextBox";
+            resources.ApplyResources(thresholdTextBox, "thresholdTextBox");
+            thresholdTextBox.Name = "thresholdTextBox";
             // 
             // saveButton
             // 
             resources.ApplyResources(saveButton, "saveButton");
             saveButton.Name = "saveButton";
             saveButton.UseVisualStyleBackColor = true;
-            saveButton.Click += OnSaveButtonClicked;
+            saveButton.Click += OnSave;
             // 
             // runAtStartupCheckBox
             // 
@@ -98,12 +98,12 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(thresholdSlider);
-            groupBox1.Controls.Add(buttonEnabledCheckBox);
-            groupBox1.Controls.Add(comboBox1);
-            groupBox1.Controls.Add(delayTextBox);
+            groupBox1.Controls.Add(enableButtonCheckBox);
+            groupBox1.Controls.Add(mouseButtonComboBox);
+            groupBox1.Controls.Add(thresholdTextBox);
             groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(runAtStartupCheckBox);
-            groupBox1.Controls.Add(delayLabel);
+            groupBox1.Controls.Add(thresholdLabel);
             resources.ApplyResources(groupBox1, "groupBox1");
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
@@ -118,20 +118,20 @@
             thresholdSlider.TickFrequency = 10;
             thresholdSlider.ValueChanged += OnThresholdValueChanged;
             // 
-            // buttonEnabledCheckBox
+            // enableButtonCheckBox
             // 
-            resources.ApplyResources(buttonEnabledCheckBox, "buttonEnabledCheckBox");
-            buttonEnabledCheckBox.Name = "buttonEnabledCheckBox";
-            buttonEnabledCheckBox.UseVisualStyleBackColor = true;
-            buttonEnabledCheckBox.CheckedChanged += OnButtonEnabledCheckedChanged;
+            resources.ApplyResources(enableButtonCheckBox, "enableButtonCheckBox");
+            enableButtonCheckBox.Name = "enableButtonCheckBox";
+            enableButtonCheckBox.UseVisualStyleBackColor = true;
+            enableButtonCheckBox.CheckedChanged += OnEnableButtonChecledChanged;
             // 
-            // comboBox1
+            // mouseButtonComboBox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { resources.GetString("comboBox1.Items"), resources.GetString("comboBox1.Items1"), resources.GetString("comboBox1.Items2"), resources.GetString("comboBox1.Items3"), resources.GetString("comboBox1.Items4") });
-            resources.ApplyResources(comboBox1, "comboBox1");
-            comboBox1.Name = "comboBox1";
-            comboBox1.SelectedIndexChanged += OnSelectedMouseButtonChanged;
+            mouseButtonComboBox.FormattingEnabled = true;
+            mouseButtonComboBox.Items.AddRange(new object[] { resources.GetString("mouseButtonComboBox.Items"), resources.GetString("mouseButtonComboBox.Items1"), resources.GetString("mouseButtonComboBox.Items2"), resources.GetString("mouseButtonComboBox.Items3"), resources.GetString("mouseButtonComboBox.Items4") });
+            resources.ApplyResources(mouseButtonComboBox, "mouseButtonComboBox");
+            mouseButtonComboBox.Name = "mouseButtonComboBox";
+            mouseButtonComboBox.SelectedIndexChanged += OnSelectedMouseButtonChanged;
             // 
             // x2
             // 
@@ -274,8 +274,8 @@
         #endregion
 
         private TextBox logTextBox;
-        private Label delayLabel;
-        private TextBox delayTextBox;
+        private Label thresholdLabel;
+        private TextBox thresholdTextBox;
         private Button saveButton;
         private CheckBox runAtStartupCheckBox;
         private GroupBox groupBox1;
@@ -295,8 +295,8 @@
         private CheckBox x2;
         private CheckBox x1;
         private CheckBox middle;
-        private ComboBox comboBox1;
-        private CheckBox buttonEnabledCheckBox;
+        private ComboBox mouseButtonComboBox;
+        private CheckBox enableButtonCheckBox;
         private TrackBar thresholdSlider;
     }
 }
