@@ -145,7 +145,11 @@
     <value>Mostra interfaccia utente</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
-    <value>Regola la velocità di doppio clic del tuo mouse alla perfezione. Monitora la durata dei tuoi doppio clic e confrontala con i doppio clic difettosi. Regola finemente la velocità minima per includere i clic difettosi rimanendo al di sotto della tua velocità normale. Visualizza i log e il tempo trascorso tra i clic sulla sinistra. Testa il comportamento del tuo mouse con le impostazioni attuali sulla destra (clic singolo, doppio clic, selezione del testo).</value>
+    <value>Regola la velocità minima del doppio clic del tuo mouse per ciascun pulsante del mouse separatamente.
+Nei log, vedi il tempo trascorso tra i clic e tutti i doppio clic che sono stati ignorati.
+Guarda quanto tempo durano i tuoi doppio clic e confrontali con quelli difettosi generati dal tuo mouse.
+Raffina la velocità minima per includere i clic difettosi rimanendo al di sotto della tua velocità normale.
+Testa il comportamento del tuo mouse con le impostazioni attuali con il testo di prova (clic singolo, doppio clic, selezione del testo).</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Descrizione</value>

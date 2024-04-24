@@ -145,7 +145,11 @@
     <value>Benutzeroberfläche anzeigen</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
-    <value>Passen Sie die Doppelklickgeschwindigkeit Ihrer Maus perfekt an. Überwachen Sie die Dauer Ihrer Doppelklicks und vergleichen Sie sie mit den fehlerhaften Doppelklicks. Feinabstimmung der Mindestgeschwindigkeit, um die fehlerhaften Klicks einzuschließen, während Sie unter Ihrer normalen Geschwindigkeit bleiben. Zeigen Sie Protokolle und verstrichene Zeit zwischen Klicks links an. Testen Sie das Verhalten Ihrer Maus mit den aktuellen Einstellungen rechts (Einfachklick, Doppelklick, Textauswahl).</value>
+    <value>Passen Sie die minimale Doppelklickgeschwindigkeit Ihrer Maus für jede Maustaste einzeln an.
+In den Protokollen sehen Sie die verstrichene Zeit zwischen den Klicks und alle Doppelklicks, die ignoriert wurden. 
+Beobachten Sie, wie lange Ihre Doppelklicks dauern, und vergleichen Sie dies mit den fehlerhaften, die von Ihrer Maus generiert wurden. 
+Passen sie die Mindestgeschwindigkeit an, um die fehlerhaften Klicks zu erfassen, während Sie unter Ihrer normalen Geschwindigkeit bleiben.
+Testen Sie das Verhalten Ihrer Maus mit den aktuellen Einstellungen mit dem Test-Text (Einfachklick, Doppelklick, Textauswahl).</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Beschreibung</value>

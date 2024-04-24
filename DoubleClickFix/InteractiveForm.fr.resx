@@ -145,7 +145,11 @@
     <value>Afficher l'interface utilisateur</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
-    <value>Ajustez la vitesse de double-clic de votre souris à la perfection. Surveillez la durée de vos double-clics et comparez-la avec les double-clics défectueux. Ajustez finement la vitesse minimale pour inclure les clics défectueux tout en restant en dessous de votre vitesse normale. Affichez les journaux et le temps écoulé entre les clics à gauche. Testez le comportement de votre souris avec les paramètres actuels à droite (clic simple, double-clic, sélection de texte).</value>
+    <value>Ajustez la vitesse de double-clic minimale de votre souris pour chaque bouton de la souris séparément.
+Dans les journaux, vous voyez le temps écoulé entre les clics et tous les double-clics qui ont été ignorés.
+Observez la durée de vos double-clics et comparez-la à celle des clics défectueux générés par votre souris.
+Affinez la vitesse minimale pour inclure les clics défectueux tout en restant en dessous de votre vitesse normale.
+Testez le comportement de votre souris avec les paramètres actuels avec le texte de test (clic simple, double-clic, sélection de texte).</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Description</value>

@@ -145,7 +145,11 @@
     <value>Mostrar interfaz de usuario</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
-    <value>Ajuste la velocidad de doble clic de su ratón a la perfección. Monitoree la duración de sus doble clics y compárela con los doble clics defectuosos. Ajuste fino la velocidad mínima para incluir los clics defectuosos mientras se mantiene por debajo de su velocidad normal. Vea registros y tiempo transcurrido entre clics a la izquierda. Pruebe el comportamiento de su ratón con la configuración actual a la derecha (clic simple, doble clic, selección de texto).</value>
+    <value>Ajusta la velocidad de doble clic mínima de tu ratón para cada botón del ratón por separado.
+En los registros, ves el tiempo transcurrido entre los clics y todos los dobles clics que fueron ignorados.
+Observa cuánto tiempo duran tus dobles clics y compáralos con los defectuosos generados por tu ratón.
+Ajusta la velocidad mínima para incluir los clics defectuosos mientras te mantienes por debajo de tu velocidad normal.
+Prueba el comportamiento de tu ratón con la configuración actual con el texto de prueba (clic simple, doble clic, selección de texto).</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Descripción</value>
