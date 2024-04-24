@@ -136,25 +136,10 @@
   <data name="InvalidDelayValue" xml:space="preserve">
     <value>Invalid value - not saved. Valid range</value>
   </data>
-  <data name="Left" xml:space="preserve">
-    <value>left</value>
-  </data>
-  <data name="Middle" xml:space="preserve">
-    <value>middle</value>
-  </data>
-  <data name="Right" xml:space="preserve">
-    <value>right</value>
-  </data>
   <data name="SettingsSaved" xml:space="preserve">
     <value>Settings saved.</value>
   </data>
   <data name="WritingRegistryFailed" xml:space="preserve">
     <value>Failed to write to startup registry.</value>
-  </data>
-  <data name="X1" xml:space="preserve">
-    <value>X1</value>
-  </data>
-  <data name="X2" xml:space="preserve">
-    <value>X2</value>
   </data>
 </root>
