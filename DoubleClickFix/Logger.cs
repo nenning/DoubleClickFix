@@ -1,54 +1,52 @@
 ﻿using System.Collections.Concurrent;
 using System.Diagnostics;
 
-namespace DoubleClickFix
+namespace DoubleClickFix;
+
+public class Logger : ILogger
 {
-    public class Logger : ILogger
+    private readonly ConcurrentQueue<string> logQueue = new();
+    private readonly ManualResetEventSlim logSignal = new(false);
+    private Action<string>? uiLog;
+    private SynchronizationContext? syncContext;
+    public Logger()
     {
-        private readonly ConcurrentQueue<string> logQueue = new();
-        private readonly ManualResetEventSlim logSignal = new(false);
-        private Action<string>? uiLog;
-        private SynchronizationContext? syncContext;
-        public Logger()
-        {
-            Task.Run(ProcessLogEntries);
-        }
+        Task.Run(ProcessLogEntries);
+    }
 
-        public void AddGuiLogger(Action<string> logger)
+    public void AddGuiLogger(Action<string> logger)
+    {
+        syncContext = SynchronizationContext.Current;
+        if (syncContext == null)
         {
-            syncContext = SynchronizationContext.Current;
-            if (syncContext == null)
+            Debug.WriteLine($"Logger loaded: syncContext is null!");
+        }
+        this.uiLog = logger;
+    }
+    public void Log(string message)
+    {
+        logQueue.Enqueue(message);
+        logSignal.Set();
+    }
+
+    private void ProcessLogEntries()
+    {
+        while (true)
+        {
+            logSignal.Wait();
+            if (logQueue.TryDequeue(out string? message))
             {
-                Debug.WriteLine($"Logger loaded: syncContext is null!");
+                Debug.WriteLine(message);
+                syncContext?.Post(status =>
+                {
+                    uiLog?.Invoke(message);
+                }, null);
             }
-            this.uiLog = logger;
-        }
-        public void Log(string message)
-        {
-            logQueue.Enqueue(message);
-            logSignal.Set();
-        }
-
-        private void ProcessLogEntries()
-        {
-            while (true)
+            else
             {
-                logSignal.Wait();
-                if (logQueue.TryDequeue(out string? message))
-                {
-                    Debug.WriteLine(message);
-                    syncContext?.Post(status =>
-                    {
-                        uiLog?.Invoke(message);
-                    }, null);
-                }
-                else
-                {
-                    logSignal.Reset();
-                }
+                logSignal.Reset();
             }
         }
-
     }
 
 }
