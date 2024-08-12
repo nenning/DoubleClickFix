@@ -27,7 +27,17 @@ public partial class InteractiveForm : Form
         SetupTestArea();
         this.mouseButtonComboBox.SelectedIndex = 0;
     }
+    public const int WM_INPUT = 0x00FF;
 
+    protected override void WndProc(ref Message m)
+    {
+        if (m.Msg == WM_INPUT)
+        {
+            MouseHook.ProcessRawInput(m.LParam);
+        }
+
+        base.WndProc(ref m);
+    }
     private void SetupTestArea()
     {
         pictureBox1.MouseDown += OnTestMouseDown;

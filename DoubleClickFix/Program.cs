@@ -25,7 +25,7 @@ class Program
             {
                 form.Visible = true;
             }
-            if (!(settings.UseHook && mouseHook.Install()))
+            if (!(mouseHook.Install(form.Handle)))
             {
                 form.Text = "No mouse hook installed!";
                 form.BackColor = Color.DarkRed;

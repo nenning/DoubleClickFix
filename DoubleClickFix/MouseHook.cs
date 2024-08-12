@@ -20,7 +20,7 @@ internal class MouseHook : IDisposable
     private const IntPtr WM_XBUTTONUP = 0x020C;
 
     private readonly Settings settings;
-    private readonly ILogger logger;
+    private static ILogger logger;
 
     // make sure we keep a reference so it's not garbage collected
     private LowLevelMouseProc? mouseProc;
@@ -35,7 +35,7 @@ internal class MouseHook : IDisposable
         this.settings = settings;
         SettingsChanged();
         settings.RegisterSettingsChangedListener(SettingsChanged);
-        this.logger = logger;
+        MouseHook.logger = logger;
         SystemEvents.PowerModeChanged += OnPowerModeChanged;
     }
 
@@ -63,8 +63,10 @@ internal class MouseHook : IDisposable
         }
     }
 
-    public bool Install()
+    public bool Install(nint handle)
     {
+        RegisterForRawInput(handle);
+
         if (settings.UseHook && hookHandle == IntPtr.Zero)
         {
             mouseProc = this.HookCallback;
@@ -91,13 +93,128 @@ internal class MouseHook : IDisposable
                 Uninstall();
                 break;
             case PowerModes.Resume:
-                if (!Install())
+                if (!Install(IntPtr.Zero))
                 {
                     logger.Log("Failed to reinstall mouse hook after Windows resume."); // TODO translate.
                 }
                 break;
             default:
                 break;
+        }
+    }
+
+    [DllImport("User32.dll", SetLastError = true)]
+    public static extern bool RegisterRawInputDevices(RAWINPUTDEVICE[] pRawInputDevice, uint uiNumDevices, uint cbSize);
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RAWINPUTDEVICE
+    {
+        public ushort UsagePage;
+        public ushort Usage;
+        public uint Flags;
+        public IntPtr Target;
+    }
+
+    public const int RIDEV_INPUTSINK = 0x00000100;
+    public const int HID_USAGE_PAGE_GENERIC = 0x01;
+    public const int HID_USAGE_GENERIC_MOUSE = 0x02;
+
+
+    public const ushort RI_MOUSE_LEFT_BUTTON_DOWN = 0x0001;
+    public const ushort RI_MOUSE_LEFT_BUTTON_UP = 0x0002;
+    public const ushort RI_MOUSE_RIGHT_BUTTON_DOWN = 0x0004;
+    public const ushort RI_MOUSE_RIGHT_BUTTON_UP = 0x0008;
+    public const ushort RI_MOUSE_MIDDLE_BUTTON_DOWN = 0x0010;
+    public const ushort RI_MOUSE_MIDDLE_BUTTON_UP = 0x0020;
+    public const ushort RI_MOUSE_BUTTON_4_DOWN = 0x0040;
+    public const ushort RI_MOUSE_BUTTON_4_UP = 0x0080;
+    public const ushort RI_MOUSE_BUTTON_5_DOWN = 0x0100;
+    public const ushort RI_MOUSE_BUTTON_5_UP = 0x0200;
+
+    public static void RegisterForRawInput(IntPtr hwnd)
+    {
+        RAWINPUTDEVICE[] rid = new RAWINPUTDEVICE[1];
+
+        rid[0].UsagePage = HID_USAGE_PAGE_GENERIC;
+        rid[0].Usage = HID_USAGE_GENERIC_MOUSE;
+        rid[0].Flags = RIDEV_INPUTSINK;
+        rid[0].Target = hwnd;
+
+        if (!RegisterRawInputDevices(rid, (uint)rid.Length, (uint)Marshal.SizeOf(rid[0])))
+        {
+            throw new ApplicationException("Failed to register raw input devices.");
+        }
+    }
+
+    [DllImport("User32.dll")]
+    public static extern uint GetRawInputData(IntPtr hRawInput, uint uiCommand, IntPtr pData, ref uint pcbSize, uint cbSizeHeader);
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RAWINPUTHEADER
+    {
+        public uint Type;
+        public uint Size;
+        public IntPtr Device;
+        public IntPtr wParam;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RAWMOUSE
+    {
+        public ushort Flags;
+        public ushort ButtonFlags;
+        public ushort ButtonData;
+        public uint RawButtons;
+        public int LastX;
+        public int LastY;
+        public uint ExtraInformation;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RAWINPUT
+    {
+        public RAWINPUTHEADER Header;
+        public RAWMOUSE Mouse;
+    }
+
+    public const uint RID_INPUT = 0x10000003;
+    public const uint RIM_TYPEMOUSE = 0x00000000;
+    private static nint lastDevice = 0;
+    public static void ProcessRawInput(IntPtr hRawInput)
+    {
+        uint dwSize = 0;
+        GetRawInputData(hRawInput, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER)));
+        IntPtr buffer = Marshal.AllocHGlobal((int)dwSize);
+        try
+        {
+            if (GetRawInputData(hRawInput, RID_INPUT, buffer, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER))) != dwSize)
+                return;
+
+            RAWINPUT raw = (RAWINPUT)Marshal.PtrToStructure(buffer, typeof(RAWINPUT));
+
+            if (raw.Header.Type == RIM_TYPEMOUSE)
+            {
+                var device = raw.Header.Device;
+                if (lastDevice != device)
+                {
+                    logger.Log("Switched mouse device to " + device);
+                }
+                lastDevice = device;
+                //if ((raw.Mouse.ButtonFlags & RI_MOUSE_LEFT_BUTTON_DOWN) != 0 ||
+                //    (raw.Mouse.ButtonFlags & RI_MOUSE_RIGHT_BUTTON_DOWN) != 0 ||
+                //    (raw.Mouse.ButtonFlags & RI_MOUSE_MIDDLE_BUTTON_DOWN) != 0 ||
+                //    (raw.Mouse.ButtonFlags & RI_MOUSE_BUTTON_4_DOWN) != 0 ||
+                //    (raw.Mouse.ButtonFlags & RI_MOUSE_BUTTON_5_DOWN) != 0)
+                //{
+                //    logger.Log("raw: " + raw.Header.Device.ToString() + ", " + raw.Mouse.ExtraInformation + ", " + raw.Mouse.ButtonFlags);
+                //    // Additional logic for detecting input device type
+                //}
+
+            }
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(buffer);
         }
     }
 
