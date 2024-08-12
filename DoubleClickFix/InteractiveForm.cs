@@ -21,6 +21,8 @@ public partial class InteractiveForm : Form
         debounceTimer.Tick += OnDebounceTimerTick;
         this.FormClosing += OnFormClosing;
         this.runAtStartupCheckBox.Checked = startup.IsRegistered();
+        this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
+
         logger.AddGuiLogger(text => Log(text));
         SetupTestArea();
         this.mouseButtonComboBox.SelectedIndex = 0;
@@ -251,12 +253,18 @@ public partial class InteractiveForm : Form
         if (!buttonEnabledCheckBox.Checked)
         {
             thresholdSlider.Value = -1;
-        } else
+        }
+        else
         {
             if (buttonEnabledCheckBox.Focused)
             {
                 thresholdSlider.Value = 50;
             }
         }
+    }
+
+    private void useMinDelayCheckBoxCheckedChanged(object sender, EventArgs e)
+    {
+        settings.MinDelay = useMinDelayCheckBox.Checked ? 0 : -1;
     }
 }

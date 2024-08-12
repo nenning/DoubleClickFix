@@ -156,7 +156,8 @@ internal class MouseHook : IDisposable
                     // We take the elapsed time between the last mouse up and the current mouse down event.
                     // If it's smaller than the minimal delay, we ignore the current mouse down event.
                     long timeDifference = hookStruct.time - previousUpTime[button];
-                    bool ignore = timeDifference < threshold;
+                    bool belowMinDelay = settings.MinDelay >= 0 && timeDifference <= settings.MinDelay;
+                    bool ignore = timeDifference < threshold && !belowMinDelay;
                     if (ignore)
                     {
                         ignoredClicks++;

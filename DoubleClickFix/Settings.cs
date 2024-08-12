@@ -29,6 +29,19 @@ public class Settings
     }
     private void OnSettingsChanged() {  }
 
+    private int minDelay = -1;
+    public int MinDelay
+    {
+        get { return minDelay; }
+        set
+        {
+            if (value != minDelay)
+            {
+                minDelay = value;
+                FireSettingsChanged();
+            }
+        }
+    }
     private int leftThreshold = 50;
     public int LeftThreshold
     {
@@ -117,6 +130,7 @@ public class Settings
             SaveSetting(settings, middleThreshold);
             SaveSetting(settings, x1Threshold);
             SaveSetting(settings, x2Threshold);
+            SaveSetting(settings, minDelay);
             configuration.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
             logger.Log(Resources.SettingsSaved);
@@ -160,6 +174,7 @@ public class Settings
         middleThreshold = LoadSetting(settings, middleThreshold);
         x1Threshold = LoadSetting(settings, x1Threshold);
         x2Threshold = LoadSetting(settings, x2Threshold);
+        minDelay = LoadSetting(settings, minDelay);
     }
     private static int LoadSetting(NameValueCollection settings, int currentValue, [CallerArgumentExpression(nameof(currentValue))] string key = "")
     {

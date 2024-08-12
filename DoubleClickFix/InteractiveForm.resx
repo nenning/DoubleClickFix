@@ -151,7 +151,7 @@
     <value>True</value>
   </data>
   <data name="delayLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 116</value>
+    <value>37, 108</value>
   </data>
   <data name="delayLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>268, 25</value>
@@ -172,13 +172,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;delayLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="delayTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="delayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>788, 116</value>
+    <value>788, 108</value>
   </data>
   <data name="delayTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 31</value>
@@ -196,10 +196,10 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;delayTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>788, 179</value>
+    <value>788, 184</value>
   </data>
   <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 41</value>
@@ -220,13 +220,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="runAtStartupCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="runAtStartupCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 186</value>
+    <value>37, 191</value>
   </data>
   <data name="runAtStartupCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>229, 29</value>
@@ -247,10 +247,40 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;runAtStartupCheckBox.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
+  </data>
+  <data name="useMinDelayCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="useMinDelayCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="useMinDelayCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 151</value>
+  </data>
+  <data name="useMinDelayCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>462, 29</value>
+  </data>
+  <data name="useMinDelayCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve">
+    <value>Allow clicks with 0ms duration (trackpad workaround)</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.Name" xml:space="preserve">
+    <value>useMinDelayCheckBox</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="thresholdSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>406, 116</value>
+    <value>406, 108</value>
   </data>
   <data name="thresholdSlider.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 69</value>
@@ -268,13 +298,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;thresholdSlider.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="buttonEnabledCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="buttonEnabledCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>406, 59</value>
+    <value>406, 51</value>
   </data>
   <data name="buttonEnabledCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 29</value>
@@ -295,7 +325,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;buttonEnabledCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Left mouse button</value>
@@ -313,7 +343,7 @@
     <value>X2 mouse button</value>
   </data>
   <data name="mouseButtonComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 57</value>
+    <value>37, 49</value>
   </data>
   <data name="mouseButtonComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>318, 33</value>
@@ -331,7 +361,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;mouseButtonComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 82</value>
