@@ -42,6 +42,21 @@ public class Settings
             }
         }
     }
+
+    private int ignoredDevice = 0;
+    public int IgnoredDevice
+    {
+        get { return ignoredDevice; }
+        set
+        {
+            if (value != ignoredDevice)
+            {
+                ignoredDevice = value;
+                FireSettingsChanged();
+            }
+        }
+    }
+
     private int leftThreshold = 50;
     public int LeftThreshold
     {
@@ -118,7 +133,7 @@ public class Settings
     /// </summary>
     public bool UseHook { get; private set; }
     public bool IsInteractive { get; private set; }
-    
+
     public void Save()
     {
         try
@@ -131,10 +146,12 @@ public class Settings
             SaveSetting(settings, x1Threshold);
             SaveSetting(settings, x2Threshold);
             SaveSetting(settings, minDelay);
+            SaveSetting(settings, ignoredDevice);
             configuration.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
             logger.Log(Resources.SettingsSaved);
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             logger.Log($"{Resources.Error}: " + ex.ToString());
         }
@@ -175,6 +192,7 @@ public class Settings
         x1Threshold = LoadSetting(settings, x1Threshold);
         x2Threshold = LoadSetting(settings, x2Threshold);
         minDelay = LoadSetting(settings, minDelay);
+        ignoredDevice = LoadSetting(settings, ignoredDevice);
     }
     private static int LoadSetting(NameValueCollection settings, int currentValue, [CallerArgumentExpression(nameof(currentValue))] string key = "")
     {

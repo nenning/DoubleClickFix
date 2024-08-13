@@ -8,23 +8,13 @@ namespace DoubleClickFix;
 
 internal class MouseHook : IDisposable
 {
-    private const int WH_MOUSE_LL = 14;
-
-    private const IntPtr WM_LBUTTONDOWN = 0x0201;
-    private const IntPtr WM_LBUTTONUP = 0x0202;
-    private const IntPtr WM_RBUTTONDOWN = 0x0204;
-    private const IntPtr WM_RBUTTONUP = 0x0205;
-    private const IntPtr WM_MBUTTONDOWN = 0x0207;
-    private const IntPtr WM_MBUTTONUP = 0x0208;
-    private const IntPtr WM_XBUTTONDOWN = 0x020B;
-    private const IntPtr WM_XBUTTONUP = 0x020C;
-
     private readonly Settings settings;
     private readonly ILogger logger;
 
     // make sure we keep a reference so it's not garbage collected
     private LowLevelMouseProc? mouseProc;
     private IntPtr hookHandle = IntPtr.Zero;
+    private IntPtr currentDevice = -1;
 
     private readonly HashSet<IntPtr> observedMessages = [];
     readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
@@ -101,9 +91,51 @@ internal class MouseHook : IDisposable
         }
     }
 
+    public void RegisterForRawInput(IntPtr hwnd)
+    {
+        RAWINPUTDEVICE[] device = new RAWINPUTDEVICE[1];
+        device[0].UsagePage = HID_USAGE_PAGE_GENERIC;
+        device[0].Usage = HID_USAGE_GENERIC_MOUSE;
+        device[0].Flags = RIDEV_INPUTSINK;
+        device[0].Target = hwnd;
+
+        if (!RegisterRawInputDevices(device, (uint)device.Length, (uint)Marshal.SizeOf(device[0])))
+        {
+            logger.Log("Failed to register raw input device."); // TODO translate.
+        }
+    }
+
+    public void ProcessRawInput(IntPtr hRawInput)
+    {
+        uint dwSize = 0;
+        GetRawInputData(hRawInput, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER)));
+        IntPtr buffer = Marshal.AllocHGlobal((int)dwSize);
+        try
+        {
+            if (GetRawInputData(hRawInput, RID_INPUT, buffer, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER))) != dwSize)
+                return;
+
+            RAWINPUT raw = (RAWINPUT)Marshal.PtrToStructure(buffer, typeof(RAWINPUT));
+
+            if (raw.Header.Type == RIM_TYPEMOUSE)
+            {
+                var device = raw.Header.Device;
+                if (currentDevice != device)
+                {
+                    logger.Log($"{Resources.SwitchedDevice} {device}");
+                    currentDevice = device;
+                }
+            }
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(buffer);
+        }
+    }
+
     private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
     {
-        if (nCode >= 0 && observedMessages.TryGetValue(wParam, out _))
+        if (ProcessMouseEvent(nCode, wParam))
         {
             MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT))!;
             bool buttonUp = false;
@@ -184,6 +216,11 @@ internal class MouseHook : IDisposable
             }
         }
         return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
+    }
+
+    private bool ProcessMouseEvent(int nCode, nint wParam)
+    {
+        return nCode >= 0 && settings.IgnoredDevice != currentDevice && observedMessages.TryGetValue(wParam, out _);
     }
 
     private static string TranslateButton(MouseButtons button)

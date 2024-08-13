@@ -123,34 +123,37 @@
   <data name="Error" xml:space="preserve">
     <value>Errore</value>
   </data>
+  <data name="HookNotInstalled" xml:space="preserve">
+    <value>Installazione fallita.</value>
+  </data>
   <data name="IgnoredDoubleClick" xml:space="preserve">
     <value>Doppio clic ignorato</value>
   </data>
   <data name="InvalidDelayValue" xml:space="preserve">
     <value>Valore non valido - non salvato. Intervallo valido</value>
   </data>
+  <data name="Left" xml:space="preserve">
+    <value>Centro</value>
+  </data>
+  <data name="Middle" xml:space="preserve">
+    <value>sinistra</value>
+  </data>
+  <data name="Right" xml:space="preserve">
+    <value>destra</value>
+  </data>
   <data name="SettingsSaved" xml:space="preserve">
     <value>Impostazioni salvate.</value>
   </data>
+  <data name="SwitchedDevice" xml:space="preserve">
+    <value>Dispositivo mouse o touch cambiato in</value>
+  </data>
   <data name="WritingRegistryFailed" xml:space="preserve">
     <value>Impossibile scrivere nel registro di avvio.</value>
-  </data>
-  <data name="HookNotInstalled" xml:space="preserve">
-    <value>Installazione fallita.</value>
   </data>
   <data name="X1" xml:space="preserve">
     <value>X1</value>
   </data>
   <data name="X2" xml:space="preserve">
     <value>X2</value>
-  </data>
-  <data name="Right" xml:space="preserve">
-    <value>destra</value>
-  </data>
-  <data name="Middle" xml:space="preserve">
-    <value>sinistra</value>
-  </data>
-  <data name="Left" xml:space="preserve">
-    <value>Centro</value>
   </data>
 </root>
