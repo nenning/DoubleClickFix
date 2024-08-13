@@ -120,29 +120,11 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Doppelklick-Fix</value>
   </data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
+    <value>Korrektur aktiviert</value>
+  </data>
   <data name="delayLabel.Text" xml:space="preserve">
     <value>Minimale Doppelklick-Geschwindigkeit [ms]</value>
-  </data>
-  <data name="exitMenu.Text" xml:space="preserve">
-    <value>Applikation beenden</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Beheben Sie Probleme mit defekten Mäusen, die versehentlich Doppelklicks senden.</value>
-  </data>
-  <data name="notifyIcon.Text" xml:space="preserve">
-    <value>Doppelklick-Fix</value>
-  </data>
-  <data name="runAtStartupCheckBox.Text" xml:space="preserve">
-    <value>Beim Starten von Windows ausführen</value>
-  </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>Speichern</value>
-  </data>
-  <data name="showUiMenu.Text" xml:space="preserve">
-    <value>Benutzeroberfläche anzeigen</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
     <value>Passen Sie die minimale Doppelklickgeschwindigkeit Ihrer Maus für jede Maustaste einzeln an.
@@ -150,6 +132,12 @@ In den Protokollen sehen Sie die verstrichene Zeit zwischen den Klicks und alle 
 Beobachten Sie, wie lange Ihre Doppelklicks dauern, und vergleichen Sie dies mit den fehlerhaften, die von Ihrer Maus generiert wurden. 
 Passen sie die Mindestgeschwindigkeit an, um die fehlerhaften Klicks zu erfassen, während Sie unter Ihrer normalen Geschwindigkeit bleiben.
 Testen Sie das Verhalten Ihrer Maus mit den aktuellen Einstellungen mit dem Test-Text (Einfachklick, Doppelklick, Textauswahl).</value>
+  </data>
+  <data name="exitMenu.Text" xml:space="preserve">
+    <value>Applikation beenden</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Beschreibung</value>
@@ -160,29 +148,14 @@ Testen Sie das Verhalten Ihrer Maus mit den aktuellen Einstellungen mit dem Test
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Test</value>
   </data>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</value>
-  </data>
-  <data name="x2.Text" xml:space="preserve">
-    <value>X2</value>
-  </data>
-  <data name="x1.Text" xml:space="preserve">
-    <value>X1</value>
-  </data>
-  <data name="middle.Text" xml:space="preserve">
-    <value>Mitte</value>
-  </data>
-  <data name="right.Text" xml:space="preserve">
-    <value>Rechts</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Beheben Sie Probleme mit defekten Mäusen, die versehentlich Doppelklicks senden.</value>
   </data>
   <data name="left.Text" xml:space="preserve">
     <value>Links</value>
   </data>
-  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Korrektur aktiviert</value>
+  <data name="middle.Text" xml:space="preserve">
+    <value>Mitte</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Linke Maustaste</value>
@@ -198,5 +171,35 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   </data>
   <data name="mouseButtonComboBox.Items4" xml:space="preserve">
     <value>X2 Maustaste</value>
+  </data>
+  <data name="notifyIcon.Text" xml:space="preserve">
+    <value>Doppelklick-Fix</value>
+  </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value>
+  </data>
+  <data name="right.Text" xml:space="preserve">
+    <value>Rechts</value>
+  </data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve">
+    <value>Beim Starten von Windows ausführen</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="showUiMenu.Text" xml:space="preserve">
+    <value>Benutzeroberfläche anzeigen</value>
+  </data>
+  <data name="x1.Text" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="x2.Text" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve">
+    <value>Doppelklicks mit 0ms Dauer erlauben (nur benutzen bei Touchpad oder Touchscreen Problemen)</value>
   </data>
 </root>

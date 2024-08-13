@@ -98,12 +98,12 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(useMinDelayCheckBox);
             groupBox1.Controls.Add(thresholdSlider);
             groupBox1.Controls.Add(buttonEnabledCheckBox);
             groupBox1.Controls.Add(mouseButtonComboBox);
             groupBox1.Controls.Add(delayTextBox);
-            groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(runAtStartupCheckBox);
             groupBox1.Controls.Add(delayLabel);
             resources.ApplyResources(groupBox1, "groupBox1");

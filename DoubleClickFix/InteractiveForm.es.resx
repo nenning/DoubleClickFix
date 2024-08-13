@@ -120,29 +120,11 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Corrección de doble clic</value>
   </data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
+    <value>Corrección habilitada</value>
+  </data>
   <data name="delayLabel.Text" xml:space="preserve">
     <value>Velocidad mínima de doble clic [ms]</value>
-  </data>
-  <data name="exitMenu.Text" xml:space="preserve">
-    <value>Salir de la aplicación</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Configuraciones</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Corrija problemas con ratones defectuosos que envían doble clics accidentales.</value>
-  </data>
-  <data name="notifyIcon.Text" xml:space="preserve">
-    <value>Corrección de doble clic</value>
-  </data>
-  <data name="runAtStartupCheckBox.Text" xml:space="preserve">
-    <value>Ejecutar al inicio de Windows</value>
-  </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>Guardar</value>
-  </data>
-  <data name="showUiMenu.Text" xml:space="preserve">
-    <value>Mostrar interfaz de usuario</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
     <value>Ajusta la velocidad de doble clic mínima de tu ratón para cada botón del ratón por separado.
@@ -150,6 +132,12 @@ En los registros, ves el tiempo transcurrido entre los clics y todos los dobles 
 Observa cuánto tiempo duran tus dobles clics y compáralos con los defectuosos generados por tu ratón.
 Ajusta la velocidad mínima para incluir los clics defectuosos mientras te mantienes por debajo de tu velocidad normal.
 Prueba el comportamiento de tu ratón con la configuración actual con el texto de prueba (clic simple, doble clic, selección de texto).</value>
+  </data>
+  <data name="exitMenu.Text" xml:space="preserve">
+    <value>Salir de la aplicación</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Configuraciones</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Descripción</value>
@@ -160,20 +148,14 @@ Prueba el comportamiento de tu ratón con la configuración actual con el texto 
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Prueba</value>
   </data>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Corrija problemas con ratones defectuosos que envían doble clics accidentales.</value>
   </data>
-  <data name="x2.Text" xml:space="preserve">
-    <value>X2</value>
+  <data name="left.Text" xml:space="preserve">
+    <value>Izquierda</value>
   </data>
-  <data name="x1.Text" xml:space="preserve">
-    <value>X1</value>
-  </data>
-  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Corrección habilitada</value>
+  <data name="middle.Text" xml:space="preserve">
+    <value>Centro</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Botón izquierdo del ratón</value>
@@ -190,13 +172,34 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="mouseButtonComboBox.Items4" xml:space="preserve">
     <value>Botón X2 del ratón</value>
   </data>
-  <data name="middle.Text" xml:space="preserve">
-    <value>Centro</value>
+  <data name="notifyIcon.Text" xml:space="preserve">
+    <value>Corrección de doble clic</value>
+  </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value>
   </data>
   <data name="right.Text" xml:space="preserve">
     <value>Derecha</value>
   </data>
-  <data name="left.Text" xml:space="preserve">
-    <value>Izquierda</value>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve">
+    <value>Ejecutar al inicio de Windows</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="showUiMenu.Text" xml:space="preserve">
+    <value>Mostrar interfaz de usuario</value>
+  </data>
+  <data name="x1.Text" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="x2.Text" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve">
+    <value>Permitir doble clic con una duración de 0 ms (usar solo en caso de problemas con el touchpad o la pantalla táctil)</value>
   </data>
 </root>
