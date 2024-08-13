@@ -43,7 +43,7 @@ public class Settings
         }
     }
 
-    private int ignoredDevice = -1;
+    private int ignoredDevice = 0;
     public int IgnoredDevice
     {
         get { return ignoredDevice; }

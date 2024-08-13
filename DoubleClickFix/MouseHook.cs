@@ -122,7 +122,7 @@ internal class MouseHook : IDisposable
                 var device = raw.Header.Device;
                 if (currentDevice != device)
                 {
-                    logger.Log($"Switched mouse or touch device to {device}"); // TODO translate
+                    logger.Log($"{Resources.SwitchedDevice} {device}");
                     currentDevice = device;
                 }
             }

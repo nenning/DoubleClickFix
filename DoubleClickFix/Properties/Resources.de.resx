@@ -123,20 +123,14 @@
   <data name="Error" xml:space="preserve">
     <value>Fehler</value>
   </data>
+  <data name="HookNotInstalled" xml:space="preserve">
+    <value>Einrichtung fehlgeschlagen.</value>
+  </data>
   <data name="IgnoredDoubleClick" xml:space="preserve">
     <value>Doppelklick ignoriert</value>
   </data>
   <data name="InvalidDelayValue" xml:space="preserve">
     <value>Ungültiger Wert - nicht gespeichert. Gültige Werte</value>
-  </data>
-  <data name="SettingsSaved" xml:space="preserve">
-    <value>Einstellungen gespeichert.</value>
-  </data>
-  <data name="WritingRegistryFailed" xml:space="preserve">
-    <value>Die Applikation konnte nicht registriert werden.</value>
-  </data>
-  <data name="HookNotInstalled" xml:space="preserve">
-    <value>Einrichtung fehlgeschlagen.</value>
   </data>
   <data name="Left" xml:space="preserve">
     <value>links</value>
@@ -146,6 +140,15 @@
   </data>
   <data name="Right" xml:space="preserve">
     <value>rechts</value>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>Einstellungen gespeichert.</value>
+  </data>
+  <data name="SwitchedDevice" xml:space="preserve">
+    <value>Maus- oder Touch-Gerät umgeschaltet auf</value>
+  </data>
+  <data name="WritingRegistryFailed" xml:space="preserve">
+    <value>Die Applikation konnte nicht registriert werden.</value>
   </data>
   <data name="X1" xml:space="preserve">
     <value>X1</value>

@@ -148,6 +148,9 @@
   <data name="SettingsSaved" xml:space="preserve">
     <value>Settings saved.</value>
   </data>
+  <data name="SwitchedDevice" xml:space="preserve">
+    <value>Switched mouse or touch device to</value>
+  </data>
   <data name="WritingRegistryFailed" xml:space="preserve">
     <value>Failed to write to startup registry.</value>
   </data>
