@@ -20,12 +20,13 @@ class Program
         using MouseHook mouseHook = new(settings, logger);
         try
         {
-            InteractiveForm form = new(new StartupRegistry(), settings, logger);
+            InteractiveForm form = new(new StartupRegistry(), settings, logger, mouseHook.ProcessRawInput);
             if (settings.IsInteractive)
             {
                 form.Visible = true;
             }
-            if (!(mouseHook.Install(form.Handle)))
+            mouseHook.RegisterForRawInput(form.Handle);
+            if (!(mouseHook.Install()))
             {
                 form.Text = "No mouse hook installed!";
                 form.BackColor = Color.DarkRed;
