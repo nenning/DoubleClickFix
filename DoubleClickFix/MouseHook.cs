@@ -8,8 +8,9 @@ namespace DoubleClickFix;
 
 internal class MouseHook : IDisposable
 {
-    private readonly Settings settings;
+    private readonly ISettings settings;
     private readonly ILogger logger;
+    private readonly INativeMethods nativeMethods;
 
     // make sure we keep a reference so it's not garbage collected
     private LowLevelMouseProc? mouseProc;
@@ -20,12 +21,13 @@ internal class MouseHook : IDisposable
     readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
     private uint ignoredClicks = 0;
 
-    public MouseHook(Settings settings, ILogger logger)
+    public MouseHook(ISettings settings, ILogger logger, INativeMethods nativeMethods)
     {
         this.settings = settings;
         SettingsChanged();
         settings.RegisterSettingsChangedListener(SettingsChanged);
         this.logger = logger;
+        this.nativeMethods = nativeMethods;
         SystemEvents.PowerModeChanged += OnPowerModeChanged;
     }
 
@@ -133,7 +135,7 @@ internal class MouseHook : IDisposable
         }
     }
 
-    private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+    internal IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
     {
         if (ProcessMouseEvent(nCode, wParam))
         {
@@ -215,7 +217,7 @@ internal class MouseHook : IDisposable
                 }
             }
         }
-        return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
+        return nativeMethods.CallNextHook(IntPtr.Zero, nCode, wParam, lParam);
     }
 
     private bool ProcessMouseEvent(int nCode, nint wParam)

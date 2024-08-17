@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace DoubleClickFix;
 
-public class Settings
+public class Settings : ISettings
 {
     private readonly int windowsDoubleClickTimeMilliseconds = GetWindowsMaximumDoubleClickTime();
     private readonly ILogger logger;
@@ -27,7 +27,7 @@ public class Settings
     {
         this.settingsChanged += listener;
     }
-    private void OnSettingsChanged() {  }
+    private void OnSettingsChanged() { }
 
     private int minDelay = -1;
     public int MinDelay
