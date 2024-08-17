@@ -36,6 +36,7 @@
             saveButton = new Button();
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
+            useMinDelayCheckBox = new CheckBox();
             thresholdSlider = new TrackBar();
             buttonEnabledCheckBox = new CheckBox();
             mouseButtonComboBox = new ComboBox();
@@ -97,16 +98,24 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(saveButton);
+            groupBox1.Controls.Add(useMinDelayCheckBox);
             groupBox1.Controls.Add(thresholdSlider);
             groupBox1.Controls.Add(buttonEnabledCheckBox);
             groupBox1.Controls.Add(mouseButtonComboBox);
             groupBox1.Controls.Add(delayTextBox);
-            groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(runAtStartupCheckBox);
             groupBox1.Controls.Add(delayLabel);
             resources.ApplyResources(groupBox1, "groupBox1");
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
+            // 
+            // useMinDelayCheckBox
+            // 
+            resources.ApplyResources(useMinDelayCheckBox, "useMinDelayCheckBox");
+            useMinDelayCheckBox.Name = "useMinDelayCheckBox";
+            useMinDelayCheckBox.UseVisualStyleBackColor = true;
+            useMinDelayCheckBox.CheckedChanged += useMinDelayCheckBoxCheckedChanged;
             // 
             // thresholdSlider
             // 
@@ -298,5 +307,6 @@
         private ComboBox mouseButtonComboBox;
         private CheckBox buttonEnabledCheckBox;
         private TrackBar thresholdSlider;
+        private CheckBox useMinDelayCheckBox;
     }
 }

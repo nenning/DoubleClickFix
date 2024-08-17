@@ -120,29 +120,11 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Corrección de doble clic</value>
   </data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
+    <value>Correction activée</value>
+  </data>
   <data name="delayLabel.Text" xml:space="preserve">
     <value>Vitesse minimale de double-clic [ms]</value>
-  </data>
-  <data name="exitMenu.Text" xml:space="preserve">
-    <value>Quitter l'application</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Paramètres</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Corrigez les problèmes avec les souris défectueuses envoyant des double-clics accidentels.</value>
-  </data>
-  <data name="notifyIcon.Text" xml:space="preserve">
-    <value>Correction de double-clic</value>
-  </data>
-  <data name="runAtStartupCheckBox.Text" xml:space="preserve">
-    <value>Exécuter au démarrage de Windows</value>
-  </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>Enregistrer</value>
-  </data>
-  <data name="showUiMenu.Text" xml:space="preserve">
-    <value>Afficher l'interface utilisateur</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
     <value>Ajustez la vitesse de double-clic minimale de votre souris pour chaque bouton de la souris séparément.
@@ -150,6 +132,12 @@ Dans les journaux, vous voyez le temps écoulé entre les clics et tous les doub
 Observez la durée de vos double-clics et comparez-la à celle des clics défectueux générés par votre souris.
 Affinez la vitesse minimale pour inclure les clics défectueux tout en restant en dessous de votre vitesse normale.
 Testez le comportement de votre souris avec les paramètres actuels avec le texte de test (clic simple, double-clic, sélection de texte).</value>
+  </data>
+  <data name="exitMenu.Text" xml:space="preserve">
+    <value>Quitter l'application</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Paramètres</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Description</value>
@@ -160,20 +148,14 @@ Testez le comportement de votre souris avec les paramètres actuels avec le text
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Test</value>
   </data>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Corrigez les problèmes avec les souris défectueuses envoyant des double-clics accidentels.</value>
   </data>
-  <data name="x2.Text" xml:space="preserve">
-    <value>X2</value>
+  <data name="left.Text" xml:space="preserve">
+    <value>Gauche</value>
   </data>
-  <data name="x1.Text" xml:space="preserve">
-    <value>X1</value>
-  </data>
-  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Correction activée</value>
+  <data name="middle.Text" xml:space="preserve">
+    <value>Milieu</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Bouton gauche de la souris</value>
@@ -190,13 +172,34 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="mouseButtonComboBox.Items4" xml:space="preserve">
     <value>Bouton X2 de la souris</value>
   </data>
-  <data name="middle.Text" xml:space="preserve">
-    <value>Milieu</value>
+  <data name="notifyIcon.Text" xml:space="preserve">
+    <value>Correction de double-clic</value>
+  </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value>
   </data>
   <data name="right.Text" xml:space="preserve">
     <value>Droite</value>
   </data>
-  <data name="left.Text" xml:space="preserve">
-    <value>Gauche</value>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve">
+    <value>Exécuter au démarrage de Windows</value>
+  </data>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="showUiMenu.Text" xml:space="preserve">
+    <value>Afficher l'interface utilisateur</value>
+  </data>
+  <data name="x1.Text" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="x2.Text" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve">
+    <value>Autoriser les doubles clics avec une durée de 0 ms (à utiliser uniquement en cas de problèmes avec le pavé tactile ou l'écran tactile)</value>
   </data>
 </root>

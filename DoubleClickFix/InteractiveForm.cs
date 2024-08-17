@@ -3,15 +3,18 @@ namespace DoubleClickFix;
 
 public partial class InteractiveForm : Form
 {
+    private const int WM_INPUT = 0x00FF;
+
     private readonly StartupRegistry startup;
     private readonly Settings settings;
+    private readonly Action<nint> rawInputProcessor;
     private readonly System.Windows.Forms.Timer debounceTimer;
 
-    public InteractiveForm(StartupRegistry startup, Settings settings, Logger logger)
+    public InteractiveForm(StartupRegistry startup, Settings settings, Logger logger, Action<IntPtr> rawInputProcessor)
     {
         this.startup = startup;
         this.settings = settings;
-
+        this.rawInputProcessor = rawInputProcessor;
         InitializeComponent();
 
         debounceTimer = new()
@@ -21,11 +24,21 @@ public partial class InteractiveForm : Form
         debounceTimer.Tick += OnDebounceTimerTick;
         this.FormClosing += OnFormClosing;
         this.runAtStartupCheckBox.Checked = startup.IsRegistered();
+        this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
+
         logger.AddGuiLogger(text => Log(text));
         SetupTestArea();
         this.mouseButtonComboBox.SelectedIndex = 0;
     }
 
+    protected override void WndProc(ref Message m)
+    {
+        if (m.Msg == WM_INPUT)
+        {
+            rawInputProcessor(m.LParam);
+        }
+        base.WndProc(ref m);
+    }
     private void SetupTestArea()
     {
         pictureBox1.MouseDown += OnTestMouseDown;
@@ -251,12 +264,18 @@ public partial class InteractiveForm : Form
         if (!buttonEnabledCheckBox.Checked)
         {
             thresholdSlider.Value = -1;
-        } else
+        }
+        else
         {
             if (buttonEnabledCheckBox.Focused)
             {
                 thresholdSlider.Value = 50;
             }
         }
+    }
+
+    private void useMinDelayCheckBoxCheckedChanged(object sender, EventArgs e)
+    {
+        settings.MinDelay = useMinDelayCheckBox.Checked ? 0 : -1;
     }
 }
