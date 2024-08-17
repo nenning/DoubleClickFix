@@ -13,7 +13,7 @@ public class Logger : ILogger
     {
         Task.Run(ProcessLogEntries);
     }
-
+    public bool IsAppVisible { get; set; } = true;
     public void AddGuiLogger(Action<string> logger)
     {
         syncContext = SynchronizationContext.Current;
@@ -23,10 +23,13 @@ public class Logger : ILogger
         }
         this.uiLog = logger;
     }
-    public void Log(string message)
+    public void Log(string message, bool foregroundOnly = false)
     {
-        logQueue.Enqueue(message);
-        logSignal.Set();
+        if (!foregroundOnly || IsAppVisible)
+        {
+            logQueue.Enqueue(message);
+            logSignal.Set();
+        }
     }
 
     private void ProcessLogEntries()

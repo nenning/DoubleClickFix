@@ -2,7 +2,7 @@
 
 class TestLogger : ILogger
 {
-    public void Log(string message)
+    public void Log(string message, bool foregroundOnly = false)
     {
     }
 }
