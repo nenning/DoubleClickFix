@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DoubleClickFix;
 
-internal static class NativeMethods
+internal class NativeMethods: INativeMethods
 {
     internal const int WH_MOUSE_LL = 14;
 
@@ -49,8 +49,13 @@ internal static class NativeMethods
     [return: MarshalAs(UnmanagedType.Bool)]
     internal static extern bool UnhookWindowsHookEx(IntPtr hhk);
 
+    public IntPtr CallNextHook(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam)
+    {
+        return CallNextHookEx(hhk, nCode, wParam, lParam);
+    }
+
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    internal static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+    private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
 
     [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     internal static extern IntPtr GetModuleHandle(string lpModuleName);

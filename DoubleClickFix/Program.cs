@@ -17,7 +17,7 @@ class Program
             return;
         }
 
-        using MouseHook mouseHook = new(settings, logger);
+        using MouseHook mouseHook = new(settings, logger, new NativeMethods());
         try
         {
             InteractiveForm form = new(new StartupRegistry(), settings, logger, mouseHook.ProcessRawInput);
