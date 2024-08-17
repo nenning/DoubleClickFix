@@ -1,6 +1,6 @@
 ﻿namespace DoubleClickFix;
 
-public interface ILogger
+internal interface ILogger
 {
     /// <summary>
     /// Log to the UI.

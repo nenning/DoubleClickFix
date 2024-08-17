@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace DoubleClickFix;
 
-public class Logger : ILogger
+internal class Logger : ILogger
 {
     private readonly ConcurrentQueue<string> logQueue = new();
     private readonly ManualResetEventSlim logSignal = new(false);

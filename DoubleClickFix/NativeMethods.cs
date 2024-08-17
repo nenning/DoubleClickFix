@@ -63,10 +63,10 @@ internal class NativeMethods: INativeMethods
     // raw input methods
 
     [DllImport("User32.dll", SetLastError = true)]
-    public static extern bool RegisterRawInputDevices(RAWINPUTDEVICE[] pRawInputDevice, uint uiNumDevices, uint cbSize);
+    internal static extern bool RegisterRawInputDevices(RAWINPUTDEVICE[] pRawInputDevice, uint uiNumDevices, uint cbSize);
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWINPUTDEVICE
+    internal struct RAWINPUTDEVICE
     {
         public ushort UsagePage;
         public ushort Usage;
@@ -74,15 +74,15 @@ internal class NativeMethods: INativeMethods
         public IntPtr Target;
     }
 
-    public const int RIDEV_INPUTSINK = 0x00000100;
-    public const int HID_USAGE_PAGE_GENERIC = 0x01;
-    public const int HID_USAGE_GENERIC_MOUSE = 0x02;
+    internal const int RIDEV_INPUTSINK = 0x00000100;
+    internal const int HID_USAGE_PAGE_GENERIC = 0x01;
+    internal const int HID_USAGE_GENERIC_MOUSE = 0x02;
 
     [DllImport("User32.dll")]
-    public static extern uint GetRawInputData(IntPtr hRawInput, uint uiCommand, IntPtr pData, ref uint pcbSize, uint cbSizeHeader);
+    internal static extern uint GetRawInputData(IntPtr hRawInput, uint uiCommand, IntPtr pData, ref uint pcbSize, uint cbSizeHeader);
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWINPUTHEADER
+    internal struct RAWINPUTHEADER
     {
         public uint Type;
         public uint Size;
@@ -91,7 +91,7 @@ internal class NativeMethods: INativeMethods
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWMOUSE
+    internal struct RAWMOUSE
     {
         public ushort Flags;
         public ushort ButtonFlags;
@@ -103,13 +103,13 @@ internal class NativeMethods: INativeMethods
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct RAWINPUT
+    internal struct RAWINPUT
     {
         public RAWINPUTHEADER Header;
         public RAWMOUSE Mouse;
     }
 
-    public const uint RID_INPUT = 0x10000003;
-    public const uint RIM_TYPEMOUSE = 0x00000000;
+    internal const uint RID_INPUT = 0x10000003;
+    internal const uint RIM_TYPEMOUSE = 0x00000000;
 
 }

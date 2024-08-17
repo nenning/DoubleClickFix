@@ -95,11 +95,14 @@ internal class MouseHook : IDisposable
 
     public void RegisterForRawInput(IntPtr hwnd)
     {
-        RAWINPUTDEVICE[] device = new RAWINPUTDEVICE[1];
-        device[0].UsagePage = HID_USAGE_PAGE_GENERIC;
-        device[0].Usage = HID_USAGE_GENERIC_MOUSE;
-        device[0].Flags = RIDEV_INPUTSINK;
-        device[0].Target = hwnd;
+        RAWINPUTDEVICE[] device = [
+            new() {
+                UsagePage = HID_USAGE_PAGE_GENERIC,
+                Usage = HID_USAGE_GENERIC_MOUSE,
+                Flags = RIDEV_INPUTSINK,
+                Target = hwnd
+            }
+        ];
 
         if (!RegisterRawInputDevices(device, (uint)device.Length, (uint)Marshal.SizeOf(device[0])))
         {
@@ -110,14 +113,14 @@ internal class MouseHook : IDisposable
     public void ProcessRawInput(IntPtr hRawInput)
     {
         uint dwSize = 0;
-        GetRawInputData(hRawInput, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER)));
+        GetRawInputData(hRawInput, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
         IntPtr buffer = Marshal.AllocHGlobal((int)dwSize);
         try
         {
-            if (GetRawInputData(hRawInput, RID_INPUT, buffer, ref dwSize, (uint)Marshal.SizeOf(typeof(RAWINPUTHEADER))) != dwSize)
+            if (GetRawInputData(hRawInput, RID_INPUT, buffer, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>()) != dwSize)
                 return;
 
-            RAWINPUT raw = (RAWINPUT)Marshal.PtrToStructure(buffer, typeof(RAWINPUT));
+            RAWINPUT raw = Marshal.PtrToStructure<RAWINPUT>(buffer);
 
             if (raw.Header.Type == RIM_TYPEMOUSE)
             {
@@ -139,7 +142,7 @@ internal class MouseHook : IDisposable
     {
         if (ProcessMouseEvent(nCode, wParam))
         {
-            MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT))!;
+            MSLLHOOKSTRUCT hookStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
             bool buttonUp = false;
             bool buttonDown = false;
             int threshold = 50;

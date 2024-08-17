@@ -1,7 +1,7 @@
 ﻿
 namespace DoubleClickFix;
 
-public interface ISettings
+internal interface ISettings
 {
     int IgnoredDevice { get; set; }
     bool IsInteractive { get; }

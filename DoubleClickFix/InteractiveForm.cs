@@ -1,7 +1,7 @@
 using DoubleClickFix.Properties;
 namespace DoubleClickFix;
 
-public partial class InteractiveForm : Form
+internal partial class InteractiveForm : Form
 {
     private const int WM_INPUT = 0x00FF;
 

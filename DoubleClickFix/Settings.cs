@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace DoubleClickFix;
 
-public class Settings : ISettings
+internal class Settings : ISettings
 {
     private readonly int windowsDoubleClickTimeMilliseconds = GetWindowsMaximumDoubleClickTime();
     private readonly ILogger logger;
