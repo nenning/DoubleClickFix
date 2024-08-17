@@ -124,7 +124,7 @@ internal class MouseHook : IDisposable
                 var device = raw.Header.Device;
                 if (currentDevice != device)
                 {
-                    logger.Log($"{Resources.SwitchedDevice} {device}");
+                    logger.Log($"{Resources.SwitchedDevice} {device}", true);
                     currentDevice = device;
                 }
             }
@@ -206,7 +206,7 @@ internal class MouseHook : IDisposable
                         {
                             string buttonText = TranslateButton(button);
 
-                            logger.Log($"{timeDifference} ms ({buttonText})");
+                            logger.Log($"{timeDifference} ms ({buttonText})", true);
                         }
                     }
                 }

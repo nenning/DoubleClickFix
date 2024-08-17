@@ -7,6 +7,7 @@ public partial class InteractiveForm : Form
 
     private readonly StartupRegistry startup;
     private readonly Settings settings;
+    private readonly Logger logger;
     private readonly Action<nint> rawInputProcessor;
     private readonly System.Windows.Forms.Timer debounceTimer;
 
@@ -14,6 +15,7 @@ public partial class InteractiveForm : Form
     {
         this.startup = startup;
         this.settings = settings;
+        this.logger = logger;
         this.rawInputProcessor = rawInputProcessor;
         InitializeComponent();
 
@@ -154,6 +156,12 @@ public partial class InteractiveForm : Form
         this.ShowForm();
     }
 
+    protected override void OnVisibleChanged(EventArgs e)
+    {
+        base.OnVisibleChanged(e);
+        logger.IsAppVisible = this.Visible;
+    }
+   
     private void OnExitMenuClick(object? sender, EventArgs e)
     {
         notifyIcon.Visible = false;
@@ -274,7 +282,7 @@ public partial class InteractiveForm : Form
         }
     }
 
-    private void useMinDelayCheckBoxCheckedChanged(object sender, EventArgs e)
+    private void UseMinDelayCheckBoxCheckedChanged(object sender, EventArgs e)
     {
         settings.MinDelay = useMinDelayCheckBox.Checked ? 0 : -1;
     }

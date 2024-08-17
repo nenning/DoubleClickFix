@@ -115,7 +115,7 @@
             resources.ApplyResources(useMinDelayCheckBox, "useMinDelayCheckBox");
             useMinDelayCheckBox.Name = "useMinDelayCheckBox";
             useMinDelayCheckBox.UseVisualStyleBackColor = true;
-            useMinDelayCheckBox.CheckedChanged += useMinDelayCheckBoxCheckedChanged;
+            useMinDelayCheckBox.CheckedChanged += UseMinDelayCheckBoxCheckedChanged;
             // 
             // thresholdSlider
             // 
