@@ -74,4 +74,4 @@ Contributions are welcome! Feel free to open issues, submit pull requests, or su
 ---
 
 ## 📜 License
-This project is distributed under the [MIT License](LICENSE).
+This project is distributed under the [MIT License](LICENSE.txt).
