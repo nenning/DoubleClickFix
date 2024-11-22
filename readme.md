@@ -45,6 +45,23 @@ This tool ensures smoother operation by filtering unintended double-click events
 
 ---
 
+## ℹ️ Valve Anti-Cheat (VAC) Compatibility
+
+### What **DoubleClickFix** Does
+This application uses a **low-level mouse hook** to intercept and process mouse input events. It adjusts the behavior of specific clicks based on a user-defined delay, ensuring that only intentional clicks are registered. The tool does not interact with or manipulate other processes.
+
+### What VAC Scans For
+Valve Anti-Cheat is designed to detect:
+- **Known cheating software**: Programs that directly modify game memory, inject code, or manipulate game data.
+- **Unauthorized third-party processes**: Applications that interfere with or manipulate the game in unintended ways.
+
+### Why This Shouldn't Be an Issue
+DoubleClickFix operates independently of any game and does not interact with game files, memory, or processes. It only modifies mouse input at the system level to address hardware issues, which is outside the scope of VAC detection.  
+
+**Disclaimer**: While DoubleClickFix is unlikely to trigger VAC, always use third-party tools responsibly and at your own discretion. For official information, refer to Valve's [VAC documentation](https://help.steampowered.com/en/faqs/view/571A-97DA-70E9-FF74).
+
+---
+
 ## 💡 Tips
 - Check logs for detailed information on device IDs and other runtime details.
 - Experiment with different delay settings to optimize for your specific hardware issues.
