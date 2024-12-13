@@ -1,5 +1,6 @@
 ﻿using DoubleClickFix.Properties;
 using Microsoft.Win32;
+using System.Collections.Frozen;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using static DoubleClickFix.NativeMethods;
@@ -8,6 +9,17 @@ namespace DoubleClickFix;
 
 internal class MouseHook : IDisposable
 {
+    // to make sure the hook returns as fast as possible, we cache some texts here.
+    private static readonly FrozenDictionary<MouseButtons, string> buttonTextLookup = new Dictionary<MouseButtons, string> {
+            { MouseButtons.Left, Resources.Left },
+            { MouseButtons.Right, Resources.Right },
+            { MouseButtons.Middle, Resources.Middle },
+            { MouseButtons.XButton1, Resources.X1 },
+            { MouseButtons.XButton2, Resources.X2 },
+        }.ToFrozenDictionary();
+
+    private static readonly string ignoredDoubleClickText = Resources.IgnoredDoubleClick;
+
     private readonly ISettings settings;
     private readonly ILogger logger;
     private readonly INativeMethods nativeMethods;
@@ -17,8 +29,8 @@ internal class MouseHook : IDisposable
     private IntPtr hookHandle = IntPtr.Zero;
     private IntPtr currentDevice = -1;
 
-    private readonly HashSet<IntPtr> observedMessages = [];
-    readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
+    private readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
+    private FrozenSet<IntPtr> observedMessages = FrozenSet<IntPtr>.Empty;
     private uint ignoredClicks = 0;
 
     public MouseHook(ISettings settings, ILogger logger, INativeMethods nativeMethods)
@@ -33,26 +45,27 @@ internal class MouseHook : IDisposable
 
     private void SettingsChanged()
     {
-        observedMessages.Clear();
-        if (settings.LeftThreshold >= 0) { 
-            observedMessages.Add(WM_LBUTTONDOWN);
-            observedMessages.Add(WM_LBUTTONUP);
+        HashSet<IntPtr> messages = [];
+        if (settings.LeftThreshold >= 0) {
+            messages.Add(WM_LBUTTONDOWN);
+            messages.Add(WM_LBUTTONUP);
         }
         if (settings.RightThreshold >= 0)
         {
-            observedMessages.Add(WM_RBUTTONDOWN);
-            observedMessages.Add(WM_RBUTTONUP);
+            messages.Add(WM_RBUTTONDOWN);
+            messages.Add(WM_RBUTTONUP);
         }
         if (settings.MiddleThreshold >= 0)
         {
-            observedMessages.Add(WM_MBUTTONDOWN);
-            observedMessages.Add(WM_MBUTTONUP);
+            messages.Add(WM_MBUTTONDOWN);
+            messages.Add(WM_MBUTTONUP);
         }
         if (settings.X1Threshold >= 0 || settings.X2Threshold >= 0)
         {
-            observedMessages.Add(WM_XBUTTONDOWN);
-            observedMessages.Add(WM_XBUTTONUP);
+            messages.Add(WM_XBUTTONDOWN);
+            messages.Add(WM_XBUTTONUP);
         }
+        observedMessages = messages.ToFrozenSet();
     }
 
     public bool Install()
@@ -198,8 +211,7 @@ internal class MouseHook : IDisposable
                     if (ignore)
                     {
                         ignoredClicks++;
-                        string buttonText = TranslateButton(button);
-                        logger.Log($"{Resources.IgnoredDoubleClick} ({buttonText}): {timeDifference} ms (#{ignoredClicks})");
+                        logger.Log($"{ignoredDoubleClickText} ({buttonTextLookup[button]}): {timeDifference} ms (#{ignoredClicks})");
                         previousUpTime[button] = 0;
                         return (IntPtr)1;
                     }
@@ -207,16 +219,13 @@ internal class MouseHook : IDisposable
                     {
                         if (timeDifference < settings.WindowsDoubleClickTimeMilliseconds)
                         {
-                            string buttonText = TranslateButton(button);
-
-                            logger.Log($"{timeDifference} ms ({buttonText})", true);
+                            logger.Log($"{timeDifference} ms ({buttonTextLookup[button]})", true);
                         }
                     }
                 }
                 else if (buttonUp)
                 {
                     previousUpTime[button] = hookStruct.time;
-
                 }
             }
         }
@@ -225,20 +234,7 @@ internal class MouseHook : IDisposable
 
     private bool ProcessMouseEvent(int nCode, nint wParam)
     {
-        return nCode >= 0 && settings.IgnoredDevice != currentDevice && observedMessages.TryGetValue(wParam, out _);
-    }
-
-    private static string TranslateButton(MouseButtons button)
-    {
-        return button switch
-        {
-            MouseButtons.Left => Resources.Left,
-            MouseButtons.Right => Resources.Right,
-            MouseButtons.Middle => Resources.Middle,
-            MouseButtons.XButton1 => Resources.X1,
-            MouseButtons.XButton2 => Resources.X2,
-            _ => "?",
-        };
+        return nCode >= 0 && settings.IgnoredDevice != currentDevice && observedMessages.Contains(wParam);
     }
 
     private MouseButtons GetXButton(uint mouseData)
