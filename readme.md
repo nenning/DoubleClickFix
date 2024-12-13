@@ -1,19 +1,77 @@
-# Overview
-Contains a workaround for broken mouses that sometimes send a double-click instead of a single click.
-You can fine-tune the minimal delay between two clicks in the user interface, which can be opened by double-clicking the Windows tray icon. 
+﻿# 🖱️ DoubleClickFix
 
-You can also register the application to launch at Windows startup.
+A lightweight solution for mitigating double-click issues caused by malfunctioning mice.  
+
+This tool ensures smoother operation by filtering unintended double-click events, allowing you to define the minimal delay between valid clicks directly from an intuitive user interface.
 
 ![logo](DoubleClickFix/app.ico)
 
-# Installation
-Download the release, unzip and run the executable (you might have to install the .NET runtime first).
+---
 
-Or compile it yourself. 
+## ✨ Features
+- **Customizable Delay**: Adjust the minimal delay between two clicks via a user-friendly interface.
+- **Windows Tray Integration**: Double-click the tray icon to open the settings UI.
+- **Startup Option**: Easily register the application to launch with Windows.
 
-# Configuration
-Most of the configuration is done in the user interface and stored in the `DoubleClickFix.dll.config`. When downloading a new release, make sure to configure your settings again. Currently, there's no mechanism to automatically take over previous settings.
+---
 
-If you edit the config file manually, you have to restart the application for the changes to take effect.
+## 🚀 Installation
 
-The application tries to allow all double-clicks from touchpads and touchscreens. It does so by ignoring clicks from the device with id 0. If this is not working for you, because your touch device has a different id, you could adjust the id in the `ignoredDevice` setting to what is displayed in the application logs. If this is also not working, use the checkbox in the UI to allow double-clicks with 0ms duration.
+### Quick Setup
+1. **Download**: Grab the latest release from the [Releases page](https://github.com/nenning/DoubleClickFix/releases).
+2. **Unzip & Run**: Extract the files and execute the `.exe`.  
+   > Note: You might need to install the [.NET Runtime](https://dotnet.microsoft.com/en-us/download/dotnet) first.
+
+### Advanced Setup
+- **Build from Source**: Clone the repository and compile the application yourself using Visual Studio or your preferred .NET toolchain.
+
+---
+
+## ⚙️ Configuration
+
+### User Interface
+- Most settings can be adjusted directly through the graphical UI.
+- Configuration changes are saved in `DoubleClickFix.dll.config`.
+
+### Manual Edits
+- You can edit `DoubleClickFix.dll.config` manually, but changes require restarting the application to take effect.
+
+### Handling Touch Devices
+- Double-clicks from touchpads or touchscreens are generally allowed by default. 
+- If your device is not recognized (e.g., it has a different device ID !=0), adjust the `ignoredDevice` value in the configuration file based on the application logs.
+- Alternatively, enable the **Allow 0ms Double-Click Duration** option in the UI.
+
+> **Note**: When upgrading to a new release, reconfigure your settings as there is no automatic migration of previous configurations.
+
+---
+
+## ℹ️ Valve Anti-Cheat (VAC) Compatibility
+
+### What **DoubleClickFix** Does
+This application uses a **low-level mouse hook** to intercept and process mouse input events. It adjusts the behavior of specific clicks based on a user-defined delay, ensuring that only intentional clicks are registered. The tool does not interact with or manipulate other processes.
+
+### What VAC Scans For
+Valve Anti-Cheat is designed to detect:
+- **Known cheating software**: Programs that directly modify game memory, inject code, or manipulate game data.
+- **Unauthorized third-party processes**: Applications that interfere with or manipulate the game in unintended ways.
+
+### Why This Shouldn't Be an Issue
+DoubleClickFix operates independently of any game and does not interact with game files, memory, or processes. It only modifies mouse input at the system level to address hardware issues, which is outside the scope of VAC detection.  
+
+**Disclaimer**: While DoubleClickFix is unlikely to trigger VAC, always use third-party tools responsibly and at your own discretion. For official information, refer to Valve's [VAC documentation](https://help.steampowered.com/en/faqs/view/571A-97DA-70E9-FF74).
+
+---
+
+## 💡 Tips
+- Check logs for detailed information on device IDs and other runtime details.
+- Experiment with different delay settings to optimize for your specific hardware issues.
+
+---
+
+## 🤝 Contributions
+Contributions are welcome! Feel free to open issues, submit pull requests, or suggest improvements via the [Issues tab](https://github.com/nenning/DoubleClickFix/issues).
+
+---
+
+## 📜 License
+This project is distributed under the [MIT License](LICENSE.txt).
