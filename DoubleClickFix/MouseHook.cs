@@ -30,7 +30,7 @@ internal class MouseHook : IDisposable
     private IntPtr currentDevice = -1;
 
     private readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
-    private FrozenSet<IntPtr> observedMessages = FrozenSet<IntPtr>.Empty;
+    private FrozenSet<IntPtr> observedMessages = [];
     private uint ignoredClicks = 0;
 
     public MouseHook(ISettings settings, ILogger logger, INativeMethods nativeMethods)
@@ -126,7 +126,7 @@ internal class MouseHook : IDisposable
     public void ProcessRawInput(IntPtr hRawInput)
     {
         uint dwSize = 0;
-        GetRawInputData(hRawInput, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
+        _ = GetRawInputData(hRawInput, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
         IntPtr buffer = Marshal.AllocHGlobal((int)dwSize);
         try
         {

@@ -15,7 +15,7 @@ internal class StartupRegistry
     {
         try
         {
-            using var key = Registry.CurrentUser.OpenSubKey(registryPath, false);
+            using var key = Registry.CurrentUser.OpenSubKey(registryPath, writable: false);
             var value = key!.GetValue(registryKey, null);
             isRegistered = value != null && (string)value == registryValue;
             return isRegistered;
