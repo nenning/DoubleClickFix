@@ -138,7 +138,7 @@ internal class Settings : ISettings
     {
         try
         {
-            var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoaming);
             var settings = configuration.AppSettings.Settings;
             SaveSetting(settings, leftThreshold);
             SaveSetting(settings, rightThreshold);
