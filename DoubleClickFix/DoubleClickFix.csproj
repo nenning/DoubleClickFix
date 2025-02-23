@@ -9,7 +9,10 @@
 		<ApplicationIcon>app.ico</ApplicationIcon>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 		<Platforms>AnyCPU;x86</Platforms>
-		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+		<ApplicationVisualStyles>true</ApplicationVisualStyles>
+		<ApplicationUseCompatibleTextRendering>false</ApplicationUseCompatibleTextRendering>
+		<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
