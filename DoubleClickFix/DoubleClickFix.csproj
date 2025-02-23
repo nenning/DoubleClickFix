@@ -8,14 +8,24 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationIcon>app.ico</ApplicationIcon>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+		<Platforms>AnyCPU;x86</Platforms>
+		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<WarningLevel>9999</WarningLevel>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+	  <WarningLevel>9999</WarningLevel>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<WarningLevel>9999</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+	  <WarningLevel>9999</WarningLevel>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -27,6 +37,11 @@
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\Settings.Designer.cs">
+		  <DesignTimeSharedInput>True</DesignTimeSharedInput>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Settings.settings</DependentUpon>
 		</Compile>
 	</ItemGroup>
 
@@ -40,6 +55,10 @@
 	<ItemGroup>
 		<None Update="app.ico">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Properties\Settings.settings">
+		  <Generator>SettingsSingleFileGenerator</Generator>
+		  <LastGenOutput>Settings.Designer.cs</LastGenOutput>
 		</None>
 	</ItemGroup>
 

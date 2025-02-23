@@ -8,6 +8,8 @@ class Program
     [STAThread]
     static void Main(string[] args)
     {
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
         Logger logger = new();
         Settings settings = new(args, logger);
         using Mutex mutex = new(true, "{F8049D9C-AD6B-4158-92A3-E537355EF536}");
