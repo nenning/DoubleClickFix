@@ -20,7 +20,7 @@ class Program
         using MouseHook mouseHook = new(settings, logger, new NativeMethods());
         try
         {
-            InteractiveForm form = new(new StartupRegistry(), settings, logger, mouseHook.ProcessRawInput);
+            InteractiveForm form = new(new StartupRegistry(logger), settings, logger, mouseHook.ProcessRawInput);
             if (settings.IsInteractive)
             {
                 form.Visible = true;

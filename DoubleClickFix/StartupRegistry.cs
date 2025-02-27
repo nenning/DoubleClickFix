@@ -2,7 +2,7 @@
 
 namespace DoubleClickFix;
 
-internal class StartupRegistry
+internal class StartupRegistry (ILogger Logger)
 {
     private const string registryPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
     private const string registryKey = @"DoubleClickFix";
@@ -22,7 +22,7 @@ internal class StartupRegistry
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error: {ex}");
+            Logger.Log($"Error: {ex}");
             isRegistered = false;
             return false;
         }
@@ -41,7 +41,7 @@ internal class StartupRegistry
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error: {ex}");
+            Logger.Log($"Error: {ex}");
             return false;
         }
         isRegistered = true;
@@ -60,7 +60,7 @@ internal class StartupRegistry
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error: {ex}");
+            Logger.Log($"Error: {ex}");
             return false;
         }
         isRegistered = false;
