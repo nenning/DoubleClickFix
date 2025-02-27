@@ -1,5 +1,4 @@
 using DoubleClickFix.Properties;
-using System.Security.Principal;
 
 namespace DoubleClickFix;
 
@@ -20,7 +19,12 @@ class Program
         using MouseHook mouseHook = new(settings, logger, new NativeMethods());
         try
         {
-            InteractiveForm form = new(new StartupRegistry(logger), settings, logger, mouseHook.ProcessRawInput);
+            var startupRegistry = new StartupRegistry(logger);
+            if (settings.IsFirstAppStart)
+            {
+                startupRegistry.Register();
+            }
+            InteractiveForm form = new(startupRegistry, settings, logger, mouseHook.ProcessRawInput);
             if (settings.IsInteractive)
             {
                 form.Visible = true;

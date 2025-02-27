@@ -4,6 +4,8 @@ A lightweight solution for mitigating double-click issues caused by malfunctioni
 
 This tool ensures smoother operation by filtering unintended double-click events, allowing you to define the minimal delay between valid clicks directly from an intuitive user interface.
 
+**Download from [Microsoft Store](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare)!**
+
 ![logo](DoubleClickFix/app.ico)
 
 ---
@@ -17,7 +19,12 @@ This tool ensures smoother operation by filtering unintended double-click events
 
 ## 🚀 Installation
 
-### Quick Setup
+The following options are supported for installing and running the application:
+
+### Install from Microsoft Store (recommended)
+1. Go to the [Store page](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare) and install it.
+
+### Manual Setup
 1. **Download**: Grab the latest release from the [Releases page](https://github.com/nenning/DoubleClickFix/releases).
 2. **Unzip & Run**: Extract the files and execute the `.exe`.  
    > Note: You might need to install the [.NET Runtime](https://dotnet.microsoft.com/en-us/download/dotnet) first.
@@ -31,17 +38,12 @@ This tool ensures smoother operation by filtering unintended double-click events
 
 ### User Interface
 - Most settings can be adjusted directly through the graphical UI.
-- Configuration changes are saved in `DoubleClickFix.dll.config`.
-
-### Manual Edits
-- You can edit `DoubleClickFix.dll.config` manually, but changes require restarting the application to take effect.
+- Configuration changes are saved in the Windows registry (`\HKEY_CURRENT_USER\SOFTWARE\DoubleClickFix`).
 
 ### Handling Touch Devices
 - Double-clicks from touchpads or touchscreens are generally allowed by default. 
 - If your device is not recognized (e.g., it has a different device ID !=0), adjust the `ignoredDevice` value in the configuration file based on the application logs.
 - Alternatively, enable the **Allow 0ms Double-Click Duration** option in the UI.
-
-> **Note**: When upgrading to a new release, reconfigure your settings as there is no automatic migration of previous configurations.
 
 ---
 

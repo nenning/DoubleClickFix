@@ -2,13 +2,20 @@
 using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
-using System.Collections.Specialized;
 using System.Runtime.CompilerServices;
+using Microsoft.Win32;
 
 namespace DoubleClickFix;
 
+/// <summary>
+/// Delay in milliseconds per mouse key.Use -1 to disable double click fix for a key or remove the corresponding setting. 
+/// IgnoredDevice: Used to ignore touch screen or touch pad double clicks. Usually the id of such a device is 0. But it can be modified here if needed.
+/// MinDelay: Can be used to define a minimum delay of 0. Workaround for touch screen or touch pad recognition based on device id not working. To deactivate use -1.
+/// </summary>
 internal class Settings : ISettings
 {
+    private const string RegistryKeyPath = @"SOFTWARE\DoubleClickFix\v1";
+
     private readonly int windowsDoubleClickTimeMilliseconds = GetWindowsMaximumDoubleClickTime();
     private readonly ILogger logger;
     private Action settingsChanged;
@@ -17,11 +24,13 @@ internal class Settings : ISettings
     {
         this.logger = logger;
         UseHook = !Debugger.IsAttached || args.Length == 0 || !args.Contains("-nohook");
-        IsInteractive = Debugger.IsAttached || args.Length > 0 && (args.Contains("-interactive") || args.Contains("-i"));
+        IsFirstAppStart = !SettingsExist();
+        IsInteractive = Debugger.IsAttached || IsFirstAppStart || args.Length > 0 && (args.Contains("-interactive") || args.Contains("-i"));
         ApplyLanguageOverride();
         Load();
         settingsChanged += this.OnSettingsChanged;
     }
+    public bool IsFirstAppStart { get; private init; }
 
     public void RegisterSettingsChangedListener(Action listener)
     {
@@ -138,18 +147,20 @@ internal class Settings : ISettings
     {
         try
         {
-            var configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoaming);
-            var settings = configuration.AppSettings.Settings;
-            SaveSetting(settings, leftThreshold);
-            SaveSetting(settings, rightThreshold);
-            SaveSetting(settings, middleThreshold);
-            SaveSetting(settings, x1Threshold);
-            SaveSetting(settings, x2Threshold);
-            SaveSetting(settings, minDelay);
-            SaveSetting(settings, ignoredDevice);
-            configuration.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
-            logger.Log(Resources.SettingsSaved);
+            using var key = Registry.CurrentUser.CreateSubKey(RegistryKeyPath);
+            if (key != null)
+            {
+                SaveSetting(key, LeftThreshold);
+                SaveSetting(key, RightThreshold);
+                SaveSetting(key, MiddleThreshold);
+                SaveSetting(key, X1Threshold);
+                SaveSetting(key, X2Threshold);
+                SaveSetting(key, MinDelay);
+                SaveSetting(key, IgnoredDevice);
+                logger.Log(Resources.SettingsSaved);
+            } else { 
+                logger.Log("Failed to create or write registry key."); 
+            }
         }
         catch (Exception ex)
         {
@@ -157,17 +168,11 @@ internal class Settings : ISettings
         }
     }
 
-    private static void SaveSetting(KeyValueConfigurationCollection settings, int value, [CallerArgumentExpression(nameof(value))] string key = "")
+    private static void SaveSetting(RegistryKey key, int currentValue, [CallerArgumentExpression(nameof(currentValue))] string name = "")
     {
-        if (settings.AllKeys.Contains(key))
-        {
-            settings[key].Value = value.ToString();
-        }
-        else
-        {
-            settings.Add(key, value.ToString());
-        }
+        key.SetValue(name, currentValue, RegistryValueKind.DWord);
     }
+
     public int WindowsDoubleClickTimeMilliseconds
     {
         get => windowsDoubleClickTimeMilliseconds;
@@ -183,25 +188,41 @@ internal class Settings : ISettings
         return doubleClickTime;
     }
 
+    private bool SettingsExist()
+    {
+        try
+        {
+            using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath);
+            return key != null;
+        }
+        catch
+        {
+            return false;
+        }
+    }
     private void Load()
     {
-        var settings = ConfigurationManager.AppSettings!;
-        leftThreshold = LoadSetting(settings, leftThreshold);
-        rightThreshold = LoadSetting(settings, rightThreshold);
-        middleThreshold = LoadSetting(settings, middleThreshold);
-        x1Threshold = LoadSetting(settings, x1Threshold);
-        x2Threshold = LoadSetting(settings, x2Threshold);
-        minDelay = LoadSetting(settings, minDelay);
-        ignoredDevice = LoadSetting(settings, ignoredDevice);
-    }
-    private static int LoadSetting(NameValueCollection settings, int currentValue, [CallerArgumentExpression(nameof(currentValue))] string key = "")
-    {
-        string? value = settings[key];
-        if (value == null || !int.TryParse(value, out int newValue))
+        using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath);
+        if (key != null)
         {
-            return currentValue;
+            LeftThreshold = LoadSetting(key, LeftThreshold);
+            RightThreshold = LoadSetting(key, RightThreshold);
+            MiddleThreshold = LoadSetting(key, MiddleThreshold);
+            X1Threshold = LoadSetting(key, X1Threshold);
+            X2Threshold = LoadSetting(key, X2Threshold);
+            MinDelay = LoadSetting(key, MinDelay);
+            IgnoredDevice = LoadSetting(key, IgnoredDevice);
         }
-        return newValue;
+    }
+
+    private static int LoadSetting(RegistryKey key, int defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string name = "")
+    {
+        object? value = key.GetValue(name);
+        if (value is int intValue)
+        {
+            return intValue;
+        }
+        return defaultValue;
     }
 
     private static void ApplyLanguageOverride()
