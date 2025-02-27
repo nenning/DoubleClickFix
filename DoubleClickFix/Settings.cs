@@ -27,6 +27,10 @@ internal class Settings : ISettings
         IsFirstAppStart = !SettingsExist();
         IsInteractive = Debugger.IsAttached || IsFirstAppStart || args.Length > 0 && (args.Contains("-interactive") || args.Contains("-i"));
         ApplyLanguageOverride();
+        if (IsFirstAppStart)
+        {
+            Save();
+        }
         Load();
         settingsChanged += this.OnSettingsChanged;
     }
@@ -147,7 +151,7 @@ internal class Settings : ISettings
     {
         try
         {
-            using var key = Registry.CurrentUser.CreateSubKey(RegistryKeyPath);
+            using var key = Registry.CurrentUser.CreateSubKey(RegistryKeyPath, true);
             if (key != null)
             {
                 SaveSetting(key, LeftThreshold);
@@ -192,7 +196,7 @@ internal class Settings : ISettings
     {
         try
         {
-            using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath);
+            using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath, false);
             return key != null;
         }
         catch
@@ -202,7 +206,7 @@ internal class Settings : ISettings
     }
     private void Load()
     {
-        using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath);
+        using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath, false);
         if (key != null)
         {
             LeftThreshold = LoadSetting(key, LeftThreshold);
@@ -217,7 +221,7 @@ internal class Settings : ISettings
 
     private static int LoadSetting(RegistryKey key, int defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string name = "")
     {
-        object? value = key.GetValue(name);
+        object? value = key.GetValue(name, defaultValue);
         if (value is int intValue)
         {
             return intValue;

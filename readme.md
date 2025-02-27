@@ -36,14 +36,13 @@ The following options are supported for installing and running the application:
 
 ## ⚙️ Configuration
 
-### User Interface
-- Most settings can be adjusted directly through the graphical UI.
-- Configuration changes are saved in the Windows registry (`\HKEY_CURRENT_USER\SOFTWARE\DoubleClickFix`).
+### Settings
+- Most settings can be adjusted directly through the graphical user interface.
+- Configuration changes are saved in the Windows registry.
 
 ### Handling Touch Devices
 - Double-clicks from touchpads or touchscreens are generally allowed by default. 
-- If your device is not recognized (e.g., it has a different device ID !=0), adjust the `ignoredDevice` value in the configuration file based on the application logs.
-- Alternatively, enable the **Allow 0ms Double-Click Duration** option in the UI.
+- If your device is not recognized (e.g., it has a different device ID !=0), adjust the `ignoredDevice` value in the configuration file based on the application logs. But this ID is probably not stable, so this might not work. At the moment, it's better to enable the **Allow 0ms Double-Click Duration** option in the UI.
 
 ---
 
