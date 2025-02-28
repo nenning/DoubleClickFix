@@ -2,7 +2,7 @@
 
 namespace DoubleClickFix;
 
-internal class StartupRegistry (ILogger Logger)
+internal class StandaloneStartupRegistry(ILogger Logger) : IStartupRegistry
 {
     private const string registryPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
     private const string registryKey = @"DoubleClickFix";

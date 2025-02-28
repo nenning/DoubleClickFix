@@ -13,7 +13,7 @@ This tool ensures smoother operation by filtering unintended double-click events
 ## ✨ Features
 - **Customizable Delay**: Adjust the minimal delay between two clicks via a user-friendly interface.
 - **Windows Tray Integration**: Double-click the tray icon to open the settings UI.
-- **Startup Option**: Easily register the application to launch with Windows.
+- **Startup Option**: Easily register the application to launch with Windows. Note: the app tries to do this automatically.
 
 ---
 
@@ -37,12 +37,11 @@ The following options are supported for installing and running the application:
 ## ⚙️ Configuration
 
 ### Settings
-- Most settings can be adjusted directly through the graphical user interface.
-- Configuration changes are saved in the Windows registry.
+- Settings can be adjusted in the UI.
 
 ### Handling Touch Devices
-- Double-clicks from touchpads or touchscreens are generally allowed by default. 
-- If your device is not recognized (e.g., it has a different device ID !=0), adjust the `ignoredDevice` value in the configuration file based on the application logs. But this ID is probably not stable, so this might not work. At the moment, it's better to enable the **Allow 0ms Double-Click Duration** option in the UI.
+- Double-clicks from touchpads or touchscreens are allowed by default. 
+- If you have trouble with this, enable the **Allow 0ms Double-Click Duration** option in the UI.
 
 ---
 
@@ -59,13 +58,13 @@ Valve Anti-Cheat is designed to detect:
 ### Why This Shouldn't Be an Issue
 DoubleClickFix operates independently of any game and does not interact with game files, memory, or processes. It only modifies mouse input at the system level to address hardware issues, which is outside the scope of VAC detection.  
 
-**Disclaimer**: While DoubleClickFix is unlikely to trigger VAC, always use third-party tools responsibly and at your own discretion. For official information, refer to Valve's [VAC documentation](https://help.steampowered.com/en/faqs/view/571A-97DA-70E9-FF74).
+**Disclaimer**: While DoubleClickFix is very unlikely to trigger VAC, always use third-party tools responsibly and at your own discretion. For official information, refer to Valve's [VAC documentation](https://help.steampowered.com/en/faqs/view/571A-97DA-70E9-FF74).
 
 ---
 
 ## 💡 Tips
-- Check logs for detailed information on device IDs and other runtime details.
-- Experiment with different delay settings to optimize for your specific hardware issues.
+- Check the logs in the UI for detailed information on the elapsed time between your mouse clicks and filterd out double-clicks.
+- Experiment with different delay settings to optimize for your specific hardware issues and click style.
 
 ---
 

@@ -14,6 +14,7 @@ internal interface ISettings
     int X1Threshold { get; set; }
     int X2Threshold { get; set; }
 
+    bool IsFirstAppStart { get; }
     void RegisterSettingsChangedListener(Action listener);
     void Save();
 }
