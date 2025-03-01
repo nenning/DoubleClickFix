@@ -11,7 +11,7 @@
   <Identity
     Name="ChristopherNenning.Double-clickFix"
     Publisher="CN=630100F0-2F17-4636-ADD4-BE458A9C60B6"
-    Version="1.3.18.0" />
+    Version="1.3.21.0" />
 
   <Properties>
     <DisplayName>Double-click Fix</DisplayName>
@@ -42,7 +42,7 @@
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
-        <desktop:Extension Category="windows.startupTask" Executable="$targetnametoken$.exe" EntryPoint="Windows.FullTrustApplication">
+        <desktop:Extension Category="windows.startupTask" Executable="DoubleClickFix\DoubleClickFix.exe" EntryPoint="Windows.FullTrustApplication">
       	  <desktop:StartupTask TaskId="{F8049D9C-AD6B-4158-92A3-E537355EF536}" DisplayName="Double-Click Fix" Enabled="true" />
         </desktop:Extension>
       </Extensions>

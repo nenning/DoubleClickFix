@@ -11,6 +11,10 @@ internal class StoreStartupRegistry(ILogger Logger) : IStartupRegistry
         try
         {
             var task = GetStartupTask();
+            if (task == null)
+            {
+                Logger.Log("Startup task not found.");
+            }
             isRegistered = task?.State == StartupTaskState.Enabled;
             return isRegistered;
         }
