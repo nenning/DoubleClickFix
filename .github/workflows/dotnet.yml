@@ -4,7 +4,8 @@ on:
   push:
     tags:
       - 'v*' # Trigger on version tags (e.g., v1.0.0)
-  
+  workflow_dispatch:
+
 permissions:
   contents: write
   
@@ -17,7 +18,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 9.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -26,7 +27,7 @@ jobs:
     - name: Package binaries
       run: |
         mkdir Release
-        Copy-Item -Path DoubleClickFix/bin/Release/net8.0-windows/* -Destination Release/ -Recurse        
+        Copy-Item -Path DoubleClickFix/bin/Release/net9.0-windows/* -Destination Release/ -Recurse        
       shell: pwsh
 
     - name: Create ZIP file
@@ -45,7 +46,7 @@ jobs:
           Release notes
           Download the binaries, extract the DoubleClickFix.zip file and launch DoubleClickFix.exe.
           This will launch a Windows tray icon. Double-click it to open the UI and fine-tune the settings.
-          Windows only. Requires .NET 8 run-time.
+          Windows only. Requires .NET 9 run-time.
         draft: false
         prerelease: false
 
@@ -57,4 +58,4 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./DoubleClickFix.zip
         asset_name: DoubleClickFix.zip
-        asset_content_type: application/zip    
+        asset_content_type: application/zip
