@@ -4,13 +4,22 @@ using System.Globalization;
 
 namespace DoubleClickFix
 {
-    /// <summary>
-    /// Delay in milliseconds per mouse key.Use -1 to disable double click fix for a key or remove the corresponding setting. 
-    /// IgnoredDevice: Used to ignore touch screen or touch pad double clicks. Usually the id of such a device is 0. But it can be modified here if needed.
-    /// MinDelay: Can be used to define a minimum delay of 0. Workaround for touch screen or touch pad recognition based on device id not working. To deactivate use -1.
-    /// </summary>
     internal abstract class SettingsBase: ISettings
     {
+        private readonly int windowsDoubleClickTimeMilliseconds = GetWindowsMaximumDoubleClickTime();
+        private Action settingsChanged;
+
+        protected readonly ILogger logger;
+        
+        protected int ignoredDevice = 0;
+        protected int minDelay = -1;
+
+        protected int leftThreshold = 50;
+        protected int middleThreshold = -1;
+        protected int rightThreshold = -1;
+
+        protected int x1Threshold = -1;
+        protected int x2Threshold = -1;
 
         public SettingsBase(string[] args, ILogger logger)
         {
@@ -27,20 +36,6 @@ namespace DoubleClickFix
             settingsChanged += this.OnSettingsChanged;
         }
 
-        protected readonly ILogger logger;
-        protected readonly int windowsDoubleClickTimeMilliseconds = GetWindowsMaximumDoubleClickTime();
-
-        protected int ignoredDevice = 0;
-
-        protected int leftThreshold = 50;
-        protected int middleThreshold = -1;
-
-        protected int minDelay = -1;
-        protected int rightThreshold = -1;
-        private Action settingsChanged;
-
-        protected int x1Threshold = -1;
-        protected int x2Threshold = -1;
         public int IgnoredDevice
         {
             get => ignoredDevice;
@@ -58,7 +53,7 @@ namespace DoubleClickFix
         public bool IsInteractive { get; private set; }
         public int LeftThreshold
         {
-            get { return leftThreshold; }
+            get => leftThreshold;
             set
             {
                 if (value != leftThreshold)
@@ -70,7 +65,7 @@ namespace DoubleClickFix
         }
         public int MiddleThreshold
         {
-            get { return middleThreshold; }
+            get => middleThreshold;
             set
             {
                 if (value != middleThreshold)
@@ -94,7 +89,7 @@ namespace DoubleClickFix
         }
         public int RightThreshold
         {
-            get { return rightThreshold; }
+            get => rightThreshold;
             set
             {
                 if (value != rightThreshold)
@@ -116,7 +111,7 @@ namespace DoubleClickFix
         }
         public int X1Threshold
         {
-            get { return x1Threshold; }
+            get => x1Threshold;
             set
             {
                 if (value != x1Threshold)
@@ -128,7 +123,7 @@ namespace DoubleClickFix
         }
         public int X2Threshold
         {
-            get { return x2Threshold; }
+            get => x2Threshold;
             set
             {
                 if (value != x2Threshold)

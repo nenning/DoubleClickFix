@@ -5,13 +5,9 @@ using Windows.Storage;
 
 namespace DoubleClickFix;
 
-internal class StoreSettings : SettingsBase, ISettings
+internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args, logger), ISettings
 {
     private readonly ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
-
-    public StoreSettings(string[] args, ILogger logger): base (args, logger)
-    {
-    }
 
     private void SaveSetting(int currentValue, [CallerArgumentExpression(nameof(currentValue))] string name = "")
     {
@@ -34,6 +30,7 @@ internal class StoreSettings : SettingsBase, ISettings
     {
         return settings.Values.ContainsKey(nameof(LeftThreshold));
     }
+
     public override void Load()
     {
         leftThreshold = LoadSetting(LeftThreshold);
@@ -45,6 +42,7 @@ internal class StoreSettings : SettingsBase, ISettings
         ignoredDevice = LoadSetting(IgnoredDevice);
         FireSettingsChanged();
     }
+
     private int LoadSetting(int defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string name = "")
     {
         object? value = settings.Values[name];

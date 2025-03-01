@@ -4,14 +4,10 @@ using Microsoft.Win32;
 
 namespace DoubleClickFix;
 
-internal class StandaloneSettings : SettingsBase
+internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(args, logger)
 {
     private const string RegistryKeyPath = @"SOFTWARE\DoubleClickFix\v1";
 
-    public StandaloneSettings(string[] args, ILogger logger): base (args, logger)
-    {
-    }
-    
     public override void Save()
     {
         try
