@@ -8,7 +8,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationIcon>app.ico</ApplicationIcon>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-		<Platforms>AnyCPU;x86</Platforms>
+		<Platforms>AnyCPU</Platforms>
 		<ApplicationVisualStyles>true</ApplicationVisualStyles>
 		<ApplicationUseCompatibleTextRendering>false</ApplicationUseCompatibleTextRendering>
 		<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
@@ -19,16 +19,8 @@
 		<WarningLevel>9999</WarningLevel>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-	  <WarningLevel>9999</WarningLevel>
-	</PropertyGroup>
-
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<WarningLevel>9999</WarningLevel>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-	  <WarningLevel>9999</WarningLevel>
 	</PropertyGroup>
 
 	<ItemGroup>
