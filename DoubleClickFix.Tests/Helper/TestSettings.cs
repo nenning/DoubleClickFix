@@ -15,7 +15,9 @@ class TestSettings : ISettings
     public int RightThreshold { get; set; } = -1;
     public int X1Threshold { get; set; } = -1;
     public int X2Threshold { get; set; } = -1;
-    
+
+    public bool IsFirstAppStart => false;
+
     private Action? listener;
     public void RegisterSettingsChangedListener(Action listener)
     {

@@ -5,13 +5,13 @@ internal partial class InteractiveForm : Form
 {
     private const int WM_INPUT = 0x00FF;
 
-    private readonly StartupRegistry startup;
-    private readonly Settings settings;
+    private readonly IStartupRegistry startup;
+    private readonly ISettings settings;
     private readonly Logger logger;
     private readonly Action<nint> rawInputProcessor;
     private readonly System.Windows.Forms.Timer debounceTimer;
 
-    public InteractiveForm(StartupRegistry startup, Settings settings, Logger logger, Action<IntPtr> rawInputProcessor)
+    public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, Action<IntPtr> rawInputProcessor)
     {
         this.startup = startup;
         this.settings = settings;
