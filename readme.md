@@ -4,7 +4,7 @@ A lightweight solution for mitigating double-click issues caused by malfunctioni
 
 This tool ensures smoother operation by filtering unintended double-click events, allowing you to define the minimal delay between valid clicks directly from an intuitive user interface.
 
-** 🛍️ Get it from the [Microsoft Store](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare)!**
+#### 🛍️ Get it from the [Microsoft Store](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare)!
 
 ![logo](DoubleClickFix/app.ico)
 
@@ -28,9 +28,9 @@ The following options are supported for installing and running the application:
 ### Manual Setup
 1. **Download**: Grab the latest release from the [Releases page](https://github.com/nenning/DoubleClickFix/releases).
 2. **Unzip & Run**: Extract the files and execute the `.exe`.  
-   > Note: You might need to install the [.NET Runtime](https://dotnet.microsoft.com/en-us/download/dotnet) first.
-   > Note: Settings are stored in the registry under `HKEY_CURRENT_USER\Software\DoubleClickFix`.
-   > Note: If you move the app to a different folder, you have to unregister & re-register the app to start with Windows.
+    - Note: You might need to install the [.NET Runtime](https://dotnet.microsoft.com/en-us/download/dotnet) first.
+    - Note: Settings are stored in the registry under `HKEY_CURRENT_USER\Software\DoubleClickFix`.
+    - Note: If you move the app to a different folder, you have to deregister & re-register the app to start with Windows.
 
 ### Advanced Setup
 - **Build from Source**: Clone the repository and compile the application yourself using Visual Studio or your preferred .NET toolchain.
@@ -87,24 +87,25 @@ Some technical details mostly for development.
 
 ### ⚙️ Settings
 - **Delay (per mouse button):** Set the delay in milliseconds to filter double-clicks. Use `-1` to disable the fix for a specific button.  
-- **IgnoredDevice:** Specifies which device to ignore (e.g., touchpad or touchscreen). By default, device ID `0` is ignored, but this can be modified if needed.  
-- **MinDelay:** Defines a minimum delay of `0` as a workaround if device ID recognition fails. Set `-1` to disable.
+- **IgnoredDevice:** Specifies which device to ignore (e.g., touchpad or touchscreen). By default, device ID `0` is ignored, but this can be modified if needed (experimental).  
+- **MinDelay:** Defines a minimum delay of `0` as a workaround if device ID recognition fails (very likely). Set to `-1` to disable.
 
 ### 🖥️ Command-Line Arguments
 - **`-nohook`** – Runs the app without registering the mouse hook. Useful for UI testing or debugging (automatically applied in debug mode).  
 - **`-interactive`** or **`-i`** – Displays the UI on startup. Useful for testing (automatically applied in debug mode).  
 
 ### 🌍 Language Override  
-The application language can be overridden by setting the **`languageOverride`** key in the `app.config` file (for testing purposes).  
+- The application language can be overridden by setting the **`languageOverride`** key in the `app.config` file (for testing purposes).  
 
 ### 📦 Creating a Release
 
-To create a new release on github (zip), run the following commands:
+#### Github
+- To create a github release (zip), run the following commands:
+    - `git tag -a v1.0.1.0`
+    - `git push origin v1.0.1.0`
+- This will trigger the github action that creates the release.
+- Add the release notes on github.
 
-```bash
-git tag -a v1.0.1.0
-git push origin v1.0.1.0
-```
-
-To create a store package, use Publish > Create App Packages in Visual Studio.
-Then publish it through the [Partner Portal](https://partner.microsoft.com/en-us/dashboard/apps-and-games/overview).
+#### Microsoft Store
+- To create a store package, use *Publish* > *Create App Packages* in Visual Studio.
+- Publish it through the [Partner Portal](https://partner.microsoft.com/en-us/dashboard/apps-and-games/overview).
