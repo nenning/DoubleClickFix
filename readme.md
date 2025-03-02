@@ -4,7 +4,7 @@ A lightweight solution for mitigating double-click issues caused by malfunctioni
 
 This tool ensures smoother operation by filtering unintended double-click events, allowing you to define the minimal delay between valid clicks directly from an intuitive user interface.
 
-#### 🛍️ Get it from the [Microsoft Store](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare)!
+### 🛍️ Get it from the [Microsoft Store](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare)!
 
 ![logo](DoubleClickFix/app.ico)
 
