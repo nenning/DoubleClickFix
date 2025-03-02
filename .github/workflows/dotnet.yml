@@ -22,8 +22,27 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore --configuration Release
-
+      run: |
+        # List of projects to build (manually specified)
+        $projectsToBuild = @(
+          "DoubleClickFix/DoubleClickFix.csproj",
+          "DoubleClickFix.Tests/DoubleClickFix.Tests.csproj"
+          # Add more projects as needed
+        )
+          
+        # Build each project in the list
+        foreach ($project in $projectsToBuild) {
+          Write-Host "Building $project"
+          dotnet build $project --configuration Release --no-restore
+          
+          # Check if build was successful
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Build failed for $project"
+            exit 1
+          }
+        }
+        shell: pwsh
+        
     - name: Package binaries
       run: |
         mkdir Release
