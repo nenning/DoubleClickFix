@@ -41,7 +41,7 @@ jobs:
             exit 1
           }
         }
-        shell: pwsh
+      shell: pwsh
         
     - name: Package binaries
       run: |
