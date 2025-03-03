@@ -22,9 +22,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build DoubleClickFix/DoubleClickFix.csproj DoubleClickFix.Tests/DoubleClickFix.Tests.csproj --no-restore --configuration Release
+      run: dotnet build DoubleClickFix/DoubleClickFix.csproj --no-restore --configuration Release --property:SkipWapProjects=true
       shell: pwsh
-        
+
     - name: Package binaries
       run: |
         mkdir Release
