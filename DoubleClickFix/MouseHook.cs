@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System.Collections.Frozen;
 using System.Diagnostics;
+using System.Management;
 using System.Runtime.InteropServices;
 using static DoubleClickFix.NativeMethods;
 
@@ -117,38 +118,140 @@ internal class MouseHook : IDisposable
             }
         ];
 
-        if (!RegisterRawInputDevices(device, (uint)device.Length, (uint)Marshal.SizeOf(device[0])))
+        if (!RegisterRawInputDevices(device, (uint)device.Length, (uint)Marshal.SizeOf<RAWINPUTDEVICE>()))
         {
             logger.Log("Failed to register raw input device."); // TODO translate.
         }
     }
 
-    public void ProcessRawInput(IntPtr hRawInput)
+    public void ProcessRawInput(IntPtr rawInputHandle)
     {
-        uint dwSize = 0;
-        _ = GetRawInputData(hRawInput, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
-        IntPtr buffer = Marshal.AllocHGlobal((int)dwSize);
+        uint rawInputSize = 0;
+        // Determine buffer size
+        _ = GetRawInputData(rawInputHandle, RID_INPUT, IntPtr.Zero, ref rawInputSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
+
+        IntPtr rawInputBuffer = Marshal.AllocHGlobal((int)rawInputSize);
         try
         {
-            if (GetRawInputData(hRawInput, RID_INPUT, buffer, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>()) != dwSize)
+            if (GetRawInputData(rawInputHandle, RID_INPUT, rawInputBuffer, ref rawInputSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>()) != rawInputSize)
                 return;
 
-            RAWINPUT raw = Marshal.PtrToStructure<RAWINPUT>(buffer);
-
-            if (raw.Header.Type == RIM_TYPEMOUSE)
+            var rawInput = Marshal.PtrToStructure<RAWINPUT>(rawInputBuffer)!;
+            if (rawInput.Header.Type == RIM_TYPEMOUSE)
             {
-                var device = raw.Header.Device;
-                if (currentDevice != device)
+                IntPtr deviceHandle = rawInput.Header.Device;
+                if (currentDevice != deviceHandle)
                 {
-                    logger.Log($"{Resources.SwitchedDevice} {device}", true);
-                    currentDevice = device;
+                    currentDevice = deviceHandle;
+                    LogRawInputDeviceName(deviceHandle);
                 }
             }
         }
         finally
         {
-            Marshal.FreeHGlobal(buffer);
+            Marshal.FreeHGlobal(rawInputBuffer);
         }
+    }
+
+    private void LogRawInputDeviceName(IntPtr deviceHandle)
+    {
+        // 1) Get required buffer size for the raw name
+        uint nameBufferSize = 0;
+        GetRawInputDeviceInfo(deviceHandle, RIDI_DEVICENAME, IntPtr.Zero, ref nameBufferSize);
+        if (nameBufferSize == 0)
+        {
+            logger.Log($"{Resources.SwitchedDevice} Unknown ({deviceHandle})", true);
+            return;
+        }
+
+        // 2) Read the raw device path
+        var pathBuilder = new System.Text.StringBuilder((int)nameBufferSize);
+        if (GetRawInputDeviceInfo(deviceHandle, RIDI_DEVICENAME, pathBuilder, ref nameBufferSize) == 0)
+        {
+            logger.Log($"{Resources.SwitchedDevice} Unknown ({deviceHandle})", true);
+            return;
+        }
+        string devicePath = pathBuilder.ToString();
+
+        try
+        {
+            // 3) Convert raw path to PNPDeviceID:
+            //    - Trim leading '\\' and '?'
+            //    - Replace each '#' with '\'
+            string pnpId = devicePath
+                .TrimStart('\\', '?')
+                .Replace('#', '\\');
+
+            //    - Remove any "&Col..." suffix
+            int suffixPos = pnpId.IndexOf("&Col", StringComparison.OrdinalIgnoreCase);
+            if (suffixPos >= 0)
+                pnpId = pnpId.Substring(0, suffixPos);
+
+            // 4) Escape for WQL:
+            //    - Double backslashes
+            //    - Escape single quotes
+            string escapedPnpId = pnpId
+                .Replace("\\", "\\\\")
+                .Replace("'", "''");
+
+            // 5) Query WMI for friendly Name
+            string wql = $"SELECT Name FROM Win32_PnPEntity WHERE PNPDeviceID LIKE '{escapedPnpId}%'";
+            logger.Log($"{wql}", true);
+            using var searcher = new ManagementObjectSearcher(wql);
+            foreach (ManagementObject mo in searcher.Get())
+            {
+                if (mo["Name"] is string friendly && !string.IsNullOrEmpty(friendly))
+                {
+                    logger.Log($"{Resources.SwitchedDevice} {friendly}", true);
+                    return;
+                }
+            }
+        }
+        catch
+        {
+            // WMI failed, fall back
+        }
+
+        // 6) Fallback: log the raw device path
+        logger.Log($"{Resources.SwitchedDevice} {devicePath}", true);
+    }
+
+    // P/Invoke declarations for RawInput info
+    [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+    private static extern uint GetRawInputDeviceInfo(IntPtr hDevice, uint uiCommand, System.Text.StringBuilder pData, ref uint pcbSize);
+
+    [DllImport("user32.dll", SetLastError = true)]
+    private static extern uint GetRawInputDeviceInfo(IntPtr hDevice, uint uiCommand, IntPtr pData, ref uint pcbSize);
+
+    private const uint RIDI_DEVICENAME = 0x20000007;
+
+    // P/Invoke for SendInput
+    [DllImport("user32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.U4)]
+    private static extern uint SendInput(uint nInputs, [MarshalAs(UnmanagedType.LPArray), In] INPUT[] pInputs, int cbSize);
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct INPUT
+    {
+        public uint Type;
+        public InputUnion Union;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    private struct InputUnion
+    {
+        [FieldOffset(0)] public MOUSEINPUT MouseInput;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct MOUSEINPUT
+    {
+        public int X;
+        public int Y;
+        public uint MouseData;
+        public uint Flags;
+        public uint Timestamp;
+        public UIntPtr ExtraInfo;
     }
 
     internal IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
