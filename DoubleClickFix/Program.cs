@@ -1,4 +1,5 @@
 using DoubleClickFix.Properties;
+using System.Reflection;
 
 namespace DoubleClickFix;
 
@@ -14,6 +15,26 @@ class Program
         catch
         {
             return false; // Standalone executable
+        }
+    }
+
+    private static string GetVersion()
+    {
+        try
+        {
+            if (IsRunningFromStore())
+            {
+                var version = Windows.ApplicationModel.Package.Current.Id.Version;
+                return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            }
+            else
+            {
+                return Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "";
+            }
+        }
+        catch
+        {
+            return "";
         }
     }
 
@@ -40,7 +61,7 @@ class Program
             {
                 startupRegistry.Register();
             }
-            InteractiveForm form = new(startupRegistry, settings, logger, mouseHook.ProcessRawInput);
+            InteractiveForm form = new(startupRegistry, settings, logger, mouseHook.ProcessRawInput, GetVersion());
             if (settings.IsInteractive)
             {
                 form.Visible = true;

@@ -1,4 +1,5 @@
 using DoubleClickFix.Properties;
+using System.Diagnostics;
 namespace DoubleClickFix;
 
 internal partial class InteractiveForm : Form
@@ -11,7 +12,7 @@ internal partial class InteractiveForm : Form
     private readonly Action<nint> rawInputProcessor;
     private readonly System.Windows.Forms.Timer debounceTimer;
 
-    public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, Action<IntPtr> rawInputProcessor)
+    public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, Action<IntPtr> rawInputProcessor, string version)
     {
         this.startup = startup;
         this.settings = settings;
@@ -37,6 +38,7 @@ internal partial class InteractiveForm : Form
 
         logger.AddGuiLogger(text => Log(text));
         SetupTestArea();
+        this.versionLabel.Text = version;
         this.mouseButtonComboBox.SelectedIndex = 0;
     }
 
@@ -327,6 +329,21 @@ internal partial class InteractiveForm : Form
         if (int.TryParse(dragEndDelayTextBox.Text.Trim(), out int value))
         {
             settings.DragStopTimeMilliseconds = value;
+        }
+    }
+
+    private void OnGitLinkLabelClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        try
+        {
+            ProcessStartInfo info = new(@"https://github.com/nenning/DoubleClickFix")
+            {
+                UseShellExecute = true
+            };
+            Process.Start(info);
+        }
+        catch {
+            Log(@"Failed to open https://github.com/nenning/DoubleClickFix");
         }
     }
 }

@@ -117,45 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Corrección de doble clic</value>
-  </data>
-  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Correzione abilitata</value>
-  </data>
   <data name="delayLabel.Text" xml:space="preserve">
     <value>Velocità minima di doppio clic [ms]</value>
   </data>
-  <data name="descriptionTextBox.Text" xml:space="preserve">
-    <value>Regola la velocità minima del doppio clic del tuo mouse per ciascun pulsante del mouse separatamente.
-Nei log, vedi il tempo trascorso tra i clic e tutti i doppio clic che sono stati ignorati.
-Guarda quanto tempo durano i tuoi doppio clic e confrontali con quelli difettosi generati dal tuo mouse.
-Raffina la velocità minima per includere i clic difettosi rimanendo al di sotto della tua velocità normale.
-Testa il comportamento del tuo mouse con le impostazioni attuali con il testo di prova (clic singolo, doppio clic, selezione del testo).</value>
+  <data name="delayLabel.ToolTip" xml:space="preserve">
+    <value>Regola la velocità minima del doppio clic per il pulsante del mouse selezionato. Predefinito: 50.</value>
   </data>
-  <data name="exitMenu.Text" xml:space="preserve">
-    <value>Esci dall'applicazione</value>
+  <data name="delayTextBox.ToolTip" xml:space="preserve">
+    <value>I doppi clic che sono a meno del tempo definito di distanza vengono ignorati.</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Impostazioni</value>
+  <data name="saveButton.Text" xml:space="preserve">
+    <value>Salva</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Descrizione</value>
+  <data name="saveButton.ToolTip" xml:space="preserve">
+    <value>Salva impostazioni</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Registri</value>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve">
+    <value>Esegui all'avvio di Windows</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Test</value>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve">
+    <value>Esegui sempre questa applicazione in background</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Risolvere i problemi con i mouse difettosi che inviano doppio clic accidentali.</value>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve">
+    <value>Ritardo di fine [ms]</value>
   </data>
-  <data name="left.Text" xml:space="preserve">
-    <value>Sinistra</value>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve">
+    <value>Tempo minimo in cui devi tenere fermo il mouse prima di rilasciare il pulsante per uscire dallo stato di blocco del trascinamento. Predefinito: 150.</value>
   </data>
-  <data name="middle.Text" xml:space="preserve">
-    <value>Centro</value>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve">
+    <value>Ritardo di inizio [ms]</value>
+  </data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve">
+    <value>Tempo minimo che devi trascinare prima di entrare nello stato di blocco del trascinamento. Predefinito: 1000.</value>
+  </data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve">
+    <value>Risolvi i problemi di trascinamento</value>
+  </data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve">
+    <value>Utilizzare solo se si hanno problemi con il trascinamento. Potrebbe essere necessario fare nuovamente clic per uscire dallo stato di blocco del trascinamento</value>
+  </data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve">
+    <value>Consenti doppi clic con una durata di 0 ms</value>
+  </data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve">
+    <value>Utilizzare solo se il touchpad o il touchscreen non funzionano correttamente</value>
+  </data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
+    <value>Correzione abilitata</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Pulsante sinistro del mouse</value>
@@ -172,34 +180,64 @@ Testa il comportamento del tuo mouse con le impostazioni attuali con il testo di
   <data name="mouseButtonComboBox.Items4" xml:space="preserve">
     <value>Pulsante X2 del mouse</value>
   </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="x2.Text" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="x1.Text" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="middle.Text" xml:space="preserve">
+    <value>Centro</value>
+  </data>
+  <data name="right.Text" xml:space="preserve">
+    <value>Destra</value>
+  </data>
+  <data name="left.Text" xml:space="preserve">
+    <value>Sinistra</value>
+  </data>
+  <data name="showUiMenu.Text" xml:space="preserve">
+    <value>Mostra interfaccia utente</value>
+  </data>
+  <data name="exitMenu.Text" xml:space="preserve">
+    <value>Esci dall'applicazione</value>
+  </data>
   <data name="notifyIcon.Text" xml:space="preserve">
     <value>Correzione del doppio clic</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Risolvere i problemi con i mouse difettosi che inviano doppio clic accidentali.</value>
+  </data>
+  <data name="descriptionTextBox.Text" xml:space="preserve">
+    <value>Nei log, vedi il tempo trascorso tra i clic e tutti i doppio clic che sono stati ignorati.
+Guarda quanto tempo durano i tuoi doppio clic e confrontali con quelli difettosi generati dal tuo mouse.
+Raffina la velocità minima per includere i clic difettosi rimanendo al di sotto della tua velocità normale.
+Testa il comportamento del tuo mouse con le impostazioni attuali con il testo di prova (clic singolo, doppio clic, selezione del testo).</value>
   </data>
   <data name="richTextBox1.Text" xml:space="preserve">
     <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 </value>
   </data>
-  <data name="right.Text" xml:space="preserve">
-    <value>Destra</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Descrizione</value>
   </data>
-  <data name="runAtStartupCheckBox.Text" xml:space="preserve">
-    <value>Esegui all'avvio di Windows</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Registri</value>
   </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>Salva</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Test</value>
   </data>
-  <data name="showUiMenu.Text" xml:space="preserve">
-    <value>Mostra interfaccia utente</value>
-  </data>
-  <data name="x1.Text" xml:space="preserve">
-    <value>X1</value>
-  </data>
-  <data name="x2.Text" xml:space="preserve">
-    <value>X2</value>
-  </data>
-  <data name="useMinDelayCheckBox.Text" xml:space="preserve">
-    <value>Consenti doppi clic con una durata di 0 ms (da utilizzare solo in caso di problemi con il touchpad o il touchscreen)</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Correzione del doppio clic</value>
   </data>
 </root>

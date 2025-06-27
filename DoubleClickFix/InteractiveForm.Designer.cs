@@ -62,6 +62,8 @@
             groupBox3 = new GroupBox();
             groupBox4 = new GroupBox();
             toolTip1 = new ToolTip(components);
+            versionLabel = new Label();
+            gitLinkLabel = new LinkLabel();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)thresholdSlider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -304,10 +306,24 @@
             groupBox4.Name = "groupBox4";
             groupBox4.TabStop = false;
             // 
+            // versionLabel
+            // 
+            resources.ApplyResources(versionLabel, "versionLabel");
+            versionLabel.Name = "versionLabel";
+            // 
+            // gitLinkLabel
+            // 
+            resources.ApplyResources(gitLinkLabel, "gitLinkLabel");
+            gitLinkLabel.Name = "gitLinkLabel";
+            gitLinkLabel.TabStop = true;
+            gitLinkLabel.LinkClicked += OnGitLinkLabelClicked;
+            // 
             // InteractiveForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(gitLinkLabel);
+            Controls.Add(versionLabel);
             Controls.Add(groupBox3);
             Controls.Add(label1);
             Controls.Add(groupBox2);
@@ -363,5 +379,7 @@
         private TextBox dragEndDelayTextBox;
         private Label dragEndDelayLabel;
         private ToolTip toolTip1;
+        private Label versionLabel;
+        private LinkLabel gitLinkLabel;
     }
 }
