@@ -80,11 +80,29 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Entering drag‐lock for {0} after {1} ms.
+        /// </summary>
+        internal static string EnterDragLock {
+            get {
+                return ResourceManager.GetString("EnterDragLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Final release of {0} after drag.
+        /// </summary>
+        internal static string ExitDragLock {
+            get {
+                return ResourceManager.GetString("ExitDragLock", resourceCulture);
             }
         }
         

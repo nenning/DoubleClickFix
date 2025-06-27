@@ -124,8 +124,14 @@
   <data name="AppAlreadyRunning" xml:space="preserve">
     <value>Another instance of the application is already running.</value>
   </data>
+  <data name="EnterDragLock" xml:space="preserve">
+    <value>Entering drag‐lock for {0} after {1} ms</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="ExitDragLock" xml:space="preserve">
+    <value>Final release of {0} after drag</value>
   </data>
   <data name="HookNotInstalled" xml:space="preserve">
     <value>Setup failed.</value>

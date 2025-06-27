@@ -137,6 +137,8 @@ namespace DoubleClickFix
             }
         }
 
+        public bool IsDragCorrectionEnabled => DragStartTimeMilliseconds >= 0 && DragStopTimeMilliseconds >= 0;
+
         public int DragStartTimeMilliseconds { 
             get => dragStartTimeMilliseconds;
             set

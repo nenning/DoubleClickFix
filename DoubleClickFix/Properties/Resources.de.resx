@@ -120,8 +120,14 @@
   <data name="AppAlreadyRunning" xml:space="preserve">
     <value>Die Applikation läuft bereits.</value>
   </data>
+  <data name="EnterDragLock" xml:space="preserve">
+    <value>Ziehsperre für {0} wird nach {1} ms aktiviert</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Fehler</value>
+  </data>
+  <data name="ExitDragLock" xml:space="preserve">
+    <value>Endgültige Freigabe von {0} nach dem Ziehen</value>
   </data>
   <data name="HookNotInstalled" xml:space="preserve">
     <value>Einrichtung fehlgeschlagen.</value>

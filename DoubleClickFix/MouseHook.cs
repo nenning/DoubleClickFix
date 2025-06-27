@@ -193,7 +193,7 @@ internal class MouseHook : IDisposable
         const int MovementThresholdPixels = 5;
 
         // Handle mouse‐move: enter drag‐lock only after moving & holding for ≥ DragStartTimeMilliseconds
-        if (wParam == (IntPtr)WM_MOUSEMOVE)
+        if (settings.IsDragCorrectionEnabled && wParam == (IntPtr)WM_MOUSEMOVE)
         {
             foreach (var button in currentlyDownButtons.ToList())
             {
@@ -214,12 +214,9 @@ internal class MouseHook : IDisposable
                     && elapsedSinceDown >= settings.DragStartTimeMilliseconds)
                 {
                     isDragLocked[button] = true;
-                    logger.Log($"Entering drag‐lock for {button} after {elapsedSinceDown} ms", true);
+                    logger.Log(string.Format(Resources.EnterDragLock, buttonTextLookup[button], elapsedSinceDown), true);
                 }
             }
-
-            // always forward move events
-            return nativeMethods.CallNextHook(IntPtr.Zero, nCode, wParam, lParam);
         }
 
         // Only intercept button messages we care about
@@ -287,7 +284,7 @@ internal class MouseHook : IDisposable
         }
 
         // If we're in drag‐lock, suppress spurious downs/ups
-        if (isDragLocked.GetValueOrDefault(activeButton, false))
+        if (settings.IsDragCorrectionEnabled && isDragLocked.GetValueOrDefault(activeButton, false))
         {
             if (buttonDown)
             {
@@ -304,7 +301,8 @@ internal class MouseHook : IDisposable
                     isDragLocked[activeButton] = false;
                     currentlyDownButtons.Remove(activeButton);
                     previousUpTime[activeButton] = hookStruct.time;
-                    logger.Log($"Final release of {activeButton} after drag", true);
+                    logger.Log(string.Format(Resources.ExitDragLock, buttonTextLookup[activeButton]), true);
+
                     return nativeMethods.CallNextHook(IntPtr.Zero, nCode, wParam, lParam);
                 }
                 // still jittering: suppress

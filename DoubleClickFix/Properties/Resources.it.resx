@@ -120,8 +120,14 @@
   <data name="AppAlreadyRunning" xml:space="preserve">
     <value>Un'altra istanza dell'applicazione è già in esecuzione.</value>
   </data>
+  <data name="EnterDragLock" xml:space="preserve">
+    <value>Accesso al blocco del trascinamento per {0} dopo {1} ms</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Errore</value>
+  </data>
+  <data name="ExitDragLock" xml:space="preserve">
+    <value>Rilascio finale di {0} dopo il trascinamento</value>
   </data>
   <data name="HookNotInstalled" xml:space="preserve">
     <value>Installazione fallita.</value>
@@ -133,10 +139,10 @@
     <value>Valore non valido - non salvato. Intervallo valido</value>
   </data>
   <data name="Left" xml:space="preserve">
-    <value>Centro</value>
+    <value>sinistra</value>
   </data>
   <data name="Middle" xml:space="preserve">
-    <value>sinistra</value>
+    <value>centro</value>
   </data>
   <data name="Right" xml:space="preserve">
     <value>destra</value>
