@@ -130,7 +130,7 @@
     <value>Vertical</value>
   </data>
   <data name="logTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>389, 419</value>
+    <value>478, 419</value>
   </data>
   <data name="logTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -5331,7 +5331,7 @@
     <value>True</value>
   </data>
   <data name="descriptionTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>391, 412</value>
+    <value>300, 412</value>
   </data>
   <data name="descriptionTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -5394,7 +5394,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>23, 470</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 489</value>
+    <value>377, 489</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -5415,10 +5415,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>5</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>511, 470</value>
+    <value>422, 470</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>444, 489</value>
+    <value>533, 489</value>
   </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
