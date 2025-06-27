@@ -1,6 +1,7 @@
 ﻿using DoubleClickFix.Properties;
 
 using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 using Windows.Storage;
 
 namespace DoubleClickFix;
@@ -23,6 +24,8 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         SaveSetting(X2Threshold);
         SaveSetting(MinDelay);
         SaveSetting(IgnoredDevice);
+        SaveSetting(DragStartTimeMilliseconds);
+        SaveSetting(DragStopTimeMilliseconds);
         logger.Log(Resources.SettingsSaved);
     }
 
@@ -40,6 +43,8 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         x2Threshold = LoadSetting(X2Threshold);
         minDelay = LoadSetting(MinDelay);
         ignoredDevice = LoadSetting(IgnoredDevice);
+        dragStartTimeMilliseconds = LoadSetting(DragStartTimeMilliseconds);
+        dragStopTimeMilliseconds = LoadSetting(DragStopTimeMilliseconds);
         FireSettingsChanged();
     }
 

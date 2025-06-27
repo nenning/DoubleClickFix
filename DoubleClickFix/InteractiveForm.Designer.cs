@@ -36,11 +36,11 @@
             saveButton = new Button();
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
-            textBox2 = new TextBox();
-            label3 = new Label();
-            textBox1 = new TextBox();
-            label2 = new Label();
-            checkBox1 = new CheckBox();
+            dragEndDelayTextBox = new TextBox();
+            dragEndDelayLabel = new Label();
+            dragStartDelayTextBox = new TextBox();
+            dragStartDelayLabel = new Label();
+            fixDraggingCheckBox = new CheckBox();
             useMinDelayCheckBox = new CheckBox();
             thresholdSlider = new TrackBar();
             buttonEnabledCheckBox = new CheckBox();
@@ -89,6 +89,7 @@
             // 
             resources.ApplyResources(delayTextBox, "delayTextBox");
             delayTextBox.Name = "delayTextBox";
+            toolTip1.SetToolTip(delayTextBox, resources.GetString("delayTextBox.ToolTip"));
             // 
             // saveButton
             // 
@@ -107,11 +108,11 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(textBox2);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(textBox1);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(checkBox1);
+            groupBox1.Controls.Add(dragEndDelayTextBox);
+            groupBox1.Controls.Add(dragEndDelayLabel);
+            groupBox1.Controls.Add(dragStartDelayTextBox);
+            groupBox1.Controls.Add(dragStartDelayLabel);
+            groupBox1.Controls.Add(fixDraggingCheckBox);
             groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(useMinDelayCheckBox);
             groupBox1.Controls.Add(thresholdSlider);
@@ -124,34 +125,37 @@
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
             // 
-            // textBox2
+            // dragEndDelayTextBox
             // 
-            resources.ApplyResources(textBox2, "textBox2");
-            textBox2.Name = "textBox2";
+            resources.ApplyResources(dragEndDelayTextBox, "dragEndDelayTextBox");
+            dragEndDelayTextBox.Name = "dragEndDelayTextBox";
+            dragEndDelayTextBox.TextChanged += OnDragStopDelayTextChanged;
             // 
-            // label3
+            // dragEndDelayLabel
             // 
-            resources.ApplyResources(label3, "label3");
-            label3.Name = "label3";
-            toolTip1.SetToolTip(label3, resources.GetString("label3.ToolTip"));
+            resources.ApplyResources(dragEndDelayLabel, "dragEndDelayLabel");
+            dragEndDelayLabel.Name = "dragEndDelayLabel";
+            toolTip1.SetToolTip(dragEndDelayLabel, resources.GetString("dragEndDelayLabel.ToolTip"));
             // 
-            // textBox1
+            // dragStartDelayTextBox
             // 
-            resources.ApplyResources(textBox1, "textBox1");
-            textBox1.Name = "textBox1";
+            resources.ApplyResources(dragStartDelayTextBox, "dragStartDelayTextBox");
+            dragStartDelayTextBox.Name = "dragStartDelayTextBox";
+            dragStartDelayTextBox.TextChanged += OnDragStartDelayTextChanged;
             // 
-            // label2
+            // dragStartDelayLabel
             // 
-            resources.ApplyResources(label2, "label2");
-            label2.Name = "label2";
-            toolTip1.SetToolTip(label2, resources.GetString("label2.ToolTip"));
+            resources.ApplyResources(dragStartDelayLabel, "dragStartDelayLabel");
+            dragStartDelayLabel.Name = "dragStartDelayLabel";
+            toolTip1.SetToolTip(dragStartDelayLabel, resources.GetString("dragStartDelayLabel.ToolTip"));
             // 
-            // checkBox1
+            // fixDraggingCheckBox
             // 
-            resources.ApplyResources(checkBox1, "checkBox1");
-            checkBox1.Name = "checkBox1";
-            toolTip1.SetToolTip(checkBox1, resources.GetString("checkBox1.ToolTip"));
-            checkBox1.UseVisualStyleBackColor = true;
+            resources.ApplyResources(fixDraggingCheckBox, "fixDraggingCheckBox");
+            fixDraggingCheckBox.Name = "fixDraggingCheckBox";
+            toolTip1.SetToolTip(fixDraggingCheckBox, resources.GetString("fixDraggingCheckBox.ToolTip"));
+            fixDraggingCheckBox.UseVisualStyleBackColor = true;
+            fixDraggingCheckBox.CheckedChanged += OnFixDraggingCheckBoxChanged;
             // 
             // useMinDelayCheckBox
             // 
@@ -353,11 +357,11 @@
         private CheckBox buttonEnabledCheckBox;
         private TrackBar thresholdSlider;
         private CheckBox useMinDelayCheckBox;
-        private CheckBox checkBox1;
-        private TextBox textBox1;
-        private Label label2;
-        private TextBox textBox2;
-        private Label label3;
+        private CheckBox fixDraggingCheckBox;
+        private TextBox dragStartDelayTextBox;
+        private Label dragStartDelayLabel;
+        private TextBox dragEndDelayTextBox;
+        private Label dragEndDelayLabel;
         private ToolTip toolTip1;
     }
 }

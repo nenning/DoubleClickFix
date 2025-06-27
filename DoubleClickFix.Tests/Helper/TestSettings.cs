@@ -16,6 +16,9 @@ class TestSettings : ISettings
     public int X1Threshold { get; set; } = -1;
     public int X2Threshold { get; set; } = -1;
 
+    public int DragStartTimeMilliseconds { get; set; } = -1;
+    public int DragStopTimeMilliseconds { get; set; } = -1;
+
     public bool IsFirstAppStart => false;
 
     private Action? listener;

@@ -22,6 +22,8 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
                 SaveSetting(key, X2Threshold);
                 SaveSetting(key, MinDelay);
                 SaveSetting(key, IgnoredDevice);
+                SaveSetting(key, DragStartTimeMilliseconds);
+                SaveSetting(key, DragStopTimeMilliseconds);
                 logger.Log(Resources.SettingsSaved);
             } else { 
                 logger.Log("Failed to create or write registry key."); 
@@ -63,6 +65,8 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
             X2Threshold = LoadSetting(key, X2Threshold);
             MinDelay = LoadSetting(key, MinDelay);
             IgnoredDevice = LoadSetting(key, IgnoredDevice);
+            DragStartTimeMilliseconds = LoadSetting(key, DragStartTimeMilliseconds);
+            DragStopTimeMilliseconds = LoadSetting(key, DragStopTimeMilliseconds);
         }
     }
 

@@ -28,6 +28,13 @@ internal partial class InteractiveForm : Form
         this.runAtStartupCheckBox.Checked = startup.IsRegistered();
         this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
 
+        bool fixDragging = settings.DragStartTimeMilliseconds >= 0 && settings.DragStopTimeMilliseconds >= 0;
+        this.fixDraggingCheckBox.Checked = fixDragging;
+        this.dragStartDelayTextBox.Enabled = fixDragging;
+        this.dragEndDelayTextBox.Enabled = fixDragging;
+        this.dragStartDelayTextBox.Text = fixDragging ? settings.DragStartTimeMilliseconds.ToString() : string.Empty;
+        this.dragEndDelayTextBox.Text = fixDragging ? settings.DragStopTimeMilliseconds.ToString() : string.Empty;
+
         logger.AddGuiLogger(text => Log(text));
         SetupTestArea();
         this.mouseButtonComboBox.SelectedIndex = 0;
@@ -287,5 +294,39 @@ internal partial class InteractiveForm : Form
     private void UseMinDelayCheckBoxCheckedChanged(object sender, EventArgs e)
     {
         settings.MinDelay = useMinDelayCheckBox.Checked ? 0 : -1;
+    }
+
+    private void OnFixDraggingCheckBoxChanged(object sender, EventArgs e)
+    {
+        this.dragStartDelayTextBox.Enabled = fixDraggingCheckBox.Checked;
+        this.dragEndDelayTextBox.Enabled = fixDraggingCheckBox.Checked;
+        if (fixDraggingCheckBox.Checked)
+        {
+            this.dragStartDelayTextBox.Text = "1000";
+            this.dragEndDelayTextBox.Text = "150";
+        }
+        else
+        {
+            this.dragStartDelayTextBox.Text = "";
+            this.dragEndDelayTextBox.Text = "";
+        }
+    }
+
+    private void OnDragStartDelayTextChanged(object sender, EventArgs e)
+    {
+        if (!fixDraggingCheckBox.Checked && string.IsNullOrWhiteSpace(dragStartDelayTextBox.Text)) return;
+        if (int.TryParse(dragStartDelayTextBox.Text.Trim(), out int value))
+        {
+            settings.DragStartTimeMilliseconds = value;
+        }
+    }
+
+    private void OnDragStopDelayTextChanged(object sender, EventArgs e)
+    {
+        if (!fixDraggingCheckBox.Checked && string.IsNullOrWhiteSpace(dragEndDelayTextBox.Text)) return;
+        if (int.TryParse(dragEndDelayTextBox.Text.Trim(), out int value))
+        {
+            settings.DragStopTimeMilliseconds = value;
+        }
     }
 }

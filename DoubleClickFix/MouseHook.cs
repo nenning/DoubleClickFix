@@ -190,6 +190,7 @@ internal class MouseHook : IDisposable
         // Always marshal the hook structure first
         MSLLHOOKSTRUCT hookStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
         const int WM_MOUSEMOVE = 0x0200;
+        const int MovementThresholdPixels = 5;
 
         // Handle mouse‐move: enter drag‐lock only after moving & holding for ≥ DragStartTimeMilliseconds
         if (wParam == (IntPtr)WM_MOUSEMOVE)
@@ -209,8 +210,8 @@ internal class MouseHook : IDisposable
                 long elapsedSinceDown = hookStruct.time - initialDownTime[button];
 
                 if (!isDragLocked.GetValueOrDefault(button, false)
-                    && distSq >= ISettings.MovementThresholdPixels * ISettings.MovementThresholdPixels
-                    && elapsedSinceDown >= 1000)
+                    && distSq >= MovementThresholdPixels * MovementThresholdPixels
+                    && elapsedSinceDown >= settings.DragStartTimeMilliseconds)
                 {
                     isDragLocked[button] = true;
                     logger.Log($"Entering drag‐lock for {button} after {elapsedSinceDown} ms", true);
@@ -297,7 +298,7 @@ internal class MouseHook : IDisposable
             {
                 // only allow the real release once movement has paused long enough
                 long elapsedSinceMove = hookStruct.time - lastMoveTime[activeButton];
-                if (elapsedSinceMove >= ISettings.DragReleaseTimeMilliseconds)
+                if (elapsedSinceMove >= settings.DragStopTimeMilliseconds)
                 {
                     // exit drag‐lock, forward genuine release
                     isDragLocked[activeButton] = false;

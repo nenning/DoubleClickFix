@@ -166,7 +166,7 @@
     <value>479, 22</value>
   </metadata>
   <data name="delayLabel.ToolTip" xml:space="preserve">
-    <value>Adjust the minimum double-click speed for the selected mouse button.</value>
+    <value>Adjust the minimum double-click speed for the selected mouse button. Default: 50.</value>
   </data>
   <data name="&gt;&gt;delayLabel.Name" xml:space="preserve">
     <value>delayLabel</value>
@@ -191,6 +191,9 @@
   </data>
   <data name="delayTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
+  </data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve">
+    <value>Double-clicks that are less than the defined time apart are ignored.</value>
   </data>
   <data name="&gt;&gt;delayTextBox.Name" xml:space="preserve">
     <value>delayTextBox</value>
@@ -261,151 +264,151 @@
   <data name="&gt;&gt;runAtStartupCheckBox.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="textBox2.Enabled" type="System.Boolean, mscorlib">
+  <data name="dragEndDelayTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="textBox2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="dragEndDelayTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>337, 266</value>
   </data>
-  <data name="textBox2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="dragEndDelayTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 31</value>
   </data>
-  <data name="textBox2.TabIndex" type="System.Int32, mscorlib">
+  <data name="dragEndDelayTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <data name="&gt;&gt;textBox2.Name" xml:space="preserve">
-    <value>textBox2</value>
+  <data name="&gt;&gt;dragEndDelayTextBox.Name" xml:space="preserve">
+    <value>dragEndDelayTextBox</value>
   </data>
-  <data name="&gt;&gt;textBox2.Type" xml:space="preserve">
+  <data name="&gt;&gt;dragEndDelayTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;textBox2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;dragEndDelayTextBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;textBox2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;dragEndDelayTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+  <data name="dragEndDelayLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="dragEndDelayLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="dragEndDelayLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>81, 269</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="dragEndDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 25</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+  <data name="dragEndDelayLabel.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
+  <data name="dragEndDelayLabel.Text" xml:space="preserve">
     <value>End delay [ms]</value>
   </data>
-  <data name="label3.ToolTip" xml:space="preserve">
-    <value>Minimum time you have to keep your mouse still before releasing the button to exit drag lock state</value>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve">
+    <value>Minimum time you have to keep your mouse still before releasing the button to exit drag lock state. Default: 150.</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
+  <data name="&gt;&gt;dragEndDelayLabel.Name" xml:space="preserve">
+    <value>dragEndDelayLabel</value>
   </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+  <data name="&gt;&gt;dragEndDelayLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;dragEndDelayLabel.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;dragEndDelayLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="textBox1.Enabled" type="System.Boolean, mscorlib">
+  <data name="dragStartDelayTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="dragStartDelayTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>337, 227</value>
   </data>
-  <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="dragStartDelayTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 31</value>
   </data>
-  <data name="textBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="dragStartDelayTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
-    <value>textBox1</value>
+  <data name="&gt;&gt;dragStartDelayTextBox.Name" xml:space="preserve">
+    <value>dragStartDelayTextBox</value>
   </data>
-  <data name="&gt;&gt;textBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;dragStartDelayTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;textBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;dragStartDelayTextBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;textBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;dragStartDelayTextBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+  <data name="dragStartDelayLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="dragStartDelayLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="dragStartDelayLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>81, 233</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="dragStartDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 25</value>
   </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+  <data name="dragStartDelayLabel.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
+  <data name="dragStartDelayLabel.Text" xml:space="preserve">
     <value>Start delay [ms]</value>
   </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>Minimum time you have to draf before you go into drag lock state</value>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve">
+    <value>Minimum time you have to draf before you go into drag lock state. Default: 1000.</value>
   </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
+  <data name="&gt;&gt;dragStartDelayLabel.Name" xml:space="preserve">
+    <value>dragStartDelayLabel</value>
   </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+  <data name="&gt;&gt;dragStartDelayLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;dragStartDelayLabel.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;dragStartDelayLabel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="fixDraggingCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="checkBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="fixDraggingCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="fixDraggingCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>37, 198</value>
   </data>
-  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 29</value>
+  <data name="fixDraggingCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 29</value>
   </data>
-  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="fixDraggingCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
-  <data name="checkBox1.Text" xml:space="preserve">
-    <value>Correct dragging issues</value>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve">
+    <value>Fix dragging issues</value>
   </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve">
     <value>Use only if you have issues with dragging. You might have to click again to exit the drag lock state</value>
   </data>
-  <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
-    <value>checkBox1</value>
+  <data name="&gt;&gt;fixDraggingCheckBox.Name" xml:space="preserve">
+    <value>fixDraggingCheckBox</value>
   </data>
-  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;fixDraggingCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;fixDraggingCheckBox.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;fixDraggingCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="useMinDelayCheckBox.AutoSize" type="System.Boolean, mscorlib">

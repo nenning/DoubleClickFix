@@ -13,9 +13,9 @@ internal interface ISettings
     int WindowsDoubleClickTimeMilliseconds { get; }
     int X1Threshold { get; set; }
     int X2Threshold { get; set; }
-
-    static int MovementThresholdPixels = 5;
-    static int DragReleaseTimeMilliseconds = 150;
+        
+    int DragStartTimeMilliseconds { get; set; }
+    int DragStopTimeMilliseconds { get; set; }
 
     bool IsFirstAppStart { get; }
     void RegisterSettingsChangedListener(Action listener);
