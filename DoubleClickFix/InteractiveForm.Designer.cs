@@ -36,6 +36,11 @@
             saveButton = new Button();
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
+            textBox2 = new TextBox();
+            label3 = new Label();
+            textBox1 = new TextBox();
+            label2 = new Label();
+            checkBox1 = new CheckBox();
             useMinDelayCheckBox = new CheckBox();
             thresholdSlider = new TrackBar();
             buttonEnabledCheckBox = new CheckBox();
@@ -56,6 +61,7 @@
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
             groupBox4 = new GroupBox();
+            toolTip1 = new ToolTip(components);
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)thresholdSlider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -77,6 +83,7 @@
             // 
             resources.ApplyResources(delayLabel, "delayLabel");
             delayLabel.Name = "delayLabel";
+            toolTip1.SetToolTip(delayLabel, resources.GetString("delayLabel.ToolTip"));
             // 
             // delayTextBox
             // 
@@ -87,6 +94,7 @@
             // 
             resources.ApplyResources(saveButton, "saveButton");
             saveButton.Name = "saveButton";
+            toolTip1.SetToolTip(saveButton, resources.GetString("saveButton.ToolTip"));
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += OnSaveButtonClicked;
             // 
@@ -94,10 +102,16 @@
             // 
             resources.ApplyResources(runAtStartupCheckBox, "runAtStartupCheckBox");
             runAtStartupCheckBox.Name = "runAtStartupCheckBox";
+            toolTip1.SetToolTip(runAtStartupCheckBox, resources.GetString("runAtStartupCheckBox.ToolTip"));
             runAtStartupCheckBox.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(checkBox1);
             groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(useMinDelayCheckBox);
             groupBox1.Controls.Add(thresholdSlider);
@@ -110,17 +124,47 @@
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
             // 
+            // textBox2
+            // 
+            resources.ApplyResources(textBox2, "textBox2");
+            textBox2.Name = "textBox2";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(label3, "label3");
+            label3.Name = "label3";
+            toolTip1.SetToolTip(label3, resources.GetString("label3.ToolTip"));
+            // 
+            // textBox1
+            // 
+            resources.ApplyResources(textBox1, "textBox1");
+            textBox1.Name = "textBox1";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(label2, "label2");
+            label2.Name = "label2";
+            toolTip1.SetToolTip(label2, resources.GetString("label2.ToolTip"));
+            // 
+            // checkBox1
+            // 
+            resources.ApplyResources(checkBox1, "checkBox1");
+            checkBox1.Name = "checkBox1";
+            toolTip1.SetToolTip(checkBox1, resources.GetString("checkBox1.ToolTip"));
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // useMinDelayCheckBox
             // 
             resources.ApplyResources(useMinDelayCheckBox, "useMinDelayCheckBox");
             useMinDelayCheckBox.Name = "useMinDelayCheckBox";
+            toolTip1.SetToolTip(useMinDelayCheckBox, resources.GetString("useMinDelayCheckBox.ToolTip"));
             useMinDelayCheckBox.UseVisualStyleBackColor = true;
             useMinDelayCheckBox.CheckedChanged += UseMinDelayCheckBoxCheckedChanged;
             // 
             // thresholdSlider
             // 
-            thresholdSlider.LargeChange = 20;
             resources.ApplyResources(thresholdSlider, "thresholdSlider");
+            thresholdSlider.LargeChange = 20;
             thresholdSlider.Maximum = 200;
             thresholdSlider.Minimum = -1;
             thresholdSlider.Name = "thresholdSlider";
@@ -131,6 +175,7 @@
             // 
             resources.ApplyResources(buttonEnabledCheckBox, "buttonEnabledCheckBox");
             buttonEnabledCheckBox.Name = "buttonEnabledCheckBox";
+            toolTip1.SetToolTip(buttonEnabledCheckBox, resources.GetString("buttonEnabledCheckBox.ToolTip"));
             buttonEnabledCheckBox.UseVisualStyleBackColor = true;
             buttonEnabledCheckBox.CheckedChanged += OnButtonEnabledCheckedChanged;
             // 
@@ -308,5 +353,11 @@
         private CheckBox buttonEnabledCheckBox;
         private TrackBar thresholdSlider;
         private CheckBox useMinDelayCheckBox;
+        private CheckBox checkBox1;
+        private TextBox textBox1;
+        private Label label2;
+        private TextBox textBox2;
+        private Label label3;
+        private ToolTip toolTip1;
     }
 }

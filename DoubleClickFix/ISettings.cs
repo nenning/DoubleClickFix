@@ -14,6 +14,9 @@ internal interface ISettings
     int X1Threshold { get; set; }
     int X2Threshold { get; set; }
 
+    static int MovementThresholdPixels = 5;
+    static int DragReleaseTimeMilliseconds = 150;
+
     bool IsFirstAppStart { get; }
     void RegisterSettingsChangedListener(Action listener);
     void Save();

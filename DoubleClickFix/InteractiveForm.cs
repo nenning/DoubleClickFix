@@ -108,6 +108,8 @@ internal partial class InteractiveForm : Form
         if (this.WindowState == FormWindowState.Minimized)
         {
             this.WindowState = FormWindowState.Normal;
+            this.logTextBox.SelectionStart = logTextBox.Text.Length;
+            logTextBox.ScrollToCaret();
         }
         this.BringToFront();
     }
@@ -161,7 +163,7 @@ internal partial class InteractiveForm : Form
         base.OnVisibleChanged(e);
         logger.IsAppVisible = this.Visible;
     }
-   
+
     private void OnExitMenuClick(object? sender, EventArgs e)
     {
         notifyIcon.Visible = false;

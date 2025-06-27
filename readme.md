@@ -2,7 +2,9 @@
 
 A lightweight solution for mitigating double-click issues caused by malfunctioning mice.  
 
-This tool ensures smoother operation by filtering unintended double-click events, allowing you to define the minimal delay between valid clicks directly from an intuitive user interface.
+**New in release 1.4.x:** 🎉 **Robust Drag & Drop Support** – if you have problems with dragging, enable this feature in the UI! The tool will maintain a stable drag until you intentionally release.
+
+This tool ensures smoother operation by filtering unintended double-click events and supporting reliable drag-and-drop gestures, allowing you to define the minimal delay between valid clicks directly from an intuitive user interface.
 
 ### 🛍️ Get it from the [Microsoft Store](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare)!
 
@@ -11,7 +13,8 @@ This tool ensures smoother operation by filtering unintended double-click events
 ---
 
 ## ✨ Features
-- **Customizable Delay**: Adjust the minimal delay between two clicks via a user-friendly interface. Default is 50ms.
+- **Drag & Drop Fix (New!)**: You can enable this in the UI. Hold, drag, and drop reliably — even if your mouse switch chatters during the gesture. A short pause while dragging is treated as the true release, preventing accidental drops.
+- **Customizable Delay**: Adjust the minimal delay between two clicks via a user-friendly interface. Default is 50 ms.
 - **Customize for Specific Mouse Buttons**: Choose which mouse buttons to fix, including left, right, middle, X1, and X2. Default is left mouse button only.
 - **Windows Tray Integration**: Double-click the tray icon to open the settings UI.
 - **Startup Option**: Register the application to launch with Windows. The app tries to do this automatically when you launch it the first time.
@@ -28,8 +31,8 @@ The following options are supported for installing and running the application:
 ### Manual Setup
 1. **Download**: Grab the latest release from the [Releases page](https://github.com/nenning/DoubleClickFix/releases).
 2. **Unzip & Run**: Extract the files and execute the `.exe`.  
-    - Note: You might need to install the [.NET Runtime](https://dotnet.microsoft.com/en-us/download/dotnet) first.
-    - Note: Settings are stored in the registry under `HKEY_CURRENT_USER\Software\DoubleClickFix`.
+    - Note: You might need to install the [.NET Runtime](https://dotnet.microsoft.com/en-us/download/dotnet) first.  
+    - Note: Settings are stored in the registry under `HKEY_CURRENT_USER\Software\DoubleClickFix`.  
     - Note: If you move the app to a different folder, you have to deregister & re-register the app to start with Windows.
 
 ### Advanced Setup
@@ -40,16 +43,21 @@ The following options are supported for installing and running the application:
 ## ⚙️ Configuration
 
 ### Settings
-- Settings can be adjusted in the UI.
-
+- Settings can be adjusted in the UI, including:
+  - **Per-button delay**: Minimal delay between clicks for each button.
+  - **Ignored devices:** Specifies which device to ignore (e.g., touchpad or touchscreen). By default, device ID `0` is ignored, but this can be modified if needed (experimental).
+  - **Fix dragging issues**: Enables this only if you have problems with dragging (& dropping).
+  - **Drag start delay**: The time (in ms) a drag action must take to enter the drag lock state.
+  - **Drag release delay**: The time (in ms) you must hold the button after stopping movement before the release is registered. Alternatively, you can manually click to exit the drag lock.
+  
 ### 💡 Tips
 - Check the logs in the UI for detailed information on the elapsed time between your mouse clicks and filterd out double-clicks.
 - Experiment with different delay settings to optimize for your personal double-click speed and specific hardware issues.
 - Use the test area on the right side of the UI to test your settings (try also triple-clicking to select a whole paragraph and selecting text).
 
 ### Handling Touch Devices
-- All double-clicks from touchpads or touchscreens are allowed by default. 
-- If you have trouble with this, enable the **Allow 0ms Double-Click Duration** option in the UI.
+- All double-clicks from touchpads or touchscreens are allowed by default.  
+- If you have trouble with this, enable the **Allow 0 ms Double-Click Duration** option in the UI.
 
 ---
 
@@ -66,7 +74,7 @@ This project is distributed under the [MIT License](LICENSE.txt).
 ## ℹ️ Valve Anti-Cheat (VAC) Compatibility
 
 ### What **DoubleClickFix** Does
-This application uses a **low-level mouse hook** to intercept and process mouse input events. It adjusts the behavior of specific clicks based on a user-defined delay, ensuring that only intentional clicks are registered. The tool does not interact with or manipulate other processes.
+This application uses a **low-level mouse hook** to intercept and process mouse input events. It adjusts the behavior of specific clicks based on a user-defined delay and maintains drag-lock for reliable drag-and-drop.
 
 ### What VAC Scans For
 Valve Anti-Cheat is designed to detect:
@@ -83,14 +91,9 @@ DoubleClickFix operates independently of any game and does not interact with gam
 ## 🛠️ Technical Notes
 Some technical details mostly for development.
 
-### ⚙️ Settings
-- **Delay (per mouse button):** Set the delay in milliseconds to filter double-clicks. Use `-1` to disable the fix for a specific button.  
-- **IgnoredDevice:** Specifies which device to ignore (e.g., touchpad or touchscreen). By default, device ID `0` is ignored, but this can be modified if needed (experimental).  
-- **MinDelay:** Defines a minimum delay of `0` as a workaround if device ID recognition fails (very likely). Set to `-1` to disable.
-
 ### 🖥️ Command-Line Arguments
 - **`-nohook`** – Runs the app without registering the mouse hook. Useful for UI testing or debugging (automatically applied in debug mode).  
-- **`-interactive`** or **`-i`** – Displays the UI on startup. Useful for testing (automatically applied in debug mode).  
+- **`-interactive`** or **`-i`** – Displays the UI on startup. Useful for testing (automatically applied in debug mode).
 
 ### 🌍 Language Override  
 - The application language can be overridden by setting the **`languageOverride`** key in the `app.config` file (for testing purposes).  
@@ -101,9 +104,9 @@ Some technical details mostly for development.
 - To create a github release (zip), run the following commands:
     - `git tag -a v1.0.1.0`
     - `git push origin v1.0.1.0`
-- This will trigger the github action that creates the release.
-- Add the release notes on github.
+- This will trigger the GitHub Action that creates the release.
+- Add the release notes on GitHub.
 
 #### Microsoft Store
-- To create a store package, use *Publish* > *Create App Packages* in Visual Studio.
+- To create a store package, use **Publish** → **Create App Packages** in Visual Studio.
 - Publish it through the [Partner Portal](https://partner.microsoft.com/en-us/dashboard/apps-and-games/overview).
