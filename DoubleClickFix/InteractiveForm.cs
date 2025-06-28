@@ -1,5 +1,6 @@
 using DoubleClickFix.Properties;
 using System.Diagnostics;
+using System.Globalization;
 namespace DoubleClickFix;
 
 internal partial class InteractiveForm : Form
@@ -29,7 +30,7 @@ internal partial class InteractiveForm : Form
         this.runAtStartupCheckBox.Checked = startup.IsRegistered();
         this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
 
-        bool fixDragging = settings.DragStartTimeMilliseconds >= 0 && settings.DragStopTimeMilliseconds >= 0;
+        bool fixDragging = settings.IsDragCorrectionEnabled;
         this.fixDraggingCheckBox.Checked = fixDragging;
         this.dragStartDelayTextBox.Enabled = fixDragging;
         this.dragEndDelayTextBox.Enabled = fixDragging;
@@ -304,11 +305,15 @@ internal partial class InteractiveForm : Form
         this.dragEndDelayTextBox.Enabled = fixDraggingCheckBox.Checked;
         if (fixDraggingCheckBox.Checked)
         {
-            this.dragStartDelayTextBox.Text = "1000";
-            this.dragEndDelayTextBox.Text = "150";
+            if (settings.DragStartTimeMilliseconds < 0) settings.DragStartTimeMilliseconds = 1000;
+            if (settings.DragStopTimeMilliseconds < 0) settings.DragStopTimeMilliseconds = 150;
+            this.dragStartDelayTextBox.Text = settings.DragStartTimeMilliseconds.ToString(CultureInfo.InvariantCulture);
+            this.dragEndDelayTextBox.Text = settings.DragStopTimeMilliseconds.ToString(CultureInfo.InvariantCulture);
         }
         else
         {
+            settings.DragStartTimeMilliseconds = -1;
+            settings.DragStopTimeMilliseconds = -1;
             this.dragStartDelayTextBox.Text = "";
             this.dragEndDelayTextBox.Text = "";
         }
@@ -317,7 +322,7 @@ internal partial class InteractiveForm : Form
     private void OnDragStartDelayTextChanged(object sender, EventArgs e)
     {
         if (!fixDraggingCheckBox.Checked && string.IsNullOrWhiteSpace(dragStartDelayTextBox.Text)) return;
-        if (int.TryParse(dragStartDelayTextBox.Text.Trim(), out int value))
+        if (int.TryParse(dragStartDelayTextBox.Text.Trim(), CultureInfo.InvariantCulture, out int value))
         {
             settings.DragStartTimeMilliseconds = value;
         }
@@ -326,7 +331,7 @@ internal partial class InteractiveForm : Form
     private void OnDragStopDelayTextChanged(object sender, EventArgs e)
     {
         if (!fixDraggingCheckBox.Checked && string.IsNullOrWhiteSpace(dragEndDelayTextBox.Text)) return;
-        if (int.TryParse(dragEndDelayTextBox.Text.Trim(), out int value))
+        if (int.TryParse(dragEndDelayTextBox.Text.Trim(), CultureInfo.InvariantCulture, out int value))
         {
             settings.DragStopTimeMilliseconds = value;
         }
