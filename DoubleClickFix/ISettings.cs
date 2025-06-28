@@ -13,6 +13,10 @@ internal interface ISettings
     int WindowsDoubleClickTimeMilliseconds { get; }
     int X1Threshold { get; set; }
     int X2Threshold { get; set; }
+    
+    bool IsDragCorrectionEnabled { get; }
+    int DragStartTimeMilliseconds { get; set; }
+    int DragStopTimeMilliseconds { get; set; }
 
     bool IsFirstAppStart { get; }
     void RegisterSettingsChangedListener(Action listener);

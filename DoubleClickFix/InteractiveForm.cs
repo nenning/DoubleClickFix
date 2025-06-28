@@ -1,4 +1,5 @@
 using DoubleClickFix.Properties;
+using System.Diagnostics;
 namespace DoubleClickFix;
 
 internal partial class InteractiveForm : Form
@@ -11,7 +12,7 @@ internal partial class InteractiveForm : Form
     private readonly Action<nint> rawInputProcessor;
     private readonly System.Windows.Forms.Timer debounceTimer;
 
-    public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, Action<IntPtr> rawInputProcessor)
+    public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, Action<IntPtr> rawInputProcessor, string version)
     {
         this.startup = startup;
         this.settings = settings;
@@ -28,8 +29,16 @@ internal partial class InteractiveForm : Form
         this.runAtStartupCheckBox.Checked = startup.IsRegistered();
         this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
 
+        bool fixDragging = settings.DragStartTimeMilliseconds >= 0 && settings.DragStopTimeMilliseconds >= 0;
+        this.fixDraggingCheckBox.Checked = fixDragging;
+        this.dragStartDelayTextBox.Enabled = fixDragging;
+        this.dragEndDelayTextBox.Enabled = fixDragging;
+        this.dragStartDelayTextBox.Text = fixDragging ? settings.DragStartTimeMilliseconds.ToString() : string.Empty;
+        this.dragEndDelayTextBox.Text = fixDragging ? settings.DragStopTimeMilliseconds.ToString() : string.Empty;
+
         logger.AddGuiLogger(text => Log(text));
         SetupTestArea();
+        this.versionLabel.Text = version;
         this.mouseButtonComboBox.SelectedIndex = 0;
     }
 
@@ -108,6 +117,8 @@ internal partial class InteractiveForm : Form
         if (this.WindowState == FormWindowState.Minimized)
         {
             this.WindowState = FormWindowState.Normal;
+            this.logTextBox.SelectionStart = logTextBox.Text.Length;
+            logTextBox.ScrollToCaret();
         }
         this.BringToFront();
     }
@@ -161,7 +172,7 @@ internal partial class InteractiveForm : Form
         base.OnVisibleChanged(e);
         logger.IsAppVisible = this.Visible;
     }
-   
+
     private void OnExitMenuClick(object? sender, EventArgs e)
     {
         notifyIcon.Visible = false;
@@ -285,5 +296,54 @@ internal partial class InteractiveForm : Form
     private void UseMinDelayCheckBoxCheckedChanged(object sender, EventArgs e)
     {
         settings.MinDelay = useMinDelayCheckBox.Checked ? 0 : -1;
+    }
+
+    private void OnFixDraggingCheckBoxChanged(object sender, EventArgs e)
+    {
+        this.dragStartDelayTextBox.Enabled = fixDraggingCheckBox.Checked;
+        this.dragEndDelayTextBox.Enabled = fixDraggingCheckBox.Checked;
+        if (fixDraggingCheckBox.Checked)
+        {
+            this.dragStartDelayTextBox.Text = "1000";
+            this.dragEndDelayTextBox.Text = "150";
+        }
+        else
+        {
+            this.dragStartDelayTextBox.Text = "";
+            this.dragEndDelayTextBox.Text = "";
+        }
+    }
+
+    private void OnDragStartDelayTextChanged(object sender, EventArgs e)
+    {
+        if (!fixDraggingCheckBox.Checked && string.IsNullOrWhiteSpace(dragStartDelayTextBox.Text)) return;
+        if (int.TryParse(dragStartDelayTextBox.Text.Trim(), out int value))
+        {
+            settings.DragStartTimeMilliseconds = value;
+        }
+    }
+
+    private void OnDragStopDelayTextChanged(object sender, EventArgs e)
+    {
+        if (!fixDraggingCheckBox.Checked && string.IsNullOrWhiteSpace(dragEndDelayTextBox.Text)) return;
+        if (int.TryParse(dragEndDelayTextBox.Text.Trim(), out int value))
+        {
+            settings.DragStopTimeMilliseconds = value;
+        }
+    }
+
+    private void OnGitLinkLabelClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        try
+        {
+            ProcessStartInfo info = new(@"https://github.com/nenning/DoubleClickFix")
+            {
+                UseShellExecute = true
+            };
+            Process.Start(info);
+        }
+        catch {
+            Log(@"Failed to open https://github.com/nenning/DoubleClickFix");
+        }
     }
 }

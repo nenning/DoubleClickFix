@@ -120,8 +120,14 @@
   <data name="AppAlreadyRunning" xml:space="preserve">
     <value>Otra instancia de la aplicación ya está en ejecución.</value>
   </data>
+  <data name="EnterDragLock" xml:space="preserve">
+    <value>Entrando en bloqueo de arrastre para {0} después de {1} ms</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="ExitDragLock" xml:space="preserve">
+    <value>Liberación final de {0} después de arrastrar</value>
   </data>
   <data name="HookNotInstalled" xml:space="preserve">
     <value>Error en la configuración.</value>
@@ -133,10 +139,10 @@
     <value>Valor no válido - no guardado. Rango válido</value>
   </data>
   <data name="Left" xml:space="preserve">
-    <value>centro</value>
+    <value>izquierda</value>
   </data>
   <data name="Middle" xml:space="preserve">
-    <value>izquierda</value>
+    <value>centro</value>
   </data>
   <data name="Right" xml:space="preserve">
     <value>derecha</value>

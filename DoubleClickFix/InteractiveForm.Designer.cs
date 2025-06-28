@@ -36,6 +36,11 @@
             saveButton = new Button();
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
+            dragEndDelayTextBox = new TextBox();
+            dragEndDelayLabel = new Label();
+            dragStartDelayTextBox = new TextBox();
+            dragStartDelayLabel = new Label();
+            fixDraggingCheckBox = new CheckBox();
             useMinDelayCheckBox = new CheckBox();
             thresholdSlider = new TrackBar();
             buttonEnabledCheckBox = new CheckBox();
@@ -56,6 +61,9 @@
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
             groupBox4 = new GroupBox();
+            toolTip1 = new ToolTip(components);
+            versionLabel = new Label();
+            gitLinkLabel = new LinkLabel();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)thresholdSlider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -77,16 +85,19 @@
             // 
             resources.ApplyResources(delayLabel, "delayLabel");
             delayLabel.Name = "delayLabel";
+            toolTip1.SetToolTip(delayLabel, resources.GetString("delayLabel.ToolTip"));
             // 
             // delayTextBox
             // 
             resources.ApplyResources(delayTextBox, "delayTextBox");
             delayTextBox.Name = "delayTextBox";
+            toolTip1.SetToolTip(delayTextBox, resources.GetString("delayTextBox.ToolTip"));
             // 
             // saveButton
             // 
             resources.ApplyResources(saveButton, "saveButton");
             saveButton.Name = "saveButton";
+            toolTip1.SetToolTip(saveButton, resources.GetString("saveButton.ToolTip"));
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += OnSaveButtonClicked;
             // 
@@ -94,10 +105,16 @@
             // 
             resources.ApplyResources(runAtStartupCheckBox, "runAtStartupCheckBox");
             runAtStartupCheckBox.Name = "runAtStartupCheckBox";
+            toolTip1.SetToolTip(runAtStartupCheckBox, resources.GetString("runAtStartupCheckBox.ToolTip"));
             runAtStartupCheckBox.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(dragEndDelayTextBox);
+            groupBox1.Controls.Add(dragEndDelayLabel);
+            groupBox1.Controls.Add(dragStartDelayTextBox);
+            groupBox1.Controls.Add(dragStartDelayLabel);
+            groupBox1.Controls.Add(fixDraggingCheckBox);
             groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(useMinDelayCheckBox);
             groupBox1.Controls.Add(thresholdSlider);
@@ -110,17 +127,50 @@
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
             // 
+            // dragEndDelayTextBox
+            // 
+            resources.ApplyResources(dragEndDelayTextBox, "dragEndDelayTextBox");
+            dragEndDelayTextBox.Name = "dragEndDelayTextBox";
+            dragEndDelayTextBox.TextChanged += OnDragStopDelayTextChanged;
+            // 
+            // dragEndDelayLabel
+            // 
+            resources.ApplyResources(dragEndDelayLabel, "dragEndDelayLabel");
+            dragEndDelayLabel.Name = "dragEndDelayLabel";
+            toolTip1.SetToolTip(dragEndDelayLabel, resources.GetString("dragEndDelayLabel.ToolTip"));
+            // 
+            // dragStartDelayTextBox
+            // 
+            resources.ApplyResources(dragStartDelayTextBox, "dragStartDelayTextBox");
+            dragStartDelayTextBox.Name = "dragStartDelayTextBox";
+            dragStartDelayTextBox.TextChanged += OnDragStartDelayTextChanged;
+            // 
+            // dragStartDelayLabel
+            // 
+            resources.ApplyResources(dragStartDelayLabel, "dragStartDelayLabel");
+            dragStartDelayLabel.Name = "dragStartDelayLabel";
+            toolTip1.SetToolTip(dragStartDelayLabel, resources.GetString("dragStartDelayLabel.ToolTip"));
+            // 
+            // fixDraggingCheckBox
+            // 
+            resources.ApplyResources(fixDraggingCheckBox, "fixDraggingCheckBox");
+            fixDraggingCheckBox.Name = "fixDraggingCheckBox";
+            toolTip1.SetToolTip(fixDraggingCheckBox, resources.GetString("fixDraggingCheckBox.ToolTip"));
+            fixDraggingCheckBox.UseVisualStyleBackColor = true;
+            fixDraggingCheckBox.CheckedChanged += OnFixDraggingCheckBoxChanged;
+            // 
             // useMinDelayCheckBox
             // 
             resources.ApplyResources(useMinDelayCheckBox, "useMinDelayCheckBox");
             useMinDelayCheckBox.Name = "useMinDelayCheckBox";
+            toolTip1.SetToolTip(useMinDelayCheckBox, resources.GetString("useMinDelayCheckBox.ToolTip"));
             useMinDelayCheckBox.UseVisualStyleBackColor = true;
             useMinDelayCheckBox.CheckedChanged += UseMinDelayCheckBoxCheckedChanged;
             // 
             // thresholdSlider
             // 
-            thresholdSlider.LargeChange = 20;
             resources.ApplyResources(thresholdSlider, "thresholdSlider");
+            thresholdSlider.LargeChange = 20;
             thresholdSlider.Maximum = 200;
             thresholdSlider.Minimum = -1;
             thresholdSlider.Name = "thresholdSlider";
@@ -131,6 +181,7 @@
             // 
             resources.ApplyResources(buttonEnabledCheckBox, "buttonEnabledCheckBox");
             buttonEnabledCheckBox.Name = "buttonEnabledCheckBox";
+            toolTip1.SetToolTip(buttonEnabledCheckBox, resources.GetString("buttonEnabledCheckBox.ToolTip"));
             buttonEnabledCheckBox.UseVisualStyleBackColor = true;
             buttonEnabledCheckBox.CheckedChanged += OnButtonEnabledCheckedChanged;
             // 
@@ -255,10 +306,24 @@
             groupBox4.Name = "groupBox4";
             groupBox4.TabStop = false;
             // 
+            // versionLabel
+            // 
+            resources.ApplyResources(versionLabel, "versionLabel");
+            versionLabel.Name = "versionLabel";
+            // 
+            // gitLinkLabel
+            // 
+            resources.ApplyResources(gitLinkLabel, "gitLinkLabel");
+            gitLinkLabel.Name = "gitLinkLabel";
+            gitLinkLabel.TabStop = true;
+            gitLinkLabel.LinkClicked += OnGitLinkLabelClicked;
+            // 
             // InteractiveForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(gitLinkLabel);
+            Controls.Add(versionLabel);
             Controls.Add(groupBox3);
             Controls.Add(label1);
             Controls.Add(groupBox2);
@@ -308,5 +373,13 @@
         private CheckBox buttonEnabledCheckBox;
         private TrackBar thresholdSlider;
         private CheckBox useMinDelayCheckBox;
+        private CheckBox fixDraggingCheckBox;
+        private TextBox dragStartDelayTextBox;
+        private Label dragStartDelayLabel;
+        private TextBox dragEndDelayTextBox;
+        private Label dragEndDelayLabel;
+        private ToolTip toolTip1;
+        private Label versionLabel;
+        private LinkLabel gitLinkLabel;
     }
 }

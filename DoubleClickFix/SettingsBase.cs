@@ -21,6 +21,9 @@ namespace DoubleClickFix
         protected int x1Threshold = -1;
         protected int x2Threshold = -1;
 
+        protected int dragStartTimeMilliseconds = -1;
+        protected int dragStopTimeMilliseconds = -1;
+
         public SettingsBase(string[] args, ILogger logger)
         {
             this.logger = logger;
@@ -133,6 +136,38 @@ namespace DoubleClickFix
                 }
             }
         }
+
+        public bool IsDragCorrectionEnabled => DragStartTimeMilliseconds >= 0 && DragStopTimeMilliseconds >= 0;
+
+        public int DragStartTimeMilliseconds { 
+            get => dragStartTimeMilliseconds;
+            set
+            {
+                if (value != dragStartTimeMilliseconds)
+                {
+                    value = Math.Max(value, -1);
+                    value = Math.Min(value, 2000);
+                    dragStartTimeMilliseconds = value;
+                    FireSettingsChanged();
+                }
+            }
+        }
+
+        public int DragStopTimeMilliseconds
+        {
+            get => dragStopTimeMilliseconds;
+            set
+            {
+                if (value != dragStopTimeMilliseconds)
+                {
+                    value = Math.Max(value, -1);
+                    value = Math.Min(value, 500);
+                    dragStopTimeMilliseconds = value;
+                    FireSettingsChanged();
+                }
+            }
+        }
+
         private static void ApplyLanguageOverride()
         {
             try
