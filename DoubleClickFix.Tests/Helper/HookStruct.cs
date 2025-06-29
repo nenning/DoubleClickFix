@@ -19,11 +19,12 @@ class HookStruct : IDisposable
         Marshal.StructureToPtr(this.hookStruct, ptrHookStruct, false);
 
     }
-    public static HookStruct Create(uint timeMs)
+    public static HookStruct Create(uint timeMs, int movedPixels)
     {
         MSLLHOOKSTRUCT hookStruct = new()
         {
             time = timeMs,
+            pt = new POINT { x = movedPixels, y = movedPixels },
         };
         return new HookStruct(hookStruct);
     }

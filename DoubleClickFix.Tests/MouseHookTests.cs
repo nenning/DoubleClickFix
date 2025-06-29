@@ -14,18 +14,19 @@ check mouse device switch?
  */
 public class MouseHookTests
 {
+    private const int WM_MOUSEMOVE = 0x0200;
 
-    private static void AssertAllowed(MouseHook hook, IntPtr wmMouseEvent, uint timeMs)
+    private static void AssertAllowed(MouseHook hook, IntPtr wmMouseEvent, uint timeMs, int movedPixels = 0)
     {
-        AssertMouseEvent(hook, wmMouseEvent, timeMs, true);
+        AssertMouseEvent(hook, wmMouseEvent, timeMs, true, movedPixels);
     }
-    private static void AssertIgnored(MouseHook hook, IntPtr wmMouseEvent, uint timeMs)
+    private static void AssertIgnored(MouseHook hook, IntPtr wmMouseEvent, uint timeMs, int movedPixels = 0)
     {
-        AssertMouseEvent(hook, wmMouseEvent, timeMs, false);
+        AssertMouseEvent(hook, wmMouseEvent, timeMs, false, movedPixels);
     }
-    private static void AssertMouseEvent(MouseHook hook, IntPtr wmMouseEvent, uint timeMs, bool allowed)
+    private static void AssertMouseEvent(MouseHook hook, IntPtr wmMouseEvent, uint timeMs, bool allowed, int movedPixels = 0)
     {
-        using var data = HookStruct.Create(timeMs);
+        using var data = HookStruct.Create(timeMs, movedPixels);
         Assert.Equal(allowed ? 0 : 1, hook.HookCallback(0, wmMouseEvent, data.Pointer));
     }
 
@@ -204,4 +205,23 @@ public class MouseHookTests
         //TODO hook.ProcessRawInput(*input);
         */
     }
+
+    [Fact]
+    public void TestDragLockEnabled()
+    {
+        TestSettings settings = new()
+        {
+            DragStartTimeMilliseconds = 100,
+            DragStopTimeMilliseconds = 200
+        };
+        MouseHook hook = new(settings, new TestLogger(), new TestNativeMethods());
+
+        // Simulate a drag event
+        AssertAllowed(hook, WM_LBUTTONDOWN, 200); // Initial press for drag-lock
+        AssertAllowed(hook, WM_MOUSEMOVE, 450, 20);  // Movement starts drag-lock
+        AssertIgnored(hook, WM_LBUTTONUP, 550);  // Drag-lock active, suppress release
+        AssertIgnored(hook, WM_LBUTTONDOWN, 551);  // Drag-lock active, suppress press
+        AssertAllowed(hook, WM_LBUTTONUP, 800); // Drag-lock ends, allow release
+    }
+
 }
