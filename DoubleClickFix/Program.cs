@@ -49,7 +49,19 @@ class Program
         using Mutex mutex = new(true, "{F8049D9C-AD6B-4158-92A3-E537355EF536}");
         if (settings.UseHook && !mutex.WaitOne(TimeSpan.Zero, true))
         {
-            MessageBox.Show(Resources.AppAlreadyRunning, "Double-click Fix");
+            var resources = new System.ComponentModel.ComponentResourceManager(typeof(InteractiveForm));
+            var windowTitle = resources.GetString("$this.Text") ?? "Double-click Fix";
+            IntPtr hWnd = NativeMethods.FindWindow(null, windowTitle);
+
+            if (hWnd != IntPtr.Zero)
+            {
+                NativeMethods.PostMessage(hWnd, NativeMethods.WM_SHOWME, IntPtr.Zero, IntPtr.Zero);
+            }
+            else
+            {
+                // Fallback if the window can't be found for some reason
+                MessageBox.Show(Resources.AppAlreadyRunning, windowTitle);
+            }
             return;
         }
 

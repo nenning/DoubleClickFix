@@ -136,4 +136,26 @@ internal class NativeMethods : INativeMethods
 
     internal const uint RID_INPUT = 0x10000003;
     internal const uint RIM_TYPEMOUSE = 0x00000000;
+
+    // For showing the existing window
+    [DllImport("user32.dll")]
+    internal static extern IntPtr FindWindow(string? lpClassName, string lpWindowName);
+
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    internal static extern bool SetForegroundWindow(IntPtr hWnd);
+
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    internal static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    internal static extern bool IsIconic(IntPtr hWnd);
+
+    [DllImport("user32.dll", SetLastError = true)]
+    internal static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+    internal const int SW_RESTORE = 9;
+    internal const uint WM_SHOWME = 0x8001; // Custom message
 }

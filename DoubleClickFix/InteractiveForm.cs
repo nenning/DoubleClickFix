@@ -49,7 +49,29 @@ internal partial class InteractiveForm : Form
         {
             rawInputProcessor(m.LParam);
         }
+        else if (m.Msg == NativeMethods.WM_SHOWME)
+        {
+            ShowFromTray();
+        }
         base.WndProc(ref m);
+    }
+
+    private void ShowFromTray()
+    {
+        if (!Visible)
+        {
+            Show();
+        }
+        
+        if (WindowState == FormWindowState.Minimized)
+        {
+            // Restore from minimized state
+            NativeMethods.ShowWindow(this.Handle, NativeMethods.SW_RESTORE);
+        }
+
+        // Bring to front and activate
+        Activate();
+        BringToFront();
     }
     private void SetupTestArea()
     {
