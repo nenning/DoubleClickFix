@@ -108,5 +108,6 @@ Some technical details mostly for development.
 - Add the release notes on GitHub.
 
 #### Microsoft Store
+- If needed, adjust the version in `Package.appxmanifest`.
 - To create a store package, use **Publish** → **Create App Packages** in Visual Studio.
-- Publish it through the [Partner Portal](https://partner.microsoft.com/en-us/dashboard/apps-and-games/overview).
+- Publish it through the [Partner Portal](https://partner.microsoft.com/en-us/dashboard/apps-and-games/overview): upload the package (`.msixbundle`), fill in the details and submit it for certification.
