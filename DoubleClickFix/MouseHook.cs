@@ -101,7 +101,20 @@ internal class MouseHook : IDisposable
             messages.Add(WM_XBUTTONDOWN);
             messages.Add(WM_XBUTTONUP);
         }
+        if (!settings.IsDragCorrectionEnabled && currentlyDownButtons.Any())
+        {
+            ResetDragLockState();
+        }
         observedMessages = messages.ToFrozenSet();
+    }
+
+    internal void ResetDragLockState()
+    {
+        currentlyDownButtons.Clear();
+        initialDownPosition.Clear();
+        lastMoveTime.Clear();
+        isDragLocked.Clear();
+        initialDownTime.Clear();
     }
 
     public bool Install()
