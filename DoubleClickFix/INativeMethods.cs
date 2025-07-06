@@ -1,7 +1,6 @@
-﻿namespace DoubleClickFix
+﻿namespace DoubleClickFix;
+
+internal interface INativeMethods
 {
-    internal interface INativeMethods
-    {
-        internal IntPtr CallNextHook(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
-    }
+    internal nint CallNextHook(nint hhk, int nCode, nint wParam, nint lParam);
 }

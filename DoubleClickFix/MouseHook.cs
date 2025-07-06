@@ -1,6 +1,7 @@
 ﻿using DoubleClickFix.Properties;
 using Microsoft.Win32;
 using System.Collections.Frozen;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using static DoubleClickFix.NativeMethods;
@@ -53,11 +54,12 @@ internal class MouseHook : IDisposable
 
     // make sure we keep a reference so it's not garbage collected
     private LowLevelMouseProc? mouseProc;
-    private IntPtr hookHandle = IntPtr.Zero;
-    private IntPtr currentDevice = -1;
+    private nint hookHandle = nint.Zero;
+    private const nint InvalidDevice = -1;
+    private nint currentDevice = InvalidDevice;
 
     private readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
-    private FrozenSet<IntPtr> observedMessages = [];
+    private FrozenSet<nint> observedMessages = [];
     private uint ignoredClicks = 0;
 
     // for drag‐lock handling
@@ -79,7 +81,7 @@ internal class MouseHook : IDisposable
 
     private void SettingsChanged()
     {
-        HashSet<IntPtr> messages = [];
+        HashSet<nint> messages = [];
         if (settings.LeftThreshold >= 0) {
             messages.Add(WM_LBUTTONDOWN);
             messages.Add(WM_LBUTTONUP);
@@ -104,20 +106,38 @@ internal class MouseHook : IDisposable
 
     public bool Install()
     {
-        if (settings.UseHook && hookHandle == IntPtr.Zero)
+        if (settings.UseHook && hookHandle == nint.Zero)
         {
-            mouseProc = this.HookCallback;
-            hookHandle = SetHook(mouseProc);
+            try
+            {
+                mouseProc = HookCallback;
+                hookHandle = SetHook(mouseProc);
+            }
+            catch (Win32Exception ex)
+            {
+                logger.Log($"{Resources.HookNotInstalled}: {ex.Message}");
+                return false;
+            }
         }
-        return hookHandle != IntPtr.Zero;
+        return hookHandle != nint.Zero;
     }
     public void Uninstall()
     {
-        if (settings.UseHook && hookHandle != IntPtr.Zero)
+        if (settings.UseHook && hookHandle != nint.Zero)
         {
-            UnhookWindowsHookEx(hookHandle);
-            hookHandle = IntPtr.Zero;
-            mouseProc = null;
+            try
+            {
+                UnhookWindowsHook(hookHandle);
+            }
+            catch (Win32Exception ex)
+            {
+                logger.Log($"Failed to uninstall hook: {ex.Message}");
+            }
+            finally
+            {
+                hookHandle = nint.Zero;
+                mouseProc = null;
+            }
         }
     }
 
@@ -140,34 +160,37 @@ internal class MouseHook : IDisposable
         }
     }
 
-    public void RegisterForRawInput(IntPtr hwnd)
+    public void RegisterForRawInput(nint hwnd)
     {
-        RAWINPUTDEVICE[] device = [
-            new() {
-                UsagePage = HID_USAGE_PAGE_GENERIC,
-                Usage = HID_USAGE_GENERIC_MOUSE,
-                Flags = RIDEV_INPUTSINK,
-                Target = hwnd
-            }
-        ];
-
-        if (!RegisterRawInputDevices(device, (uint)device.Length, (uint)Marshal.SizeOf(device[0])))
+        var device = new RAWINPUTDEVICE
         {
-            logger.Log("Failed to register raw input device."); // TODO translate.
+            UsagePage = HID_USAGE_PAGE_GENERIC,
+            Usage = HID_USAGE_GENERIC_MOUSE,
+            Flags = RIDEV_INPUTSINK,
+            Target = hwnd
+        };
+
+        try
+        {
+            RegisterRawInputDevicesOrThrow([device], 1, (uint)Marshal.SizeOf(device));
+        }
+        catch (Win32Exception ex)
+        {
+            logger.Log($"Failed to register raw input device. {ex.Message}");  // TODO translate.
         }
     }
 
-    public void ProcessRawInput(IntPtr hRawInput)
+    public void ProcessRawInput(nint hRawInput)
     {
         uint dwSize = 0;
-        _ = GetRawInputData(hRawInput, RID_INPUT, IntPtr.Zero, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
-        IntPtr buffer = Marshal.AllocHGlobal((int)dwSize);
+        _ = GetRawInputData(hRawInput, RID_INPUT, nint.Zero, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
+        nint buffer = Marshal.AllocHGlobal((int)dwSize);
         try
         {
             if (GetRawInputData(hRawInput, RID_INPUT, buffer, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>()) != dwSize)
                 return;
 
-            RAWINPUT raw = Marshal.PtrToStructure<RAWINPUT>(buffer);
+            var raw = Marshal.PtrToStructure<RAWINPUT>(buffer);
 
             if (raw.Header.Type == RIM_TYPEMOUSE)
             {
@@ -185,15 +208,15 @@ internal class MouseHook : IDisposable
         }
     }
 
-    internal IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+    internal nint HookCallback(int nCode, nint wParam, nint lParam)
     {
         // Always marshal the hook structure first
-        MSLLHOOKSTRUCT hookStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
-        const int WM_MOUSEMOVE = 0x0200;
+        var hookStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
         const int MovementThresholdPixels = 5;
+        const nint IgnoreMouseEvent = 1;
 
         // Handle mouse‐move: enter drag‐lock only after moving & holding for ≥ DragStartTimeMilliseconds
-        if (settings.IsDragCorrectionEnabled && wParam == (IntPtr)WM_MOUSEMOVE)
+        if (settings.IsDragCorrectionEnabled && wParam == WM_MOUSEMOVE)
         {
             foreach (var button in currentlyDownButtons.ToList())
             {
@@ -222,7 +245,7 @@ internal class MouseHook : IDisposable
         // Only intercept button messages we care about
         if (!ProcessMouseEvent(nCode, wParam))
         {
-            return nativeMethods.CallNextHook(IntPtr.Zero, nCode, wParam, lParam);
+            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
         }
 
         bool buttonDown = false;
@@ -280,7 +303,7 @@ internal class MouseHook : IDisposable
                 break;
 
             default:
-                return nativeMethods.CallNextHook(IntPtr.Zero, nCode, wParam, lParam);
+                return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
         }
 
         // If we're in drag‐lock, suppress spurious downs/ups
@@ -289,7 +312,7 @@ internal class MouseHook : IDisposable
             if (buttonDown)
             {
                 // drop any extra presses
-                return (IntPtr)1;
+                return IgnoreMouseEvent;
             }
             else if (buttonUp)
             {
@@ -303,10 +326,10 @@ internal class MouseHook : IDisposable
                     previousUpTime[activeButton] = hookStruct.time;
                     logger.Log(string.Format(Resources.ExitDragLock, buttonTextLookup[activeButton]), true);
 
-                    return nativeMethods.CallNextHook(IntPtr.Zero, nCode, wParam, lParam);
+                    return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
                 }
                 // still jittering: suppress
-                return (IntPtr)1;
+                return IgnoreMouseEvent;
             }
         }
 
@@ -332,7 +355,7 @@ internal class MouseHook : IDisposable
                     $"{ignoredDoubleClickText} ({buttonTextLookup[activeButton]}): {delta} ms (#{ignoredClicks})"
                 );
                 previousUpTime[activeButton] = 0;
-                return (IntPtr)1;
+                return IgnoreMouseEvent;
             }
             else if (delta < settings.WindowsDoubleClickTimeMilliseconds)
             {
@@ -347,11 +370,8 @@ internal class MouseHook : IDisposable
         }
 
         // forward everything else
-        return nativeMethods.CallNextHook(IntPtr.Zero, nCode, wParam, lParam);
+        return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
     }
-
-
-
 
     private bool ProcessMouseEvent(int nCode, nint wParam)
     {
@@ -380,10 +400,11 @@ internal class MouseHook : IDisposable
         return MouseButtons.None;
     }
       
-    private static IntPtr SetHook(LowLevelMouseProc proc)
+    private static nint SetHook(LowLevelMouseProc proc)
     {
-        using ProcessModule currentModule = Process.GetCurrentProcess().MainModule!;
-        return SetWindowsHookEx(WH_MOUSE_LL, proc, GetModuleHandle(currentModule.ModuleName), 0);
+        using var currentModule = Process.GetCurrentProcess().MainModule!;
+        var moduleHandle = GetModuleHandleOrThrow(currentModule.ModuleName!);
+        return SetWindowsHook(WH_MOUSE_LL, proc, moduleHandle, 0);
     }
 
     public void Dispose()
