@@ -223,101 +223,74 @@ internal class MouseHook : IDisposable
 
     internal nint HookCallback(int nCode, nint wParam, nint lParam)
     {
-        // Always marshal the hook structure first
+        try
+        {
+            if (wParam == WM_MOUSEMOVE)
+            {
+                HandleMouseMove(lParam);
+            }
+            else
+            {
+                return HandleMouseButton(nCode, wParam, lParam);
+            }
+            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+        }
+        catch (Exception ex)
+        {
+            logger.Log($"Error in hook callback: {ex}");
+            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+        }
+    }
+
+    private void HandleMouseMove(nint lParam)
+    {
+        if (!settings.IsDragCorrectionEnabled || !currentlyDownButtons.Any())
+        {
+            return;
+        }
+
         var hookStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
         const int MovementThresholdPixels = 5;
-        const nint IgnoreMouseEvent = 1;
 
-        // Handle mouse‐move: enter drag‐lock only after moving & holding for ≥ DragStartTimeMilliseconds
-        if (settings.IsDragCorrectionEnabled && wParam == WM_MOUSEMOVE)
+        foreach (var button in currentlyDownButtons.ToList())
         {
-            foreach (var button in currentlyDownButtons.ToList())
-            {
-                // update last‐movement timestamp
-                lastMoveTime[button] = hookStruct.time;
+            lastMoveTime[button] = hookStruct.time;
 
-                // compute squared distance from initial down
+            if (!isDragLocked.GetValueOrDefault(button, false))
+            {
                 var start = initialDownPosition[button];
                 int dx = hookStruct.pt.x - start.x;
                 int dy = hookStruct.pt.y - start.y;
                 int distSq = dx * dx + dy * dy;
 
-                // time since genuine down
                 long elapsedSinceDown = hookStruct.time - initialDownTime[button];
 
-                if (!isDragLocked.GetValueOrDefault(button, false)
-                    && distSq >= MovementThresholdPixels * MovementThresholdPixels
-                    && elapsedSinceDown >= settings.DragStartTimeMilliseconds)
+                if (distSq >= MovementThresholdPixels * MovementThresholdPixels &&
+                    elapsedSinceDown >= settings.DragStartTimeMilliseconds)
                 {
                     isDragLocked[button] = true;
                     logger.Log(string.Format(Resources.EnterDragLock, buttonTextLookup[button], elapsedSinceDown), true);
                 }
             }
         }
+    }
 
-        // Only intercept button messages we care about
+    private nint HandleMouseButton(int nCode, nint wParam, nint lParam)
+    {
+        var hookStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
+        const nint IgnoreMouseEvent = 1;
+
         if (!ProcessMouseEvent(nCode, wParam))
         {
             return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
         }
 
-        bool buttonDown = false;
-        bool buttonUp = false;
-        MouseButtons activeButton;
-        int threshold = 0;
-
-        // Identify which button and whether it's down or up
-        switch (wParam)
+        if (!TryGetMouseButton(wParam, hookStruct.mouseData, out var activeButton, out var buttonDown, out var buttonUp))
         {
-            case WM_LBUTTONDOWN:
-                buttonDown = true;
-                activeButton = MouseButtons.Left;
-                threshold = settings.LeftThreshold;
-                break;
-
-            case WM_LBUTTONUP:
-                buttonUp = true;
-                activeButton = MouseButtons.Left;
-                break;
-
-            case WM_RBUTTONDOWN:
-                buttonDown = true;
-                activeButton = MouseButtons.Right;
-                threshold = settings.RightThreshold;
-                break;
-
-            case WM_RBUTTONUP:
-                buttonUp = true;
-                activeButton = MouseButtons.Right;
-                break;
-
-            case WM_MBUTTONDOWN:
-                buttonDown = true;
-                activeButton = MouseButtons.Middle;
-                threshold = settings.MiddleThreshold;
-                break;
-
-            case WM_MBUTTONUP:
-                buttonUp = true;
-                activeButton = MouseButtons.Middle;
-                break;
-
-            case WM_XBUTTONDOWN:
-                buttonDown = true;
-                activeButton = GetXButton(hookStruct.mouseData);
-                threshold = (activeButton == MouseButtons.XButton1)
-                                ? settings.X1Threshold
-                                : settings.X2Threshold;
-                break;
-
-            case WM_XBUTTONUP:
-                buttonUp = true;
-                activeButton = GetXButton(hookStruct.mouseData);
-                break;
-
-            default:
-                return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
         }
+
+        int threshold = GetThreshold(activeButton);
 
         // If we're in drag‐lock, suppress spurious downs/ups
         if (settings.IsDragCorrectionEnabled && isDragLocked.GetValueOrDefault(activeButton, false))
@@ -365,7 +338,7 @@ internal class MouseHook : IDisposable
             {
                 ignoredClicks++;
                 logger.Log(
-                    $"{ignoredDoubleClickText} ({buttonTextLookup[activeButton]}): {delta} ms (#{ignoredClicks})"
+                $"{ignoredDoubleClickText} ({buttonTextLookup[activeButton]}): {delta} ms (#{ignoredClicks})"
                 );
                 previousUpTime[activeButton] = 0;
                 return IgnoreMouseEvent;
@@ -384,6 +357,72 @@ internal class MouseHook : IDisposable
 
         // forward everything else
         return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+    }
+
+    private bool TryGetMouseButton(nint wParam, uint mouseData, out MouseButtons activeButton, out bool buttonDown, out bool buttonUp)
+    {
+        buttonDown = false;
+        buttonUp = false;
+        activeButton = MouseButtons.None;
+
+        switch (wParam)
+        {
+            case WM_LBUTTONDOWN:
+                buttonDown = true;
+                activeButton = MouseButtons.Left;
+                return true;
+
+            case WM_LBUTTONUP:
+                buttonUp = true;
+                activeButton = MouseButtons.Left;
+                return true;
+
+            case WM_RBUTTONDOWN:
+                buttonDown = true;
+                activeButton = MouseButtons.Right;
+                return true;
+
+            case WM_RBUTTONUP:
+                buttonUp = true;
+                activeButton = MouseButtons.Right;
+                return true;
+
+            case WM_MBUTTONDOWN:
+                buttonDown = true;
+                activeButton = MouseButtons.Middle;
+                return true;
+
+            case WM_MBUTTONUP:
+                buttonUp = true;
+                activeButton = MouseButtons.Middle;
+                return true;
+
+            case WM_XBUTTONDOWN:
+                buttonDown = true;
+                activeButton = GetXButton(mouseData);
+                return true;
+
+            case WM_XBUTTONUP:
+                buttonUp = true;
+                activeButton = GetXButton(mouseData);
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
+    private int GetThreshold(MouseButtons button)
+    {
+        return button switch
+        {
+            MouseButtons.Left => settings.LeftThreshold,
+            MouseButtons.Right => settings.RightThreshold,
+            MouseButtons.Middle => settings.MiddleThreshold,
+            MouseButtons.XButton1 => settings.X1Threshold,
+            MouseButtons.XButton2 => settings.X2Threshold,
+            _ => -1,
+        };
     }
 
     private bool ProcessMouseEvent(int nCode, nint wParam)
