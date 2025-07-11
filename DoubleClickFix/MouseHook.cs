@@ -101,7 +101,7 @@ internal class MouseHook : IDisposable
             messages.Add(WM_XBUTTONDOWN);
             messages.Add(WM_XBUTTONUP);
         }
-        if (!settings.IsDragCorrectionEnabled && currentlyDownButtons.Any())
+        if (!settings.IsDragCorrectionEnabled && currentlyDownButtons.Count > 0)
         {
             ResetDragLockState();
         }
@@ -244,7 +244,7 @@ internal class MouseHook : IDisposable
 
     private void HandleMouseMove(nint lParam)
     {
-        if (!settings.IsDragCorrectionEnabled || !currentlyDownButtons.Any())
+        if (!settings.IsDragCorrectionEnabled || currentlyDownButtons.Count == 0)
         {
             return;
         }
@@ -361,55 +361,20 @@ internal class MouseHook : IDisposable
 
     private bool TryGetMouseButton(nint wParam, uint mouseData, out MouseButtons activeButton, out bool buttonDown, out bool buttonUp)
     {
-        buttonDown = false;
-        buttonUp = false;
-        activeButton = MouseButtons.None;
-
-        switch (wParam)
+        (activeButton, buttonDown, buttonUp) = wParam switch
         {
-            case WM_LBUTTONDOWN:
-                buttonDown = true;
-                activeButton = MouseButtons.Left;
-                return true;
+            WM_LBUTTONDOWN => (MouseButtons.Left, true, false),
+            WM_LBUTTONUP => (MouseButtons.Left, false, true),
+            WM_RBUTTONDOWN => (MouseButtons.Right, true, false),
+            WM_RBUTTONUP => (MouseButtons.Right, false, true),
+            WM_MBUTTONDOWN => (MouseButtons.Middle, true, false),
+            WM_MBUTTONUP => (MouseButtons.Middle, false, true),
+            WM_XBUTTONDOWN => (GetXButton(mouseData), true, false),
+            WM_XBUTTONUP => (GetXButton(mouseData), false, true),
+            _ => (MouseButtons.None, false, false)
+        };
 
-            case WM_LBUTTONUP:
-                buttonUp = true;
-                activeButton = MouseButtons.Left;
-                return true;
-
-            case WM_RBUTTONDOWN:
-                buttonDown = true;
-                activeButton = MouseButtons.Right;
-                return true;
-
-            case WM_RBUTTONUP:
-                buttonUp = true;
-                activeButton = MouseButtons.Right;
-                return true;
-
-            case WM_MBUTTONDOWN:
-                buttonDown = true;
-                activeButton = MouseButtons.Middle;
-                return true;
-
-            case WM_MBUTTONUP:
-                buttonUp = true;
-                activeButton = MouseButtons.Middle;
-                return true;
-
-            case WM_XBUTTONDOWN:
-                buttonDown = true;
-                activeButton = GetXButton(mouseData);
-                return true;
-
-            case WM_XBUTTONUP:
-                buttonUp = true;
-                activeButton = GetXButton(mouseData);
-                return true;
-
-            default:
-                return false;
-        }
+        return activeButton != MouseButtons.None;
     }
 
     private int GetThreshold(MouseButtons button)
