@@ -17,6 +17,9 @@ internal class NativeMethods : INativeMethods
     internal const nint WM_XBUTTONDOWN = 0x020B;
     internal const nint WM_XBUTTONUP = 0x020C;
 
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+    internal static extern uint RegisterApplicationRestart(string? pwzCommandLine, int dwFlags);
+
     [DllImport("user32.dll")]
     internal static extern int GetDoubleClickTime();
 
