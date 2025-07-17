@@ -21,6 +21,30 @@ This tool ensures smoother operation by filtering unintended double-click events
 
 ---
 
+## 🛠️ How It Works: Filtering Mouse Clicks
+
+This application intercepts mouse events at a low level to distinguish between intentional clicks and unintentional "bouncing" or "chattering" from a faulty mouse switch. Here’s a step-by-step breakdown of the process:
+
+1.  **Low-Level Mouse Hook**: The application registers a `WH_MOUSE_LL` (low-level mouse) hook. This allows it to intercept mouse input events system-wide before they are passed to applications.
+
+2.  **Event Interception**: Every mouse event, such as `WM_LBUTTONDOWN` (left button down) or `WM_MOUSEMOVE` (mouse move), is captured by a callback function.
+
+3.  **Double-Click Filtering**:
+    *   When a mouse button **down** event occurs, the application measures the time elapsed since the last corresponding **up** event for that same button.
+    *   If this duration is shorter than the user-defined **threshold** (e.g., 50 ms), the event is considered an erroneous double-click and is "swallowed" or ignored. This prevents the system and other applications from ever receiving it.
+    *   If the duration is longer than the threshold, the click is considered intentional and is passed along to the system as usual.
+
+4.  **Drag & Drop Correction**: Faulty mice can also interfere with drag-and-drop operations by sending spurious "up" events while the button is being held down. The "Fix dragging issues" feature addresses this:
+    *   **Entering Drag-Lock**: When you press and hold a mouse button and then move the cursor beyond a small distance, the application enters a "drag-lock" mode for that button.
+    *   **Suppressing Jitter**: While in drag-lock, any subsequent `down` or `up` events for that button are ignored. This ensures that the drag is not accidentally interrupted.
+    *   **Releasing the Drag**: The drag is released only when you stop moving the mouse for a user-defined period (the "Drag release delay"). At that point, a genuine "up" event is sent, completing the drag-and-drop action.
+
+5.  **Forwarding Events**: Any event that is not filtered out is forwarded to the next hook in the chain using `CallNextHookEx`, ensuring normal mouse behavior for all other applications.
+
+This entire process is highly efficient and runs in the background with minimal performance impact, ensuring a smoother experience without interfering with your regular workflow or gaming.
+
+---
+
 ## 🚀 Installation
 
 The following options are supported for installing and running the application:
