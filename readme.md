@@ -8,7 +8,7 @@ A lightweight solution for mitigating double-click issues caused by malfunctioni
 
 This tool ensures smoother operation by filtering unintended double-click events and supporting reliable drag-and-drop gestures, allowing you to define the minimal delay between valid clicks directly from an intuitive user interface.
 
-### 🛍️ Get it from the [Microsoft Store](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare)!
+## 🛍️ Get it from the [Microsoft Store](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare)!
 
 ![logo](DoubleClickFix/app.ico)
 
@@ -35,7 +35,7 @@ This tool ensures smoother operation by filtering unintended double-click events
 ![logo](./main-screen.png)
 ---
 
-## 🛠️ How It Works: Filtering Mouse Clicks
+## 🔍 How It Works: Filtering Mouse Clicks
 
 This application intercepts mouse events at a low level to distinguish between intentional clicks and unintentional "bouncing" or "chattering" from a faulty mouse switch. Here’s a step-by-step breakdown of the process:
 
@@ -55,9 +55,9 @@ This entire process is highly efficient and runs in the background with minimal 
 
 ---
 
-## 📋 System Requirements
+## 🖥️ System Requirements
 - **Operating System**: Windows 10 or later.
-- **.NET Runtime**: [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later (usually installed automatically).
+- **.NET Runtime**: [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet) or later (usually installed automatically).
 
 ---
 
@@ -71,7 +71,6 @@ The following options are supported for installing and running the application:
 ### Manual Setup
 1. **Download**: Grab the latest release from the [Releases page](https://github.com/nenning/DoubleClickFix/releases).
 2. **Unzip & Run**: Extract the files and execute the `.exe`.
-    - Note: You might need to install the [.NET Runtime](https://dotnet.microsoft.com/en-us/download/dotnet) first.
     - Note: Settings are stored in the registry under `HKEY_CURRENT_USER\Software\DoubleClickFix`.
     - Note: If you move the app to a different folder, you have to deregister & re-register the app to start with Windows.
 
@@ -82,22 +81,19 @@ The following options are supported for installing and running the application:
 
 ## ⚙️ Configuration
 
-### Settings
+### 🛠️ Settings
 - Settings can be adjusted in the UI, including:
-  - **Per-button delay**: Minimal delay between clicks for each button.
-  - **Ignored devices:** Specifies which device to ignore (e.g., touchpad or touchscreen). By default, device ID `0` is ignored, but this can be modified if needed (experimental).
+  - **Per-button delay**: Minimal delay (in ms) between clicks for each button.
   - **Fix dragging issues**: Enables this only if you have problems with dragging (& dropping).
   - **Drag start delay**: The time (in ms) a drag action must take to enter the drag lock state.
   - **Drag release delay**: The time (in ms) you must hold the button after stopping movement before the release is registered. Alternatively, you can manually click to exit the drag lock.
+  - **Workaround for touch devices**: All double-clicks from touchpads or touchscreens are allowed by default. If you have trouble with this, enable the `Allow 0 ms Double-Click Duration` option in the UI.
 
 ### 💡 Tips
 - Check the logs in the UI for detailed information on the elapsed time between your mouse clicks and filterd out double-clicks.
 - Experiment with different delay settings to optimize for your personal double-click speed and specific hardware issues.
 - Use the test area on the right side of the UI to test your settings (try also triple-clicking to select a whole paragraph and selecting text).
 
-### Handling Touch Devices
-- All double-clicks from touchpads or touchscreens are allowed by default.
-- If you have trouble with this, enable the **Allow 0 ms Double-Click Duration** option in the UI.
 
 ---
 
@@ -111,7 +107,7 @@ This project is distributed under the [MIT License](LICENSE.txt).
 
 ---
 
-## ℹ️ Compatibility with Anti-Cheat Software (VAC, EAC, BattlEye, etc.)
+## 🎮 Compatibility with Anti-Cheat Software (VAC, EAC, BattlEye, etc.)
 
 ### How DoubleClickFix Works
 This application uses a **low-level mouse hook** (`WH_MOUSE_LL`) to intercept and process mouse input events system-wide. Its sole purpose is to filter rapid, unintended clicks from faulty hardware and to stabilize drag-and-drop gestures. It does **not**:
