@@ -10,6 +10,16 @@ This tool ensures smoother operation by filtering unintended double-click events
 
 ![logo](DoubleClickFix/app.ico)
 
+## 📋 Table of Contents
+- [Features](#-features)
+- [How It Works: Filtering Mouse Clicks](#️-how-it-works-filtering-mouse-clicks)
+- [Installation](#-installation)
+- [Configuration](#️-configuration)
+- [Contributions](#-contributions)
+- [License](#-license)
+- [Valve Anti-Cheat (VAC) Compatibility](#️-valve-anti-cheat-vac-compatibility)
+- [Technical Notes](#️-technical-notes)
+
 ---
 
 ## ✨ Features
