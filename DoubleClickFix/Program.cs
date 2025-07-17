@@ -43,6 +43,11 @@ class Program
     {
         Logger logger = new();
         bool isRunningFromStore = IsRunningFromStore();
+        if (isRunningFromStore) 
+        {
+            // Register for restart on system-driven shutdown so the application is actually restarted after a Microsoft store update.
+            NativeMethods.RegisterApplicationRestart("-restart", 0);
+        }
 
         ISettings settings = isRunningFromStore ? new StoreSettings(args, logger) : new StandaloneSettings(args, logger);
 
