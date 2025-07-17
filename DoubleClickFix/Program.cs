@@ -1,5 +1,6 @@
 using DoubleClickFix.Properties;
 using System.Reflection;
+using System.Threading;
 
 namespace DoubleClickFix;
 
@@ -41,6 +42,9 @@ class Program
     [STAThread]
     static void Main(string[] args)
     {
+        Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+        AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+
         Logger logger = new();
         bool isRunningFromStore = IsRunningFromStore();
 
@@ -98,5 +102,17 @@ class Program
                 catch { }
             }
         }
+    }
+
+    private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+    {
+        MessageBox.Show("An unexpected error occurred and the application must close.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // TODO: Localize
+        Environment.Exit(1);
+    }
+
+    private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+    {
+        MessageBox.Show("An unexpected error occurred and the application must close.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // TODO: Localize
+        Environment.Exit(1);
     }
 }
