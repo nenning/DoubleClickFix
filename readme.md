@@ -129,11 +129,13 @@ Modern anti-cheat systems like Valve Anti-Cheat (VAC), Easy Anti-Cheat (EAC), an
 DoubleClickFix operates at the Windows input level, far removed from the game-specific vectors that anti-cheat systems monitor. Many legitimate accessibility tools and hardware drivers use similar low-level hooks without issue.
 
 **Disclaimer**: While the risk is extremely low, no third-party tool can be guaranteed to be 100% safe with all present and future anti-cheat systems. The use of any system-level tool alongside protected games is at your own discretion. However, given its function and architecture, DoubleClickFix is considered a low-risk utility for addressing a hardware-level problem.
+
 For official information, refer e.g. to Valve's [VAC documentation](https://help.steampowered.com/en/faqs/view/571A-97DA-70E9-FF74).
+
 ---
 
 ## 🛠️ Technical Notes
-Some technical details mostly for development.
+Some technical details - mostly for development.
 
 ### 🖥️ Command-Line Arguments
 - **`-nohook`** – Runs the app without registering the mouse hook. Useful for UI testing or debugging (automatically applied in debug mode).
