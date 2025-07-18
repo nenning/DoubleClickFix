@@ -31,6 +31,10 @@
 	  <WarningLevel>9999</WarningLevel>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<Content Include="app.ico" />
 	</ItemGroup>
