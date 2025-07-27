@@ -124,7 +124,7 @@ internal class MouseHook : IDisposable
             try
             {
                 mouseProc = HookCallback;
-                hookHandle = SetHook(mouseProc);
+                hookHandle = nativeMethods.SetHook(mouseProc);
             }
             catch (Win32Exception ex)
             {
@@ -140,7 +140,7 @@ internal class MouseHook : IDisposable
         {
             try
             {
-                UnhookWindowsHook(hookHandle);
+                nativeMethods.UnhookWindowsHook(hookHandle);
             }
             catch (Win32Exception ex)
             {
@@ -175,17 +175,9 @@ internal class MouseHook : IDisposable
 
     public void RegisterForRawInput(nint hwnd)
     {
-        var device = new RAWINPUTDEVICE
-        {
-            UsagePage = HID_USAGE_PAGE_GENERIC,
-            Usage = HID_USAGE_GENERIC_MOUSE,
-            Flags = RIDEV_INPUTSINK,
-            Target = hwnd
-        };
-
         try
         {
-            RegisterRawInputDevicesOrThrow([device], 1, (uint)Marshal.SizeOf(device));
+            nativeMethods.RegisterForRawInput(hwnd);
         }
         catch (Win32Exception ex)
         {
@@ -195,29 +187,13 @@ internal class MouseHook : IDisposable
 
     public void ProcessRawInput(nint hRawInput)
     {
-        uint dwSize = 0;
-        _ = GetRawInputData(hRawInput, RID_INPUT, nint.Zero, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
-        nint buffer = Marshal.AllocHGlobal((int)dwSize);
-        try
+        if (nativeMethods.TryProcessRawInput(hRawInput, out var device))
         {
-            if (GetRawInputData(hRawInput, RID_INPUT, buffer, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>()) != dwSize)
-                return;
-
-            var raw = Marshal.PtrToStructure<RAWINPUT>(buffer);
-
-            if (raw.Header.Type == RIM_TYPEMOUSE)
+            if (currentDevice != device)
             {
-                var device = raw.Header.Device;
-                if (currentDevice != device)
-                {
-                    logger.Log($"{Resources.SwitchedDevice} {device}", true);
-                    currentDevice = device;
-                }
+                logger.Log($"{Resources.SwitchedDevice} {device}", true);
+                currentDevice = device;
             }
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(buffer);
         }
     }
 
@@ -399,29 +375,19 @@ internal class MouseHook : IDisposable
 
     private MouseButtons GetXButton(uint mouseData)
     {
-        const int MK_XBUTTON1_DOWN = 0x0020;
-        const int MK_XBUTTON2_DOWN = 0x0040;
-        const int XBUTTON1_UP = 0x0001;
-        const int XBUTTON2_UP = 0x0002;
+        const int XBUTTON1 = 0x0001;
+        const int XBUTTON2 = 0x0002;
 
-        ushort loWord = unchecked((ushort)(ulong)mouseData);
         ushort hiWord = unchecked((ushort)((ulong)mouseData >> 16));
-        if (settings.X1Threshold >=0 && ((loWord & MK_XBUTTON1_DOWN) != 0 || (hiWord & XBUTTON1_UP) != 0))
+        if (settings.X1Threshold >= 0 && (hiWord & XBUTTON1) != 0)
         {
             return MouseButtons.XButton1;
         }
-        else if (settings.X2Threshold >= 0 && ((loWord & MK_XBUTTON2_DOWN) != 0 || (hiWord & XBUTTON2_UP) != 0))
+        else if (settings.X2Threshold >= 0 && (hiWord & XBUTTON2) != 0)
         {
             return MouseButtons.XButton2;
         }
         return MouseButtons.None;
-    }
-      
-    private static nint SetHook(LowLevelMouseProc proc)
-    {
-        using var currentModule = Process.GetCurrentProcess().MainModule!;
-        var moduleHandle = GetModuleHandleOrThrow(currentModule.ModuleName!);
-        return SetWindowsHook(WH_MOUSE_LL, proc, moduleHandle, 0);
     }
 
     public void Dispose()

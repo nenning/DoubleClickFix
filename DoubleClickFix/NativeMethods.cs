@@ -5,7 +5,7 @@ namespace DoubleClickFix;
 
 internal class NativeMethods : INativeMethods
 {
-    internal const int WH_MOUSE_LL = 14;
+    private const int WH_MOUSE_LL = 14;
 
     internal const nint WM_MOUSEMOVE = 0x0200;
     internal const nint WM_LBUTTONDOWN = 0x0201;
@@ -45,9 +45,9 @@ internal class NativeMethods : INativeMethods
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     private static extern nint SetWindowsHookEx(int idHook, LowLevelMouseProc lpfn, nint hMod, uint dwThreadId);
 
-    internal static nint SetWindowsHook(int idHook, LowLevelMouseProc lpfn, nint hMod, uint dwThreadId)
+    public nint SetHook(LowLevelMouseProc lpfn)
     {
-        var hhk = SetWindowsHookEx(idHook, lpfn, hMod, dwThreadId);
+        var hhk = SetWindowsHookEx(WH_MOUSE_LL, lpfn, nint.Zero, 0);
         return hhk == nint.Zero ? throw new Win32Exception(Marshal.GetLastWin32Error()) : hhk;
     }
 
@@ -55,7 +55,7 @@ internal class NativeMethods : INativeMethods
     [return: MarshalAs(UnmanagedType.Bool)]
     private static extern bool UnhookWindowsHookEx(nint hhk);
 
-    internal static void UnhookWindowsHook(nint hhk)
+    public void UnhookWindowsHook(nint hhk)
     {
         if (!UnhookWindowsHookEx(hhk))
         {
@@ -71,30 +71,59 @@ internal class NativeMethods : INativeMethods
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     private static extern nint CallNextHookEx(nint hhk, int nCode, nint wParam, nint lParam);
 
-    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    private static extern nint GetModuleHandle(string lpModuleName);
-
-    internal static nint GetModuleHandleOrThrow(string lpModuleName)
-    {
-        var handle = GetModuleHandle(lpModuleName);
-        return handle == nint.Zero ? throw new Win32Exception(Marshal.GetLastWin32Error()) : handle;
-    }
-
     // raw input methods
 
     [DllImport("User32.dll", SetLastError = true)]
     private static extern bool RegisterRawInputDevices(RAWINPUTDEVICE[] pRawInputDevice, uint uiNumDevices, uint cbSize);
 
-    internal static void RegisterRawInputDevicesOrThrow(RAWINPUTDEVICE[] pRawInputDevice, uint uiNumDevices, uint cbSize)
+    public void RegisterForRawInput(nint hwnd)
     {
-        if (!RegisterRawInputDevices(pRawInputDevice, uiNumDevices, cbSize))
+        var device = new RAWINPUTDEVICE
+        {
+            UsagePage = HID_USAGE_PAGE_GENERIC,
+            Usage = HID_USAGE_GENERIC_MOUSE,
+            Flags = RIDEV_INPUTSINK,
+            Target = hwnd
+        };
+
+        if (!RegisterRawInputDevices([device], 1, (uint)Marshal.SizeOf(device)))
         {
             throw new Win32Exception(Marshal.GetLastWin32Error());
         }
     }
 
+    public bool TryProcessRawInput(nint hRawInput, out nint device)
+    {
+        uint dwSize = 0;
+        _ = GetRawInputData(hRawInput, RID_INPUT, nint.Zero, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
+        nint buffer = Marshal.AllocHGlobal((int)dwSize);
+        try
+        {
+            if (GetRawInputData(hRawInput, RID_INPUT, buffer, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>()) != dwSize)
+            {
+                device = 0;
+                return false;
+            }
+
+            var raw = Marshal.PtrToStructure<RAWINPUT>(buffer);
+
+            if (raw.Header.Type == RIM_TYPEMOUSE)
+            {
+                device = raw.Header.Device;
+                return true;
+            }
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(buffer);
+        }
+
+        device = 0;
+        return false;
+    }
+
     [StructLayout(LayoutKind.Sequential)]
-    internal struct RAWINPUTDEVICE
+    private struct RAWINPUTDEVICE
     {
         public ushort UsagePage;
         public ushort Usage;
@@ -102,15 +131,15 @@ internal class NativeMethods : INativeMethods
         public nint Target;
     }
 
-    internal const int RIDEV_INPUTSINK = 0x00000100;
-    internal const int HID_USAGE_PAGE_GENERIC = 0x01;
-    internal const int HID_USAGE_GENERIC_MOUSE = 0x02;
+    private const int RIDEV_INPUTSINK = 0x00000100;
+    private const int HID_USAGE_PAGE_GENERIC = 0x01;
+    private const int HID_USAGE_GENERIC_MOUSE = 0x02;
 
     [DllImport("User32.dll")]
-    internal static extern uint GetRawInputData(nint hRawInput, uint uiCommand, nint pData, ref uint pcbSize, uint cbSizeHeader);
+    private static extern uint GetRawInputData(nint hRawInput, uint uiCommand, nint pData, ref uint pcbSize, uint cbSizeHeader);
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct RAWINPUTHEADER
+    private struct RAWINPUTHEADER
     {
         public uint Type;
         public uint Size;
@@ -119,7 +148,7 @@ internal class NativeMethods : INativeMethods
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct RAWMOUSE
+    private struct RAWMOUSE
     {
         public ushort Flags;
         public ushort ButtonFlags;
@@ -131,17 +160,17 @@ internal class NativeMethods : INativeMethods
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct RAWINPUT
+    private struct RAWINPUT
     {
         public RAWINPUTHEADER Header;
         public RAWMOUSE Mouse;
     }
 
-    internal const uint RID_INPUT = 0x10000003;
-    internal const uint RIM_TYPEMOUSE = 0x00000000;
+    private const uint RID_INPUT = 0x10000003;
+    private const uint RIM_TYPEMOUSE = 0x00000000;
 
     // For showing the existing window
-    [DllImport("user32.dll")]
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
     internal static extern IntPtr FindWindow(string? lpClassName, string lpWindowName);
 
     [DllImport("user32.dll")]

@@ -12,10 +12,52 @@
 /// </summary>
 class TestNativeMethods : INativeMethods
 {
-    public int CallCounter { get; private set; }
+    public int CallNextHookCounter { get; private set; }
+    public int SetHookCounter { get; private set; }
+    public int UnhookWindowsHookCounter { get; private set; }
+    public int RegisterForRawInputCounter { get; private set; }
+    public int ProcessRawInputCounter { get; private set; }
+
+    public nint NextHookResult { get; set; } = nint.Zero;
+    public nint SetHookResult { get; set; } = new(123);
+    public Action? UnhookWindowsHookAction { get; set; }
+    public Action? RegisterForRawInputAction { get; set; }
+    public Func<nint, (bool, nint)>? ProcessRawInputFunc { get; set; }
+
     public nint CallNextHook(nint hhk, int nCode, nint wParam, nint lParam)
     {
-        CallCounter++;
-        return nint.Zero;
+        CallNextHookCounter++;
+        return NextHookResult;
+    }
+
+    public nint SetHook(NativeMethods.LowLevelMouseProc proc)
+    {
+        SetHookCounter++;
+        return SetHookResult;
+    }
+
+    public void UnhookWindowsHook(nint hhk)
+    {
+        UnhookWindowsHookCounter++;
+        UnhookWindowsHookAction?.Invoke();
+    }
+
+    public void RegisterForRawInput(nint hwnd)
+    {
+        RegisterForRawInputCounter++;
+        RegisterForRawInputAction?.Invoke();
+    }
+
+    public bool TryProcessRawInput(nint hRawInput, out nint device)
+    {
+        ProcessRawInputCounter++;
+        if (ProcessRawInputFunc != null)
+        {
+            var (result, dev) = ProcessRawInputFunc(hRawInput);
+            device = dev;
+            return result;
+        }
+        device = 0;
+        return false;
     }
 }

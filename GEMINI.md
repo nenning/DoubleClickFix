@@ -49,4 +49,4 @@ The use of `IntPtr` ensures that the native calls are compatible across differen
 
 ## Other topics
 
-Make sure to keep the file encoding as it is. C# files are unicode (UTF-8) with signature.
+Make sure to keep the file encoding as it is. C# files are UTF-8 with signature (code page 65001).
