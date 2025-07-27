@@ -165,6 +165,9 @@
   <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
     <value>Korrektur aktiviert</value>
   </data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve">
+    <value>Doppelklick-Korrektur für jede Maustaste separat aktivieren</value>
+  </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Linke Maustaste</value>
   </data>

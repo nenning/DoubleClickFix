@@ -165,6 +165,9 @@
   <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
     <value>Correction activée</value>
   </data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve">
+    <value>Activer la correction du double-clic pour chaque bouton de la souris séparément</value>
+  </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Bouton gauche de la souris</value>
   </data>
