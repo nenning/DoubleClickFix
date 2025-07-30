@@ -264,9 +264,9 @@
             // 
             // descriptionTextBox
             // 
+            resources.ApplyResources(descriptionTextBox, "descriptionTextBox");
             descriptionTextBox.BackColor = SystemColors.Control;
             descriptionTextBox.BorderStyle = BorderStyle.None;
-            resources.ApplyResources(descriptionTextBox, "descriptionTextBox");
             descriptionTextBox.Name = "descriptionTextBox";
             descriptionTextBox.ReadOnly = true;
             descriptionTextBox.TabStop = false;
@@ -281,20 +281,21 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(descriptionTextBox);
             resources.ApplyResources(groupBox2, "groupBox2");
+            groupBox2.Controls.Add(descriptionTextBox);
             groupBox2.Name = "groupBox2";
             groupBox2.TabStop = false;
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(logTextBox);
             resources.ApplyResources(groupBox3, "groupBox3");
+            groupBox3.Controls.Add(logTextBox);
             groupBox3.Name = "groupBox3";
             groupBox3.TabStop = false;
             // 
             // groupBox4
             // 
+            resources.ApplyResources(groupBox4, "groupBox4");
             groupBox4.Controls.Add(x2);
             groupBox4.Controls.Add(x1);
             groupBox4.Controls.Add(middle);
@@ -302,7 +303,6 @@
             groupBox4.Controls.Add(right);
             groupBox4.Controls.Add(richTextBox1);
             groupBox4.Controls.Add(pictureBox1);
-            resources.ApplyResources(groupBox4, "groupBox4");
             groupBox4.Name = "groupBox4";
             groupBox4.TabStop = false;
             // 
