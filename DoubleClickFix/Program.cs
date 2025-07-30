@@ -1,11 +1,8 @@
 using DoubleClickFix.Properties;
-using System.Reflection;
 
 namespace DoubleClickFix;
-
-class Program
+internal class Program
 {
-
     private static bool IsRunningFromStore()
     {
         try
@@ -14,7 +11,7 @@ class Program
         }
         catch
         {
-            return false; // Standalone executable
+            return false; // standalone executable
         }
     }
 
@@ -29,7 +26,7 @@ class Program
             }
             else
             {
-                return Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "";
+                return typeof(Program).Assembly.GetName().Version?.ToString() ?? "";
             }
         }
         catch
@@ -39,25 +36,32 @@ class Program
     }
 
     [STAThread]
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-        Logger logger = new();
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+
+        using Logger logger = new();
+
         bool isRunningFromStore = IsRunningFromStore();
-        if (isRunningFromStore) 
+        if (isRunningFromStore)
         {
-            // Register for restart on system-driven shutdown so the application is actually restarted after a Microsoft store update.
+            // allow the store to restart the app after an update
             NativeMethods.RegisterApplicationRestart("-restart", 0);
         }
 
-        ISettings settings = isRunningFromStore ? new StoreSettings(args, logger) : new StandaloneSettings(args, logger);
+        ISettings settings = isRunningFromStore
+            ? new StoreSettings(args, logger)
+            : new StandaloneSettings(args, logger);
 
+        // enforce single instance via mutex
         using Mutex mutex = new(true, "{F8049D9C-AD6B-4158-92A3-E537355EF536}");
         if (settings.UseHook && !mutex.WaitOne(TimeSpan.Zero, true))
         {
+            // an instance is already running – bring its UI to the front
             var resources = new System.ComponentModel.ComponentResourceManager(typeof(InteractiveForm));
             var windowTitle = resources.GetString("$this.Text") ?? "Double-click Fix";
             IntPtr hWnd = NativeMethods.FindWindow(null, windowTitle);
-
             if (hWnd != IntPtr.Zero)
             {
                 NativeMethods.PostMessage(hWnd, NativeMethods.WM_SHOWME, IntPtr.Zero, IntPtr.Zero);
@@ -73,34 +77,41 @@ class Program
         using MouseHook mouseHook = new(settings, logger, new NativeMethods());
         try
         {
-            IStartupRegistry startupRegistry = isRunningFromStore ? new StoreStartupRegistry(logger) : new StandaloneStartupRegistry(logger);
+            IStartupRegistry startupRegistry = isRunningFromStore
+                ? new StoreStartupRegistry(logger)
+                : new StandaloneStartupRegistry(logger);
+
             if (settings.IsFirstAppStart)
             {
                 startupRegistry.Register();
             }
+
             InteractiveForm form = new(startupRegistry, settings, logger, mouseHook.ProcessRawInput, GetVersion());
-            if (settings.IsInteractive)
+            if (!settings.IsInteractive)
             {
-                form.Visible = true;
+                // Minimize and hide the form so it does not flash on start
+                form.ShowInTaskbar = false;
+                form.WindowState = FormWindowState.Minimized;
+                form.Hide();
             }
+
+            // register for raw input before installing the hook
             mouseHook.RegisterForRawInput(form.Handle);
-            if (!(mouseHook.Install()))
+            if (!mouseHook.Install())
             {
                 form.Text = "No mouse hook installed!";
                 form.BackColor = Color.DarkRed;
                 logger.Log($"{Resources.Error}: {Resources.HookNotInstalled}");
             }
-            Application.Run();
+
+            Application.Run(form);
         }
         finally
         {
+            // release the mutex if we acquired it
             if (settings.UseHook)
             {
-                try
-                {
-                    mutex.ReleaseMutex();
-                }
-                catch { }
+                try { mutex.ReleaseMutex(); } catch { }
             }
         }
     }

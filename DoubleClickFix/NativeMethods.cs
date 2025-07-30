@@ -96,7 +96,13 @@ internal class NativeMethods : INativeMethods
     {
         uint dwSize = 0;
         _ = GetRawInputData(hRawInput, RID_INPUT, nint.Zero, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
-        nint buffer = Marshal.AllocHGlobal((int)dwSize);
+        // refuse to allocate absurdly large buffers
+        if (dwSize == 0 || dwSize > int.MaxValue)
+        {
+            device = 0;
+            return false;
+        }
+        nint buffer = Marshal.AllocHGlobal((IntPtr)dwSize);
         try
         {
             if (GetRawInputData(hRawInput, RID_INPUT, buffer, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>()) != dwSize)
@@ -106,7 +112,6 @@ internal class NativeMethods : INativeMethods
             }
 
             var raw = Marshal.PtrToStructure<RAWINPUT>(buffer);
-
             if (raw.Header.Type == RIM_TYPEMOUSE)
             {
                 device = raw.Header.Device;
@@ -115,9 +120,11 @@ internal class NativeMethods : INativeMethods
         }
         finally
         {
-            Marshal.FreeHGlobal(buffer);
+            if (buffer != nint.Zero)
+            {
+                Marshal.FreeHGlobal(buffer);
+            }
         }
-
         device = 0;
         return false;
     }

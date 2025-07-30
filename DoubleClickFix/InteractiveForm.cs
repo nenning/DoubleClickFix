@@ -1,4 +1,4 @@
-using DoubleClickFix.Properties;
+﻿using DoubleClickFix.Properties;
 using System.Diagnostics;
 using System.Globalization;
 namespace DoubleClickFix;
@@ -136,6 +136,7 @@ internal partial class InteractiveForm : Form
 
     private void ShowForm()
     {
+        this.ShowInTaskbar = true;
         this.Show();
         if (this.WindowState == FormWindowState.Minimized)
         {
@@ -143,7 +144,10 @@ internal partial class InteractiveForm : Form
             this.logTextBox.SelectionStart = logTextBox.Text.Length;
             logTextBox.ScrollToCaret();
         }
-        this.BringToFront();
+        if (!this.Focused)
+        {
+            NativeMethods.SetForegroundWindow(this.Handle);
+        }
     }
 
     private void OnFormClosing(object? sender, FormClosingEventArgs e)

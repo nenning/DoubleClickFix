@@ -27,7 +27,7 @@ namespace DoubleClickFix
         public SettingsBase(string[] args, ILogger logger)
         {
             this.logger = logger;
-            UseHook = !Debugger.IsAttached || args.Length == 0 || !args.Contains("-nohook");
+            UseHook = !Debugger.IsAttached && (args.Length == 0 || !args.Contains("-nohook"));
             IsFirstAppStart = !SettingsExist();
             IsInteractive = Debugger.IsAttached || IsFirstAppStart || args.Length > 0 && (args.Contains("-interactive") || args.Contains("-i"));
             ApplyLanguageOverride();

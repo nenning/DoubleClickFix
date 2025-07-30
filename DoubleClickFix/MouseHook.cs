@@ -306,7 +306,12 @@ internal class MouseHook : IDisposable
             initialDownTime[activeButton] = hookStruct.time;   // ensure Dictionary<MouseButtons,long> exists
             lastMoveTime[activeButton] = hookStruct.time;
 
-            long delta = hookStruct.time - previousUpTime[activeButton];
+            // MSLLHOOKSTRUCT.time is a 32‑bit millisecond timer that wraps roughly every 49 days.
+            // Subtracting two uint values and storing the result in a long can produce a negative result after wrap‑around.
+            // Compute the difference as an unsigned subtraction first, then cast to long
+            uint diff = unchecked(hookStruct.time - previousUpTime[activeButton]);
+            long delta = diff;
+            
             bool belowMin = settings.MinDelay >= 0 && delta <= settings.MinDelay;
             bool ignore = delta < threshold && !belowMin;
 
@@ -368,8 +373,13 @@ internal class MouseHook : IDisposable
 
     private bool ProcessMouseEvent(int nCode, nint wParam)
     {
+        // TODO fix this workaround when running in x64 as well.
+        // Compare against the 32‑bit value of currentDevice; on 64‑bit OSes, the upper bits
+        // of currentDevice are ignored for this comparison.
+        int currentDeviceId = unchecked((int)currentDevice);
+
         return nCode >= 0
-            && settings.IgnoredDevice != currentDevice
+            && settings.IgnoredDevice != currentDeviceId
             && observedMessages.Contains(wParam);
     }
 
