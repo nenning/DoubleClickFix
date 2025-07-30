@@ -8,7 +8,7 @@ DoubleClickFix is a C# .NET Windows Forms application designed to intercept and 
 
 ## Project Structure
 
-The solution (`DoubleClickFix.sln`) contains the following key projects:
+The solution (`DoubleClickFix.slnx`) contains the following key projects:
 
 -   **`DoubleClickFix/`**: The main Windows Forms application project (`.csproj`). This contains the core logic for the mouse hook and the user interface.
 -   **`DoubleClickFix.Package/`**: A Windows Application Packaging Project (`.wapproj`) used to build the MSIX package for distribution via the Microsoft Store.

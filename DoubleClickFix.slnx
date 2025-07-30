@@ -4,6 +4,7 @@
   </Configurations>
   <Folder Name="/Solution Items/">
     <File Path=".github/workflows/dotnet.yml" />
+    <File Path="GEMINI.md" />
     <File Path="readme.md" />
   </Folder>
   <Project Path="DoubleClickFix.Package/DoubleClickFix.Package.wapproj" Type="c7167f0d-bc9f-4e6e-afe1-012c56b48db5">
