@@ -36,74 +36,11 @@ internal class Program
         }
     }
 
-    private static void SetupExceptionHandlers(Logger logger, MouseHook mouseHook)
-    {
-        Application.ThreadException += (sender, e) =>
-        {
-            // Uninstall hook to clean up
-            mouseHook.Uninstall();
-            logger.Log($"[UI Exception] {e.Exception}", foregroundOnly: true);
-
-            // Ask the user what to do
-            var result = MessageBox.Show(
-                "An unexpected error occurred:\n\n" +
-                $"{e.Exception.Message}\n\n" +
-                "Would you like to restart the application?\n\n" +
-                "Yes = Restart   No = Exit   Cancel = Continue",
-                "Double-click fix: Application Error",
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Error,
-                MessageBoxDefaultButton.Button1);
-
-            switch (result)
-            {
-                case DialogResult.Yes:
-                    // Restart: launches a fresh copy, then exits this one
-                    Application.Restart();
-                    Environment.Exit(0);
-                    break;
-
-                case DialogResult.No:
-                    // Exit without restarting
-                    Application.Exit();
-                    break;
-
-                case DialogResult.Cancel:
-                default:
-                    // Continue running: re-install mouse hook and carry on
-                    mouseHook.Install();
-                    break;
-            }
-        };
-
-        // Handle exceptions on any non-UI thread (thread‑pool, timers, etc.)
-        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
-        {
-            mouseHook.Uninstall();
-            if (e.ExceptionObject is Exception ex)
-            {
-                try
-                {
-                    Debug.WriteLine($"[Domain Exception] {ex}");
-                    logger.Log($"[Domain Exception] {ex}");
-                }
-                catch { }
-            }
-        };
-
-        // Handle unobserved task exceptions as a last‑resort for async code
-        TaskScheduler.UnobservedTaskException += (sender, e) => {
-            logger.Log($"[Task Exception] {e.Exception}");
-            e.SetObserved();     // prevent the exception escalation policy (which might crash)
-        };
-    }
-
     [STAThread]
     private static void Main(string[] args)
     {
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
-        Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
         using Logger logger = new();
 
@@ -181,4 +118,66 @@ internal class Program
             }
         }
     }
+    private static void SetupExceptionHandlers(Logger logger, MouseHook mouseHook)
+    {
+        Application.ThreadException += (sender, e) =>
+        {
+            // Uninstall hook to clean up
+            mouseHook.Uninstall();
+            logger.Log($"[UI Exception] Please report this as a github issue: {e.Exception}");
+
+            // Ask the user what to do
+            var result = MessageBox.Show(
+                "An unexpected error occurred: \n\n" +
+                $"{e.Exception.Message}\n\n" +
+                "Would you like to restart the application?\n\n" +
+                "Yes = Restart   No = Exit   Cancel = Continue",
+                "Double-click fix: Application Error",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Error,
+                MessageBoxDefaultButton.Button1);
+
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    // Restart: launches a fresh copy, then exits this one
+                    Application.Restart();
+                    Environment.Exit(0);
+                    break;
+
+                case DialogResult.No:
+                    // Exit without restarting
+                    Application.Exit();
+                    break;
+
+                case DialogResult.Cancel:
+                default:
+                    // Continue running: re-install mouse hook and carry on
+                    mouseHook.Install();
+                    break;
+            }
+        };
+
+        // Handle exceptions on any non-UI thread (thread‑pool, timers, etc.)
+        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+        {
+            mouseHook.Uninstall();
+            if (e.ExceptionObject is Exception ex)
+            {
+                try
+                {
+                    Debug.WriteLine($"[Domain Exception] {ex}");
+                    logger.Log($"[Domain Exception] Please report this as a github issue: {ex}");
+                }
+                catch { }
+            }
+        };
+
+        // Handle unobserved task exceptions as a last‑resort for async code
+        TaskScheduler.UnobservedTaskException += (sender, e) => {
+            logger.Log($"[Task Exception] Please report this as a github issue: {e.Exception}");
+            e.SetObserved();     // prevent the exception escalation policy (which might crash)
+        };
+    }
+
 }
