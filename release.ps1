@@ -25,32 +25,16 @@ if (-not $Version) {
     Write-Host "Current version: $currentVersion -> New version: $Version"
 }
 
-# 1. Update Directory.Build.props
+# Update Directory.Build.props
 (Get-Content Directory.Build.props) -replace '<Version>.*</Version>', "<Version>$Version</Version>" | Set-Content Directory.Build.props
 
 Write-Host "Updated version to $Version in Directory.Build.props"
 
-# 2. Build the solution
-Write-Host "Building the solution for AnyCPU..."
-msbuild DoubleClickFix.slnx /p:Configuration=Release /p:Platform="Any CPU"
-if ($LASTEXITCODE -ne 0) {
-    Write-Error "Solution build failed. Aborting release."
-    exit 1
-}
-
-# 3. Build the standalone release
+# Build the standalone release
 Write-Host "Building standalone release for AnyCPU..."
 msbuild DoubleClickFix/DoubleClickFix.csproj /p:Configuration=Release /p:Platform=AnyCPU
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Standalone release build failed. Aborting release."
-    exit 1
-}
-
-# 4. Build the store package
-Write-Host "Building store package..."
-msbuild DoubleClickFix.Package/DoubleClickFix.Package.wapproj /p:Configuration=Release /p:AppxBundle=Always /p:AppxBundlePlatforms="x86|x64|arm64"
-if ($LASTEXITCODE -ne 0) {
-    Write-Error "Store package build failed. Aborting release."
     exit 1
 }
 
@@ -64,4 +48,5 @@ Write-Host "Release process complete."
 Write-Host "Next steps:"
 Write-Host "1. Push the commit and tag to GitHub: git push --follow-tags"
 Write-Host "   This will trigger the GitHub Action to create the release."
-Write-Host "2. Upload the generated .msixbundle from DoubleClickFix.Package/AppPackages to the Microsoft Partner Center."
+Write-Host "2. Publish the package project from Visual Studio."
+Write-Host "   Upload the generated .msixbundle from DoubleClickFix.Package/AppPackages to the Microsoft Partner Center."
