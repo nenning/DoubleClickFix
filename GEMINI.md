@@ -23,20 +23,12 @@ The application is built using MSBuild or Visual Studio.
 
 ### Platform Architecture
 
-The project is configured to build for `x86` architecture due to troubles with the Microsoft Store. The `DoubleClickFix.Package.wapproj` is configured to create an `AppxBundle`.
+The project is configured to build for `x86`, `x64`, `arm64` architecture for the Microsoft Store. The `DoubleClickFix.Package.wapproj` is configured to create an `AppxBundle`.
+For normal solution builds and standalone releases `AnyCPU` shall be used.
 
 ### Key Build Commands
 
-While you can build through the Visual Studio UI, you can also use the command line:
-
--   **Build the solution (Release configuration):**
-    ```bash
-    msbuild DoubleClickFix.sln /p:Configuration=Release
-    ```
--   **Create the MSIX package bundle:**
-    ```bash
-    msbuild DoubleClickFix.Package/DoubleClickFix.Package.wapproj /p:Configuration=Release /p:AppxBundle=Always /p:AppxBundlePlatforms="x86|x64|arm64"
-    ```
+msbuild DoubleClickFix/DoubleClickFix.csproj /p:Configuration=Release /p:Platform=AnyCPU
 
 ## Native Dependencies
 
@@ -45,8 +37,8 @@ The application uses P/Invoke to call native Windows APIs for the low-level mous
 - `DoubleClickFix/INativeMethods.cs`
 - `DoubleClickFix/MouseHook.cs`
 
-The use of `IntPtr` ensures that the native calls are compatible across different system architectures.
+The use of `IntPtr` or `nint` ensures that the native calls are compatible across different system architectures.
 
 ## Other topics
 
-Make sure to keep the file encoding as it is. C# files are UTF-8 with signature (code page 65001).
+Make absolutely sure to keep the file encodings as they are when doing edits! C# files are always UTF-8 with signature (code page 65001)!
