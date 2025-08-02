@@ -68,6 +68,11 @@ internal class MouseHook : IDisposable
     private readonly Dictionary<MouseButtons, long> lastMoveTime = [];
     private readonly Dictionary<MouseButtons, bool> isDragLocked = [];
     private readonly Dictionary<MouseButtons, long> initialDownTime = [];
+    
+    // for timing information
+    private readonly Stopwatch stopwatch = new();
+    private readonly List<long> timings = new(1000);
+    private const int TimingBufferSize = 1000;
 
     public MouseHook(ISettings settings, ILogger logger, INativeMethods nativeMethods)
     {
@@ -199,6 +204,7 @@ internal class MouseHook : IDisposable
 
     internal nint HookCallback(int nCode, nint wParam, nint lParam)
     {
+        stopwatch.Restart();
         try
         {
             if (wParam == WM_MOUSEMOVE)
@@ -215,6 +221,11 @@ internal class MouseHook : IDisposable
         {
             logger.Log($"Error in hook callback: {ex}");
             return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+        }
+        finally
+        {
+            stopwatch.Stop();
+            LogTimingInfo(stopwatch.ElapsedTicks);
         }
     }
 
@@ -404,5 +415,33 @@ internal class MouseHook : IDisposable
     {
         SystemEvents.PowerModeChanged -= OnPowerModeChanged;
         Uninstall();
+    }
+
+    private void LogTimingInfo(long elapsedTicks)
+    {
+        lock (timings)
+        {
+            timings.Add(elapsedTicks);
+            if (timings.Count >= TimingBufferSize)
+            {
+                long maxTicks = 0;
+                long totalTicks = 0;
+                foreach (var timing in timings)
+                {
+                    if (timing > maxTicks)
+                    {
+                        maxTicks = timing;
+                    }
+                    totalTicks += timing;
+                }
+
+                var averageTicks = (double)totalTicks / timings.Count;
+                var averageMs = averageTicks * 1000 / Stopwatch.Frequency;
+                var maxMs = (double)maxTicks * 1000 / Stopwatch.Frequency;
+
+                logger.Log($"Average hook processing time: {averageMs:F4} ms, max: {maxMs:F4} ms over {timings.Count} samples.");
+                timings.Clear();
+            }
+        }
     }
 }
