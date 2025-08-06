@@ -76,7 +76,6 @@ internal class MouseHook : IDisposable
         settings.RegisterSettingsChangedListener(SettingsChanged);
         this.logger = logger;
         this.nativeMethods = nativeMethods;
-        SystemEvents.PowerModeChanged += OnPowerModeChanged;
     }
 
     private void SettingsChanged()
@@ -154,24 +153,7 @@ internal class MouseHook : IDisposable
         }
     }
 
-    private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
-    {
-        // not strictly necessary, but in case of a mouse hook timeout, at least we get the hook back on resume. 
-        switch (e.Mode)
-        {
-            case PowerModes.Suspend:
-                Uninstall();
-                break;
-            case PowerModes.Resume:
-                if (!Install())
-                {
-                    logger.Log("Failed to reinstall mouse hook after Windows resume."); // TODO translate.
-                }
-                break;
-            default:
-                break;
-        }
-    }
+    
 
     public void RegisterForRawInput(nint hwnd)
     {
@@ -318,9 +300,7 @@ internal class MouseHook : IDisposable
             if (ignore)
             {
                 ignoredClicks++;
-                logger.Log(
-                $"{ignoredDoubleClickText} ({buttonTextLookup[activeButton]}): {delta} ms (#{ignoredClicks})"
-                );
+                logger.Log($"{ignoredDoubleClickText} ({buttonTextLookup[activeButton]}): {delta} ms (#{ignoredClicks})");
                 previousUpTime[activeButton] = 0;
                 return IgnoreMouseEvent;
             }
@@ -402,7 +382,6 @@ internal class MouseHook : IDisposable
 
     public void Dispose()
     {
-        SystemEvents.PowerModeChanged -= OnPowerModeChanged;
         Uninstall();
     }
 }

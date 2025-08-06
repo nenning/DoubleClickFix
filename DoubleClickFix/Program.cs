@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using DoubleClickFix.Properties;
+using Microsoft.Win32;
 
 namespace DoubleClickFix;
 internal class Program
@@ -76,7 +77,7 @@ internal class Program
         }
 
         using MouseHook mouseHook = new(settings, logger, new NativeMethods());
-        SetupExceptionHandlers(logger, mouseHook);
+        using SystemEventsHandler eventsHandler = new(mouseHook, logger);
 
         try
         {
@@ -117,67 +118,6 @@ internal class Program
                 try { mutex.ReleaseMutex(); } catch { }
             }
         }
-    }
-    private static void SetupExceptionHandlers(Logger logger, MouseHook mouseHook)
-    {
-        Application.ThreadException += (sender, e) =>
-        {
-            // Uninstall hook to clean up
-            mouseHook.Uninstall();
-            logger.Log($"[UI Exception] Please report this as a github issue: {e.Exception}");
-
-            // Ask the user what to do
-            var result = MessageBox.Show(
-                "An unexpected error occurred: \n\n" +
-                $"{e.Exception.Message}\n\n" +
-                "Would you like to restart the application?\n\n" +
-                "Yes = Restart   No = Exit   Cancel = Continue",
-                "Double-click fix: Application Error",
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Error,
-                MessageBoxDefaultButton.Button1);
-
-            switch (result)
-            {
-                case DialogResult.Yes:
-                    // Restart: launches a fresh copy, then exits this one
-                    Application.Restart();
-                    Environment.Exit(0);
-                    break;
-
-                case DialogResult.No:
-                    // Exit without restarting
-                    Application.Exit();
-                    break;
-
-                case DialogResult.Cancel:
-                default:
-                    // Continue running: re-install mouse hook and carry on
-                    mouseHook.Install();
-                    break;
-            }
-        };
-
-        // Handle exceptions on any non-UI thread (thread‑pool, timers, etc.)
-        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
-        {
-            mouseHook.Uninstall();
-            if (e.ExceptionObject is Exception ex)
-            {
-                try
-                {
-                    Debug.WriteLine($"[Domain Exception] {ex}");
-                    logger.Log($"[Domain Exception] Please report this as a github issue: {ex}");
-                }
-                catch { }
-            }
-        };
-
-        // Handle unobserved task exceptions as a last‑resort for async code
-        TaskScheduler.UnobservedTaskException += (sender, e) => {
-            logger.Log($"[Task Exception] Please report this as a github issue: {e.Exception}");
-            e.SetObserved();     // prevent the exception escalation policy (which might crash)
-        };
     }
 
 }
