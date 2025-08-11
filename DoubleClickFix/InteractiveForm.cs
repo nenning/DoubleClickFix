@@ -62,16 +62,28 @@ internal partial class InteractiveForm : Form
         {
             Show();
         }
-        
         if (WindowState == FormWindowState.Minimized)
         {
             // Restore from minimized state
             NativeMethods.ShowWindow(this.Handle, NativeMethods.SW_RESTORE);
         }
-
-        // Bring to front and activate
         Activate();
         BringToFront();
+        EnsureLogAtEnd();
+    }
+
+    protected override void OnActivated(EventArgs e)
+    {
+        base.OnActivated(e);
+        EnsureLogAtEnd();
+    }
+
+    private void EnsureLogAtEnd()
+    {
+        if (logTextBox.IsDisposed) return;
+        logTextBox.SelectionStart = logTextBox.TextLength;
+        logTextBox.SelectionLength = 0;
+        logTextBox.ScrollToCaret();
     }
     private void SetupTestArea()
     {
@@ -141,8 +153,7 @@ internal partial class InteractiveForm : Form
         if (this.WindowState == FormWindowState.Minimized)
         {
             this.WindowState = FormWindowState.Normal;
-            this.logTextBox.SelectionStart = logTextBox.Text.Length;
-            logTextBox.ScrollToCaret();
+            EnsureLogAtEnd();
         }
         if (!this.Focused)
         {
@@ -373,7 +384,8 @@ internal partial class InteractiveForm : Form
             };
             Process.Start(info);
         }
-        catch {
+        catch
+        {
             Log(@"Failed to open https://github.com/nenning/DoubleClickFix");
         }
     }
