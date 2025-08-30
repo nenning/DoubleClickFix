@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System.Diagnostics;
 
 namespace DoubleClickFix;
@@ -9,14 +9,17 @@ internal class SystemEventsHandler : IDisposable
     private readonly MouseHook mouseHook;
     private readonly ILogger logger;
 
-    public SystemEventsHandler(MouseHook mouseHook, ILogger logger)
+    public SystemEventsHandler(MouseHook mouseHook, ILogger logger, bool installExceptionHandlers)
     {
         this.mouseHook = mouseHook;
         this.logger = logger;
 
         try
         {
-            SetupExceptionHandlers(mouseHook, logger);
+            if (installExceptionHandlers)
+            {
+                SetupExceptionHandlers(mouseHook, logger);
+            }
             SystemEvents.SessionSwitch += OnSessionSwitch;
             SystemEvents.SessionEnding += OnSessionEnding;
             SystemEvents.PowerModeChanged += OnPowerModeChanged;
@@ -64,7 +67,6 @@ internal class SystemEventsHandler : IDisposable
 
     private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
     {
-        // not strictly necessary, but in case of a mouse hook timeout, at least we get the hook back on resume. 
         switch (e.Mode)
         {
             case PowerModes.Suspend:

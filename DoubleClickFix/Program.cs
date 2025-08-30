@@ -77,7 +77,7 @@ internal class Program
         }
 
         using MouseHook mouseHook = new(settings, logger, new NativeMethods());
-        using SystemEventsHandler eventsHandler = new(mouseHook, logger);
+        using SystemEventsHandler eventsHandler = new(mouseHook, logger, !isRunningFromStore);
 
         try
         {
