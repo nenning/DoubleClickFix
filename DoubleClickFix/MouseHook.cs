@@ -61,6 +61,8 @@ internal class MouseHook : IDisposable
     private readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
     private FrozenSet<nint> observedMessages = [];
     private uint ignoredClicks = 0;
+    private readonly Dictionary<nint, uint> previousWheelTime = new();
+    private readonly Dictionary<nint, int> lastWheelDirection = new();
 
     // for drag‐lock handling
     private readonly HashSet<MouseButtons> currentlyDownButtons = [];
@@ -99,6 +101,11 @@ internal class MouseHook : IDisposable
         {
             messages.Add(WM_XBUTTONDOWN);
             messages.Add(WM_XBUTTONUP);
+        }
+        if (settings.WheelThreshold >= 0)
+        {
+            messages.Add(WM_MOUSEWHEEL);
+            messages.Add(WM_MOUSEHWHEEL);
         }
         if (!settings.IsDragCorrectionEnabled && currentlyDownButtons.Count > 0)
         {
@@ -179,13 +186,17 @@ internal class MouseHook : IDisposable
         }
     }
 
-    internal nint HookCallback(int nCode, nint wParam, nint lParam)
+        internal nint HookCallback(int nCode, nint wParam, nint lParam)
     {
         try
         {
             if (wParam == WM_MOUSEMOVE)
             {
                 HandleMouseMove(lParam);
+            }
+            else if (wParam == WM_MOUSEWHEEL || wParam == WM_MOUSEHWHEEL)
+            {
+                return HandleWheel(nCode, wParam, lParam);
             }
             else
             {
@@ -198,6 +209,62 @@ internal class MouseHook : IDisposable
             logger.Log($"Error in hook callback: {ex}");
             return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
         }
+    }
+
+    private nint HandleWheel(int nCode, nint wParam, nint lParam)
+    {
+        var hookStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
+        const nint IgnoreMouseEvent = 1;
+
+        if (!ProcessMouseEvent(nCode, wParam))
+        {
+            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+        }
+
+        short wheelDelta = (short)(hookStruct.mouseData >> 16);
+        int currentDirection = Math.Sign(wheelDelta);
+
+        if (!previousWheelTime.TryGetValue(wParam, out var prevTime))
+        {
+            prevTime = 0;
+        }
+
+        if (!lastWheelDirection.TryGetValue(wParam, out var lastDirection))
+        {
+            lastDirection = 0;
+        }
+
+        if (prevTime != 0 && currentDirection != lastDirection)
+        {
+            uint diff = unchecked(hookStruct.time - prevTime);
+            long delta = diff;
+
+            if (delta < settings.WheelThreshold)
+            {
+                ignoredClicks++;
+                logger.Log($"{Resources.IgnoredMouseWheel} ({GetDirectionArrow(wParam, currentDirection)}): {delta} ms (#{ignoredClicks})");
+                previousWheelTime[wParam] = 0; // Reset to avoid false positives
+                lastWheelDirection[wParam] = 0;
+                return IgnoreMouseEvent;
+            }
+        }
+
+        if (logger.IsAppVisible && prevTime != 0)
+        {
+            uint diff = unchecked(hookStruct.time - prevTime);
+            long delta = diff;
+            logger.Log($"{Resources.MouseWheelDelta} ({GetDirectionArrow(wParam, currentDirection)}): {delta} ms");
+        }
+
+        previousWheelTime[wParam] = hookStruct.time;
+        lastWheelDirection[wParam] = currentDirection;
+
+        return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+    }
+
+    private static string GetDirectionArrow(nint wParam, int currentDirection)
+    {
+        return wParam == WM_MOUSEWHEEL ? (currentDirection > 0 ? "↑" : "↓") : (currentDirection > 0 ? "→" : "←");
     }
 
     private void HandleMouseMove(nint lParam)

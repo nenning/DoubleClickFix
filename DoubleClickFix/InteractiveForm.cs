@@ -12,6 +12,7 @@ internal partial class InteractiveForm : Form
     private readonly Logger logger;
     private readonly Action<nint> rawInputProcessor;
     private readonly System.Windows.Forms.Timer debounceTimer;
+    private readonly System.Windows.Forms.Timer wheelResetTimer;
 
     public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, Action<IntPtr> rawInputProcessor, string version)
     {
@@ -26,6 +27,15 @@ internal partial class InteractiveForm : Form
             Interval = 100
         };
         debounceTimer.Tick += OnDebounceTimerTick;
+
+        wheelResetTimer = new();
+        wheelResetTimer.Interval = 500;
+        wheelResetTimer.Tick += (s, args) =>
+        {
+            wheel.BackColor = Color.Transparent;
+            wheelResetTimer.Stop();
+        };
+
         this.FormClosing += OnFormClosing;
         this.runAtStartupCheckBox.Checked = startup.IsRegistered();
         this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
@@ -89,9 +99,18 @@ internal partial class InteractiveForm : Form
     {
         pictureBox1.MouseDown += OnTestMouseDown;
         pictureBox1.MouseUp += OnTestMouseUp;
+        pictureBox1.MouseWheel += OnTestMouseWheel;
         richTextBox1.MouseDown += OnTestMouseDown;
         richTextBox1.MouseUp += OnTestMouseUp;
+        richTextBox1.MouseWheel += OnTestMouseWheel;
         OnHideTestControls(this, EventArgs.Empty);
+    }
+
+    private void OnTestMouseWheel(object? sender, MouseEventArgs e)
+    {
+        wheel.BackColor = Color.Red;
+        wheelResetTimer.Stop();
+        wheelResetTimer.Start();
     }
 
     private void OnTestMouseDown(object? sender, MouseEventArgs e)
@@ -240,6 +259,9 @@ internal partial class InteractiveForm : Form
             case 4:
                 threshold = settings.X2Threshold;
                 break;
+            case 5:
+                threshold = settings.WheelThreshold;
+                break;
         }
         buttonEnabledCheckBox.Checked = threshold >= 0;
         thresholdSlider.Value = threshold;
@@ -250,13 +272,15 @@ internal partial class InteractiveForm : Form
         left.Show();
         right.Show();
         middle.Show();
-        x1.Show();
+                x1.Show();
         x2.Show();
+        wheel.Show();
         left.Checked = settings.LeftThreshold >= 0;
         right.Checked = settings.RightThreshold >= 0;
         middle.Checked = settings.MiddleThreshold >= 0;
         x1.Checked = settings.X1Threshold >= 0;
         x2.Checked = settings.X2Threshold >= 0;
+        wheel.Checked = settings.WheelThreshold >= 0;
     }
 
     private void OnHideTestControls(object sender, EventArgs e)
@@ -266,6 +290,7 @@ internal partial class InteractiveForm : Form
         middle.Hide();
         x1.Hide();
         x2.Hide();
+        wheel.Hide();
         pictureBox1.Invalidate();
     }
 
@@ -312,6 +337,9 @@ internal partial class InteractiveForm : Form
                 break;
             case 4:
                 settings.X2Threshold = threshold;
+                break;
+            case 5:
+                settings.WheelThreshold = threshold;
                 break;
         }
     }

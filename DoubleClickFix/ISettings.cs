@@ -13,6 +13,7 @@ internal interface ISettings
     int WindowsDoubleClickTimeMilliseconds { get; }
     int X1Threshold { get; set; }
     int X2Threshold { get; set; }
+    int WheelThreshold { get; set; }
     
     bool IsDragCorrectionEnabled { get; }
     int DragStartTimeMilliseconds { get; set; }

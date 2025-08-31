@@ -16,6 +16,8 @@ internal class NativeMethods : INativeMethods
     internal const nint WM_MBUTTONUP = 0x0208;
     internal const nint WM_XBUTTONDOWN = 0x020B;
     internal const nint WM_XBUTTONUP = 0x020C;
+    internal const nint WM_MOUSEWHEEL = 0x020A;
+    internal const nint WM_MOUSEHWHEEL = 0x020E;
 
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
     internal static extern uint RegisterApplicationRestart(string? pwzCommandLine, int dwFlags);

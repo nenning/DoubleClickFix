@@ -183,6 +183,9 @@
   <data name="mouseButtonComboBox.Items4" xml:space="preserve">
     <value>Pulsante X2 del mouse</value>
   </data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve">
+    <value>Rotellina del mouse</value>
+  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Impostazioni</value>
   </data>
