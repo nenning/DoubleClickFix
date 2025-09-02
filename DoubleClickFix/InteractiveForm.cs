@@ -28,8 +28,10 @@ internal partial class InteractiveForm : Form
         };
         debounceTimer.Tick += OnDebounceTimerTick;
 
-        wheelResetTimer = new();
-        wheelResetTimer.Interval = 500;
+        wheelResetTimer = new()
+        {
+            Interval = 500
+        };
         wheelResetTimer.Tick += (s, args) =>
         {
             wheel.BackColor = Color.Transparent;
@@ -68,15 +70,11 @@ internal partial class InteractiveForm : Form
 
     private void ShowFromTray()
     {
-        if (!Visible)
-        {
-            Show();
-        }
-        if (WindowState == FormWindowState.Minimized)
-        {
-            // Restore from minimized state
-            NativeMethods.ShowWindow(this.Handle, NativeMethods.SW_RESTORE);
-        }
+        var extendedStyle = NativeMethods.GetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE);
+        _ = NativeMethods.SetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE, extendedStyle & ~NativeMethods.WS_EX_TOOLWINDOW);
+
+        Show();
+        WindowState = FormWindowState.Normal;
         Activate();
         BringToFront();
         EnsureLogAtEnd();
@@ -165,29 +163,22 @@ internal partial class InteractiveForm : Form
         }
     }
 
-    private void ShowForm()
-    {
-        this.ShowInTaskbar = true;
-        this.Show();
-        if (this.WindowState == FormWindowState.Minimized)
-        {
-            this.WindowState = FormWindowState.Normal;
-            EnsureLogAtEnd();
-        }
-        if (!this.Focused)
-        {
-            NativeMethods.SetForegroundWindow(this.Handle);
-        }
-    }
-
     private void OnFormClosing(object? sender, FormClosingEventArgs e)
     {
         if (e.CloseReason == CloseReason.UserClosing)
         {
             e.Cancel = true;
-            this.Hide();
+            HideWindow();
         }
     }
+
+    private void HideWindow()
+    {
+        Hide();
+        var extendedStyle = NativeMethods.GetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE);
+        _ = NativeMethods.SetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE, extendedStyle | NativeMethods.WS_EX_TOOLWINDOW);
+    }
+
     private void OnSaveButtonClicked(object? sender, EventArgs e)
     {
         bool success;
@@ -216,12 +207,12 @@ internal partial class InteractiveForm : Form
 
     private void OnNotifyIconDoubleClick(object? sender, MouseEventArgs e)
     {
-        this.ShowForm();
+        ShowFromTray();
     }
 
     private void OnShowUiMenuClick(object? sender, EventArgs e)
     {
-        this.ShowForm();
+        ShowFromTray();
     }
 
     protected override void OnVisibleChanged(EventArgs e)
@@ -415,6 +406,15 @@ internal partial class InteractiveForm : Form
         catch
         {
             Log(@"Failed to open https://github.com/nenning/DoubleClickFix");
+        }
+    }
+
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        if (!settings.IsInteractive)
+        {
+            BeginInvoke(new MethodInvoker(HideWindow));
         }
     }
 }

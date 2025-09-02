@@ -49,7 +49,7 @@ internal class Program
         if (isRunningFromStore)
         {
             // allow the store to restart the app after an update
-            NativeMethods.RegisterApplicationRestart("-restart", 0);
+            _ = NativeMethods.RegisterApplicationRestart("-restart", 0);
         }
 
         ISettings settings = isRunningFromStore
@@ -91,13 +91,6 @@ internal class Program
             }
 
             InteractiveForm form = new(startupRegistry, settings, logger, mouseHook.ProcessRawInput, GetVersion());
-            if (!settings.IsInteractive)
-            {
-                // Minimize and hide the form so it does not flash on start
-                form.ShowInTaskbar = false;
-                form.WindowState = FormWindowState.Minimized;
-                form.Hide();
-            }
 
             // register for raw input before installing the hook
             mouseHook.RegisterForRawInput(form.Handle);

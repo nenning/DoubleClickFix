@@ -61,8 +61,8 @@ internal class MouseHook : IDisposable
     private readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
     private FrozenSet<nint> observedMessages = [];
     private uint ignoredClicks = 0;
-    private readonly Dictionary<nint, uint> previousWheelTime = new();
-    private readonly Dictionary<nint, int> lastWheelDirection = new();
+    private readonly Dictionary<nint, uint> previousWheelTime = [];
+    private readonly Dictionary<nint, int> lastWheelDirection = [];
 
     // for drag‐lock handling
     private readonly HashSet<MouseButtons> currentlyDownButtons = [];
