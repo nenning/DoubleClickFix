@@ -183,6 +183,9 @@
   <data name="mouseButtonComboBox.Items4" xml:space="preserve">
     <value>Botón X2 del ratón</value>
   </data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve">
+    <value>Rueda del ratón</value>
+  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Configuraciones</value>
   </data>

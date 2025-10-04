@@ -132,8 +132,14 @@
   <data name="HookNotInstalled" xml:space="preserve">
     <value>Error en la configuración.</value>
   </data>
-  <data name="IgnoredDoubleClick" xml:space="preserve">
+    <data name="IgnoredDoubleClick" xml:space="preserve">
     <value>Doble clic ignorado</value>
+  </data>
+  <data name="IgnoredMouseWheel" xml:space="preserve">
+    <value>Rueda del ratón ignorada</value>
+  </data>
+  <data name="MouseWheelDelta" xml:space="preserve">
+    <value>Delta de la rueda del ratón</value>
   </data>
   <data name="InvalidDelayValue" xml:space="preserve">
     <value>Valor no válido - no guardado. Rango válido</value>

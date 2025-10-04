@@ -139,6 +139,9 @@
   <data name="IgnoredDoubleClick" xml:space="preserve">
     <value>Ignored double click</value>
   </data>
+  <data name="IgnoredMouseWheel" xml:space="preserve">
+    <value>Ignored mouse wheel</value>
+  </data>
   <data name="InvalidDelayValue" xml:space="preserve">
     <value>Invalid value - not saved. Valid range</value>
   </data>
@@ -165,5 +168,8 @@
   </data>
   <data name="X2" xml:space="preserve">
     <value>X2</value>
+  </data>
+  <data name="MouseWheelDelta" xml:space="preserve">
+    <value>Mouse wheel delta</value>
   </data>
 </root>
