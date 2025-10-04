@@ -57,6 +57,7 @@ internal class MouseHook : IDisposable
     private nint hookHandle = nint.Zero;
     private const nint InvalidDevice = -1;
     private nint currentDevice = InvalidDevice;
+    private readonly Dictionary<nint, DeviceType> deviceTypes = [];
 
     private readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
     private FrozenSet<nint> observedMessages = [];
@@ -182,6 +183,16 @@ internal class MouseHook : IDisposable
             {
                 logger.Log($"{Resources.SwitchedDevice} {device}", true);
                 currentDevice = device;
+            }
+
+            if (!deviceTypes.ContainsKey(device))
+            {
+                if (nativeMethods.TryGetRawInputDeviceInfo(device, RIDI_DEVICEINFO, out var deviceInfo))
+                {
+                    var deviceType = GetDeviceType(deviceInfo);
+                    deviceTypes[device] = deviceType;
+                    logger.Log($"Device {device} is a {deviceType}", true);
+                }
             }
         }
     }
@@ -420,6 +431,14 @@ internal class MouseHook : IDisposable
 
     private bool ProcessMouseEvent(int nCode, nint wParam)
     {
+        if (deviceTypes.TryGetValue(currentDevice, out var deviceType))
+        {
+            if (deviceType is DeviceType.Touchpad or DeviceType.Touchscreen)
+            {
+                return false;
+            }
+        }
+
         // TODO fix this workaround when running in x64 as well.
         // Compare against the 32‑bit value of currentDevice; on 64‑bit OSes, the upper bits
         // of currentDevice are ignored for this comparison.
@@ -428,6 +447,37 @@ internal class MouseHook : IDisposable
         return nCode >= 0
             && settings.IgnoredDevice != currentDeviceId
             && observedMessages.Contains(wParam);
+    }
+
+    private static DeviceType GetDeviceType(RID_DEVICE_INFO deviceInfo)
+    {
+        // see https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-rid_device_info_mouse
+        // see https://learn.microsoft.com/en-us/windows-hardware/drivers/hid/hid-architecture
+        // see https://learn.microsoft.com/en-us/windows-hardware/drivers/hid/top-level-collections
+        // see https://learn.microsoft.com/en-us/windows/win32/api/hidpi/ns-hidpi-hidp_caps
+        switch (deviceInfo.hid.usUsagePage)
+        {
+            case 0x01: // HID_USAGE_PAGE_GENERIC
+                switch (deviceInfo.hid.usUsage)
+                {
+                    case 0x01: // HID_USAGE_GENERIC_POINTER
+                    case 0x02: // HID_USAGE_GENERIC_MOUSE
+                        return DeviceType.Mouse;
+                }
+                break;
+            case 0x0d: // HID_USAGE_PAGE_DIGITIZER
+                switch (deviceInfo.hid.usUsage)
+                {
+                    case 0x02: // HID_USAGE_DIGITIZER_PEN
+                        return DeviceType.Pen;
+                    case 0x04: // HID_USAGE_DIGITIZER_TOUCHSCREEN
+                        return DeviceType.Touchscreen;
+                    case 0x05: // HID_USAGE_DIGITIZER_TOUCHPAD
+                        return DeviceType.Touchpad;
+                }
+                break;
+        }
+        return DeviceType.Other;
     }
 
     private MouseButtons GetXButton(uint mouseData)

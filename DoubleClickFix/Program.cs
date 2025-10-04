@@ -92,15 +92,20 @@ internal class Program
 
             InteractiveForm form = new(startupRegistry, settings, logger, mouseHook.ProcessRawInput, GetVersion());
 
-            // register for raw input before installing the hook
-            mouseHook.RegisterForRawInput(form.Handle);
+            InputCapabilities capabilities = InputCapabilities.Detect();
+            logger.Log($"Input capabilities: {capabilities.Description}");
+            if (capabilities.HasTouchscreen || capabilities.HasPrecisionTouchpad)
+            {
+                // register for raw input before installing the hook
+                mouseHook.RegisterForRawInput(form.Handle);
+            }
+
             if (!mouseHook.Install())
             {
                 form.Text = "No mouse hook installed!";
                 form.BackColor = Color.DarkRed;
                 logger.Log($"{Resources.Error}: {Resources.HookNotInstalled}");
             }
-
             Application.Run(form);
         }
         finally

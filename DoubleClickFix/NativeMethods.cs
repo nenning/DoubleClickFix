@@ -80,15 +80,39 @@ internal class NativeMethods : INativeMethods
 
     public void RegisterForRawInput(nint hwnd)
     {
-        var device = new RAWINPUTDEVICE
+        var devices = new RAWINPUTDEVICE[]
         {
-            UsagePage = HID_USAGE_PAGE_GENERIC,
-            Usage = HID_USAGE_GENERIC_MOUSE,
-            Flags = RIDEV_INPUTSINK,
-            Target = hwnd
+            new()
+            {
+                UsagePage = HID_USAGE_PAGE_GENERIC,
+                Usage = HID_USAGE_GENERIC_MOUSE,
+                Flags = RIDEV_INPUTSINK,
+                Target = hwnd
+            },
+            new()
+            {
+                UsagePage = HID_USAGE_PAGE_GENERIC,
+                Usage = HID_USAGE_GENERIC_POINTER,
+                Flags = RIDEV_INPUTSINK,
+                Target = hwnd
+            },
+            new()
+            {
+                UsagePage = HID_USAGE_PAGE_DIGITIZER,
+                Usage = HID_USAGE_DIGITIZER_TOUCHSCREEN,
+                Flags = RIDEV_INPUTSINK,
+                Target = hwnd
+            },
+            new()
+            {
+                UsagePage = HID_USAGE_PAGE_DIGITIZER,
+                Usage = HID_USAGE_DIGITIZER_TOUCHPAD,
+                Flags = RIDEV_INPUTSINK,
+                Target = hwnd
+            }
         };
 
-        if (!RegisterRawInputDevices([device], 1, (uint)Marshal.SizeOf(device)))
+        if (!RegisterRawInputDevices(devices, (uint)devices.Length, (uint)Marshal.SizeOf<RAWINPUTDEVICE>()))
         {
             throw new Win32Exception(Marshal.GetLastWin32Error());
         }
@@ -114,7 +138,7 @@ internal class NativeMethods : INativeMethods
             }
 
             var raw = Marshal.PtrToStructure<RAWINPUT>(buffer);
-            if (raw.Header.Type == RIM_TYPEMOUSE)
+            if (raw.Header.Type == RIM_TYPEMOUSE || raw.Header.Type == RIM_TYPEHID)
             {
                 device = raw.Header.Device;
                 return true;
@@ -143,6 +167,10 @@ internal class NativeMethods : INativeMethods
     private const int RIDEV_INPUTSINK = 0x00000100;
     private const int HID_USAGE_PAGE_GENERIC = 0x01;
     private const int HID_USAGE_GENERIC_MOUSE = 0x02;
+    private const int HID_USAGE_GENERIC_POINTER = 0x01;
+    private const int HID_USAGE_PAGE_DIGITIZER = 0x0D;
+    private const int HID_USAGE_DIGITIZER_TOUCHSCREEN = 0x04;
+    private const int HID_USAGE_DIGITIZER_TOUCHPAD = 0x05;
 
     [DllImport("User32.dll")]
     private static extern uint GetRawInputData(nint hRawInput, uint uiCommand, nint pData, ref uint pcbSize, uint cbSizeHeader);
@@ -169,14 +197,98 @@ internal class NativeMethods : INativeMethods
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    private struct RAWHID
+    {
+        public uint dwSizeHid;
+        public uint dwCount;
+        public byte bRawData;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     private struct RAWINPUT
     {
         public RAWINPUTHEADER Header;
+        public Data Data;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    private struct Data
+    {
+        [FieldOffset(0)]
         public RAWMOUSE Mouse;
+        [FieldOffset(0)]
+        public RAWHID Hid;
     }
 
     private const uint RID_INPUT = 0x10000003;
-    private const uint RIM_TYPEMOUSE = 0x00000000;
+    internal const uint RIM_TYPEMOUSE = 0x00000000;
+    private const uint RIM_TYPEHID = 0x00000002;
+    internal const uint RIDI_DEVICEINFO = 0x2000000b;
+
+    [DllImport("User32.dll", SetLastError = true)]
+    private static extern uint GetRawInputDeviceInfo(nint hDevice, uint uiCommand, nint pData, ref uint pcbSize);
+    
+    public bool TryGetRawInputDeviceInfo(nint deviceHandle, uint uiCommand, out RID_DEVICE_INFO pData)
+    {
+        uint size = (uint)Marshal.SizeOf<RID_DEVICE_INFO>();
+        nint buffer = Marshal.AllocHGlobal((int)size);
+        try
+        {
+            var result = GetRawInputDeviceInfo(deviceHandle, uiCommand, buffer, ref size);
+            if (result > 0)
+            {
+                pData = Marshal.PtrToStructure<RID_DEVICE_INFO>(buffer);
+                return true;
+            }
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(buffer);
+        }
+
+        pData = new RID_DEVICE_INFO();
+        return false;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct RID_DEVICE_INFO
+    {
+        public uint cbSize;
+        public uint dwType;
+        public RID_DEVICE_INFO_MOUSE mouse;
+        public RID_DEVICE_INFO_KEYBOARD keyboard;
+        public RID_DEVICE_INFO_HID hid;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct RID_DEVICE_INFO_MOUSE
+    {
+        public uint dwId;
+        public uint dwNumberOfButtons;
+        public uint dwSampleRate;
+        [MarshalAs(UnmanagedType.Bool)] public bool fHasHorizontalWheel;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct RID_DEVICE_INFO_KEYBOARD
+    {
+        public uint dwType;
+        public uint dwSubType;
+        public uint dwKeyboardMode;
+        public uint dwNumberOfFunctionKeys;
+        public uint dwNumberOfIndicators;
+        public uint dwNumberOfKeysTotal;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct RID_DEVICE_INFO_HID
+    {
+        public uint dwVendorId;
+        public uint dwProductId;
+        public uint dwVersionNumber;
+        public ushort usUsagePage;
+        public ushort usUsage;
+    }
 
     // For showing the existing window
     [DllImport("user32.dll", CharSet = CharSet.Unicode)]

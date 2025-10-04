@@ -70,4 +70,9 @@ class TestNativeMethods : INativeMethods
     {
         throw new NotImplementedException();
     }
+
+    public bool TryGetRawInputDeviceInfo(nint deviceHandle, uint uiCommand, out NativeMethods.RID_DEVICE_INFO pData)
+    {
+        throw new NotImplementedException();
+    }
 }
