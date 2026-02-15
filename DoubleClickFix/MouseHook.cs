@@ -58,6 +58,9 @@ internal class MouseHook : IDisposable
     private const nint InvalidDevice = -1;
     private nint currentDevice = InvalidDevice;
 
+    private readonly Dictionary<MouseButtons, bool> isLogicallyDown = [];
+    private readonly Dictionary<MouseButtons, uint> logicalDownTime = [];
+
     private readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
     private FrozenSet<nint> observedMessages = [];
     private uint ignoredClicks = 0;
@@ -121,6 +124,8 @@ internal class MouseHook : IDisposable
         lastMoveTime.Clear();
         isDragLocked.Clear();
         initialDownTime.Clear();
+        isLogicallyDown.Clear();
+        logicalDownTime.Clear();
     }
 
     public bool Install()
@@ -334,6 +339,7 @@ internal class MouseHook : IDisposable
                     // exit drag‐lock, forward genuine release
                     isDragLocked[activeButton] = false;
                     currentlyDownButtons.Remove(activeButton);
+                    isLogicallyDown[activeButton] = false;
                     previousUpTime[activeButton] = hookStruct.time;
                     logger.Log(string.Format(Resources.ExitDragLock, buttonTextLookup[activeButton]), true);
 
@@ -344,23 +350,21 @@ internal class MouseHook : IDisposable
             }
         }
 
-        // Normal double‐click suppression and down/up tracking
-        // We take the elapsed time between the last mouse up and the current mouse down event.
-        // If it's smaller than the minimal delay, we ignore the current mouse down event.
         if (buttonDown)
         {
-            // record genuine down
-            currentlyDownButtons.Add(activeButton);
-            initialDownPosition[activeButton] = hookStruct.pt;
-            initialDownTime[activeButton] = hookStruct.time;   // ensure Dictionary<MouseButtons,long> exists
-            lastMoveTime[activeButton] = hookStruct.time;
+            // If button is already logically down, suppress duplicate DOWN (bounce)
+            if (isLogicallyDown.GetValueOrDefault(activeButton, false))
+            {
+                // logger.Log($"{ignoredDoubleClickText} ({buttonTextLookup[activeButton]}): bounce (#{ignoredClicks})");
+                return IgnoreMouseEvent;
+            }
 
             // MSLLHOOKSTRUCT.time is a 32‑bit millisecond timer that wraps roughly every 49 days.
             // Subtracting two uint values and storing the result in a long can produce a negative result after wrap‑around.
             // Compute the difference as an unsigned subtraction first, then cast to long
             uint diff = unchecked(hookStruct.time - previousUpTime[activeButton]);
             long delta = diff;
-            
+
             bool belowMin = settings.MinDelay >= 0 && delta <= settings.MinDelay;
             bool ignore = delta < threshold && !belowMin;
 
@@ -371,14 +375,44 @@ internal class MouseHook : IDisposable
                 previousUpTime[activeButton] = 0;
                 return IgnoreMouseEvent;
             }
-            else if (delta < settings.WindowsDoubleClickTimeMilliseconds)
+
+            // Forward this DOWN - update logical state
+            isLogicallyDown[activeButton] = true;
+            logicalDownTime[activeButton] = hookStruct.time;
+
+            // Drag tracking
+            currentlyDownButtons.Add(activeButton);
+            initialDownPosition[activeButton] = hookStruct.pt;
+            initialDownTime[activeButton] = hookStruct.time;
+            lastMoveTime[activeButton] = hookStruct.time;
+
+            if (delta < settings.WindowsDoubleClickTimeMilliseconds)
             {
                 logger.Log($"{delta} ms ({buttonTextLookup[activeButton]})", true);
             }
         }
         else if (buttonUp)
         {
-            // genuine up
+            // If button is not logically down, suppress duplicate UP
+            if (!isLogicallyDown.GetValueOrDefault(activeButton, false))
+            {
+                return IgnoreMouseEvent;
+            }
+
+            // Check if UP came too quickly after DOWN (bounce during press)
+            uint downTime = logicalDownTime.GetValueOrDefault(activeButton, 0u);
+            uint diff = unchecked(hookStruct.time - downTime);
+            long delta = diff;
+
+            if (delta < threshold)
+            {
+                ignoredClicks++;
+                logger.Log($"{ignoredDoubleClickText} ({buttonTextLookup[activeButton]}): {delta} ms (#{ignoredClicks})");
+                return IgnoreMouseEvent;
+            }
+
+            // Legitimate release - forward and update state
+            isLogicallyDown[activeButton] = false;
             currentlyDownButtons.Remove(activeButton);
             previousUpTime[activeButton] = hookStruct.time;
         }
