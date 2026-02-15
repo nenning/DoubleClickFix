@@ -7,8 +7,8 @@
   </Configurations>
   <Folder Name="/Solution Items/">
     <File Path=".github/workflows/dotnet.yml" />
+    <File Path="AGENTS.md" />
     <File Path="Directory.Build.props" />
-    <File Path="GEMINI.md" />
     <File Path="LICENSE.txt" />
     <File Path="readme.md" />
     <File Path="release.ps1" />
