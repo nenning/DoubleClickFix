@@ -125,6 +125,15 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ignored mouse wheel.
+        /// </summary>
+        internal static string IgnoredMouseWheel {
+            get {
+                return ResourceManager.GetString("IgnoredMouseWheel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid value - not saved. Valid range.
         /// </summary>
         internal static string InvalidDelayValue {
@@ -148,6 +157,15 @@ namespace DoubleClickFix.Properties {
         internal static string Middle {
             get {
                 return ResourceManager.GetString("Middle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mouse wheel delta.
+        /// </summary>
+        internal static string MouseWheelDelta {
+            get {
+                return ResourceManager.GetString("MouseWheelDelta", resourceCulture);
             }
         }
         

@@ -135,6 +135,12 @@
   <data name="IgnoredDoubleClick" xml:space="preserve">
     <value>Doppio clic ignorato</value>
   </data>
+  <data name="IgnoredMouseWheel" xml:space="preserve">
+    <value>Rotellina del mouse ignorata</value>
+  </data>
+  <data name="MouseWheelDelta" xml:space="preserve">
+    <value>Delta della rotellina del mouse</value>
+  </data>
   <data name="InvalidDelayValue" xml:space="preserve">
     <value>Valore non valido - non salvato. Intervallo valido</value>
   </data>

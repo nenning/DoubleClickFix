@@ -22,6 +22,7 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         SaveSetting(MiddleThreshold);
         SaveSetting(X1Threshold);
         SaveSetting(X2Threshold);
+        SaveSetting(WheelThreshold);
         SaveSetting(MinDelay);
         SaveSetting(IgnoredDevice);
         SaveSetting(DragStartTimeMilliseconds);
@@ -41,6 +42,7 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         middleThreshold = LoadSetting(MiddleThreshold);
         x1Threshold = LoadSetting(X1Threshold);
         x2Threshold = LoadSetting(X2Threshold);
+        wheelThreshold = LoadSetting(WheelThreshold);
         minDelay = LoadSetting(MinDelay);
         ignoredDevice = LoadSetting(IgnoredDevice);
         dragStartTimeMilliseconds = LoadSetting(DragStartTimeMilliseconds);

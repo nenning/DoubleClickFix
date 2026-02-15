@@ -15,6 +15,7 @@ class TestSettings : ISettings
     public int RightThreshold { get; set; } = -1;
     public int X1Threshold { get; set; } = -1;
     public int X2Threshold { get; set; } = -1;
+    public int WheelThreshold { get; set; } = -1;
     public bool IsDragCorrectionEnabled => DragStartTimeMilliseconds >= 0 && DragStopTimeMilliseconds >= 0;
     public int DragStartTimeMilliseconds { get; set; } = -1;
     public int DragStopTimeMilliseconds { get; set; } = -1;

@@ -60,4 +60,14 @@ class TestNativeMethods : INativeMethods
         device = 0;
         return false;
     }
+
+    public nint GetWindowLong(nint hWnd, int nIndex)
+    {
+        throw new NotImplementedException();
+    }
+
+    public nint SetWindowLong(nint hWnd, int nIndex, nint dwNewLong)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -516,6 +516,9 @@
   <data name="mouseButtonComboBox.Items4" xml:space="preserve">
     <value>X2 mouse button</value>
   </data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve">
+    <value>Mouse wheel</value>
+  </data>
   <data name="mouseButtonComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>37, 49</value>
   </data>
@@ -720,6 +723,39 @@
   <data name="&gt;&gt;left.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="wheel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="wheel.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="wheel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="wheel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>124, 179</value>
+  </data>
+  <data name="wheel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 29</value>
+  </data>
+  <data name="wheel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="wheel.Text" xml:space="preserve">
+    <value>↕</value>
+  </data>
+  <data name="&gt;&gt;wheel.Name" xml:space="preserve">
+    <value>wheel</value>
+  </data>
+  <data name="&gt;&gt;wheel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;wheel.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;wheel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="pictureBox1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
@@ -748,7 +784,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <metadata name="notifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -5397,7 +5433,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;richTextBox1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="groupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -10059,9 +10095,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Double-click fix</value>

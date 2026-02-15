@@ -135,6 +135,12 @@
   <data name="IgnoredDoubleClick" xml:space="preserve">
     <value>Double-clic ignoré</value>
   </data>
+  <data name="IgnoredMouseWheel" xml:space="preserve">
+    <value>Molette de la souris ignorée</value>
+  </data>
+  <data name="MouseWheelDelta" xml:space="preserve">
+    <value>Delta de la molette de la souris</value>
+  </data>
   <data name="InvalidDelayValue" xml:space="preserve">
     <value>Valeur non valide - non enregistrée. Plage valide</value>
   </data>

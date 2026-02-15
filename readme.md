@@ -4,6 +4,8 @@
 
 A lightweight solution for mitigating double-click issues caused by malfunctioning mice.
 
+**New in release 1.5:** 🖱️ **Mouse Wheel Fix** – if you have problems with a "bouncy" or "jittery" mouse wheel, you can now enable a fix for it in the UI!
+
 **New in release 1.4:** 🎉 **Experimental Drag & Drop Support** – if you have problems with dragging, enable this feature in the UI! The tool will maintain a stable drag until you intentionally release.
 
 This tool ensures smoother operation by filtering unintended double-click events and supporting reliable drag-and-drop gestures, allowing you to define the minimal delay between valid clicks directly from an intuitive user interface.
@@ -27,6 +29,7 @@ This tool ensures smoother operation by filtering unintended double-click events
 
 ## ✨ Features
 - **Drag & Drop Fix (New!)**: You can enable this in the UI. Hold, drag, and drop reliably — even if your mouse switch chatters during the gesture. A short pause while dragging is treated as the true release, preventing accidental drops.
+- **Mouse Wheel Fix**: Filters out spurious mouse wheel events to prevent accidental scrolling.
 - **Customizable Delay**: Adjust the minimal delay between two clicks via a user-friendly interface. Default is 50 ms.
 - **Customize for Specific Mouse Buttons**: Choose which mouse buttons to fix, including left, right, middle, X1, and X2. Default is left mouse button only.
 - **Windows Tray Integration**: Double-click the tray icon to open the settings UI.
@@ -49,7 +52,12 @@ This application intercepts mouse events at a low level to distinguish between i
     *   **Entering Drag-Lock**: When you press and hold a mouse button and then move the cursor beyond a small distance, the application enters a "drag-lock" mode for that button.
     *   **Suppressing Jitter**: While in drag-lock, any subsequent `down` or `up` events for that button are ignored. This ensures that the drag is not accidentally interrupted.
     *   **Releasing the Drag**: The drag is released only when you stop moving the mouse for a user-defined period (the "Drag release delay"). At that point, a genuine "up" event is sent, completing the drag-and-drop action.
-5.  **Forwarding Events**: Any event that is not filtered out is forwarded to the next hook in the chain using `CallNextHookEx`, ensuring normal mouse behavior for all other applications.
+5.  **Mouse Wheel Filtering**:
+    *   Faulty mouse wheels can send spurious scroll events, often in the opposite direction of the intended scroll, causing a "jittery" or "bouncy" effect. The mouse wheel fix addresses this:
+    *   **Direction-Aware Filtering**: The application tracks the direction of the last scroll event (up/down or left/right).
+    *   **Time-Based Debouncing**: If a new scroll event occurs in the *opposite* direction of the previous one within a very short time (the user-defined threshold), it is considered "jitter" and is ignored.
+    *   **Preserving Fast Scrolling**: This direction-aware approach ensures that fast, intentional scrolling in the same direction is not affected, providing a smooth experience while only filtering out the erroneous "bounce-back" events.
+6.  **Forwarding Events**: Any event that is not filtered out is forwarded to the next hook in the chain using `CallNextHookEx`, ensuring normal mouse behavior for all other applications.
 
 This entire process is highly efficient and runs in the background with minimal performance impact, ensuring a smoother experience without interfering with your regular workflow or gaming.
 

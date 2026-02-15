@@ -50,6 +50,7 @@
             middle = new CheckBox();
             right = new CheckBox();
             left = new CheckBox();
+            wheel = new CheckBox();
             pictureBox1 = new PictureBox();
             notifyIcon = new NotifyIcon(components);
             notifyMenuStrip = new ContextMenuStrip(components);
@@ -188,7 +189,7 @@
             // mouseButtonComboBox
             // 
             mouseButtonComboBox.FormattingEnabled = true;
-            mouseButtonComboBox.Items.AddRange(new object[] { resources.GetString("mouseButtonComboBox.Items"), resources.GetString("mouseButtonComboBox.Items1"), resources.GetString("mouseButtonComboBox.Items2"), resources.GetString("mouseButtonComboBox.Items3"), resources.GetString("mouseButtonComboBox.Items4") });
+            mouseButtonComboBox.Items.AddRange(new object[] { resources.GetString("mouseButtonComboBox.Items"), resources.GetString("mouseButtonComboBox.Items1"), resources.GetString("mouseButtonComboBox.Items2"), resources.GetString("mouseButtonComboBox.Items3"), resources.GetString("mouseButtonComboBox.Items4"), resources.GetString("mouseButtonComboBox.Items5") });
             resources.ApplyResources(mouseButtonComboBox, "mouseButtonComboBox");
             mouseButtonComboBox.Name = "mouseButtonComboBox";
             mouseButtonComboBox.SelectedIndexChanged += OnSelectedMouseButtonChanged;
@@ -222,6 +223,12 @@
             resources.ApplyResources(left, "left");
             left.Name = "left";
             left.UseVisualStyleBackColor = true;
+            // 
+            // wheel
+            // 
+            resources.ApplyResources(wheel, "wheel");
+            wheel.Name = "wheel";
+            wheel.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -301,6 +308,7 @@
             groupBox4.Controls.Add(middle);
             groupBox4.Controls.Add(left);
             groupBox4.Controls.Add(right);
+            groupBox4.Controls.Add(wheel);
             groupBox4.Controls.Add(richTextBox1);
             groupBox4.Controls.Add(pictureBox1);
             groupBox4.Name = "groupBox4";
@@ -369,6 +377,7 @@
         private CheckBox x2;
         private CheckBox x1;
         private CheckBox middle;
+        private CheckBox wheel;
         private ComboBox mouseButtonComboBox;
         private CheckBox buttonEnabledCheckBox;
         private TrackBar thresholdSlider;

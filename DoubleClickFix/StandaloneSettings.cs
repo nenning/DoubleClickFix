@@ -20,6 +20,7 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
                 SaveSetting(key, MiddleThreshold);
                 SaveSetting(key, X1Threshold);
                 SaveSetting(key, X2Threshold);
+                SaveSetting(key, WheelThreshold);
                 SaveSetting(key, MinDelay);
                 SaveSetting(key, IgnoredDevice);
                 SaveSetting(key, DragStartTimeMilliseconds);
@@ -63,6 +64,7 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
             MiddleThreshold = LoadSetting(key, MiddleThreshold);
             X1Threshold = LoadSetting(key, X1Threshold);
             X2Threshold = LoadSetting(key, X2Threshold);
+            WheelThreshold = LoadSetting(key, WheelThreshold);
             MinDelay = LoadSetting(key, MinDelay);
             IgnoredDevice = LoadSetting(key, IgnoredDevice);
             DragStartTimeMilliseconds = LoadSetting(key, DragStartTimeMilliseconds);

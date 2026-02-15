@@ -20,6 +20,7 @@ namespace DoubleClickFix
 
         protected int x1Threshold = -1;
         protected int x2Threshold = -1;
+        protected int wheelThreshold = -1;
 
         protected int dragStartTimeMilliseconds = -1;
         protected int dragStopTimeMilliseconds = -1;
@@ -137,6 +138,19 @@ namespace DoubleClickFix
             }
         }
 
+        public int WheelThreshold
+        {
+            get => wheelThreshold;
+            set
+            {
+                if (value != wheelThreshold)
+                {
+                    wheelThreshold = value;
+                    FireSettingsChanged();
+                }
+            }
+        }
+
         public bool IsDragCorrectionEnabled => DragStartTimeMilliseconds >= 0 && DragStopTimeMilliseconds >= 0;
 
         public int DragStartTimeMilliseconds { 
@@ -211,6 +225,7 @@ namespace DoubleClickFix
             RightThreshold = -1;
             X1Threshold = -1;
             X2Threshold = -1;
+            WheelThreshold = -1;
             IgnoredDevice = 0;
         }
         protected void FireSettingsChanged()

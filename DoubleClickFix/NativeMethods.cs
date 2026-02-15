@@ -16,6 +16,8 @@ internal class NativeMethods : INativeMethods
     internal const nint WM_MBUTTONUP = 0x0208;
     internal const nint WM_XBUTTONDOWN = 0x020B;
     internal const nint WM_XBUTTONUP = 0x020C;
+    internal const nint WM_MOUSEWHEEL = 0x020A;
+    internal const nint WM_MOUSEHWHEEL = 0x020E;
 
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
     internal static extern uint RegisterApplicationRestart(string? pwzCommandLine, int dwFlags);
@@ -197,4 +199,18 @@ internal class NativeMethods : INativeMethods
 
     internal const int SW_RESTORE = 9;
     internal const uint WM_SHOWME = 0x8001; // Custom message
+
+    // For hiding the window from alt-tab
+    internal const int GWL_EXSTYLE = -20;
+    internal const int WS_EX_TOOLWINDOW = 0x00000080;
+
+    [DllImport("user32.dll")]
+    internal static extern nint GetWindowLong(nint hWnd, int nIndex);
+
+    nint INativeMethods.GetWindowLong(nint hWnd, int nIndex) => GetWindowLong(hWnd, nIndex);
+
+    [DllImport("user32.dll")]
+    internal static extern nint SetWindowLong(nint hWnd, int nIndex, nint dwNewLong);
+
+    nint INativeMethods.SetWindowLong(nint hWnd, int nIndex, nint dwNewLong) => SetWindowLong(hWnd, nIndex, dwNewLong);
 }
