@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-DoubleClickFix is a C# .NET 9 Windows Forms application that intercepts and filters erroneous mouse double-clicks (hardware "chattering") via a low-level `WH_MOUSE_LL` mouse hook. It also supports drag-and-drop stabilization and mouse wheel bounce filtering. Distributed via Microsoft Store (MSIX) and GitHub Releases (standalone ZIP).
+DoubleClickFix is a C# .NET 10 Windows Forms application that intercepts and filters erroneous mouse double-clicks (hardware "chattering") via a low-level `WH_MOUSE_LL` mouse hook. It also supports drag-and-drop stabilization, mouse wheel bounce filtering, and per-device ignore lists. Distributed via Microsoft Store (MSIX) and GitHub Releases (standalone ZIP).
 
 ## Build Commands
 
@@ -60,16 +60,30 @@ MouseHook.cs (core filtering logic)
        ├─ Double-click filtering: suppresses DOWN if elapsed since last UP < threshold; also suppresses the matching UP to prevent orphaned release events
        ├─ Drag-lock: enters drag-lock mode after >5px movement, suppresses jitter UP/DOWN events
        ├─ Wheel bounce: suppresses opposite-direction wheel events within threshold
-       └─ RDP bypass: when IsRemoteDesktopDetectionEnabled and LLMHF_INJECTED flag set and SM_REMOTESESSION active, passes events through unfiltered
+       ├─ Touch bypass: LLMHF_INJECTED events on local machine pass through unfiltered (touchpad/touchscreen tap-to-click)
+       ├─ RDP bypass: LLMHF_INJECTED events pass through when IsRemoteDesktopDetectionEnabled and SM_REMOTESESSION active
+       ├─ Device-type detection: raw input (WM_INPUT) classifies each device as Mouse/TouchScreen/TouchPad using DeviceType enum
+       │    knownDeviceTypes: Dictionary<nint, DeviceType>  — populated once per unique device handle
+       │    knownDevicePaths: Dictionary<nint, string>       — stable device path via GetRawInputDeviceInfo(RIDI_DEVICENAME)
+       │    knownDevices are cached; TryProcessRawInput (AllocHGlobal) only called once per new device
+       └─ Per-device ignore: events from devices whose path is in IgnoredDevicePaths pass through unfiltered
+            CurrentDevicePath: string? — exposed to UI for the "Ignore this device" checkbox
 
 SystemEventsHandler.cs
   └─ Uninstalls/reinstalls hook on session lock, power suspend/resume, exceptions
   └─ Refreshes RDP session state cache on RemoteConnect/RemoteDisconnect/ConsoleConnect/ConsoleDisconnect
 
+Raw input registration (NativeMethods.RegisterForRawInput):
+  Registers for: mouse (0x01/0x02), precision touchpad (0x0D/0x05), touchscreen (0x0D/0x04)
+  WM_INPUT → InteractiveForm.WndProc → MouseHook.ProcessRawInput → device type/path classification
+
 Settings (ISettings interface)
   ├─ StandaloneSettings → HKEY_CURRENT_USER\Software\DoubleClickFix\v1
+  │    IgnoredDevicePaths stored as REG_MULTI_SZ
   └─ StoreSettings → Windows.Storage.ApplicationDataContainer
-  Key settings: LeftThreshold (default 50ms), IsRemoteDesktopDetectionEnabled (default false)
+       IgnoredDevicePaths stored as ApplicationDataCompositeValue
+  Key settings: LeftThreshold (default 50ms), IsRemoteDesktopDetectionEnabled (default false),
+                IgnoredDevicePaths (set of device instance paths, persistent across reboots)
 ```
 
 ### Key Files

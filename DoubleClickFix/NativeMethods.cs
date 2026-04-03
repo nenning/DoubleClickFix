@@ -49,6 +49,8 @@ internal class NativeMethods : INativeMethods
         public nint dwExtraInfo;
     }
 
+    internal enum DeviceType { Mouse, TouchScreen, TouchPad }
+
     internal delegate nint LowLevelMouseProc(int nCode, nint wParam, nint lParam);
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -87,21 +89,71 @@ internal class NativeMethods : INativeMethods
 
     public void RegisterForRawInput(nint hwnd)
     {
-        var device = new RAWINPUTDEVICE
+        var devices = new RAWINPUTDEVICE[]
         {
-            UsagePage = HID_USAGE_PAGE_GENERIC,
-            Usage = HID_USAGE_GENERIC_MOUSE,
-            Flags = RIDEV_INPUTSINK,
-            Target = hwnd
+            new() {
+                UsagePage = HID_USAGE_PAGE_GENERIC,
+                Usage = HID_USAGE_GENERIC_MOUSE,
+                Flags = RIDEV_INPUTSINK,
+                Target = hwnd
+            },
+            new() {
+                UsagePage = HID_USAGE_PAGE_DIGITIZER,
+                Usage = HID_USAGE_DIGITIZER_TOUCHPAD,
+                Flags = RIDEV_INPUTSINK,
+                Target = hwnd
+            },
+            new() {
+                UsagePage = HID_USAGE_PAGE_DIGITIZER,
+                Usage = HID_USAGE_DIGITIZER_TOUCHSCREEN,
+                Flags = RIDEV_INPUTSINK,
+                Target = hwnd
+            }
         };
 
-        if (!RegisterRawInputDevices([device], 1, (uint)Marshal.SizeOf(device)))
+        if (!RegisterRawInputDevices(devices, (uint)devices.Length, (uint)Marshal.SizeOf<RAWINPUTDEVICE>()))
         {
             throw new Win32Exception(Marshal.GetLastWin32Error());
         }
     }
 
-    public bool TryProcessRawInput(nint hRawInput, out nint device)
+    private const uint RIDI_DEVICENAME = 0x20000007;
+
+    [DllImport("User32.dll", CharSet = CharSet.Unicode)]
+    private static extern uint GetRawInputDeviceInfo(nint hDevice, uint uiCommand, nint pData, ref uint pcbSize);
+
+    public string? TryGetDevicePath(nint hDevice)
+    {
+        uint size = 0;
+        GetRawInputDeviceInfo(hDevice, RIDI_DEVICENAME, nint.Zero, ref size);
+        if (size == 0) return null;
+        nint buf = Marshal.AllocHGlobal((int)(size * 2));
+        try
+        {
+            return GetRawInputDeviceInfo(hDevice, RIDI_DEVICENAME, buf, ref size) > 0
+                ? Marshal.PtrToStringUni(buf)
+                : null;
+        }
+        finally { Marshal.FreeHGlobal(buf); }
+    }
+
+    private const uint RID_HEADER = 0x10000005;
+    private static readonly nint s_headerBuffer = Marshal.AllocHGlobal(Marshal.SizeOf<RAWINPUTHEADER>());
+
+    public bool TryGetRawInputDeviceHandle(nint hRawInput, out nint device)
+    {
+        uint size = (uint)Marshal.SizeOf<RAWINPUTHEADER>();
+        uint copied = GetRawInputData(hRawInput, RID_HEADER, s_headerBuffer, ref size, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
+        if (copied == uint.MaxValue)
+        {
+            device = 0;
+            return false;
+        }
+        device = Marshal.PtrToStructure<RAWINPUTHEADER>(s_headerBuffer).Device;
+        return true;
+    }
+
+    public bool TryProcessRawInput(nint hRawInput, out nint device, out DeviceType deviceType)
     {
         uint dwSize = 0;
         _ = GetRawInputData(hRawInput, RID_INPUT, nint.Zero, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>());
@@ -109,6 +161,7 @@ internal class NativeMethods : INativeMethods
         if (dwSize == 0 || dwSize > int.MaxValue)
         {
             device = 0;
+            deviceType = DeviceType.Mouse;
             return false;
         }
         nint buffer = Marshal.AllocHGlobal((IntPtr)dwSize);
@@ -117,6 +170,7 @@ internal class NativeMethods : INativeMethods
             if (GetRawInputData(hRawInput, RID_INPUT, buffer, ref dwSize, (uint)Marshal.SizeOf<RAWINPUTHEADER>()) != dwSize)
             {
                 device = 0;
+                deviceType = DeviceType.Mouse;
                 return false;
             }
 
@@ -124,6 +178,13 @@ internal class NativeMethods : INativeMethods
             if (raw.Header.Type == RIM_TYPEMOUSE)
             {
                 device = raw.Header.Device;
+                deviceType = (raw.Mouse.Flags & MOUSE_MOVE_ABSOLUTE) != 0 ? DeviceType.TouchScreen : DeviceType.Mouse;
+                return true;
+            }
+            if (raw.Header.Type == RIM_TYPEHID)
+            {
+                device = raw.Header.Device;
+                deviceType = DeviceType.TouchPad;
                 return true;
             }
         }
@@ -135,6 +196,7 @@ internal class NativeMethods : INativeMethods
             }
         }
         device = 0;
+        deviceType = DeviceType.Mouse;
         return false;
     }
 
@@ -150,6 +212,9 @@ internal class NativeMethods : INativeMethods
     private const int RIDEV_INPUTSINK = 0x00000100;
     private const int HID_USAGE_PAGE_GENERIC = 0x01;
     private const int HID_USAGE_GENERIC_MOUSE = 0x02;
+    private const int HID_USAGE_PAGE_DIGITIZER = 0x0D;
+    private const int HID_USAGE_DIGITIZER_TOUCHPAD = 0x05;
+    private const int HID_USAGE_DIGITIZER_TOUCHSCREEN = 0x04;
 
     [DllImport("User32.dll")]
     private static extern uint GetRawInputData(nint hRawInput, uint uiCommand, nint pData, ref uint pcbSize, uint cbSizeHeader);
@@ -184,6 +249,8 @@ internal class NativeMethods : INativeMethods
 
     private const uint RID_INPUT = 0x10000003;
     private const uint RIM_TYPEMOUSE = 0x00000000;
+    private const uint RIM_TYPEHID = 0x00000002;
+    private const uint MOUSE_MOVE_ABSOLUTE = 0x0001;
 
     // For showing the existing window
     [DllImport("user32.dll", CharSet = CharSet.Unicode)]

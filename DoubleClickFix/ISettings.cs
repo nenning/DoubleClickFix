@@ -3,7 +3,9 @@ namespace DoubleClickFix;
 
 internal interface ISettings
 {
-    int IgnoredDevice { get; set; }
+    IReadOnlySet<string> IgnoredDevicePaths { get; }
+    void AddIgnoredDevice(string path);
+    void RemoveIgnoredDevice(string path);
     bool IsInteractive { get; }
     int LeftThreshold { get; set; }
     int MiddleThreshold { get; set; }

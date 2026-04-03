@@ -90,7 +90,7 @@ internal class Program
                 startupRegistry.Register();
             }
 
-            InteractiveForm form = new(startupRegistry, settings, logger, mouseHook.ProcessRawInput, GetVersion());
+            InteractiveForm form = new(startupRegistry, settings, logger, mouseHook, GetVersion());
 
             // register for raw input before installing the hook
             mouseHook.RegisterForRawInput(form.Handle);

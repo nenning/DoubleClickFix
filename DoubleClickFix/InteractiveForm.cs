@@ -10,17 +10,18 @@ internal partial class InteractiveForm : Form
     private readonly IStartupRegistry startup;
     private readonly ISettings settings;
     private readonly Logger logger;
-    private readonly Action<nint> rawInputProcessor;
+    private readonly MouseHook mouseHook;
     private readonly System.Windows.Forms.Timer debounceTimer;
     private readonly System.Windows.Forms.Timer wheelResetTimer;
+    private readonly System.Windows.Forms.Timer saveTimer;
     private bool suppressNextShow;
 
-    public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, Action<IntPtr> rawInputProcessor, string version)
+    public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, MouseHook mouseHook, string version)
     {
         this.startup = startup;
         this.settings = settings;
         this.logger = logger;
-        this.rawInputProcessor = rawInputProcessor;
+        this.mouseHook = mouseHook;
         InitializeComponent();
 
         debounceTimer = new()
@@ -41,6 +42,14 @@ internal partial class InteractiveForm : Form
         };
         components!.Add(wheelResetTimer);
 
+        saveTimer = new() { Interval = 200 };
+        saveTimer.Tick += (s, args) =>
+        {
+            settings.Save();
+            saveTimer.Stop();
+        };
+        components!.Add(saveTimer);
+
         this.FormClosing += OnFormClosing;
         this.runAtStartupCheckBox.Checked = startup.IsRegistered();
         this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
@@ -54,6 +63,8 @@ internal partial class InteractiveForm : Form
         this.dragStartDelayTextBox.Text = fixDragging ? settings.DragStartTimeMilliseconds.ToString() : string.Empty;
         this.dragEndDelayTextBox.Text = fixDragging ? settings.DragStopTimeMilliseconds.ToString() : string.Empty;
 
+        ignoreCurrentDeviceCheckBox.Text = Resources.IgnoreCurrentDevice;
+        UpdateIgnoreDeviceControls();
         logger.AddGuiLogger(text => Log(text));
         SetupTestArea();
         this.versionLabel.Text = version;
@@ -86,7 +97,8 @@ internal partial class InteractiveForm : Form
     {
         if (m.Msg == WM_INPUT)
         {
-            rawInputProcessor(m.LParam);
+            mouseHook.ProcessRawInput(m.LParam);
+            UpdateIgnoreDeviceControls();
         }
         else if (m.Msg == NativeMethods.WM_SHOWME)
         {
@@ -290,7 +302,7 @@ internal partial class InteractiveForm : Form
         left.Show();
         right.Show();
         middle.Show();
-                x1.Show();
+        x1.Show();
         x2.Show();
         wheel.Show();
         left.Checked = settings.LeftThreshold >= 0;
@@ -387,6 +399,35 @@ internal partial class InteractiveForm : Form
         settings.IsRemoteDesktopDetectionEnabled = remoteDesktopCheckBox.Checked;
     }
 
+    private void UpdateIgnoreDeviceControls()
+    {
+        var path = mouseHook.CurrentDevicePath;
+        currentDeviceLabel.Text = Resources.CurrentDevice + " " + FormatDevicePath(path);
+        ignoreCurrentDeviceCheckBox.Enabled = path != null;
+        ignoreCurrentDeviceCheckBox.CheckedChanged -= OnIgnoreCurrentDeviceCheckBoxChanged;
+        ignoreCurrentDeviceCheckBox.Checked = path != null && settings.IgnoredDevicePaths.Contains(path);
+        ignoreCurrentDeviceCheckBox.CheckedChanged += OnIgnoreCurrentDeviceCheckBoxChanged;
+    }
+
+    private static string FormatDevicePath(string? path)
+    {
+        if (path == null) return "–";
+        var parts = path.Split('#');
+        return parts.Length > 1 ? parts[1] : path;
+    }
+
+    private void OnIgnoreCurrentDeviceCheckBoxChanged(object? sender, EventArgs e)
+    {
+        var path = mouseHook.CurrentDevicePath;
+        if (path == null) return;
+        if (ignoreCurrentDeviceCheckBox.Checked)
+            settings.AddIgnoredDevice(path);
+        else
+            settings.RemoveIgnoredDevice(path);
+        saveTimer.Stop();
+        saveTimer.Start();
+    }
+
     private void OnFixDraggingCheckBoxChanged(object sender, EventArgs e)
     {
         this.dragStartDelayTextBox.Enabled = fixDraggingCheckBox.Checked;
@@ -441,4 +482,8 @@ internal partial class InteractiveForm : Form
         }
     }
 
+    private void InteractiveForm_Load(object sender, EventArgs e)
+    {
+
+    }
 }

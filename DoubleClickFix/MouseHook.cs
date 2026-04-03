@@ -57,6 +57,11 @@ internal class MouseHook : IDisposable
     private nint hookHandle = nint.Zero;
     private const nint InvalidDevice = -1;
     private nint currentDevice = InvalidDevice;
+    private bool isCurrentDeviceTouchDevice;
+    private bool isCurrentDeviceIgnored;
+    private readonly Dictionary<nint, DeviceType> knownDeviceTypes = [];
+    private readonly Dictionary<nint, string> knownDevicePaths = [];
+    public string? CurrentDevicePath { get; private set; }
 
     private readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
     private FrozenSet<nint> observedMessages = [];
@@ -121,6 +126,8 @@ internal class MouseHook : IDisposable
             ResetDragLockState();
         }
         observedMessages = messages.ToFrozenSet();
+        isCurrentDeviceIgnored = CurrentDevicePath != null
+            && settings.IgnoredDevicePaths.Contains(CurrentDevicePath);
     }
 
     internal void ResetDragLockState()
@@ -186,17 +193,43 @@ internal class MouseHook : IDisposable
 
     public void ProcessRawInput(nint hRawInput)
     {
-        if (nativeMethods.TryProcessRawInput(hRawInput, out var device))
+        if (!nativeMethods.TryGetRawInputDeviceHandle(hRawInput, out var device))
+            return;
+
+        if (!knownDeviceTypes.ContainsKey(device))
         {
-            if (currentDevice != device)
-            {
-                logger.Log($"{Resources.SwitchedDevice} {device}", true);
-                currentDevice = device;
-            }
+            if (nativeMethods.TryProcessRawInput(hRawInput, out _, out var deviceType))
+                knownDeviceTypes[device] = deviceType;
+            else
+                knownDeviceTypes[device] = DeviceType.Mouse;
+        }
+
+        if (!knownDevicePaths.ContainsKey(device))
+        {
+            knownDevicePaths[device] = nativeMethods.TryGetDevicePath(device) ?? string.Empty;
+        }
+
+        if (currentDevice != device)
+        {
+            currentDevice = device;
+            knownDeviceTypes.TryGetValue(device, out var knownType);
+            isCurrentDeviceTouchDevice = knownType != DeviceType.Mouse;
+            CurrentDevicePath = knownDevicePaths.TryGetValue(device, out var p) && p.Length > 0 ? p : null;
+            isCurrentDeviceIgnored = CurrentDevicePath != null
+                && settings.IgnoredDevicePaths.Contains(CurrentDevicePath);
+            var displayPath = CurrentDevicePath?.Split('#') is [_, var seg, ..] ? seg : (CurrentDevicePath ?? device.ToString());
+            logger.Log($"{Resources.SwitchedDevice} {displayPath} ({GetDeviceTypeName(knownType)})", true);
         }
     }
 
-        internal nint HookCallback(int nCode, nint wParam, nint lParam)
+    private static string GetDeviceTypeName(DeviceType dt) => dt switch
+    {
+        DeviceType.TouchScreen => Resources.DeviceTypeTouchScreen,
+        DeviceType.TouchPad => Resources.DeviceTypeTouchPad,
+        _ => Resources.DeviceTypeMouse,
+    };
+
+    internal nint HookCallback(int nCode, nint wParam, nint lParam)
     {
         try
         {
@@ -227,6 +260,12 @@ internal class MouseHook : IDisposable
         const nint IgnoreMouseEvent = 1;
 
         if (!ProcessMouseEvent(nCode, wParam))
+        {
+            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+        }
+
+        if ((hookStruct.flags & LLMHF_INJECTED) != 0
+            && (!isRemoteSession || settings.IsRemoteDesktopDetectionEnabled))
         {
             return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
         }
@@ -318,9 +357,8 @@ internal class MouseHook : IDisposable
             return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
         }
 
-        if (settings.IsRemoteDesktopDetectionEnabled
-            && (hookStruct.flags & LLMHF_INJECTED) != 0
-            && isRemoteSession)
+        if ((hookStruct.flags & LLMHF_INJECTED) != 0
+            && (!isRemoteSession || settings.IsRemoteDesktopDetectionEnabled))
         {
             return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
         }
@@ -442,13 +480,9 @@ internal class MouseHook : IDisposable
 
     private bool ProcessMouseEvent(int nCode, nint wParam)
     {
-        // TODO fix this workaround when running in x64 as well.
-        // Compare against the 32‑bit value of currentDevice; on 64‑bit OSes, the upper bits
-        // of currentDevice are ignored for this comparison.
-        int currentDeviceId = unchecked((int)currentDevice);
-
         return nCode >= 0
-            && settings.IgnoredDevice != currentDeviceId
+            && !isCurrentDeviceIgnored
+            && !isCurrentDeviceTouchDevice
             && observedMessages.Contains(wParam);
     }
 

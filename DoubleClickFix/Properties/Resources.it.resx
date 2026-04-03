@@ -168,4 +168,19 @@
   <data name="X2" xml:space="preserve">
     <value>X2</value>
   </data>
+  <data name="CurrentDevice" xml:space="preserve">
+    <value>Dispositivo corrente:</value>
+  </data>
+  <data name="IgnoreCurrentDevice" xml:space="preserve">
+    <value>Ignora questo dispositivo</value>
+  </data>
+  <data name="DeviceTypeMouse" xml:space="preserve">
+    <value>mouse</value>
+  </data>
+  <data name="DeviceTypeTouchScreen" xml:space="preserve">
+    <value>schermo tattile</value>
+  </data>
+  <data name="DeviceTypeTouchPad" xml:space="preserve">
+    <value>touchpad</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using DoubleClickFix.Properties;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Microsoft.Win32;
 
@@ -22,7 +23,7 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
                 SaveSetting(key, X2Threshold);
                 SaveSetting(key, WheelThreshold);
                 SaveSetting(key, MinDelay);
-                SaveSetting(key, IgnoredDevice);
+                SaveIgnoredDevices(key, ignoredDevicePaths);
                 SaveSetting(key, DragStartTimeMilliseconds);
                 SaveSetting(key, DragStopTimeMilliseconds);
                 SaveSetting(key, remoteDesktopDetection);
@@ -40,6 +41,11 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
     private static void SaveSetting(RegistryKey key, int currentValue, [CallerArgumentExpression(nameof(currentValue))] string name = "")
     {
         key.SetValue(name, currentValue, RegistryValueKind.DWord);
+    }
+
+    private static void SaveIgnoredDevices(RegistryKey key, HashSet<string> paths)
+    {
+        key.SetValue("IgnoredDevicePaths", paths.ToArray(), RegistryValueKind.MultiString);
     }
 
     protected override bool SettingsExist()
@@ -67,7 +73,8 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
             X2Threshold = LoadSetting(key, X2Threshold);
             WheelThreshold = LoadSetting(key, WheelThreshold);
             MinDelay = LoadSetting(key, MinDelay);
-            IgnoredDevice = LoadSetting(key, IgnoredDevice);
+            if (key.GetValue("IgnoredDevicePaths") is string[] paths)
+                ignoredDevicePaths = [..paths.Where(p => !string.IsNullOrEmpty(p))];
             DragStartTimeMilliseconds = LoadSetting(key, DragStartTimeMilliseconds);
             DragStopTimeMilliseconds = LoadSetting(key, DragStopTimeMilliseconds);
             remoteDesktopDetection = LoadSetting(key, remoteDesktopDetection);
@@ -77,10 +84,7 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
     private static int LoadSetting(RegistryKey key, int defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string name = "")
     {
         object? value = key.GetValue(name, defaultValue);
-        if (value is int intValue)
-        {
-            return intValue;
-        }
+        if (value is int intValue) return intValue;
         return defaultValue;
     }
 }

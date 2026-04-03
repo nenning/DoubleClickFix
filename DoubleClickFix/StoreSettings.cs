@@ -24,7 +24,11 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         SaveSetting(X2Threshold);
         SaveSetting(WheelThreshold);
         SaveSetting(MinDelay);
-        SaveSetting(IgnoredDevice);
+        var composite = new Windows.Storage.ApplicationDataCompositeValue();
+        int i = 0;
+        foreach (var path in ignoredDevicePaths)
+            composite[$"p{i++}"] = path;
+        settings.Values["IgnoredDevicePaths"] = composite;
         SaveSetting(DragStartTimeMilliseconds);
         SaveSetting(DragStopTimeMilliseconds);
         SaveSetting(remoteDesktopDetection);
@@ -45,7 +49,10 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         x2Threshold = LoadSetting(X2Threshold);
         wheelThreshold = LoadSetting(WheelThreshold);
         minDelay = LoadSetting(MinDelay);
-        ignoredDevice = LoadSetting(IgnoredDevice);
+        if (settings.Values["IgnoredDevicePaths"] is Windows.Storage.ApplicationDataCompositeValue c)
+            foreach (var kv in c)
+                if (kv.Value is string s && !string.IsNullOrEmpty(s))
+                    ignoredDevicePaths.Add(s);
         dragStartTimeMilliseconds = LoadSetting(DragStartTimeMilliseconds);
         dragStopTimeMilliseconds = LoadSetting(DragStopTimeMilliseconds);
         remoteDesktopDetection = LoadSetting(remoteDesktopDetection);
@@ -55,10 +62,7 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
     private int LoadSetting(int defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string name = "")
     {
         object? value = settings.Values[name];
-        if (value is int intValue)
-        {
-            return intValue;
-        }
+        if (value is int intValue) return intValue;
         return defaultValue;
     }
 }

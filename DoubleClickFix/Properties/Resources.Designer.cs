@@ -222,5 +222,35 @@ namespace DoubleClickFix.Properties {
                 return ResourceManager.GetString("X2", resourceCulture);
             }
         }
+
+        internal static string CurrentDevice {
+            get {
+                return ResourceManager.GetString("CurrentDevice", resourceCulture);
+            }
+        }
+
+        internal static string IgnoreCurrentDevice {
+            get {
+                return ResourceManager.GetString("IgnoreCurrentDevice", resourceCulture);
+            }
+        }
+
+        internal static string DeviceTypeMouse {
+            get {
+                return ResourceManager.GetString("DeviceTypeMouse", resourceCulture);
+            }
+        }
+
+        internal static string DeviceTypeTouchScreen {
+            get {
+                return ResourceManager.GetString("DeviceTypeTouchScreen", resourceCulture);
+            }
+        }
+
+        internal static string DeviceTypeTouchPad {
+            get {
+                return ResourceManager.GetString("DeviceTypeTouchPad", resourceCulture);
+            }
+        }
     }
 }

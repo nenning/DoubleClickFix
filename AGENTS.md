@@ -44,6 +44,9 @@ The use of `IntPtr` or `nint` ensures that the native calls are compatible acros
 - Double-click filtering (per-button thresholds)
 - Drag-and-drop stabilization (drag-lock state machine)
 - Mouse wheel bounce filtering
+- Touch device pass-through: events with `LLMHF_INJECTED` on a local machine (touchpad, touchscreen) are never filtered. Uses `LLMHF_INJECTED` flag in `MSLLHOOKSTRUCT.flags`.
+- Device-type detection via raw input (`WM_INPUT`): classifies each device handle as `DeviceType.Mouse`, `DeviceType.TouchScreen`, or `DeviceType.TouchPad`. Cached per handle after first sight.
+- Persistent per-device ignore list (`IgnoredDevicePaths`): uses `GetRawInputDeviceInfo(RIDI_DEVICENAME)` for stable device paths (survives reboots; USB path changes on port change, Bluetooth is stable). Standalone stores as `REG_MULTI_SZ`; Store uses `ApplicationDataCompositeValue`.
 - Remote Desktop (RDP) support: optional bypass of click filtering for injected events in remote sessions (`IsRemoteDesktopDetectionEnabled`, default off). Uses `GetSystemMetrics(SM_REMOTESESSION)` and `LLMHF_INJECTED` flag.
 
 ## Other topics

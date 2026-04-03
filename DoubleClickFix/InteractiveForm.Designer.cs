@@ -41,6 +41,9 @@
             dragStartDelayTextBox = new TextBox();
             dragStartDelayLabel = new Label();
             fixDraggingCheckBox = new CheckBox();
+            remoteDesktopCheckBox = new CheckBox();
+            currentDeviceLabel = new Label();
+            ignoreCurrentDeviceCheckBox = new CheckBox();
             useMinDelayCheckBox = new CheckBox();
             thresholdSlider = new TrackBar();
             buttonEnabledCheckBox = new CheckBox();
@@ -65,7 +68,6 @@
             toolTip1 = new ToolTip(components);
             versionLabel = new Label();
             gitLinkLabel = new LinkLabel();
-            remoteDesktopCheckBox = new CheckBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)thresholdSlider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -109,23 +111,17 @@
             runAtStartupCheckBox.Name = "runAtStartupCheckBox";
             toolTip1.SetToolTip(runAtStartupCheckBox, resources.GetString("runAtStartupCheckBox.ToolTip"));
             runAtStartupCheckBox.UseVisualStyleBackColor = true;
-            //
-            // remoteDesktopCheckBox
-            //
-            resources.ApplyResources(remoteDesktopCheckBox, "remoteDesktopCheckBox");
-            remoteDesktopCheckBox.Name = "remoteDesktopCheckBox";
-            toolTip1.SetToolTip(remoteDesktopCheckBox, resources.GetString("remoteDesktopCheckBox.ToolTip"));
-            remoteDesktopCheckBox.UseVisualStyleBackColor = true;
-            remoteDesktopCheckBox.CheckedChanged += OnRemoteDesktopCheckBoxChanged;
-            //
+            // 
             // groupBox1
-            //
+            // 
             groupBox1.Controls.Add(dragEndDelayTextBox);
             groupBox1.Controls.Add(dragEndDelayLabel);
             groupBox1.Controls.Add(dragStartDelayTextBox);
             groupBox1.Controls.Add(dragStartDelayLabel);
             groupBox1.Controls.Add(fixDraggingCheckBox);
             groupBox1.Controls.Add(remoteDesktopCheckBox);
+            groupBox1.Controls.Add(currentDeviceLabel);
+            groupBox1.Controls.Add(ignoreCurrentDeviceCheckBox);
             groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(useMinDelayCheckBox);
             groupBox1.Controls.Add(thresholdSlider);
@@ -169,6 +165,26 @@
             toolTip1.SetToolTip(fixDraggingCheckBox, resources.GetString("fixDraggingCheckBox.ToolTip"));
             fixDraggingCheckBox.UseVisualStyleBackColor = true;
             fixDraggingCheckBox.CheckedChanged += OnFixDraggingCheckBoxChanged;
+            // 
+            // remoteDesktopCheckBox
+            // 
+            resources.ApplyResources(remoteDesktopCheckBox, "remoteDesktopCheckBox");
+            remoteDesktopCheckBox.Name = "remoteDesktopCheckBox";
+            toolTip1.SetToolTip(remoteDesktopCheckBox, resources.GetString("remoteDesktopCheckBox.ToolTip"));
+            remoteDesktopCheckBox.UseVisualStyleBackColor = true;
+            remoteDesktopCheckBox.CheckedChanged += OnRemoteDesktopCheckBoxChanged;
+            // 
+            // currentDeviceLabel
+            // 
+            resources.ApplyResources(currentDeviceLabel, "currentDeviceLabel");
+            currentDeviceLabel.Name = "currentDeviceLabel";
+            // 
+            // ignoreCurrentDeviceCheckBox
+            // 
+            resources.ApplyResources(ignoreCurrentDeviceCheckBox, "ignoreCurrentDeviceCheckBox");
+            ignoreCurrentDeviceCheckBox.Name = "ignoreCurrentDeviceCheckBox";
+            ignoreCurrentDeviceCheckBox.UseVisualStyleBackColor = true;
+            ignoreCurrentDeviceCheckBox.CheckedChanged += OnIgnoreCurrentDeviceCheckBoxChanged;
             // 
             // useMinDelayCheckBox
             // 
@@ -348,6 +364,7 @@
             Controls.Add(groupBox1);
             Controls.Add(groupBox4);
             Name = "InteractiveForm";
+            Load += InteractiveForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)thresholdSlider).EndInit();
@@ -394,6 +411,8 @@
         private CheckBox useMinDelayCheckBox;
         private CheckBox fixDraggingCheckBox;
         private CheckBox remoteDesktopCheckBox;
+        private Label currentDeviceLabel;
+        private CheckBox ignoreCurrentDeviceCheckBox;
         private TextBox dragStartDelayTextBox;
         private Label dragStartDelayLabel;
         private TextBox dragEndDelayTextBox;

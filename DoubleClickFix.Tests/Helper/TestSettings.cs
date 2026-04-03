@@ -2,10 +2,10 @@
 
 class TestSettings : ISettings
 {
-    /// <summary>
-    /// mousehook uses -1 as current default device. testsetting uses 0 as default, so it's not ignored.
-    /// </summary>
-    public int IgnoredDevice { get; set; } = 0;
+    private HashSet<string> ignoredDevicePaths = [];
+    public IReadOnlySet<string> IgnoredDevicePaths => ignoredDevicePaths;
+    public void AddIgnoredDevice(string path) { ignoredDevicePaths.Add(path); listener?.Invoke(); }
+    public void RemoveIgnoredDevice(string path) { ignoredDevicePaths.Remove(path); listener?.Invoke(); }
     public bool IsInteractive { get; set; } = false;
     public bool UseHook { get; set; } = true;
     public int WindowsDoubleClickTimeMilliseconds { get; set; } = 500;

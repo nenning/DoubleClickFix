@@ -172,4 +172,19 @@
   <data name="MouseWheelDelta" xml:space="preserve">
     <value>Mouse wheel delta</value>
   </data>
+  <data name="CurrentDevice" xml:space="preserve">
+    <value>Current device:</value>
+  </data>
+  <data name="IgnoreCurrentDevice" xml:space="preserve">
+    <value>Ignore this device</value>
+  </data>
+  <data name="DeviceTypeMouse" xml:space="preserve">
+    <value>mouse</value>
+  </data>
+  <data name="DeviceTypeTouchScreen" xml:space="preserve">
+    <value>touch screen</value>
+  </data>
+  <data name="DeviceTypeTouchPad" xml:space="preserve">
+    <value>touch pad</value>
+  </data>
 </root>

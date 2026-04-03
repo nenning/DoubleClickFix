@@ -22,7 +22,9 @@ class TestNativeMethods : INativeMethods
     public nint SetHookResult { get; set; } = new(123);
     public Action? UnhookWindowsHookAction { get; set; }
     public Action? RegisterForRawInputAction { get; set; }
-    public Func<nint, (bool, nint)>? ProcessRawInputFunc { get; set; }
+    public Func<nint, (bool, nint, bool)>? ProcessRawInputFunc { get; set; }
+    public Func<nint, (bool, nint)>? GetRawInputDeviceHandleFunc { get; set; }
+    public Func<nint, string?>? TryGetDevicePathFunc { get; set; }
 
     public nint CallNextHook(nint hhk, int nCode, nint wParam, nint lParam)
     {
@@ -48,16 +50,33 @@ class TestNativeMethods : INativeMethods
         RegisterForRawInputAction?.Invoke();
     }
 
-    public bool TryProcessRawInput(nint hRawInput, out nint device)
+    public string? TryGetDevicePath(nint hDevice) => TryGetDevicePathFunc?.Invoke(hDevice);
+
+    public bool TryGetRawInputDeviceHandle(nint hRawInput, out nint device)
+    {
+        if (GetRawInputDeviceHandleFunc != null)
+        {
+            var (result, dev) = GetRawInputDeviceHandleFunc(hRawInput);
+            device = dev;
+            return result;
+        }
+        // default: use the raw input handle itself as device handle
+        device = hRawInput;
+        return true;
+    }
+
+    public bool TryProcessRawInput(nint hRawInput, out nint device, out NativeMethods.DeviceType deviceType)
     {
         ProcessRawInputCounter++;
         if (ProcessRawInputFunc != null)
         {
-            var (result, dev) = ProcessRawInputFunc(hRawInput);
+            var (result, dev, isTouch) = ProcessRawInputFunc(hRawInput);
             device = dev;
+            deviceType = isTouch ? NativeMethods.DeviceType.TouchPad : NativeMethods.DeviceType.Mouse;
             return result;
         }
         device = 0;
+        deviceType = NativeMethods.DeviceType.Mouse;
         return false;
     }
 

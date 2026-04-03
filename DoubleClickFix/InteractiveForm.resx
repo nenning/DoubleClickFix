@@ -181,7 +181,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;delayLabel.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="delayTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -208,7 +208,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;delayTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>788, 323</value>
@@ -235,7 +235,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="runAtStartupCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -265,7 +265,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;runAtStartupCheckBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
   <data name="dragEndDelayTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -414,6 +414,96 @@
   <data name="&gt;&gt;fixDraggingCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="remoteDesktopCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="remoteDesktopCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="remoteDesktopCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>470, 198</value>
+  </data>
+  <data name="remoteDesktopCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 29</value>
+  </data>
+  <data name="remoteDesktopCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve">
+    <value>Don't filter clicks in remote desktop sessions</value>
+  </data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve">
+    <value>When enabled, mouse click filtering is disabled in remote desktop sessions</value>
+  </data>
+  <data name="&gt;&gt;remoteDesktopCheckBox.Name" xml:space="preserve">
+    <value>remoteDesktopCheckBox</value>
+  </data>
+  <data name="&gt;&gt;remoteDesktopCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteDesktopCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;remoteDesktopCheckBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="currentDeviceLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="currentDeviceLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>470, 246</value>
+  </data>
+  <data name="currentDeviceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 25</value>
+  </data>
+  <data name="currentDeviceLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="currentDeviceLabel.Text" xml:space="preserve">
+    <value>Current device: –</value>
+  </data>
+  <data name="&gt;&gt;currentDeviceLabel.Name" xml:space="preserve">
+    <value>currentDeviceLabel</value>
+  </data>
+  <data name="&gt;&gt;currentDeviceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;currentDeviceLabel.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;currentDeviceLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>470, 272</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 29</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.Text" xml:space="preserve">
+    <value>Ignore this device</value>
+  </data>
+  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.Name" xml:space="preserve">
+    <value>ignoreCurrentDeviceCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="useMinDelayCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -445,7 +535,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;useMinDelayCheckBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="thresholdSlider.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -469,7 +559,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;thresholdSlider.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="buttonEnabledCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -499,7 +589,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;buttonEnabledCheckBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Left mouse button</value>
@@ -538,7 +628,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;mouseButtonComboBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 82</value>
@@ -10116,39 +10206,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   </data>
   <data name="&gt;&gt;exitMenu.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="remoteDesktopCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="remoteDesktopCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="remoteDesktopCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>470, 198</value>
-  </data>
-  <data name="remoteDesktopCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 29</value>
-  </data>
-  <data name="remoteDesktopCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="remoteDesktopCheckBox.Text" xml:space="preserve">
-    <value>Don't filter clicks in remote desktop sessions</value>
-  </data>
-  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve">
-    <value>When enabled, mouse click filtering is disabled in remote desktop sessions</value>
-  </data>
-  <data name="&gt;&gt;remoteDesktopCheckBox.Name" xml:space="preserve">
-    <value>remoteDesktopCheckBox</value>
-  </data>
-  <data name="&gt;&gt;remoteDesktopCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;remoteDesktopCheckBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;remoteDesktopCheckBox.ZOrder" xml:space="preserve">
-    <value>12</value>
   </data>
   <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
     <value>toolTip1</value>

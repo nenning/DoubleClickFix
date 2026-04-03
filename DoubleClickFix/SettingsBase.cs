@@ -11,7 +11,7 @@ namespace DoubleClickFix
 
         protected readonly ILogger logger;
         
-        protected int ignoredDevice = 0;
+        protected HashSet<string> ignoredDevicePaths = [];
         protected int minDelay = -1;
 
         protected int leftThreshold = 50;
@@ -41,17 +41,16 @@ namespace DoubleClickFix
             settingsChanged += this.OnSettingsChanged;
         }
 
-        public int IgnoredDevice
+        public IReadOnlySet<string> IgnoredDevicePaths => ignoredDevicePaths;
+
+        public void AddIgnoredDevice(string path)
         {
-            get => ignoredDevice;
-            set
-            {
-                if (value != ignoredDevice)
-                {
-                    ignoredDevice = value;
-                    FireSettingsChanged();
-                }
-            }
+            if (ignoredDevicePaths.Add(path)) FireSettingsChanged();
+        }
+
+        public void RemoveIgnoredDevice(string path)
+        {
+            if (ignoredDevicePaths.Remove(path)) FireSettingsChanged();
         }
 
         public bool IsFirstAppStart { get; private init; }
@@ -240,7 +239,7 @@ namespace DoubleClickFix
             X1Threshold = -1;
             X2Threshold = -1;
             WheelThreshold = -1;
-            IgnoredDevice = 0;
+            ignoredDevicePaths.Clear();
         }
         protected void FireSettingsChanged()
         {

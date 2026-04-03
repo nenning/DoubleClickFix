@@ -1,8 +1,12 @@
-﻿# 🖱️ Double-click Fix
+# 🖱️ Double-click Fix
 
 [![.NET](https://github.com/nenning/DoubleClickFix/actions/workflows/dotnet.yml/badge.svg)](https://github.com/nenning/DoubleClickFix/actions/workflows/dotnet.yml) &nbsp; [![GitHub release (latest by date)](https://img.shields.io/github/v/release/nenning/DoubleClickFix)](https://github.com/nenning/DoubleClickFix/releases/latest) &nbsp; [![License](https://img.shields.io/github/license/nenning/DoubleClickFix)](LICENSE.txt) &nbsp; [![Microsoft Store](https://img.shields.io/badge/Microsoft_Store-Get_it_now-blue?logo=microsoft-store)](https://apps.microsoft.com/detail/9PDGM7NL2FF2)
 
 A lightweight solution for mitigating double-click issues caused by malfunctioning mice.
+
+**New in release 1.6:** 🚫 **Per-device Ignore List** – have a second mouse or touchpad that you don't want filtered? Move the cursor with that device and check "Ignore this device" in the settings UI. The setting is saved permanently and survives reboots.
+
+**Also new in release 1.6:** 🖥️ **Remote Desktop Support** – controlling this PC via RDP and double-clicks aren't working? Enable the new option in the UI to disable click filtering during remote sessions.
 
 **New in release 1.5:** 🖱️ **Mouse Wheel Fix** – if you have problems with a "bouncy" or "jittery" mouse wheel, you can now enable a fix for it in the UI!
 
@@ -28,10 +32,11 @@ This tool ensures smoother operation by filtering unintended double-click events
 ---
 
 ## ✨ Features
-- **Drag & Drop Fix (New!)**: You can enable this in the UI. Hold, drag, and drop reliably — even if your mouse switch chatters during the gesture. A short pause while dragging is treated as the true release, preventing accidental drops.
+- **Drag & Drop Fix**: You can enable this in the UI. Hold, drag, and drop reliably — even if your mouse switch chatters during the gesture. A short pause while dragging is treated as the true release, preventing accidental drops.
 - **Mouse Wheel Fix**: Filters out spurious mouse wheel events to prevent accidental scrolling.
+- **Per-device Ignore List**: Move the cursor with any device (mouse, trackball, drawing tablet, etc.) and toggle "Ignore this device" in the settings to exclude it from all filtering. Stored persistently — survives reboots and Bluetooth reconnects.
 - **Remote Desktop Support**: Optionally disable click filtering when controlling the PC via a Remote Desktop (RDP) session, so that RDP clients that emulate double-clicks as rapid single clicks are not affected.
-- **Customizable Delay**: Adjust the minimal delay between two clicks via a user-friendly interface. Default is 50 ms.
+- **Customizable Delay**: Adjust the minimal delay between two clicks via a user-friendly interface. Default is 50 ms.
 - **Customize for Specific Mouse Buttons**: Choose which mouse buttons to fix, including left, right, middle, X1, and X2. Default is left mouse button only.
 - **Windows Tray Integration**: Double-click the tray icon to open the settings UI.
 - **Startup Option**: Register the application to launch with Windows. The app tries to do this automatically when you launch it the first time.
@@ -41,7 +46,7 @@ This tool ensures smoother operation by filtering unintended double-click events
 
 ## 🔍 How It Works: Filtering Mouse Clicks
 
-This application intercepts mouse events at a low level to distinguish between intentional clicks and unintentional "bouncing" or "chattering" from a faulty mouse switch. Here’s a step-by-step breakdown of the process:
+This application intercepts mouse events at a low level to distinguish between intentional clicks and unintentional "bouncing" or "chattering" from a faulty mouse switch. Here's a step-by-step breakdown of the process:
 
 1.  **Low-Level Mouse Hook**: The application registers a `WH_MOUSE_LL` (low-level mouse) hook. This allows it to intercept mouse input events system-wide before they are passed to applications.
 2.  **Event Interception**: Every mouse event, such as `WM_LBUTTONDOWN` (left button down) or `WM_MOUSEMOVE` (mouse move), is captured by a callback function.
@@ -67,7 +72,7 @@ This entire process is highly efficient and runs in the background with minimal 
 
 ## 🖥️ System Requirements
 - **Operating System**: Windows 10 or later.
-- **.NET Runtime**: [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet) or later (usually installed automatically).
+- **.NET Runtime**: [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet) or later (usually installed automatically).
 
 ---
 
@@ -94,17 +99,17 @@ The following options are supported for installing and running the application:
 ### 🛠️ Settings
 - Settings can be adjusted in the UI, including:
   - **Per-button delay**: Minimal delay (in ms) between clicks for each button.
-  - **Fix dragging issues**: Enables this only if you have problems with dragging (& dropping).
+  - **Fix dragging issues**: Enable this only if you have problems with dragging (& dropping).
   - **Drag start delay**: The time (in ms) a drag action must take to enter the drag lock state.
   - **Drag release delay**: The time (in ms) you must hold the button after stopping movement before the release is registered. Alternatively, you can manually click to exit the drag lock.
-  - **Workaround for touch devices**: All double-clicks from touchpads or touchscreens are allowed by default. If you have trouble with this, enable the `Allow 0 ms Double-Click Duration` option in the UI.
+  - **Ignore this device**: Move the cursor with a device you want to exclude (e.g. a secondary mouse or graphics tablet), then check "Ignore this device". The device path is saved permanently and all filtering is bypassed for that device.
+  - **Workaround for touch devices**: All double-clicks from touchpads or touchscreens are allowed by default. If you have trouble with this, enable the `Allow 0 ms Double-Click Duration` option in the UI.
   - **Remote Desktop sessions**: Enable `Don't filter clicks in remote desktop sessions` if you control this PC via RDP and double-clicks are not working. Disabled by default.
 
 ### 💡 Tips
-- Check the logs in the UI for detailed information on the elapsed time between your mouse clicks and filterd out double-clicks.
+- Check the logs in the UI for detailed information on the elapsed time between your mouse clicks and filtered-out double-clicks.
 - Experiment with different delay settings to optimize for your personal double-click speed and specific hardware issues.
 - Use the test area on the right side of the UI to test your settings (try also triple-clicking to select a whole paragraph and selecting text).
-
 
 ---
 

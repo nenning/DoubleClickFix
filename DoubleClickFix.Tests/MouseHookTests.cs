@@ -156,33 +156,27 @@ public class MouseHookTests
     }
 
     [Theory]
-    [InlineData(-1, -1, -1, -1, -1, -1, 0, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 0, true)] // everything disabled
-    [InlineData(-1, -1, -1, -1, -1, -1, 0, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 30, true)]
-    [InlineData(50, 50, 50, 50, 50, -1, 0, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 0, false)] // everything enabled
-    [InlineData(50, 50, 50, 50, 50, -1, 0, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 50, true)]
-    [InlineData(20, -1, -1, -1, -1, -1, 0, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 0, false)] // delay = 0 -> ignored
-    [InlineData(-1, 20, -1, -1, -1, -1, 0, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 0, false)]
-    [InlineData(-1, -1, 20, -1, -1, -1, 0, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 0, false)]
-    [InlineData(20, -1, -1, -1, -1, -1, 0, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 19, false)] // delay < timeout -> ignored
-    [InlineData(-1, 20, -1, -1, -1, -1, 0, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 19, false)]
-    [InlineData(-1, -1, 20, -1, -1, -1, 0, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 19, false)]
-    [InlineData(20, -1, -1, -1, -1, -1, 0, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 20, true)] // delay == timeout -> allowed
-    [InlineData(-1, 20, -1, -1, -1, -1, 0, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 20, true)]
-    [InlineData(-1, -1, 20, -1, -1, -1, 0, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 20, true)]
-    [InlineData(20, -1, -1, -1, -1, -1, 0, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 30, true)] // delay >= timeout -> not allowed
-    [InlineData(-1, 20, -1, -1, -1, -1, 0, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 30, true)]
-    [InlineData(-1, -1, 20, -1, -1, -1, 0, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 30, true)]
-    [InlineData(50, 50, 50, 50, 50, 0, 0, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 0, true)] // minDelay set to 0
-    [InlineData(50, 50, 50, 50, 50, 0, 0, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 0, true)]
-    [InlineData(50, 50, 50, 50, 50, 0, 0, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 0, true)]
-    [InlineData(50, 50, 50, 50, 50, -1, -1, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 0, true)] // ignored device set to -1 (the default of mouse hook)
-    [InlineData(50, 50, 50, 50, 50, -1, -1, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 0, true)]
-    [InlineData(50, 50, 50, 50, 50, -1, -1, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 0, true)]
-    [InlineData(50, 50, 50, 50, 50, 0, -1, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 0, true)] // ignoredDevice=-1 and mindelay=0
-    [InlineData(50, 50, 50, 50, 50, 0, -1, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 1, true)]
-    [InlineData(50, 50, 50, 50, 50, 0, -1, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 2, true)]
+    [InlineData(-1, -1, -1, -1, -1, -1, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 0, true)] // everything disabled
+    [InlineData(-1, -1, -1, -1, -1, -1, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 30, true)]
+    [InlineData(50, 50, 50, 50, 50, -1, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 0, false)] // everything enabled
+    [InlineData(50, 50, 50, 50, 50, -1, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 50, true)]
+    [InlineData(20, -1, -1, -1, -1, -1, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 0, false)] // delay = 0 -> ignored
+    [InlineData(-1, 20, -1, -1, -1, -1, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 0, false)]
+    [InlineData(-1, -1, 20, -1, -1, -1, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 0, false)]
+    [InlineData(20, -1, -1, -1, -1, -1, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 19, false)] // delay < timeout -> ignored
+    [InlineData(-1, 20, -1, -1, -1, -1, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 19, false)]
+    [InlineData(-1, -1, 20, -1, -1, -1, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 19, false)]
+    [InlineData(20, -1, -1, -1, -1, -1, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 20, true)] // delay == timeout -> allowed
+    [InlineData(-1, 20, -1, -1, -1, -1, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 20, true)]
+    [InlineData(-1, -1, 20, -1, -1, -1, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 20, true)]
+    [InlineData(20, -1, -1, -1, -1, -1, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 30, true)] // delay >= timeout -> not allowed
+    [InlineData(-1, 20, -1, -1, -1, -1, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 30, true)]
+    [InlineData(-1, -1, 20, -1, -1, -1, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 30, true)]
+    [InlineData(50, 50, 50, 50, 50, 0, (int)WM_LBUTTONUP, (int)WM_LBUTTONDOWN, 0, true)] // minDelay set to 0
+    [InlineData(50, 50, 50, 50, 50, 0, (int)WM_RBUTTONUP, (int)WM_RBUTTONDOWN, 0, true)]
+    [InlineData(50, 50, 50, 50, 50, 0, (int)WM_MBUTTONUP, (int)WM_MBUTTONDOWN, 0, true)]
 
-    public void TestSettingsCombinations(int lTimeout, int rTimeout, int mTimeout, int x1Timeout, int x2Timeout, int minDelay, int device, int up, int down, uint ms, bool allowed)
+    public void TestSettingsCombinations(int lTimeout, int rTimeout, int mTimeout, int x1Timeout, int x2Timeout, int minDelay, int up, int down, uint ms, bool allowed)
     {
         TestSettings settings = new();
         MouseHook hook = new(settings, new TestLogger(), new TestNativeMethods());
@@ -192,7 +186,6 @@ public class MouseHookTests
         settings.X1Threshold = x1Timeout;
         settings.X2Threshold = x2Timeout;
         settings.MinDelay = minDelay;
-        settings.IgnoredDevice = device;
         settings.FireSettingsChanged();
 
         AssertAllowed(hook, up, 100);
@@ -206,6 +199,63 @@ public class MouseHookTests
         var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
         hook.ProcessRawInput(123);
         Assert.Equal(1, nativeMethods.ProcessRawInputCounter);
+    }
+
+    [Fact]
+    public void TestSwitchDeviceCachesDeviceType()
+    {
+        var nativeMethods = new TestNativeMethods();
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+        hook.ProcessRawInput(123);
+        hook.ProcessRawInput(123); // same device: TryProcessRawInput should not be called again
+        Assert.Equal(1, nativeMethods.ProcessRawInputCounter);
+    }
+
+    [Fact]
+    public void TestIgnoredDeviceByPathPassesThrough()
+    {
+        const string devicePath = "/dev/test_mouse";
+        var nativeMethods = new TestNativeMethods
+        {
+            TryGetDevicePathFunc = _ => devicePath
+        };
+        var settings = new TestSettings();
+        var hook = new MouseHook(settings, new TestLogger(), nativeMethods);
+
+        // Learn the device, then mark it as ignored
+        hook.ProcessRawInput(123);
+        settings.AddIgnoredDevice(devicePath);
+
+        // Rapid clicks from the ignored device should all pass through unfiltered
+        using (var data = HookStruct.Create(100)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        using (var data = HookStruct.Create(120)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(130)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        Assert.Equal(4, nativeMethods.CallNextHookCounter);
+    }
+
+    [Fact]
+    public void TestNonIgnoredDeviceStillFiltered()
+    {
+        const string ignoredPath = "/dev/ignored_mouse";
+        const string activePath = "/dev/active_mouse";
+        var nativeMethods = new TestNativeMethods
+        {
+            TryGetDevicePathFunc = handle => handle == 123 ? ignoredPath : activePath
+        };
+        var settings = new TestSettings();
+        settings.AddIgnoredDevice(ignoredPath);
+        var hook = new MouseHook(settings, new TestLogger(), nativeMethods);
+
+        // Learn device 456 (not ignored)
+        hook.ProcessRawInput(456);
+
+        // Rapid clicks from non-ignored device should still be filtered normally
+        using (var data = HookStruct.Create(100)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        using (var data = HookStruct.Create(120)) Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer)); // filtered
+        using (var data = HookStruct.Create(130)) Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));   // orphaned UP filtered
+        Assert.Equal(2, nativeMethods.CallNextHookCounter);
     }
 
     [Fact]
@@ -313,6 +363,61 @@ public class MouseHookTests
         using (var data = HookStruct.Create(120, flags: LLMHF_INJECTED))
             Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer)); // filtered
         using (var data = HookStruct.Create(130, flags: LLMHF_INJECTED))
+            Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));   // orphaned UP filtered
+        Assert.Equal(2, nativeMethods.CallNextHookCounter);
+    }
+
+    [Fact]
+    public void TestTouchpadInjectedClickPassesThroughLocalSession()
+    {
+        const uint LLMHF_INJECTED = 0x1;
+        var nativeMethods = new TestNativeMethods { IsRemoteSessionResult = false };
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+
+        // Rapid clicks (10 ms apart, within the 50 ms threshold) with injected flag on local machine:
+        // should all pass through — these are touchpad tap-to-click events.
+        using (var data = HookStruct.Create(100, flags: LLMHF_INJECTED))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110, flags: LLMHF_INJECTED))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        using (var data = HookStruct.Create(120, flags: LLMHF_INJECTED))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(130, flags: LLMHF_INJECTED))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        Assert.Equal(4, nativeMethods.CallNextHookCounter);
+    }
+
+    [Fact]
+    public void TestTouchpadInjectedWheelPassesThroughLocalSession()
+    {
+        const uint LLMHF_INJECTED = 0x1;
+        var nativeMethods = new TestNativeMethods { IsRemoteSessionResult = false };
+        var settings = new TestSettings { WheelThreshold = 200 };
+        var hook = new MouseHook(settings, new TestLogger(), nativeMethods);
+
+        // Two-finger scroll: rapid direction reversal (normally filtered by wheel bounce logic)
+        // but injected on a local machine — should pass through.
+        using (var data = HookStruct.Create(1, flags: LLMHF_INJECTED, mouseData: WheelDown))
+            Assert.Equal(0, hook.HookCallback(0, WM_MOUSEWHEEL, data.Pointer));
+        using (var data = HookStruct.Create(50, flags: LLMHF_INJECTED, mouseData: WheelUp))
+            Assert.Equal(0, hook.HookCallback(0, WM_MOUSEWHEEL, data.Pointer));
+        Assert.Equal(2, nativeMethods.CallNextHookCounter);
+    }
+
+    [Fact]
+    public void TestNonInjectedClickStillFilteredInLocalSession()
+    {
+        var nativeMethods = new TestNativeMethods { IsRemoteSessionResult = false };
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+
+        // flags = 0 (not injected, physical mouse): normal filtering still applies.
+        using (var data = HookStruct.Create(100))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        using (var data = HookStruct.Create(120))
+            Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer)); // filtered
+        using (var data = HookStruct.Create(130))
             Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));   // orphaned UP filtered
         Assert.Equal(2, nativeMethods.CallNextHookCounter);
     }
