@@ -57,7 +57,7 @@ Program.cs (entry point)
 
 MouseHook.cs (core filtering logic)
   └─ HookCallback: intercepts all mouse events system-wide
-       ├─ Double-click filtering: suppresses DOWN if elapsed since last UP < threshold
+       ├─ Double-click filtering: suppresses DOWN if elapsed since last UP < threshold; also suppresses the matching UP to prevent orphaned release events
        ├─ Drag-lock: enters drag-lock mode after >5px movement, suppresses jitter UP/DOWN events
        └─ Wheel bounce: suppresses opposite-direction wheel events within threshold
 

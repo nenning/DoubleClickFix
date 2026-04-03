@@ -70,6 +70,7 @@ internal class MouseHook : IDisposable
     private readonly Dictionary<MouseButtons, long> lastMoveTime = [];
     private readonly Dictionary<MouseButtons, bool> isDragLocked = [];
     private readonly Dictionary<MouseButtons, long> initialDownTime = [];
+    private readonly HashSet<MouseButtons> suppressNextUp = [];
 
     public MouseHook(ISettings settings, ILogger logger, INativeMethods nativeMethods)
     {
@@ -121,6 +122,7 @@ internal class MouseHook : IDisposable
         lastMoveTime.Clear();
         isDragLocked.Clear();
         initialDownTime.Clear();
+        suppressNextUp.Clear();
     }
 
     public bool Install()
@@ -350,6 +352,7 @@ internal class MouseHook : IDisposable
         if (buttonDown)
         {
             // record genuine down
+            suppressNextUp.Remove(activeButton);
             currentlyDownButtons.Add(activeButton);
             initialDownPosition[activeButton] = hookStruct.pt;
             initialDownTime[activeButton] = hookStruct.time;   // ensure Dictionary<MouseButtons,long> exists
@@ -369,6 +372,7 @@ internal class MouseHook : IDisposable
                 ignoredClicks++;
                 logger.Log($"{ignoredDoubleClickText} ({buttonTextLookup[activeButton]}): {delta} ms (#{ignoredClicks})");
                 previousUpTime[activeButton] = 0;
+                suppressNextUp.Add(activeButton);
                 return IgnoreMouseEvent;
             }
             else if (delta < settings.WindowsDoubleClickTimeMilliseconds)
@@ -378,6 +382,11 @@ internal class MouseHook : IDisposable
         }
         else if (buttonUp)
         {
+            if (suppressNextUp.Remove(activeButton))
+            {
+                currentlyDownButtons.Remove(activeButton);
+                return IgnoreMouseEvent;
+            }
             // genuine up
             currentlyDownButtons.Remove(activeButton);
             previousUpTime[activeButton] = hookStruct.time;

@@ -30,10 +30,10 @@ public class MouseHookTests
         AssertAllowed(hook, WM_LBUTTONDOWN, 100);
         AssertAllowed(hook, WM_LBUTTONUP, 110);
         AssertIgnored(hook, WM_LBUTTONDOWN, 120);
-        AssertAllowed(hook, WM_LBUTTONUP, 130);
-        Assert.Equal(3, nativeMethods.CallNextHookCounter);
+        AssertIgnored(hook, WM_LBUTTONUP, 130);
+        Assert.Equal(2, nativeMethods.CallNextHookCounter);
     }
-    
+
     [Fact]
     public void TestX1ClickIgnored()
     {
@@ -47,8 +47,8 @@ public class MouseHookTests
         AssertAllowed(hook, WM_XBUTTONDOWN, 100, mouseData: 0x00010000);
         AssertAllowed(hook, WM_XBUTTONUP, 110, mouseData: 0x00010000);
         AssertIgnored(hook, WM_XBUTTONDOWN, 120, mouseData: 0x00010000);
-        AssertAllowed(hook, WM_XBUTTONUP, 130, mouseData: 0x00010000);
-        Assert.Equal(3, nativeMethods.CallNextHookCounter);
+        AssertIgnored(hook, WM_XBUTTONUP, 130, mouseData: 0x00010000);
+        Assert.Equal(2, nativeMethods.CallNextHookCounter);
     }
 
     [Fact]
@@ -75,26 +75,26 @@ public class MouseHookTests
         AssertAllowed(hook, WM_LBUTTONDOWN, 170);
         AssertAllowed(hook, WM_LBUTTONUP, 180);
         AssertIgnored(hook, WM_LBUTTONDOWN, 190);
-        AssertAllowed(hook, WM_LBUTTONUP, 200);
-        Assert.Equal(5, nativeMethods.CallNextHookCounter);
+        AssertIgnored(hook, WM_LBUTTONUP, 200);
+        Assert.Equal(4, nativeMethods.CallNextHookCounter);
 
         AssertAllowed(hook, WM_LBUTTONDOWN, 300);
         AssertAllowed(hook, WM_LBUTTONUP, 310);
         AssertIgnored(hook, WM_LBUTTONDOWN, 320);
-        AssertAllowed(hook, WM_LBUTTONUP, 330);
-        Assert.Equal(8, nativeMethods.CallNextHookCounter);
+        AssertIgnored(hook, WM_LBUTTONUP, 330);
+        Assert.Equal(6, nativeMethods.CallNextHookCounter);
 
         AssertAllowed(hook, WM_LBUTTONDOWN, 400);
         AssertAllowed(hook, WM_LBUTTONUP, 410);
         AssertIgnored(hook, WM_LBUTTONDOWN, 420);
-        AssertAllowed(hook, WM_LBUTTONUP, 430);
-        Assert.Equal(11, nativeMethods.CallNextHookCounter);
+        AssertIgnored(hook, WM_LBUTTONUP, 430);
+        Assert.Equal(8, nativeMethods.CallNextHookCounter);
 
         AssertAllowed(hook, WM_LBUTTONDOWN, 500);
         AssertAllowed(hook, WM_LBUTTONUP, 510);
         AssertAllowed(hook, WM_LBUTTONDOWN, 570);
         AssertAllowed(hook, WM_LBUTTONUP, 580);
-        Assert.Equal(15, nativeMethods.CallNextHookCounter);
+        Assert.Equal(12, nativeMethods.CallNextHookCounter);
     }
 
     [Fact]
@@ -105,7 +105,7 @@ public class MouseHookTests
         AssertAllowed(hook, WM_LBUTTONUP, 100);
         AssertIgnored(hook, WM_LBUTTONDOWN, 110);
 
-        AssertAllowed(hook, WM_LBUTTONUP, 100);
+        AssertIgnored(hook, WM_LBUTTONUP, 100);
         AssertAllowed(hook, WM_LBUTTONDOWN, 160);
 
         AssertAllowed(hook, WM_RBUTTONUP, 200);
@@ -126,7 +126,7 @@ public class MouseHookTests
         AssertIgnored(hook, WM_LBUTTONDOWN, 120);
         AssertAllowed(hook, WM_RBUTTONDOWN, 121);
 
-        AssertAllowed(hook, WM_LBUTTONUP, 200);
+        AssertIgnored(hook, WM_LBUTTONUP, 200);
         AssertAllowed(hook, WM_RBUTTONUP, 201);
         AssertAllowed(hook, WM_LBUTTONDOWN, 260);
         AssertAllowed(hook, WM_RBUTTONDOWN, 261);
@@ -147,7 +147,7 @@ public class MouseHookTests
         AssertAllowed(hook, WM_RBUTTONUP, 102);
         AssertIgnored(hook, WM_RBUTTONDOWN, 110);
 
-        AssertAllowed(hook, WM_RBUTTONUP, 111);
+        AssertIgnored(hook, WM_RBUTTONUP, 111);
         AssertAllowed(hook, WM_RBUTTONDOWN, 130);
 
     }
@@ -234,10 +234,10 @@ public class MouseHookTests
         MouseHook hook = new(settings, new TestLogger(), new TestNativeMethods());
 
         // Simulate a drag event
-        AssertAllowed(hook, WM_LBUTTONDOWN, 200); // Initial press for drag-lock
-        AssertAllowed(hook, WM_MOUSEMOVE, 450, movedPixels: 1);  // Movement starts drag-lock
-        AssertAllowed(hook, WM_LBUTTONUP, 550);  // Drag-lock active, suppress release
-        AssertIgnored(hook, WM_LBUTTONDOWN, 551);  // Drag-lock active, suppress press
-        AssertAllowed(hook, WM_LBUTTONUP, 800); // Drag-lock ends, allow release
+        AssertAllowed(hook, WM_LBUTTONDOWN, 200); // Initial press
+        AssertAllowed(hook, WM_MOUSEMOVE, 450, movedPixels: 1);  // Not enough movement, drag-lock not initiated
+        AssertAllowed(hook, WM_LBUTTONUP, 550);  // Genuine release
+        AssertIgnored(hook, WM_LBUTTONDOWN, 551);  // Bounce: too soon after UP, suppressed
+        AssertIgnored(hook, WM_LBUTTONUP, 800); // Orphaned UP for suppressed DOWN, also suppressed
     }
 }

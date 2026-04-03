@@ -47,6 +47,7 @@ This application intercepts mouse events at a low level to distinguish between i
 3.  **Double-Click Filtering**:
     *   When a mouse button **down** event occurs, the application measures the time elapsed since the last corresponding **up** event for that same button.
     *   If this duration is shorter than the user-defined **threshold** (e.g., 50 ms), the event is considered an erroneous double-click and is "swallowed" or ignored. This prevents the system and other applications from ever receiving it.
+    *   The matching **up** event for a suppressed down is also suppressed, preventing orphaned release events from reaching applications.
     *   If the duration is longer than the threshold, the click is considered intentional and is passed along to the system as usual.
 4.  **Drag & Drop Correction**: Faulty mice can also interfere with drag-and-drop operations by sending spurious "up" events while the button is being held down. The "Fix dragging issues" feature addresses this:
     *   **Entering Drag-Lock**: When you press and hold a mouse button and then move the cursor beyond a small distance, the application enters a "drag-lock" mode for that button.
