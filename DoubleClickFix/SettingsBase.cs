@@ -24,6 +24,7 @@ namespace DoubleClickFix
 
         protected int dragStartTimeMilliseconds = -1;
         protected int dragStopTimeMilliseconds = -1;
+        protected int remoteDesktopDetection = 0;
 
         public SettingsBase(string[] args, ILogger logger)
         {
@@ -150,7 +151,20 @@ namespace DoubleClickFix
                 }
             }
         }
-
+                
+        public bool IsRemoteDesktopDetectionEnabled
+        {
+            get => remoteDesktopDetection > 0;
+            set
+            {
+                int newVal = value ? 1 : 0;
+                if (newVal != remoteDesktopDetection)
+                {
+                    remoteDesktopDetection = newVal;
+                    FireSettingsChanged();
+                }
+            }
+        }
         public bool IsDragCorrectionEnabled => DragStartTimeMilliseconds >= 0 && DragStopTimeMilliseconds >= 0;
 
         public int DragStartTimeMilliseconds { 

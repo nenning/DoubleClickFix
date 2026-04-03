@@ -27,6 +27,7 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         SaveSetting(IgnoredDevice);
         SaveSetting(DragStartTimeMilliseconds);
         SaveSetting(DragStopTimeMilliseconds);
+        SaveSetting(remoteDesktopDetection);
         logger.Log(Resources.SettingsSaved);
     }
 
@@ -47,6 +48,7 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         ignoredDevice = LoadSetting(IgnoredDevice);
         dragStartTimeMilliseconds = LoadSetting(DragStartTimeMilliseconds);
         dragStopTimeMilliseconds = LoadSetting(DragStopTimeMilliseconds);
+        remoteDesktopDetection = LoadSetting(remoteDesktopDetection);
         FireSettingsChanged();
     }
 

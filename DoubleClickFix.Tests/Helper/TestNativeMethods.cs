@@ -70,4 +70,7 @@ class TestNativeMethods : INativeMethods
     {
         throw new NotImplementedException();
     }
+
+    public bool IsRemoteSessionResult { get; set; } = false;
+    public bool IsRemoteSession() => IsRemoteSessionResult;
 }

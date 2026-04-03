@@ -19,14 +19,15 @@ class HookStruct : IDisposable
         Marshal.StructureToPtr(this.hookStruct, ptrHookStruct, false);
 
     }
-    public static HookStruct Create(uint timeMs, int movedPixels = 0, nint deviceId = 0, uint mouseData = 0)
+    public static HookStruct Create(uint timeMs, int movedPixels = 0, nint deviceId = 0, uint mouseData = 0, uint flags = 0)
     {
         MSLLHOOKSTRUCT hookStruct = new()
         {
             time = timeMs,
             pt = new POINT { x = movedPixels, y = movedPixels },
             dwExtraInfo = deviceId,
-            mouseData = mouseData
+            mouseData = mouseData,
+            flags = flags
         };
         return new HookStruct(hookStruct);
     }

@@ -65,6 +65,7 @@
             toolTip1 = new ToolTip(components);
             versionLabel = new Label();
             gitLinkLabel = new LinkLabel();
+            remoteDesktopCheckBox = new CheckBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)thresholdSlider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -108,14 +109,23 @@
             runAtStartupCheckBox.Name = "runAtStartupCheckBox";
             toolTip1.SetToolTip(runAtStartupCheckBox, resources.GetString("runAtStartupCheckBox.ToolTip"));
             runAtStartupCheckBox.UseVisualStyleBackColor = true;
-            // 
+            //
+            // remoteDesktopCheckBox
+            //
+            resources.ApplyResources(remoteDesktopCheckBox, "remoteDesktopCheckBox");
+            remoteDesktopCheckBox.Name = "remoteDesktopCheckBox";
+            toolTip1.SetToolTip(remoteDesktopCheckBox, resources.GetString("remoteDesktopCheckBox.ToolTip"));
+            remoteDesktopCheckBox.UseVisualStyleBackColor = true;
+            remoteDesktopCheckBox.CheckedChanged += OnRemoteDesktopCheckBoxChanged;
+            //
             // groupBox1
-            // 
+            //
             groupBox1.Controls.Add(dragEndDelayTextBox);
             groupBox1.Controls.Add(dragEndDelayLabel);
             groupBox1.Controls.Add(dragStartDelayTextBox);
             groupBox1.Controls.Add(dragStartDelayLabel);
             groupBox1.Controls.Add(fixDraggingCheckBox);
+            groupBox1.Controls.Add(remoteDesktopCheckBox);
             groupBox1.Controls.Add(saveButton);
             groupBox1.Controls.Add(useMinDelayCheckBox);
             groupBox1.Controls.Add(thresholdSlider);
@@ -383,6 +393,7 @@
         private TrackBar thresholdSlider;
         private CheckBox useMinDelayCheckBox;
         private CheckBox fixDraggingCheckBox;
+        private CheckBox remoteDesktopCheckBox;
         private TextBox dragStartDelayTextBox;
         private Label dragStartDelayLabel;
         private TextBox dragEndDelayTextBox;

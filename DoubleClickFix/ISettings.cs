@@ -19,6 +19,8 @@ internal interface ISettings
     int DragStartTimeMilliseconds { get; set; }
     int DragStopTimeMilliseconds { get; set; }
 
+    bool IsRemoteDesktopDetectionEnabled { get; set; }
+
     bool IsFirstAppStart { get; }
     void RegisterSettingsChangedListener(Action listener);
     void Save();

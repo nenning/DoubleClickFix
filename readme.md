@@ -30,6 +30,7 @@ This tool ensures smoother operation by filtering unintended double-click events
 ## ✨ Features
 - **Drag & Drop Fix (New!)**: You can enable this in the UI. Hold, drag, and drop reliably — even if your mouse switch chatters during the gesture. A short pause while dragging is treated as the true release, preventing accidental drops.
 - **Mouse Wheel Fix**: Filters out spurious mouse wheel events to prevent accidental scrolling.
+- **Remote Desktop Support**: Optionally disable click filtering when controlling the PC via a Remote Desktop (RDP) session, so that RDP clients that emulate double-clicks as rapid single clicks are not affected.
 - **Customizable Delay**: Adjust the minimal delay between two clicks via a user-friendly interface. Default is 50 ms.
 - **Customize for Specific Mouse Buttons**: Choose which mouse buttons to fix, including left, right, middle, X1, and X2. Default is left mouse button only.
 - **Windows Tray Integration**: Double-click the tray icon to open the settings UI.
@@ -97,6 +98,7 @@ The following options are supported for installing and running the application:
   - **Drag start delay**: The time (in ms) a drag action must take to enter the drag lock state.
   - **Drag release delay**: The time (in ms) you must hold the button after stopping movement before the release is registered. Alternatively, you can manually click to exit the drag lock.
   - **Workaround for touch devices**: All double-clicks from touchpads or touchscreens are allowed by default. If you have trouble with this, enable the `Allow 0 ms Double-Click Duration` option in the UI.
+  - **Remote Desktop sessions**: Enable `Don't filter clicks in remote desktop sessions` if you control this PC via RDP and double-clicks are not working. Disabled by default.
 
 ### 💡 Tips
 - Check the logs in the UI for detailed information on the elapsed time between your mouse clicks and filterd out double-clicks.

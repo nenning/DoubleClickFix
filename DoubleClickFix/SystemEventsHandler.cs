@@ -62,6 +62,12 @@ internal class SystemEventsHandler : IDisposable
                     logger.Log("Failed to reinstall mouse hook after session unlock.");
                 }
                 break;
+            case SessionSwitchReason.RemoteConnect:
+            case SessionSwitchReason.RemoteDisconnect:
+            case SessionSwitchReason.ConsoleConnect:
+            case SessionSwitchReason.ConsoleDisconnect:
+                mouseHook.RefreshRemoteSessionState();
+                break;
         }
     }
 

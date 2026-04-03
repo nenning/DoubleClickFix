@@ -246,4 +246,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="$this.Text" xml:space="preserve">
     <value>Doppelklick-Fix</value>
   </data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve">
+    <value>Klicks in Remote-Desktop-Sitzungen nicht filtern</value>
+  </data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve">
+    <value>Wenn aktiviert, wird die Mausklick-Filterung in Remote-Desktop-Sitzungen deaktiviert</value>
+  </data>
 </root>

@@ -25,6 +25,13 @@ internal class NativeMethods : INativeMethods
     [DllImport("user32.dll")]
     internal static extern int GetDoubleClickTime();
 
+    [DllImport("user32.dll")]
+    private static extern int GetSystemMetrics(int nIndex);
+
+    private const int SM_REMOTESESSION = 0x1000;
+
+    public bool IsRemoteSession() => GetSystemMetrics(SM_REMOTESESSION) != 0;
+
     [StructLayout(LayoutKind.Sequential)]
     internal struct POINT
     {

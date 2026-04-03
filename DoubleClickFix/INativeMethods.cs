@@ -9,4 +9,5 @@ internal interface INativeMethods
     bool TryProcessRawInput(nint hRawInput, out nint device);
     nint GetWindowLong(nint hWnd, int nIndex);
     nint SetWindowLong(nint hWnd, int nIndex, nint dwNewLong);
+    bool IsRemoteSession();
 }

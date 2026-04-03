@@ -25,6 +25,7 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
                 SaveSetting(key, IgnoredDevice);
                 SaveSetting(key, DragStartTimeMilliseconds);
                 SaveSetting(key, DragStopTimeMilliseconds);
+                SaveSetting(key, remoteDesktopDetection);
                 logger.Log(Resources.SettingsSaved);
             } else { 
                 logger.Log("Failed to create or write registry key."); 
@@ -69,6 +70,7 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
             IgnoredDevice = LoadSetting(key, IgnoredDevice);
             DragStartTimeMilliseconds = LoadSetting(key, DragStartTimeMilliseconds);
             DragStopTimeMilliseconds = LoadSetting(key, DragStopTimeMilliseconds);
+            remoteDesktopDetection = LoadSetting(key, remoteDesktopDetection);
         }
     }
 

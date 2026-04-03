@@ -45,6 +45,8 @@ internal partial class InteractiveForm : Form
         this.runAtStartupCheckBox.Checked = startup.IsRegistered();
         this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
 
+        this.remoteDesktopCheckBox.Checked = settings.IsRemoteDesktopDetectionEnabled;
+
         bool fixDragging = settings.IsDragCorrectionEnabled;
         this.fixDraggingCheckBox.Checked = fixDragging;
         this.dragStartDelayTextBox.Enabled = fixDragging;
@@ -378,6 +380,11 @@ internal partial class InteractiveForm : Form
     private void UseMinDelayCheckBoxCheckedChanged(object sender, EventArgs e)
     {
         settings.MinDelay = useMinDelayCheckBox.Checked ? 0 : -1;
+    }
+
+    private void OnRemoteDesktopCheckBoxChanged(object sender, EventArgs e)
+    {
+        settings.IsRemoteDesktopDetectionEnabled = remoteDesktopCheckBox.Checked;
     }
 
     private void OnFixDraggingCheckBoxChanged(object sender, EventArgs e)

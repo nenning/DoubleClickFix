@@ -246,4 +246,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="$this.Text" xml:space="preserve">
     <value>Corrección de doble clic</value>
   </data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve">
+    <value>No filtrar clics en sesiones de escritorio remoto</value>
+  </data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve">
+    <value>Cuando está habilitado, el filtrado de clics del ratón se desactiva en sesiones de escritorio remoto</value>
+  </data>
 </root>

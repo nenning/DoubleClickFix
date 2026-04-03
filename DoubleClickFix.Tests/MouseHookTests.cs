@@ -276,4 +276,63 @@ public class MouseHookTests
         AssertIgnored(hook, WM_MOUSEWHEEL, 50, mouseData: WheelUp);  // bounce within threshold
         AssertAllowed(hook, WM_MOUSEWHEEL, 400, mouseData: WheelUp); // legitimate reversal after threshold
     }
+
+    [Fact]
+    public void TestRdpInjectedClickPassesThroughWhenDetectionEnabled()
+    {
+        const uint LLMHF_INJECTED = 0x1;
+        var nativeMethods = new TestNativeMethods { IsRemoteSessionResult = true };
+        var settings = new TestSettings { IsRemoteDesktopDetectionEnabled = true };
+        var hook = new MouseHook(settings, new TestLogger(), nativeMethods);
+
+        // Two rapid clicks (10 ms apart, within the 50 ms threshold) with injected flag:
+        // both should pass through without filtering.
+        using (var data = HookStruct.Create(100, flags: LLMHF_INJECTED))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110, flags: LLMHF_INJECTED))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        using (var data = HookStruct.Create(120, flags: LLMHF_INJECTED))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(130, flags: LLMHF_INJECTED))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        Assert.Equal(4, nativeMethods.CallNextHookCounter);
+    }
+
+    [Fact]
+    public void TestRdpInjectedClickStillFilteredWhenDetectionDisabled()
+    {
+        const uint LLMHF_INJECTED = 0x1;
+        var nativeMethods = new TestNativeMethods { IsRemoteSessionResult = true };
+        // Detection is disabled by default — filtering should still apply.
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+
+        using (var data = HookStruct.Create(100, flags: LLMHF_INJECTED))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110, flags: LLMHF_INJECTED))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        using (var data = HookStruct.Create(120, flags: LLMHF_INJECTED))
+            Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer)); // filtered
+        using (var data = HookStruct.Create(130, flags: LLMHF_INJECTED))
+            Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));   // orphaned UP filtered
+        Assert.Equal(2, nativeMethods.CallNextHookCounter);
+    }
+
+    [Fact]
+    public void TestNonInjectedClickStillFilteredInRemoteSession()
+    {
+        var nativeMethods = new TestNativeMethods { IsRemoteSessionResult = true };
+        var settings = new TestSettings { IsRemoteDesktopDetectionEnabled = true };
+        var hook = new MouseHook(settings, new TestLogger(), nativeMethods);
+
+        // flags = 0 (not injected): bypass does not apply even in a remote session.
+        using (var data = HookStruct.Create(100))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110))
+            Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        using (var data = HookStruct.Create(120))
+            Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer)); // filtered
+        using (var data = HookStruct.Create(130))
+            Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));   // orphaned UP filtered
+        Assert.Equal(2, nativeMethods.CallNextHookCounter);
+    }
 }

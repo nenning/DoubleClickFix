@@ -39,6 +39,13 @@ The application uses P/Invoke to call native Windows APIs for the low-level mous
 
 The use of `IntPtr` or `nint` ensures that the native calls are compatible across different system architectures.
 
+## Features
+
+- Double-click filtering (per-button thresholds)
+- Drag-and-drop stabilization (drag-lock state machine)
+- Mouse wheel bounce filtering
+- Remote Desktop (RDP) support: optional bypass of click filtering for injected events in remote sessions (`IsRemoteDesktopDetectionEnabled`, default off). Uses `GetSystemMetrics(SM_REMOTESESSION)` and `LLMHF_INJECTED` flag.
+
 ## Other topics
 
 Make absolutely sure to keep the file encodings as they are when doing edits! C# files are always UTF-8 with signature (code page 65001)!

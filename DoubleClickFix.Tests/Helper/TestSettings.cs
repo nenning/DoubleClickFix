@@ -19,6 +19,7 @@ class TestSettings : ISettings
     public bool IsDragCorrectionEnabled => DragStartTimeMilliseconds >= 0 && DragStopTimeMilliseconds >= 0;
     public int DragStartTimeMilliseconds { get; set; } = -1;
     public int DragStopTimeMilliseconds { get; set; } = -1;
+    public bool IsRemoteDesktopDetectionEnabled { get; set; } = false;
 
     public bool IsFirstAppStart => false;
 

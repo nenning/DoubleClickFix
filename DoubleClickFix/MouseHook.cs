@@ -71,6 +71,8 @@ internal class MouseHook : IDisposable
     private readonly Dictionary<MouseButtons, bool> isDragLocked = [];
     private readonly Dictionary<MouseButtons, long> initialDownTime = [];
     private readonly HashSet<MouseButtons> suppressNextUp = [];
+    private bool isRemoteSession;
+    private const uint LLMHF_INJECTED = 0x1;
 
     public MouseHook(ISettings settings, ILogger logger, INativeMethods nativeMethods)
     {
@@ -79,6 +81,12 @@ internal class MouseHook : IDisposable
         settings.RegisterSettingsChangedListener(SettingsChanged);
         this.logger = logger;
         this.nativeMethods = nativeMethods;
+        isRemoteSession = nativeMethods.IsRemoteSession();
+    }
+
+    internal void RefreshRemoteSessionState()
+    {
+        isRemoteSession = nativeMethods.IsRemoteSession();
     }
 
     private void SettingsChanged()
@@ -306,6 +314,13 @@ internal class MouseHook : IDisposable
         const nint IgnoreMouseEvent = 1;
 
         if (!ProcessMouseEvent(nCode, wParam))
+        {
+            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+        }
+
+        if (settings.IsRemoteDesktopDetectionEnabled
+            && (hookStruct.flags & LLMHF_INJECTED) != 0
+            && isRemoteSession)
         {
             return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
         }

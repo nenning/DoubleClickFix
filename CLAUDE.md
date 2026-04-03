@@ -59,14 +59,17 @@ MouseHook.cs (core filtering logic)
   └─ HookCallback: intercepts all mouse events system-wide
        ├─ Double-click filtering: suppresses DOWN if elapsed since last UP < threshold; also suppresses the matching UP to prevent orphaned release events
        ├─ Drag-lock: enters drag-lock mode after >5px movement, suppresses jitter UP/DOWN events
-       └─ Wheel bounce: suppresses opposite-direction wheel events within threshold
+       ├─ Wheel bounce: suppresses opposite-direction wheel events within threshold
+       └─ RDP bypass: when IsRemoteDesktopDetectionEnabled and LLMHF_INJECTED flag set and SM_REMOTESESSION active, passes events through unfiltered
 
 SystemEventsHandler.cs
   └─ Uninstalls/reinstalls hook on session lock, power suspend/resume, exceptions
+  └─ Refreshes RDP session state cache on RemoteConnect/RemoteDisconnect/ConsoleConnect/ConsoleDisconnect
 
 Settings (ISettings interface)
   ├─ StandaloneSettings → HKEY_CURRENT_USER\Software\DoubleClickFix\v1
   └─ StoreSettings → Windows.Storage.ApplicationDataContainer
+  Key settings: LeftThreshold (default 50ms), IsRemoteDesktopDetectionEnabled (default false)
 ```
 
 ### Key Files
