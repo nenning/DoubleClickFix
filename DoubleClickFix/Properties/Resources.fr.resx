@@ -156,9 +156,6 @@
   <data name="SettingsSaved" xml:space="preserve">
     <value>Paramètres sauvegardés.</value>
   </data>
-  <data name="SwitchedDevice" xml:space="preserve">
-    <value>Périphérique de souris ou tactile basculé vers</value>
-  </data>
   <data name="WritingRegistryFailed" xml:space="preserve">
     <value>Échec de l'écriture dans le registre de démarrage.</value>
   </data>
@@ -173,14 +170,5 @@
   </data>
   <data name="IgnoreCurrentDevice" xml:space="preserve">
     <value>Ignorer ce périphérique</value>
-  </data>
-  <data name="DeviceTypeMouse" xml:space="preserve">
-    <value>souris</value>
-  </data>
-  <data name="DeviceTypeTouchScreen" xml:space="preserve">
-    <value>écran tactile</value>
-  </data>
-  <data name="DeviceTypeTouchPad" xml:space="preserve">
-    <value>pavé tactile</value>
   </data>
 </root>

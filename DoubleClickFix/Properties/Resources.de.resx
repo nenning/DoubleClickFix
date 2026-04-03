@@ -156,9 +156,6 @@
   <data name="SettingsSaved" xml:space="preserve">
     <value>Einstellungen gespeichert.</value>
   </data>
-  <data name="SwitchedDevice" xml:space="preserve">
-    <value>Maus- oder Touch-Gerät umgeschaltet auf</value>
-  </data>
   <data name="WritingRegistryFailed" xml:space="preserve">
     <value>Die Applikation konnte nicht registriert werden.</value>
   </data>
@@ -173,14 +170,5 @@
   </data>
   <data name="IgnoreCurrentDevice" xml:space="preserve">
     <value>Dieses Gerät ignorieren</value>
-  </data>
-  <data name="DeviceTypeMouse" xml:space="preserve">
-    <value>Maus</value>
-  </data>
-  <data name="DeviceTypeTouchScreen" xml:space="preserve">
-    <value>Touchscreen</value>
-  </data>
-  <data name="DeviceTypeTouchPad" xml:space="preserve">
-    <value>Touchpad</value>
   </data>
 </root>

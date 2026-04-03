@@ -156,9 +156,6 @@
   <data name="SettingsSaved" xml:space="preserve">
     <value>Configuraciones guardadas.</value>
   </data>
-  <data name="SwitchedDevice" xml:space="preserve">
-    <value>Dispositivo de ratón o táctil cambiado a</value>
-  </data>
   <data name="WritingRegistryFailed" xml:space="preserve">
     <value>No se pudo escribir en el registro de inicio.</value>
   </data>
@@ -173,14 +170,5 @@
   </data>
   <data name="IgnoreCurrentDevice" xml:space="preserve">
     <value>Ignorar este dispositivo</value>
-  </data>
-  <data name="DeviceTypeMouse" xml:space="preserve">
-    <value>ratón</value>
-  </data>
-  <data name="DeviceTypeTouchScreen" xml:space="preserve">
-    <value>pantalla táctil</value>
-  </data>
-  <data name="DeviceTypeTouchPad" xml:space="preserve">
-    <value>panel táctil</value>
   </data>
 </root>

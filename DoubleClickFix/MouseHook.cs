@@ -217,17 +217,8 @@ internal class MouseHook : IDisposable
             CurrentDevicePath = knownDevicePaths.TryGetValue(device, out var p) && p.Length > 0 ? p : null;
             isCurrentDeviceIgnored = CurrentDevicePath != null
                 && settings.IgnoredDevicePaths.Contains(CurrentDevicePath);
-            var displayPath = CurrentDevicePath?.Split('#') is [_, var seg, ..] ? seg : (CurrentDevicePath ?? device.ToString());
-            logger.Log($"{Resources.SwitchedDevice} {displayPath} ({GetDeviceTypeName(knownType)})", true);
         }
     }
-
-    private static string GetDeviceTypeName(DeviceType dt) => dt switch
-    {
-        DeviceType.TouchScreen => Resources.DeviceTypeTouchScreen,
-        DeviceType.TouchPad => Resources.DeviceTypeTouchPad,
-        _ => Resources.DeviceTypeMouse,
-    };
 
     internal nint HookCallback(int nCode, nint wParam, nint lParam)
     {

@@ -157,9 +157,6 @@
   <data name="SettingsSaved" xml:space="preserve">
     <value>Settings saved.</value>
   </data>
-  <data name="SwitchedDevice" xml:space="preserve">
-    <value>Switched mouse or touch device to</value>
-  </data>
   <data name="WritingRegistryFailed" xml:space="preserve">
     <value>Failed to write to startup registry.</value>
   </data>
@@ -177,14 +174,5 @@
   </data>
   <data name="IgnoreCurrentDevice" xml:space="preserve">
     <value>Ignore this device</value>
-  </data>
-  <data name="DeviceTypeMouse" xml:space="preserve">
-    <value>mouse</value>
-  </data>
-  <data name="DeviceTypeTouchScreen" xml:space="preserve">
-    <value>touch screen</value>
-  </data>
-  <data name="DeviceTypeTouchPad" xml:space="preserve">
-    <value>touch pad</value>
   </data>
 </root>

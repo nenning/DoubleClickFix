@@ -188,15 +188,6 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Switched mouse or touch device to.
-        /// </summary>
-        internal static string SwitchedDevice {
-            get {
-                return ResourceManager.GetString("SwitchedDevice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Failed to write to startup registry..
         /// </summary>
         internal static string WritingRegistryFailed {
@@ -235,22 +226,5 @@ namespace DoubleClickFix.Properties {
             }
         }
 
-        internal static string DeviceTypeMouse {
-            get {
-                return ResourceManager.GetString("DeviceTypeMouse", resourceCulture);
-            }
-        }
-
-        internal static string DeviceTypeTouchScreen {
-            get {
-                return ResourceManager.GetString("DeviceTypeTouchScreen", resourceCulture);
-            }
-        }
-
-        internal static string DeviceTypeTouchPad {
-            get {
-                return ResourceManager.GetString("DeviceTypeTouchPad", resourceCulture);
-            }
-        }
     }
 }
