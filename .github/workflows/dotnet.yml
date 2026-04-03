@@ -18,7 +18,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -32,7 +32,7 @@ jobs:
     - name: Package binaries
       run: |
         mkdir Release
-        Copy-Item -Path DoubleClickFix/bin/Release/net9.0-windows10.0.17763.0/* -Destination Release/ -Recurse        
+        Copy-Item -Path DoubleClickFix/bin/Release/net10.0-windows10.0.17763.0/* -Destination Release/ -Recurse        
       shell: pwsh
 
     - name: Create ZIP file
