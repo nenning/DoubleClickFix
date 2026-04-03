@@ -245,8 +245,6 @@ internal class MouseHook : IDisposable
             {
                 ignoredClicks++;
                 logger.Log($"{Resources.IgnoredMouseWheel} ({GetDirectionArrow(wParam, currentDirection)}): {delta} ms (#{ignoredClicks})");
-                previousWheelTime[wParam] = 0; // Reset to avoid false positives
-                lastWheelDirection[wParam] = 0;
                 return IgnoreMouseEvent;
             }
         }

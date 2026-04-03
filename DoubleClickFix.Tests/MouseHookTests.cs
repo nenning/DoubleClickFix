@@ -6,6 +6,9 @@ namespace DoubleClickFix.Tests;
 public class MouseHookTests
 {
     private const int WM_MOUSEMOVE = 0x0200;
+    private const int WM_MOUSEWHEEL = 0x020A;
+    private const uint WheelDown = 0xFF880000; // delta = -120
+    private const uint WheelUp = 0x00780000;   // delta = +120
 
     private static void AssertAllowed(MouseHook hook, nint wmMouseEvent, uint timeMs, int movedPixels = 0, uint mouseData = 0)
     {
@@ -239,5 +242,38 @@ public class MouseHookTests
         AssertAllowed(hook, WM_LBUTTONUP, 550);  // Genuine release
         AssertIgnored(hook, WM_LBUTTONDOWN, 551);  // Bounce: too soon after UP, suppressed
         AssertIgnored(hook, WM_LBUTTONUP, 800); // Orphaned UP for suppressed DOWN, also suppressed
+    }
+
+    [Fact]
+    public void TestWheelBounceSingleIgnored()
+    {
+        TestSettings settings = new() { WheelThreshold = 200 };
+        MouseHook hook = new(settings, new TestLogger(), new TestNativeMethods());
+
+        AssertAllowed(hook, WM_MOUSEWHEEL, 1, mouseData: WheelDown);
+        AssertIgnored(hook, WM_MOUSEWHEEL, 50, mouseData: WheelUp); // bounce within threshold
+    }
+
+    [Fact]
+    public void TestWheelBounceMultipleIgnored()
+    {
+        TestSettings settings = new() { WheelThreshold = 200 };
+        MouseHook hook = new(settings, new TestLogger(), new TestNativeMethods());
+
+        AssertAllowed(hook, WM_MOUSEWHEEL, 1, mouseData: WheelDown);
+        AssertIgnored(hook, WM_MOUSEWHEEL, 50, mouseData: WheelUp);  // bounce #1
+        AssertIgnored(hook, WM_MOUSEWHEEL, 100, mouseData: WheelUp); // bounce #2 — previously passed through
+        AssertAllowed(hook, WM_MOUSEWHEEL, 301, mouseData: WheelDown); // genuine scroll after threshold
+    }
+
+    [Fact]
+    public void TestWheelBounceLegitimateReversal()
+    {
+        TestSettings settings = new() { WheelThreshold = 200 };
+        MouseHook hook = new(settings, new TestLogger(), new TestNativeMethods());
+
+        AssertAllowed(hook, WM_MOUSEWHEEL, 1, mouseData: WheelDown);
+        AssertIgnored(hook, WM_MOUSEWHEEL, 50, mouseData: WheelUp);  // bounce within threshold
+        AssertAllowed(hook, WM_MOUSEWHEEL, 400, mouseData: WheelUp); // legitimate reversal after threshold
     }
 }
