@@ -13,6 +13,7 @@ internal partial class InteractiveForm : Form
     private readonly Action<nint> rawInputProcessor;
     private readonly System.Windows.Forms.Timer debounceTimer;
     private readonly System.Windows.Forms.Timer wheelResetTimer;
+    private bool suppressNextShow;
 
     public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, Action<IntPtr> rawInputProcessor, string version)
     {
@@ -53,6 +54,28 @@ internal partial class InteractiveForm : Form
         SetupTestArea();
         this.versionLabel.Text = version;
         this.mouseButtonComboBox.SelectedIndex = 0;
+        suppressNextShow = !settings.IsInteractive;
+    }
+
+    protected override CreateParams CreateParams
+    {
+        get
+        {
+            var cp = base.CreateParams;
+            cp.ExStyle |= NativeMethods.WS_EX_TOOLWINDOW;
+            return cp;
+        }
+    }
+
+    protected override void SetVisibleCore(bool value)
+    {
+        if (value && suppressNextShow)
+        {
+            suppressNextShow = false;
+            if (!IsHandleCreated) CreateHandle();
+            return;
+        }
+        base.SetVisibleCore(value);
     }
 
     protected override void WndProc(ref Message m)
@@ -409,12 +432,4 @@ internal partial class InteractiveForm : Form
         }
     }
 
-    protected override void OnLoad(EventArgs e)
-    {
-        base.OnLoad(e);
-        if (!settings.IsInteractive)
-        {
-            BeginInvoke(new MethodInvoker(HideWindow));
-        }
-    }
 }
