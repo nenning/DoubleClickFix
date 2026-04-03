@@ -190,7 +190,13 @@
     <value>Rueda del ratón</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Configuraciones</value>
+    <value>Por botón del ratón</value>
+  </data>
+  <data name="groupBoxDevice.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve">
+    <value>General</value>
   </data>
   <data name="x2.Text" xml:space="preserve">
     <value>X2</value>

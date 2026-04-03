@@ -190,7 +190,13 @@
     <value>Rotellina del mouse</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Impostazioni</value>
+    <value>Per pulsante del mouse</value>
+  </data>
+  <data name="groupBoxDevice.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve">
+    <value>Generale</value>
   </data>
   <data name="x2.Text" xml:space="preserve">
     <value>X2</value>

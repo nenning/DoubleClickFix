@@ -42,13 +42,13 @@
             dragStartDelayTextBox = new TextBox();
             dragStartDelayLabel = new Label();
             fixDraggingCheckBox = new CheckBox();
-            remoteDesktopCheckBox = new CheckBox();
-            currentDeviceLabel = new Label();
-            ignoreCurrentDeviceCheckBox = new CheckBox();
             useMinDelayCheckBox = new CheckBox();
             thresholdSlider = new TrackBar();
             buttonEnabledCheckBox = new CheckBox();
             mouseButtonComboBox = new ComboBox();
+            remoteDesktopCheckBox = new CheckBox();
+            currentDeviceLabel = new Label();
+            ignoreCurrentDeviceCheckBox = new CheckBox();
             x2 = new CheckBox();
             x1 = new CheckBox();
             middle = new CheckBox();
@@ -66,6 +66,8 @@
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
             groupBox4 = new GroupBox();
+            groupBoxDevice = new GroupBox();
+            groupBoxGeneral = new GroupBox();
             toolTip1 = new ToolTip(components);
             versionLabel = new Label();
             gitLinkLabel = new LinkLabel();
@@ -76,6 +78,8 @@
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
+            groupBoxDevice.SuspendLayout();
+            groupBoxGeneral.SuspendLayout();
             SuspendLayout();
             // 
             // logTextBox
@@ -105,14 +109,14 @@
             toolTip1.SetToolTip(saveButton, resources.GetString("saveButton.ToolTip"));
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += OnSaveButtonClicked;
-            //
+            // 
             // resetButton
-            //
+            // 
             resources.ApplyResources(resetButton, "resetButton");
             resetButton.Name = "resetButton";
             resetButton.UseVisualStyleBackColor = true;
             resetButton.Click += OnResetButtonClicked;
-            //
+            // 
             // runAtStartupCheckBox
             // 
             resources.ApplyResources(runAtStartupCheckBox, "runAtStartupCheckBox");
@@ -127,17 +131,11 @@
             groupBox1.Controls.Add(dragStartDelayTextBox);
             groupBox1.Controls.Add(dragStartDelayLabel);
             groupBox1.Controls.Add(fixDraggingCheckBox);
-            groupBox1.Controls.Add(remoteDesktopCheckBox);
-            groupBox1.Controls.Add(currentDeviceLabel);
-            groupBox1.Controls.Add(ignoreCurrentDeviceCheckBox);
-            groupBox1.Controls.Add(saveButton);
-            groupBox1.Controls.Add(resetButton);
             groupBox1.Controls.Add(useMinDelayCheckBox);
             groupBox1.Controls.Add(thresholdSlider);
             groupBox1.Controls.Add(buttonEnabledCheckBox);
             groupBox1.Controls.Add(mouseButtonComboBox);
             groupBox1.Controls.Add(delayTextBox);
-            groupBox1.Controls.Add(runAtStartupCheckBox);
             groupBox1.Controls.Add(delayLabel);
             resources.ApplyResources(groupBox1, "groupBox1");
             groupBox1.Name = "groupBox1";
@@ -175,26 +173,6 @@
             fixDraggingCheckBox.UseVisualStyleBackColor = true;
             fixDraggingCheckBox.CheckedChanged += OnFixDraggingCheckBoxChanged;
             // 
-            // remoteDesktopCheckBox
-            // 
-            resources.ApplyResources(remoteDesktopCheckBox, "remoteDesktopCheckBox");
-            remoteDesktopCheckBox.Name = "remoteDesktopCheckBox";
-            toolTip1.SetToolTip(remoteDesktopCheckBox, resources.GetString("remoteDesktopCheckBox.ToolTip"));
-            remoteDesktopCheckBox.UseVisualStyleBackColor = true;
-            remoteDesktopCheckBox.CheckedChanged += OnRemoteDesktopCheckBoxChanged;
-            // 
-            // currentDeviceLabel
-            // 
-            resources.ApplyResources(currentDeviceLabel, "currentDeviceLabel");
-            currentDeviceLabel.Name = "currentDeviceLabel";
-            // 
-            // ignoreCurrentDeviceCheckBox
-            // 
-            resources.ApplyResources(ignoreCurrentDeviceCheckBox, "ignoreCurrentDeviceCheckBox");
-            ignoreCurrentDeviceCheckBox.Name = "ignoreCurrentDeviceCheckBox";
-            ignoreCurrentDeviceCheckBox.UseVisualStyleBackColor = true;
-            ignoreCurrentDeviceCheckBox.CheckedChanged += OnIgnoreCurrentDeviceCheckBoxChanged;
-            // 
             // useMinDelayCheckBox
             // 
             resources.ApplyResources(useMinDelayCheckBox, "useMinDelayCheckBox");
@@ -228,6 +206,26 @@
             resources.ApplyResources(mouseButtonComboBox, "mouseButtonComboBox");
             mouseButtonComboBox.Name = "mouseButtonComboBox";
             mouseButtonComboBox.SelectedIndexChanged += OnSelectedMouseButtonChanged;
+            // 
+            // remoteDesktopCheckBox
+            // 
+            resources.ApplyResources(remoteDesktopCheckBox, "remoteDesktopCheckBox");
+            remoteDesktopCheckBox.Name = "remoteDesktopCheckBox";
+            toolTip1.SetToolTip(remoteDesktopCheckBox, resources.GetString("remoteDesktopCheckBox.ToolTip"));
+            remoteDesktopCheckBox.UseVisualStyleBackColor = true;
+            remoteDesktopCheckBox.CheckedChanged += OnRemoteDesktopCheckBoxChanged;
+            // 
+            // currentDeviceLabel
+            // 
+            resources.ApplyResources(currentDeviceLabel, "currentDeviceLabel");
+            currentDeviceLabel.Name = "currentDeviceLabel";
+            // 
+            // ignoreCurrentDeviceCheckBox
+            // 
+            resources.ApplyResources(ignoreCurrentDeviceCheckBox, "ignoreCurrentDeviceCheckBox");
+            ignoreCurrentDeviceCheckBox.Name = "ignoreCurrentDeviceCheckBox";
+            ignoreCurrentDeviceCheckBox.UseVisualStyleBackColor = true;
+            ignoreCurrentDeviceCheckBox.CheckedChanged += OnIgnoreCurrentDeviceCheckBoxChanged;
             // 
             // x2
             // 
@@ -349,6 +347,24 @@
             groupBox4.Name = "groupBox4";
             groupBox4.TabStop = false;
             // 
+            // groupBoxDevice
+            // 
+            groupBoxDevice.Controls.Add(currentDeviceLabel);
+            groupBoxDevice.Controls.Add(ignoreCurrentDeviceCheckBox);
+            resources.ApplyResources(groupBoxDevice, "groupBoxDevice");
+            groupBoxDevice.Name = "groupBoxDevice";
+            groupBoxDevice.TabStop = false;
+            // 
+            // groupBoxGeneral
+            // 
+            groupBoxGeneral.Controls.Add(remoteDesktopCheckBox);
+            groupBoxGeneral.Controls.Add(runAtStartupCheckBox);
+            groupBoxGeneral.Controls.Add(saveButton);
+            groupBoxGeneral.Controls.Add(resetButton);
+            resources.ApplyResources(groupBoxGeneral, "groupBoxGeneral");
+            groupBoxGeneral.Name = "groupBoxGeneral";
+            groupBoxGeneral.TabStop = false;
+            // 
             // versionLabel
             // 
             resources.ApplyResources(versionLabel, "versionLabel");
@@ -370,7 +386,9 @@
             Controls.Add(groupBox3);
             Controls.Add(label1);
             Controls.Add(groupBox2);
+            Controls.Add(groupBoxGeneral);
             Controls.Add(groupBox1);
+            Controls.Add(groupBoxDevice);
             Controls.Add(groupBox4);
             Name = "InteractiveForm";
             Load += InteractiveForm_Load;
@@ -385,6 +403,10 @@
             groupBox3.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
+            groupBoxDevice.ResumeLayout(false);
+            groupBoxDevice.PerformLayout();
+            groupBoxGeneral.ResumeLayout(false);
+            groupBoxGeneral.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -430,5 +452,7 @@
         private ToolTip toolTip1;
         private Label versionLabel;
         private LinkLabel gitLinkLabel;
+        private GroupBox groupBoxDevice;
+        private GroupBox groupBoxGeneral;
     }
 }

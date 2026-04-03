@@ -190,7 +190,13 @@
     <value>Mausrad</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Einstellungen</value>
+    <value>Pro Maustaste</value>
+  </data>
+  <data name="groupBoxDevice.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve">
+    <value>Allgemein</value>
   </data>
   <data name="x2.Text" xml:space="preserve">
     <value>X2</value>

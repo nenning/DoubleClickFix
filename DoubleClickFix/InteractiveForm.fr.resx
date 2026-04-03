@@ -190,7 +190,13 @@
     <value>Molette de la souris</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Paramètres</value>
+    <value>Par bouton de souris</value>
+  </data>
+  <data name="groupBoxDevice.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve">
+    <value>Général</value>
   </data>
   <data name="x2.Text" xml:space="preserve">
     <value>X2</value>

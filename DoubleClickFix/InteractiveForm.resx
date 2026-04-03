@@ -133,7 +133,7 @@
     <value>Vertical</value>
   </data>
   <data name="logTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>478, 419</value>
+    <value>478, 400</value>
   </data>
   <data name="logTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -154,7 +154,7 @@
     <value>True</value>
   </data>
   <data name="delayLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 108</value>
+    <value>37, 91</value>
   </data>
   <data name="delayLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>268, 25</value>
@@ -181,13 +181,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;delayLabel.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>10</value>
   </data>
   <data name="delayTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="delayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>788, 108</value>
+    <value>718, 95</value>
   </data>
   <data name="delayTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 31</value>
@@ -208,10 +208,10 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;delayTextBox.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>9</value>
   </data>
   <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>788, 323</value>
+    <value>788, 72</value>
   </data>
   <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 41</value>
@@ -232,13 +232,13 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBoxGeneral</value>
   </data>
   <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>2</value>
   </data>
   <data name="resetButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>628, 323</value>
+    <value>628, 72</value>
   </data>
   <data name="resetButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 41</value>
@@ -249,9 +249,6 @@
   <data name="resetButton.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="resetButton.ToolTip" xml:space="preserve">
-    <value>Restore all settings to their defaults</value>
-  </data>
   <data name="&gt;&gt;resetButton.Name" xml:space="preserve">
     <value>resetButton</value>
   </data>
@@ -259,16 +256,16 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;resetButton.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBoxGeneral</value>
   </data>
   <data name="&gt;&gt;resetButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>3</value>
   </data>
   <data name="runAtStartupCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="runAtStartupCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 330</value>
+    <value>37, 79</value>
   </data>
   <data name="runAtStartupCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>229, 29</value>
@@ -289,16 +286,16 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;runAtStartupCheckBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBoxGeneral</value>
   </data>
   <data name="&gt;&gt;runAtStartupCheckBox.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>1</value>
   </data>
   <data name="dragEndDelayTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="dragEndDelayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>337, 266</value>
+    <value>619, 227</value>
   </data>
   <data name="dragEndDelayTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 31</value>
@@ -325,7 +322,7 @@
     <value>NoControl</value>
   </data>
   <data name="dragEndDelayLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 269</value>
+    <value>400, 230</value>
   </data>
   <data name="dragEndDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 25</value>
@@ -355,7 +352,7 @@
     <value>False</value>
   </data>
   <data name="dragStartDelayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>337, 227</value>
+    <value>619, 190</value>
   </data>
   <data name="dragStartDelayTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 31</value>
@@ -382,7 +379,7 @@
     <value>NoControl</value>
   </data>
   <data name="dragStartDelayLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 233</value>
+    <value>400, 196</value>
   </data>
   <data name="dragStartDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 25</value>
@@ -415,7 +412,7 @@
     <value>NoControl</value>
   </data>
   <data name="fixDraggingCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 198</value>
+    <value>37, 195</value>
   </data>
   <data name="fixDraggingCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 29</value>
@@ -441,96 +438,6 @@
   <data name="&gt;&gt;fixDraggingCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="remoteDesktopCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="remoteDesktopCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="remoteDesktopCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>470, 198</value>
-  </data>
-  <data name="remoteDesktopCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 29</value>
-  </data>
-  <data name="remoteDesktopCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="remoteDesktopCheckBox.Text" xml:space="preserve">
-    <value>Don't filter clicks in remote desktop sessions</value>
-  </data>
-  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve">
-    <value>When enabled, mouse click filtering is disabled in remote desktop sessions</value>
-  </data>
-  <data name="&gt;&gt;remoteDesktopCheckBox.Name" xml:space="preserve">
-    <value>remoteDesktopCheckBox</value>
-  </data>
-  <data name="&gt;&gt;remoteDesktopCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;remoteDesktopCheckBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;remoteDesktopCheckBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="currentDeviceLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="currentDeviceLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>470, 246</value>
-  </data>
-  <data name="currentDeviceLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 25</value>
-  </data>
-  <data name="currentDeviceLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="currentDeviceLabel.Text" xml:space="preserve">
-    <value>Current device: –</value>
-  </data>
-  <data name="&gt;&gt;currentDeviceLabel.Name" xml:space="preserve">
-    <value>currentDeviceLabel</value>
-  </data>
-  <data name="&gt;&gt;currentDeviceLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;currentDeviceLabel.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;currentDeviceLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="ignoreCurrentDeviceCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="ignoreCurrentDeviceCheckBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="ignoreCurrentDeviceCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>470, 272</value>
-  </data>
-  <data name="ignoreCurrentDeviceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 29</value>
-  </data>
-  <data name="ignoreCurrentDeviceCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="ignoreCurrentDeviceCheckBox.Text" xml:space="preserve">
-    <value>Ignore this device</value>
-  </data>
-  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.Name" xml:space="preserve">
-    <value>ignoreCurrentDeviceCheckBox</value>
-  </data>
-  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="useMinDelayCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -538,7 +445,7 @@
     <value>NoControl</value>
   </data>
   <data name="useMinDelayCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 151</value>
+    <value>37, 142</value>
   </data>
   <data name="useMinDelayCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>340, 29</value>
@@ -562,16 +469,16 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;useMinDelayCheckBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>5</value>
   </data>
   <data name="thresholdSlider.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="thresholdSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>406, 108</value>
+    <value>400, 88</value>
   </data>
   <data name="thresholdSlider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 69</value>
+    <value>310, 69</value>
   </data>
   <data name="thresholdSlider.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -586,13 +493,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;thresholdSlider.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>6</value>
   </data>
   <data name="buttonEnabledCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="buttonEnabledCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>406, 51</value>
+    <value>500, 41</value>
   </data>
   <data name="buttonEnabledCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 29</value>
@@ -616,7 +523,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;buttonEnabledCheckBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>7</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Left mouse button</value>
@@ -637,7 +544,7 @@
     <value>Mouse wheel</value>
   </data>
   <data name="mouseButtonComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 49</value>
+    <value>37, 39</value>
   </data>
   <data name="mouseButtonComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>318, 33</value>
@@ -655,19 +562,19 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;mouseButtonComboBox.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>8</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 82</value>
+    <value>23, 160</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>932, 382</value>
+    <value>932, 282</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Per Mouse Button</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -679,7 +586,97 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
+  </data>
+  <data name="remoteDesktopCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="remoteDesktopCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="remoteDesktopCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 35</value>
+  </data>
+  <data name="remoteDesktopCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 29</value>
+  </data>
+  <data name="remoteDesktopCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve">
+    <value>Don't filter clicks in remote desktop sessions</value>
+  </data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve">
+    <value>When enabled, mouse click filtering is disabled in remote desktop sessions</value>
+  </data>
+  <data name="&gt;&gt;remoteDesktopCheckBox.Name" xml:space="preserve">
+    <value>remoteDesktopCheckBox</value>
+  </data>
+  <data name="&gt;&gt;remoteDesktopCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;remoteDesktopCheckBox.Parent" xml:space="preserve">
+    <value>groupBoxGeneral</value>
+  </data>
+  <data name="&gt;&gt;remoteDesktopCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="currentDeviceLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="currentDeviceLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 26</value>
+  </data>
+  <data name="currentDeviceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 25</value>
+  </data>
+  <data name="currentDeviceLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="currentDeviceLabel.Text" xml:space="preserve">
+    <value>Current device: –</value>
+  </data>
+  <data name="&gt;&gt;currentDeviceLabel.Name" xml:space="preserve">
+    <value>currentDeviceLabel</value>
+  </data>
+  <data name="&gt;&gt;currentDeviceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;currentDeviceLabel.Parent" xml:space="preserve">
+    <value>groupBoxDevice</value>
+  </data>
+  <data name="&gt;&gt;currentDeviceLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>500, 25</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 29</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.Text" xml:space="preserve">
+    <value>Ignore this device</value>
+  </data>
+  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.Name" xml:space="preserve">
+    <value>ignoreCurrentDeviceCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.Parent" xml:space="preserve">
+    <value>groupBoxDevice</value>
+  </data>
+  <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="x2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5490,7 +5487,7 @@
     <value>True</value>
   </data>
   <data name="descriptionTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 412</value>
+    <value>300, 393</value>
   </data>
   <data name="descriptionTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -5517,13 +5514,13 @@ Test your mouse's behavior with the current settings with the test text (single 
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="richTextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 435</value>
+    <value>19, 401</value>
   </data>
   <data name="richTextBox1.ScrollBars" type="System.Windows.Forms.RichTextBoxScrollBars, System.Windows.Forms">
     <value>Vertical</value>
   </data>
   <data name="richTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 419</value>
+    <value>270, 543</value>
   </data>
   <data name="richTextBox1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -5556,10 +5553,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>Top, Bottom, Left</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 470</value>
+    <value>23, 579</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 489</value>
+    <value>377, 470</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -5583,10 +5580,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>Top, Bottom, Left</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 470</value>
+    <value>422, 579</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>533, 489</value>
+    <value>533, 470</value>
   </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -5613,7 +5610,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>982, 82</value>
   </data>
   <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 877</value>
+    <value>301, 967</value>
   </data>
   <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -5631,7 +5628,52 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
+  </data>
+  <data name="groupBoxDevice.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 82</value>
+  </data>
+  <data name="groupBoxDevice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>932, 68</value>
+  </data>
+  <data name="groupBoxDevice.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDevice.Name" xml:space="preserve">
+    <value>groupBoxDevice</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDevice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDevice.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDevice.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="groupBoxGeneral.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 448</value>
+  </data>
+  <data name="groupBoxGeneral.Size" type="System.Drawing.Size, System.Drawing">
+    <value>932, 125</value>
+  </data>
+  <data name="groupBoxGeneral.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeneral.Name" xml:space="preserve">
+    <value>groupBoxGeneral</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeneral.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeneral.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeneral.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="versionLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -5640,7 +5682,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>True</value>
   </data>
   <data name="versionLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1214, 973</value>
+    <value>1214, 1063</value>
   </data>
   <data name="versionLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 25</value>
@@ -5670,7 +5712,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>True</value>
   </data>
   <data name="gitLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 973</value>
+    <value>23, 1063</value>
   </data>
   <data name="gitLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>355, 25</value>
@@ -5700,7 +5742,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>10, 25</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1305, 1007</value>
+    <value>1305, 1097</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
