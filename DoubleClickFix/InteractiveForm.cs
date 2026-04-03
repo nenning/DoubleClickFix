@@ -28,6 +28,7 @@ internal partial class InteractiveForm : Form
             Interval = 100
         };
         debounceTimer.Tick += OnDebounceTimerTick;
+        components!.Add(debounceTimer);
 
         wheelResetTimer = new()
         {
@@ -38,6 +39,7 @@ internal partial class InteractiveForm : Form
             wheel.BackColor = Color.Transparent;
             wheelResetTimer.Stop();
         };
+        components!.Add(wheelResetTimer);
 
         this.FormClosing += OnFormClosing;
         this.runAtStartupCheckBox.Checked = startup.IsRegistered();

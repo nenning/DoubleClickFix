@@ -204,13 +204,25 @@ internal class NativeMethods : INativeMethods
     internal const int GWL_EXSTYLE = -20;
     internal const int WS_EX_TOOLWINDOW = 0x00000080;
 
-    [DllImport("user32.dll")]
-    internal static extern nint GetWindowLong(nint hWnd, int nIndex);
+    [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
+    private static extern int GetWindowLong32(nint hWnd, int nIndex);
+
+    [DllImport("user32.dll", EntryPoint = "GetWindowLongPtr")]
+    private static extern nint GetWindowLong64(nint hWnd, int nIndex);
+
+    internal static nint GetWindowLong(nint hWnd, int nIndex) =>
+        nint.Size == 4 ? GetWindowLong32(hWnd, nIndex) : GetWindowLong64(hWnd, nIndex);
 
     nint INativeMethods.GetWindowLong(nint hWnd, int nIndex) => GetWindowLong(hWnd, nIndex);
 
-    [DllImport("user32.dll")]
-    internal static extern nint SetWindowLong(nint hWnd, int nIndex, nint dwNewLong);
+    [DllImport("user32.dll", EntryPoint = "SetWindowLong")]
+    private static extern int SetWindowLong32(nint hWnd, int nIndex, int dwNewLong);
+
+    [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr")]
+    private static extern nint SetWindowLong64(nint hWnd, int nIndex, nint dwNewLong);
+
+    internal static nint SetWindowLong(nint hWnd, int nIndex, nint dwNewLong) =>
+        nint.Size == 4 ? SetWindowLong32(hWnd, nIndex, (int)dwNewLong) : SetWindowLong64(hWnd, nIndex, dwNewLong);
 
     nint INativeMethods.SetWindowLong(nint hWnd, int nIndex, nint dwNewLong) => SetWindowLong(hWnd, nIndex, dwNewLong);
 }
