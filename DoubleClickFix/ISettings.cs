@@ -26,4 +26,5 @@ internal interface ISettings
     bool IsFirstAppStart { get; }
     void RegisterSettingsChangedListener(Action listener);
     void Save();
+    void Reset();
 }

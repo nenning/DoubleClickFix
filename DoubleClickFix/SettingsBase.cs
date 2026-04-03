@@ -239,6 +239,9 @@ namespace DoubleClickFix
             X1Threshold = -1;
             X2Threshold = -1;
             WheelThreshold = -1;
+            DragStartTimeMilliseconds = -1;
+            DragStopTimeMilliseconds = -1;
+            IsRemoteDesktopDetectionEnabled = false;
             ignoredDevicePaths.Clear();
         }
         protected void FireSettingsChanged()

@@ -34,6 +34,7 @@
             delayLabel = new Label();
             delayTextBox = new TextBox();
             saveButton = new Button();
+            resetButton = new Button();
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
             dragEndDelayTextBox = new TextBox();
@@ -104,7 +105,14 @@
             toolTip1.SetToolTip(saveButton, resources.GetString("saveButton.ToolTip"));
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += OnSaveButtonClicked;
-            // 
+            //
+            // resetButton
+            //
+            resources.ApplyResources(resetButton, "resetButton");
+            resetButton.Name = "resetButton";
+            resetButton.UseVisualStyleBackColor = true;
+            resetButton.Click += OnResetButtonClicked;
+            //
             // runAtStartupCheckBox
             // 
             resources.ApplyResources(runAtStartupCheckBox, "runAtStartupCheckBox");
@@ -123,6 +131,7 @@
             groupBox1.Controls.Add(currentDeviceLabel);
             groupBox1.Controls.Add(ignoreCurrentDeviceCheckBox);
             groupBox1.Controls.Add(saveButton);
+            groupBox1.Controls.Add(resetButton);
             groupBox1.Controls.Add(useMinDelayCheckBox);
             groupBox1.Controls.Add(thresholdSlider);
             groupBox1.Controls.Add(buttonEnabledCheckBox);
@@ -386,6 +395,7 @@
         private Label delayLabel;
         private TextBox delayTextBox;
         private Button saveButton;
+        private Button resetButton;
         private CheckBox runAtStartupCheckBox;
         private GroupBox groupBox1;
         private PictureBox pictureBox1;

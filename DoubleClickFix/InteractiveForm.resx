@@ -237,6 +237,33 @@
   <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="resetButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>628, 323</value>
+  </data>
+  <data name="resetButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 41</value>
+  </data>
+  <data name="resetButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="resetButton.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="resetButton.ToolTip" xml:space="preserve">
+    <value>Restore all settings to their defaults</value>
+  </data>
+  <data name="&gt;&gt;resetButton.Name" xml:space="preserve">
+    <value>resetButton</value>
+  </data>
+  <data name="&gt;&gt;resetButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resetButton.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;resetButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
   <data name="runAtStartupCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

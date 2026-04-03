@@ -218,6 +218,25 @@ internal partial class InteractiveForm : Form
         _ = NativeMethods.SetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE, extendedStyle | NativeMethods.WS_EX_TOOLWINDOW);
     }
 
+    private void OnResetButtonClicked(object? sender, EventArgs e)
+    {
+        settings.Reset();
+        settings.Save();
+
+        useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
+        remoteDesktopCheckBox.Checked = settings.IsRemoteDesktopDetectionEnabled;
+
+        bool fixDragging = settings.IsDragCorrectionEnabled;
+        fixDraggingCheckBox.Checked = fixDragging;
+        dragStartDelayTextBox.Enabled = fixDragging;
+        dragEndDelayTextBox.Enabled = fixDragging;
+        dragStartDelayTextBox.Text = fixDragging ? settings.DragStartTimeMilliseconds.ToString() : string.Empty;
+        dragEndDelayTextBox.Text = fixDragging ? settings.DragStopTimeMilliseconds.ToString() : string.Empty;
+
+        UpdateIgnoreDeviceControls();
+        OnSelectedMouseButtonChanged(this, EventArgs.Empty);
+    }
+
     private void OnSaveButtonClicked(object? sender, EventArgs e)
     {
         bool success;

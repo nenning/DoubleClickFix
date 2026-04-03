@@ -38,4 +38,18 @@ class TestSettings : ISettings
     public void Save()
     {
     }
+    public void Reset()
+    {
+        MinDelay = -1;
+        LeftThreshold = 50;
+        MiddleThreshold = -1;
+        RightThreshold = -1;
+        X1Threshold = -1;
+        X2Threshold = -1;
+        WheelThreshold = -1;
+        DragStartTimeMilliseconds = -1;
+        DragStopTimeMilliseconds = -1;
+        IsRemoteDesktopDetectionEnabled = false;
+        ignoredDevicePaths.Clear();
+    }
 }

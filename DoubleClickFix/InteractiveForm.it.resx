@@ -129,6 +129,9 @@
   <data name="saveButton.Text" xml:space="preserve">
     <value>Salva</value>
   </data>
+  <data name="resetButton.Text" xml:space="preserve">
+    <value>Ripristina</value>
+  </data>
   <data name="saveButton.ToolTip" xml:space="preserve">
     <value>Salva impostazioni</value>
   </data>
