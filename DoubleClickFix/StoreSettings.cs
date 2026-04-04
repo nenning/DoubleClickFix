@@ -33,6 +33,7 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         SaveSetting(DragStopTimeMilliseconds);
         SaveSetting(remoteDesktopDetection);
         settings.Values["language"] = language;
+        settings.Values["colorMode"] = colorMode.ToString();
         logger.Log(Resources.SettingsSaved);
     }
 
@@ -59,6 +60,8 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         remoteDesktopDetection = LoadSetting(remoteDesktopDetection);
         if (settings.Values["language"] is string lang && !string.IsNullOrWhiteSpace(lang))
             language = lang;
+        if (settings.Values["colorMode"] is string cm && Enum.TryParse<ColorMode>(cm, true, out var parsedMode))
+            colorMode = parsedMode;
         FireSettingsChanged();
     }
 

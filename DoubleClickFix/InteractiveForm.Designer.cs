@@ -71,6 +71,7 @@
             toolTip1 = new ToolTip(components);
             versionLabel = new Label();
             gitLinkLabel = new LinkLabel();
+            themeComboBox = new ComboBox();
             languageComboBox = new ComboBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)thresholdSlider).BeginInit();
@@ -378,6 +379,13 @@
             gitLinkLabel.TabStop = true;
             gitLinkLabel.LinkClicked += OnGitLinkLabelClicked;
             // 
+            // themeComboBox
+            // 
+            resources.ApplyResources(themeComboBox, "themeComboBox");
+            themeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            themeComboBox.FormattingEnabled = true;
+            themeComboBox.Name = "themeComboBox";
+            // 
             // languageComboBox
             // 
             resources.ApplyResources(languageComboBox, "languageComboBox");
@@ -391,6 +399,7 @@
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(themeComboBox);
             Controls.Add(languageComboBox);
             Controls.Add(gitLinkLabel);
             Controls.Add(versionLabel);
@@ -463,6 +472,7 @@
         private ToolTip toolTip1;
         private Label versionLabel;
         private LinkLabel gitLinkLabel;
+        private ComboBox themeComboBox;
         private ComboBox languageComboBox;
         private GroupBox groupBoxDevice;
         private GroupBox groupBoxGeneral;

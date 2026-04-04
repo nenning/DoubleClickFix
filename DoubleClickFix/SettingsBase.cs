@@ -25,6 +25,7 @@ namespace DoubleClickFix
         protected int dragStopTimeMilliseconds = -1;
         protected int remoteDesktopDetection = 0;
         protected string language = "";
+        protected ColorMode colorMode = ColorMode.System;
 
         public SettingsBase(string[] args, ILogger logger)
         {
@@ -168,6 +169,11 @@ namespace DoubleClickFix
         {
             get => language;
             set { language = value; }
+        }
+        public ColorMode ColorMode
+        {
+            get => colorMode;
+            set { colorMode = value; }
         }
 
         public bool IsDragCorrectionEnabled => DragStartTimeMilliseconds >= 0 && DragStopTimeMilliseconds >= 0;

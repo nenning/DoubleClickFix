@@ -171,4 +171,13 @@
   <data name="IgnoreCurrentDevice" xml:space="preserve">
     <value>Dieses Gerät ignorieren</value>
   </data>
+  <data name="ThemeSystem" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Hell</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Dunkel</value>
+  </data>
 </root>

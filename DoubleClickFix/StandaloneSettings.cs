@@ -28,6 +28,7 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
                 SaveSetting(key, DragStopTimeMilliseconds);
                 SaveSetting(key, remoteDesktopDetection);
                 key.SetValue("language", language, RegistryValueKind.String);
+                key.SetValue("colorMode", colorMode.ToString(), RegistryValueKind.String);
                 logger.Log(Resources.SettingsSaved);
             } else { 
                 logger.Log("Failed to create or write registry key."); 
@@ -81,6 +82,8 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
             remoteDesktopDetection = LoadSetting(key, remoteDesktopDetection);
             if (key.GetValue("language") is string lang && !string.IsNullOrWhiteSpace(lang))
                 language = lang;
+            if (key.GetValue("colorMode") is string cm && Enum.TryParse<ColorMode>(cm, true, out var parsedMode))
+                colorMode = parsedMode;
         }
     }
 

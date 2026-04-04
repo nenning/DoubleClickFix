@@ -25,6 +25,7 @@ internal interface ISettings
 
     bool IsFirstAppStart { get; }
     string Language { get; set; }
+    ColorMode ColorMode { get; set; }
     void RegisterSettingsChangedListener(Action listener);
     void Save();
     void Reset();

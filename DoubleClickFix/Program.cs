@@ -84,6 +84,13 @@ internal class Program
             ? new StoreSettings(args, logger)
             : new StandaloneSettings(args, logger);
 
+        Application.SetColorMode(settings.ColorMode switch
+        {
+            ColorMode.Dark  => SystemColorMode.Dark,
+            ColorMode.Light => SystemColorMode.Classic,
+            _               => SystemColorMode.System
+        });
+
         // enforce single instance via mutex
         using Mutex mutex = new(true, "{F8049D9C-AD6B-4158-92A3-E537355EF536}");
         if (settings.UseHook && !mutex.WaitOne(TimeSpan.Zero, true))
@@ -119,7 +126,7 @@ internal class Program
             if (!mouseHook.Install())
             {
                 form.Text = "No mouse hook installed!";
-                form.BackColor = Color.DarkRed;
+                form.BackColor = NativeMethods.IsDarkMode(settings.ColorMode) ? Color.Crimson : Color.DarkRed;
                 logger.Log($"{Resources.Error}: {Resources.HookNotInstalled}");
             }
 

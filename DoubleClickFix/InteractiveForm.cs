@@ -24,6 +24,9 @@ internal partial class InteractiveForm : Form
         this.logger = logger;
         this.mouseHook = mouseHook;
         InitializeComponent();
+        delayTextBox.ReadOnly = true;
+        if (NativeMethods.IsDarkMode(settings.ColorMode))
+            gitLinkLabel.LinkColor = Color.DeepSkyBlue;
 
         debounceTimer = new()
         {
@@ -72,6 +75,15 @@ internal partial class InteractiveForm : Form
         this.mouseButtonComboBox.SelectedIndex = 0;
         suppressNextShow = !settings.IsInteractive;
 
+        themeComboBox.Items.AddRange([Resources.ThemeSystem, Resources.ThemeLight, Resources.ThemeDark]);
+        themeComboBox.SelectedIndex = settings.ColorMode switch
+        {
+            ColorMode.Light => 1,
+            ColorMode.Dark  => 2,
+            _               => 0
+        };
+        themeComboBox.SelectedIndexChanged += OnThemeChanged;
+
         languageComboBox.SelectedIndexChanged -= OnLanguageChanged;
         languageComboBox.SelectedIndex = settings.Language switch
         {
@@ -92,6 +104,12 @@ internal partial class InteractiveForm : Form
             cp.ExStyle |= NativeMethods.WS_EX_TOOLWINDOW;
             return cp;
         }
+    }
+
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        NativeMethods.ApplyDarkTitleBar(Handle, settings.ColorMode);
     }
 
     protected override void SetVisibleCore(bool value)
@@ -146,6 +164,14 @@ internal partial class InteractiveForm : Form
     }
     private void SetupTestArea()
     {
+        foreach (var cb in new[] { left, right, middle, x1, x2, wheel })
+        {
+            cb.AutoCheck = false;
+            cb.MouseDown += OnTestMouseDown;
+            cb.MouseUp += OnTestMouseUp;
+            cb.MouseWheel += OnTestMouseWheel;
+        }
+
         pictureBox1.MouseDown += OnTestMouseDown;
         pictureBox1.MouseUp += OnTestMouseUp;
         pictureBox1.MouseWheel += OnTestMouseWheel;
@@ -527,6 +553,21 @@ internal partial class InteractiveForm : Form
         string selectedCode = codes[index];
         if (selectedCode == settings.Language) return;
         settings.Language = selectedCode;
+        settings.Save();
+        RestartArgs = "-interactive";
+        notifyIcon.Visible = false;
+        notifyIcon.Dispose();
+        Application.Exit();
+    }
+
+    private void OnThemeChanged(object? sender, EventArgs e)
+    {
+        ColorMode[] modes = [ColorMode.System, ColorMode.Light, ColorMode.Dark];
+        int index = themeComboBox.SelectedIndex;
+        if (index < 0 || index >= modes.Length) return;
+        ColorMode selected = modes[index];
+        if (selected == settings.ColorMode) return;
+        settings.ColorMode = selected;
         settings.Save();
         RestartArgs = "-interactive";
         notifyIcon.Visible = false;

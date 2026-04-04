@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Microsoft.Win32;
 
 namespace DoubleClickFix;
 
@@ -307,4 +308,30 @@ internal class NativeMethods : INativeMethods
         nint.Size == 4 ? SetWindowLong32(hWnd, nIndex, (int)dwNewLong) : SetWindowLong64(hWnd, nIndex, dwNewLong);
 
     nint INativeMethods.SetWindowLong(nint hWnd, int nIndex, nint dwNewLong) => SetWindowLong(hWnd, nIndex, dwNewLong);
+
+    // Dark mode support
+
+    [DllImport("dwmapi.dll")]
+    private static extern int DwmSetWindowAttribute(nint hwnd, int dwAttribute, ref int pvAttribute, int cbAttribute);
+
+    private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
+
+    internal static bool IsDarkMode(ColorMode colorMode = ColorMode.System)
+    {
+        if (colorMode == ColorMode.Dark) return true;
+        if (colorMode == ColorMode.Light) return false;
+        try
+        {
+            using var key = Registry.CurrentUser.OpenSubKey(
+                @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
+            return key?.GetValue("AppsUseLightTheme") is int value && value == 0;
+        }
+        catch { return false; }
+    }
+
+    internal static void ApplyDarkTitleBar(nint hwnd, ColorMode colorMode = ColorMode.System)
+    {
+        int dark = IsDarkMode(colorMode) ? 1 : 0;
+        DwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ref dark, sizeof(int));
+    }
 }

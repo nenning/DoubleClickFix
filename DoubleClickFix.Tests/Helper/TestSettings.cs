@@ -23,6 +23,7 @@ class TestSettings : ISettings
 
     public bool IsFirstAppStart => false;
     public string Language { get; set; } = "";
+    public ColorMode ColorMode { get; set; } = ColorMode.System;
 
     private Action? listener;
     public void RegisterSettingsChangedListener(Action listener)

@@ -41,7 +41,7 @@ This tool ensures smoother operation by filtering unintended double-click events
 - **Windows Tray Integration**: Double-click the tray icon to open the settings UI.
 - **Startup Option**: Register the application to launch with Windows. The app tries to do this automatically when you launch it the first time.
 
-![logo](./main-screen.png)
+![logo](./main-screen-dark.png)
 ---
 
 ## 🔍 How It Works: Filtering Mouse Clicks
@@ -166,3 +166,5 @@ Some technical details - mostly for development.
 - If needed, adjust the version in `Package.appxmanifest`.
 - To create a store package, use **Publish** → **Create App Packages** in Visual Studio.
 - Publish it through the [Partner Portal](https://partner.microsoft.com/en-us/dashboard/apps-and-games/overview): upload the package (`.msixbundle`), fill in the details and submit it for certification.
+
+![logo](./main-screen.png)
