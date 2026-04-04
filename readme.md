@@ -26,6 +26,7 @@ This tool ensures smoother operation by filtering unintended double-click events
 - [System Requirements](#-system-requirements)
 - [Installation](#-installation)
 - [Configuration](#️-configuration)
+- [Usage](#-usage)
 - [Contributions](#-contributions)
 - [License](#-license)
 - [Compatibility with Anti-Cheat Software](#️-compatibility-with-anti-cheat-software-vac-eac-battleye-etc)
