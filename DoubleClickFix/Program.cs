@@ -37,6 +37,34 @@ internal class Program
         }
     }
 
+    private static bool NotifyRunningInstance()
+    {
+        string processName = Process.GetCurrentProcess().ProcessName;
+        var otherPids = Process.GetProcessesByName(processName)
+            .Where(p => p.Id != Environment.ProcessId)
+            .Select(p => (uint)p.Id)
+            .ToHashSet();
+
+        if (otherPids.Count == 0)
+            return false;
+
+        // Send WM_SHOWME to all top-level windows of the other process.
+        // WinForms creates several internal windows alongside the form, so we
+        // broadcast to all of them — only InteractiveForm.WndProc handles it.
+        bool sent = false;
+        NativeMethods.EnumWindows((hWnd, _) =>
+        {
+            NativeMethods.GetWindowThreadProcessId(hWnd, out uint pid);
+            if (otherPids.Contains(pid))
+            {
+                NativeMethods.PostMessage(hWnd, NativeMethods.WM_SHOWME, IntPtr.Zero, IntPtr.Zero);
+                sent = true;
+            }
+            return true; // continue enumeration
+        }, IntPtr.Zero);
+        return sent;
+    }
+
     [STAThread]
     private static void Main(string[] args)
     {
@@ -61,17 +89,10 @@ internal class Program
         if (settings.UseHook && !mutex.WaitOne(TimeSpan.Zero, true))
         {
             // an instance is already running – bring its UI to the front
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(InteractiveForm));
-            var windowTitle = resources.GetString("$this.Text") ?? "Double-click Fix";
-            IntPtr hWnd = NativeMethods.FindWindow(null, windowTitle);
-            if (hWnd != IntPtr.Zero)
-            {
-                NativeMethods.PostMessage(hWnd, NativeMethods.WM_SHOWME, IntPtr.Zero, IntPtr.Zero);
-            }
-            else
+            if (!NotifyRunningInstance())
             {
                 // Fallback if the window can't be found for some reason
-                MessageBox.Show(Resources.AppAlreadyRunning, windowTitle);
+                MessageBox.Show(Resources.AppAlreadyRunning, "Double-click Fix");
             }
             return;
         }
