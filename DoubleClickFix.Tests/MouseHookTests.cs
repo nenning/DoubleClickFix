@@ -440,4 +440,185 @@ public class MouseHookTests
             Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));   // orphaned UP filtered
         Assert.Equal(2, nativeMethods.CallNextHookCounter);
     }
+
+    [Fact]
+    public void TestX2ClickIgnored()
+    {
+        var nativeMethods = new TestNativeMethods();
+        var settings = new TestSettings { X2Threshold = 20 };
+        var hook = new MouseHook(settings, new TestLogger(), nativeMethods);
+
+        AssertAllowed(hook, WM_XBUTTONDOWN, 100, mouseData: 0x00020000);
+        AssertAllowed(hook, WM_XBUTTONUP,   110, mouseData: 0x00020000);
+        AssertIgnored(hook, WM_XBUTTONDOWN, 120, mouseData: 0x00020000);
+        AssertIgnored(hook, WM_XBUTTONUP,   130, mouseData: 0x00020000);
+        Assert.Equal(2, nativeMethods.CallNextHookCounter);
+    }
+
+    [Fact]
+    public void TestTouchDevicePassesThroughUnfiltered()
+    {
+        var nativeMethods = new TestNativeMethods
+        {
+            ProcessRawInputFunc = _ => (true, 0, true) // DeviceType.TouchPad
+        };
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+        hook.ProcessRawInput(123); // classify device as touch
+
+        // Rapid clicks within 50 ms threshold — all should pass through unfiltered
+        using (var data = HookStruct.Create(100)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP,   data.Pointer));
+        using (var data = HookStruct.Create(120)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(130)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP,   data.Pointer));
+        Assert.Equal(4, nativeMethods.CallNextHookCounter);
+    }
+
+    [Fact]
+    public void TestHorizontalWheelBounceSingleIgnored()
+    {
+        var settings = new TestSettings { WheelThreshold = 200 };
+        var hook = new MouseHook(settings, new TestLogger(), new TestNativeMethods());
+
+        AssertAllowed(hook, WM_MOUSEHWHEEL, 1,  mouseData: WheelDown); // scroll right
+        AssertIgnored(hook, WM_MOUSEHWHEEL, 50, mouseData: WheelUp);   // bounce left within threshold
+    }
+
+    [Fact]
+    public void TestHorizontalWheelBounceLegitimateReversal()
+    {
+        var settings = new TestSettings { WheelThreshold = 200 };
+        var hook = new MouseHook(settings, new TestLogger(), new TestNativeMethods());
+
+        AssertAllowed(hook, WM_MOUSEHWHEEL, 1,   mouseData: WheelDown);
+        AssertIgnored(hook, WM_MOUSEHWHEEL, 50,  mouseData: WheelUp);  // bounce within threshold
+        AssertAllowed(hook, WM_MOUSEHWHEEL, 400, mouseData: WheelUp);  // legitimate reversal after threshold
+    }
+
+    [Fact]
+    public void TestTimerWrapAroundFilteredAfterWrap()
+    {
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), new TestNativeMethods());
+
+        // UP near uint.MaxValue, then DOWN shortly after rollover — elapsed ~11 ms, within 50 ms threshold
+        AssertAllowed(hook, WM_LBUTTONDOWN, uint.MaxValue - 20);
+        AssertAllowed(hook, WM_LBUTTONUP,   uint.MaxValue - 5);
+        AssertIgnored(hook, WM_LBUTTONDOWN, 5);   // 11 ms after UP (via wrap) — filtered
+        AssertIgnored(hook, WM_LBUTTONUP,   15);  // orphaned UP — suppressed
+    }
+
+    [Fact]
+    public void TestTimerWrapAroundAllowedAfterWrap()
+    {
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), new TestNativeMethods());
+
+        // UP near uint.MaxValue, then DOWN well after rollover — elapsed ~66 ms, beyond 50 ms threshold
+        AssertAllowed(hook, WM_LBUTTONDOWN, uint.MaxValue - 20);
+        AssertAllowed(hook, WM_LBUTTONUP,   uint.MaxValue - 5);
+        AssertAllowed(hook, WM_LBUTTONDOWN, 60);  // 66 ms after UP (via wrap) — allowed
+        AssertAllowed(hook, WM_LBUTTONUP,   70);
+    }
+
+    [Fact]
+    public void TestNegativeNCodeAlwaysForwards()
+    {
+        var nativeMethods = new TestNativeMethods();
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+
+        // Rapid clicks that would normally be filtered — but nCode = -1 bypasses all processing
+        using (var data = HookStruct.Create(100)) Assert.Equal(0, hook.HookCallback(-1, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110)) Assert.Equal(0, hook.HookCallback(-1, WM_LBUTTONUP,   data.Pointer));
+        using (var data = HookStruct.Create(120)) Assert.Equal(0, hook.HookCallback(-1, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(130)) Assert.Equal(0, hook.HookCallback(-1, WM_LBUTTONUP,   data.Pointer));
+        Assert.Equal(4, nativeMethods.CallNextHookCounter);
+    }
+
+    [Fact]
+    public void TestRemovingIgnoredDeviceRestoresFiltering()
+    {
+        const string devicePath = "/dev/test_mouse";
+        var nativeMethods = new TestNativeMethods { TryGetDevicePathFunc = _ => devicePath };
+        var settings = new TestSettings();
+        var hook = new MouseHook(settings, new TestLogger(), nativeMethods);
+
+        hook.ProcessRawInput(123);
+        settings.AddIgnoredDevice(devicePath);
+
+        // Passes through while ignored
+        using (var data = HookStruct.Create(100)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP,   data.Pointer));
+
+        settings.RemoveIgnoredDevice(devicePath); // un-ignore
+
+        // Rapid clicks after un-ignore should be filtered again
+        using (var data = HookStruct.Create(120)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(130)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP,   data.Pointer));
+        using (var data = HookStruct.Create(140)) Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer)); // filtered
+        using (var data = HookStruct.Create(150)) Assert.Equal(1, hook.HookCallback(0, WM_LBUTTONUP,   data.Pointer)); // orphaned UP
+    }
+
+    [Fact]
+    public void TestDisablingDragCorrectionExitsDragLock()
+    {
+        var settings = new TestSettings
+        {
+            DragStartTimeMilliseconds = 100,
+            DragStopTimeMilliseconds  = 200
+        };
+        var hook = new MouseHook(settings, new TestLogger(), new TestNativeMethods());
+
+        // Enter drag-lock
+        AssertAllowed(hook, WM_LBUTTONDOWN, 200);
+        AssertAllowed(hook, WM_MOUSEMOVE,   450, movedPixels: 20); // triggers drag-lock
+        AssertIgnored(hook, WM_LBUTTONUP,   550);                  // suppressed inside drag-lock
+
+        // Disable drag correction mid-drag
+        settings.DragStartTimeMilliseconds = -1;
+        settings.FireSettingsChanged();
+
+        // Release should now be forwarded (drag state was reset)
+        AssertAllowed(hook, WM_LBUTTONUP, 560);
+    }
+
+    [Fact]
+    public void TestWheelSameDirectionAlwaysAllowed()
+    {
+        var settings = new TestSettings { WheelThreshold = 200 };
+        var hook = new MouseHook(settings, new TestLogger(), new TestNativeMethods());
+
+        // Rapid same-direction scrolling should never be filtered
+        AssertAllowed(hook, WM_MOUSEWHEEL, 1,  mouseData: WheelDown);
+        AssertAllowed(hook, WM_MOUSEWHEEL, 10, mouseData: WheelDown);
+        AssertAllowed(hook, WM_MOUSEWHEEL, 20, mouseData: WheelDown);
+        AssertAllowed(hook, WM_MOUSEWHEEL, 30, mouseData: WheelDown);
+    }
+
+    [Fact]
+    public void TestDragLockRequiresFivePixels()
+    {
+        var settings = new TestSettings
+        {
+            DragStartTimeMilliseconds = 100,
+            DragStopTimeMilliseconds  = 200
+        };
+        var hook = new MouseHook(settings, new TestLogger(), new TestNativeMethods());
+
+        AssertAllowed(hook, WM_LBUTTONDOWN, 200);
+        AssertAllowed(hook, WM_MOUSEMOVE,   450, movedPixels: 3); // (3,3) → distSq=18 < 25 (5²threshold), no drag-lock
+        AssertAllowed(hook, WM_LBUTTONUP,   550);                 // genuine release, drag-lock was not entered
+    }
+
+    [Fact]
+    public void TestDragLockRequiresDragStartTime()
+    {
+        var settings = new TestSettings
+        {
+            DragStartTimeMilliseconds = 300,
+            DragStopTimeMilliseconds  = 200
+        };
+        var hook = new MouseHook(settings, new TestLogger(), new TestNativeMethods());
+
+        AssertAllowed(hook, WM_LBUTTONDOWN, 200);
+        AssertAllowed(hook, WM_MOUSEMOVE,   350, movedPixels: 20); // 150 ms since down — below 300 ms DragStartTime
+        AssertAllowed(hook, WM_LBUTTONUP,   400);                  // released before drag-lock could engage
+    }
 }

@@ -11,10 +11,6 @@ A lightweight solution for mitigating double-click issues caused by malfunctioni
 - 🌗 **Dark / Light Theme** – choose between dark, light, or system theme in the settings.
 - 🌐 **Language Switcher** – change the UI language directly from the settings without restarting.
 
-**New in release 1.5:** 🖱️ **Mouse Wheel Fix** – if you have problems with a "bouncy" or "jittery" mouse wheel, you can now enable a fix for it in the UI!
-
-**New in release 1.4:** 🎉 **Experimental Drag & Drop Support** – if you have problems with dragging, enable this feature in the UI! The tool will maintain a stable drag until you intentionally release.
-
 This tool ensures smoother operation by filtering unintended double-click events and supporting reliable drag-and-drop gestures, allowing you to define the minimal delay between valid clicks directly from an intuitive user interface.
 
 ---
