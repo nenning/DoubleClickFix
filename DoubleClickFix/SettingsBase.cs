@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 
 namespace DoubleClickFix
@@ -206,9 +205,7 @@ namespace DoubleClickFix
         {
             try
             {
-                string? value = ConfigurationManager.AppSettings["languageOverride"];
-                if (string.IsNullOrWhiteSpace(value))
-                    value = LoadLanguageSetting();
+                string value = LoadLanguageSetting();
                 if (!string.IsNullOrWhiteSpace(value))
                     ApplyCulture(value);
             }

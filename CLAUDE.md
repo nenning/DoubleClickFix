@@ -106,7 +106,3 @@ Tests use mock implementations in `DoubleClickFix.Tests/Helper/`:
 
 - **`-nohook`** – Skip installing the mouse hook (auto-applied in Debug mode)
 - **`-interactive` / `-i`** – Show UI on startup (auto-applied in Debug mode)
-
-### Language Override (for testing)
-
-Set `languageOverride` in `DoubleClickFix/app.config` to: `en`, `de`, `es`, `fr`, or `it`.

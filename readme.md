@@ -153,9 +153,6 @@ Some technical details - mostly for development.
 - **`-nohook`** – Runs the app without registering the mouse hook. Useful for UI testing or debugging (automatically applied in debug mode).
 - **`-interactive`** or **`-i`** – Displays the UI on startup. Useful for testing (automatically applied in debug mode).
 
-### 🌍 Language Override
-- The application language can be overridden by setting the **`languageOverride`** key in the `app.config` file (for testing purposes).
-
 ### 📦 Creating a Release
 
 #### Github
