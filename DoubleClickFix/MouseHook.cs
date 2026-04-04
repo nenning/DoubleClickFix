@@ -62,6 +62,7 @@ internal class MouseHook : IDisposable
     private readonly Dictionary<nint, DeviceType> knownDeviceTypes = [];
     private readonly Dictionary<nint, string> knownDevicePaths = [];
     public string? CurrentDevicePath { get; private set; }
+    public bool IsInstalled => hookHandle != nint.Zero;
 
     private readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
     private FrozenSet<nint> observedMessages = [];

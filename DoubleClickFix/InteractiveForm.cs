@@ -218,6 +218,12 @@ internal partial class InteractiveForm : Form
     {
         if (e.CloseReason == CloseReason.UserClosing)
         {
+            if (!mouseHook.IsInstalled)
+            {
+                notifyIcon.Visible = false;
+                notifyIcon.Dispose();
+                return;
+            }
             e.Cancel = true;
             HideWindow();
         }
