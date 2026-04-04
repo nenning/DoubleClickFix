@@ -370,26 +370,23 @@
             // 
             resources.ApplyResources(versionLabel, "versionLabel");
             versionLabel.Name = "versionLabel";
-            //
+            // 
             // gitLinkLabel
-            //
+            // 
             resources.ApplyResources(gitLinkLabel, "gitLinkLabel");
             gitLinkLabel.Name = "gitLinkLabel";
             gitLinkLabel.TabStop = true;
             gitLinkLabel.LinkClicked += OnGitLinkLabelClicked;
-            //
+            // 
             // languageComboBox
-            //
+            // 
+            resources.ApplyResources(languageComboBox, "languageComboBox");
             languageComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             languageComboBox.FormattingEnabled = true;
-            languageComboBox.Items.AddRange(new object[] { "🇺🇸 EN", "🇩🇪 DE", "🇪🇸 ES", "🇫🇷 FR", "🇮🇹 IT" });
-            languageComboBox.Location = new Point(1103, 20);
-            languageComboBox.Size = new Size(180, 28);
-            languageComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            languageComboBox.Items.AddRange(new object[] { resources.GetString("languageComboBox.Items"), resources.GetString("languageComboBox.Items1"), resources.GetString("languageComboBox.Items2"), resources.GetString("languageComboBox.Items3"), resources.GetString("languageComboBox.Items4") });
             languageComboBox.Name = "languageComboBox";
-            languageComboBox.TabIndex = 20;
             languageComboBox.SelectedIndexChanged += OnLanguageChanged;
-            //
+            // 
             // InteractiveForm
             // 
             resources.ApplyResources(this, "$this");

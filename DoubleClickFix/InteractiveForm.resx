@@ -586,7 +586,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="remoteDesktopCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5475,7 +5475,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="descriptionTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -5486,8 +5486,11 @@
   <data name="descriptionTextBox.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="descriptionTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
   <data name="descriptionTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 393</value>
+    <value>318, 393</value>
   </data>
   <data name="descriptionTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -5574,7 +5577,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="groupBox3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -5601,7 +5604,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="groupBox4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -5628,7 +5631,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="groupBoxDevice.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 82</value>
@@ -5649,7 +5652,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxDevice.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="groupBoxGeneral.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 448</value>
@@ -5673,7 +5676,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxGeneral.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="versionLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -5703,7 +5706,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;versionLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="gitLinkLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -5733,6 +5736,45 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gitLinkLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="languageComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="languageComboBox.Items" xml:space="preserve">
+    <value>🇺🇸 EN</value>
+  </data>
+  <data name="languageComboBox.Items1" xml:space="preserve">
+    <value>🇩🇪 DE</value>
+  </data>
+  <data name="languageComboBox.Items2" xml:space="preserve">
+    <value>🇪🇸 ES</value>
+  </data>
+  <data name="languageComboBox.Items3" xml:space="preserve">
+    <value>🇫🇷 FR</value>
+  </data>
+  <data name="languageComboBox.Items4" xml:space="preserve">
+    <value>🇮🇹 IT</value>
+  </data>
+  <data name="languageComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1103, 20</value>
+  </data>
+  <data name="languageComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 33</value>
+  </data>
+  <data name="languageComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Name" xml:space="preserve">
+    <value>languageComboBox</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
