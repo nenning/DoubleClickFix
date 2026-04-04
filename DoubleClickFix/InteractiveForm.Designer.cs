@@ -33,7 +33,6 @@
             logTextBox = new TextBox();
             delayLabel = new Label();
             delayTextBox = new TextBox();
-            saveButton = new Button();
             resetButton = new Button();
             runAtStartupCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
@@ -103,14 +102,6 @@
             resources.ApplyResources(delayTextBox, "delayTextBox");
             delayTextBox.Name = "delayTextBox";
             toolTip1.SetToolTip(delayTextBox, resources.GetString("delayTextBox.ToolTip"));
-            // 
-            // saveButton
-            // 
-            resources.ApplyResources(saveButton, "saveButton");
-            saveButton.Name = "saveButton";
-            toolTip1.SetToolTip(saveButton, resources.GetString("saveButton.ToolTip"));
-            saveButton.UseVisualStyleBackColor = true;
-            saveButton.Click += OnSaveButtonClicked;
             // 
             // resetButton
             // 
@@ -308,7 +299,6 @@
             // 
             resources.ApplyResources(descriptionTextBox, "descriptionTextBox");
             descriptionTextBox.BackColor = SystemColors.Control;
-            descriptionTextBox.BorderStyle = BorderStyle.None;
             descriptionTextBox.Name = "descriptionTextBox";
             descriptionTextBox.ReadOnly = true;
             descriptionTextBox.TabStop = false;
@@ -361,7 +351,6 @@
             // 
             groupBoxGeneral.Controls.Add(remoteDesktopCheckBox);
             groupBoxGeneral.Controls.Add(runAtStartupCheckBox);
-            groupBoxGeneral.Controls.Add(saveButton);
             groupBoxGeneral.Controls.Add(resetButton);
             resources.ApplyResources(groupBoxGeneral, "groupBoxGeneral");
             groupBoxGeneral.Name = "groupBoxGeneral";
@@ -436,7 +425,6 @@
         private TextBox logTextBox;
         private Label delayLabel;
         private TextBox delayTextBox;
-        private Button saveButton;
         private Button resetButton;
         private CheckBox runAtStartupCheckBox;
         private GroupBox groupBox1;

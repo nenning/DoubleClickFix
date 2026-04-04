@@ -57,9 +57,11 @@ internal partial class InteractiveForm : Form
             saveTimer.Stop();
         };
         components!.Add(saveTimer);
+        settings.RegisterSettingsChangedListener(() => { saveTimer.Stop(); saveTimer.Start(); });
 
         this.FormClosing += OnFormClosing;
         this.runAtStartupCheckBox.Checked = startup.IsRegistered();
+        this.runAtStartupCheckBox.CheckedChanged += OnRunAtStartupCheckBoxChanged;
         this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
 
         this.remoteDesktopCheckBox.Checked = settings.IsRemoteDesktopDetectionEnabled;
@@ -285,22 +287,10 @@ internal partial class InteractiveForm : Form
         OnSelectedMouseButtonChanged(this, EventArgs.Empty);
     }
 
-    private void OnSaveButtonClicked(object? sender, EventArgs e)
+    private void OnRunAtStartupCheckBoxChanged(object? sender, EventArgs e)
     {
-        bool success;
-        if (runAtStartupCheckBox.Checked)
-        {
-            success = startup.Register();
-        }
-        else
-        {
-            success = startup.Unregister();
-        }
-        if (!success)
-        {
-            Log(Resources.WritingRegistryFailed);
-        }
-        settings.Save();
+        bool success = runAtStartupCheckBox.Checked ? startup.Register() : startup.Unregister();
+        Log(success ? Resources.SettingsSaved : Resources.WritingRegistryFailed);
     }
 
     private void OnLogTextBoxChanged(object? sender, EventArgs e)
@@ -491,8 +481,6 @@ internal partial class InteractiveForm : Form
             settings.AddIgnoredDevice(path);
         else
             settings.RemoveIgnoredDevice(path);
-        saveTimer.Stop();
-        saveTimer.Start();
     }
 
     private void OnFixDraggingCheckBoxChanged(object sender, EventArgs e)

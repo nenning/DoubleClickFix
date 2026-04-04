@@ -1,8 +1,7 @@
 # 🖱️ Double-click Fix
+<img align="right" src="media/icon.png" width="200" height="200" />
 
 [![.NET](https://github.com/nenning/DoubleClickFix/actions/workflows/dotnet.yml/badge.svg)](https://github.com/nenning/DoubleClickFix/actions/workflows/dotnet.yml) &nbsp; [![GitHub release (latest by date)](https://img.shields.io/github/v/release/nenning/DoubleClickFix)](https://github.com/nenning/DoubleClickFix/releases/latest) &nbsp; [![License](https://img.shields.io/github/license/nenning/DoubleClickFix)](LICENSE.txt) &nbsp; [![Microsoft Store](https://img.shields.io/badge/Microsoft_Store-Get_it_now-blue?logo=microsoft-store)](https://apps.microsoft.com/detail/9PDGM7NL2FF2)
-
-<img align="right" src="media/icon.png" width="80" height="80" />
 
 A lightweight solution for mitigating double-click issues caused by malfunctioning mice.
 
@@ -18,7 +17,11 @@ A lightweight solution for mitigating double-click issues caused by malfunctioni
 
 This tool ensures smoother operation by filtering unintended double-click events and supporting reliable drag-and-drop gestures, allowing you to define the minimal delay between valid clicks directly from an intuitive user interface.
 
-## 🛍️ Get it from the [Microsoft Store](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare)!
+---
+
+# 🛍️ Get it from the [Microsoft Store](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare)!
+
+---
 
 ## 📋 Table of Contents
 - [Features](#-features)

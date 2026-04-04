@@ -207,38 +207,11 @@
   <data name="&gt;&gt;delayTextBox.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="saveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>788, 72</value>
-  </data>
-  <data name="saveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 41</value>
-  </data>
-  <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="saveButton.ToolTip" xml:space="preserve">
-    <value>Save settings</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Name" xml:space="preserve">
-    <value>saveButton</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;saveButton.Parent" xml:space="preserve">
-    <value>groupBoxGeneral</value>
-  </data>
-  <data name="&gt;&gt;saveButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="resetButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>628, 72</value>
+    <value>733, 67</value>
   </data>
   <data name="resetButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 41</value>
+    <value>172, 41</value>
   </data>
   <data name="resetButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -256,7 +229,7 @@
     <value>groupBoxGeneral</value>
   </data>
   <data name="&gt;&gt;resetButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="runAtStartupCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
