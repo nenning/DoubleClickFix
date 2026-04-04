@@ -43,7 +43,7 @@ This tool ensures smoother operation by filtering unintended double-click events
 - **Windows Tray Integration**: Double-click the tray icon to open the settings UI.
 - **Startup Option**: Register the application to launch with Windows. The app tries to do this automatically when you launch it the first time.
 
-![logo](./main-screen-dark.png)
+![logo](./media/main-screen-dark.png)
 ---
 
 ## 🔍 How It Works: Filtering Mouse Clicks
@@ -117,6 +117,13 @@ The following options are supported for installing and running the application:
 
 ---
 
+## 📊 Usage
+Windows Store usage statistics from 2026-04-04:
+
+![logo](./media/distribution.png)
+
+---
+
 ## 🤝 Contributions
 Contributions are welcome! Feel free to open issues, submit pull requests, or suggest improvements via the [Issues tab](https://github.com/nenning/DoubleClickFix/issues).
 
@@ -171,4 +178,4 @@ Some technical details - mostly for development.
 - To create a store package, use **Publish** → **Create App Packages** in Visual Studio.
 - Publish it through the [Partner Portal](https://partner.microsoft.com/en-us/dashboard/apps-and-games/overview): upload the package (`.msixbundle`), fill in the details and submit it for certification.
 
-![logo](./main-screen.png)
+![logo](./media/main-screen.png)
