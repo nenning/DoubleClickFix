@@ -31,14 +31,16 @@ namespace DoubleClickFix
         {
             this.logger = logger;
             UseHook = !Debugger.IsAttached && (args.Length == 0 || !args.Contains("-nohook"));
-            IsFirstAppStart = !SettingsExist();
-            IsInteractive = Debugger.IsAttached || IsFirstAppStart || args.Length > 0 && (args.Contains("-interactive") || args.Contains("-i"));
-            ApplyLanguageOverride();
+            // Load all settings in one pass; returns false on first ever launch (no saved state).
+            bool existed = Load();
+            IsFirstAppStart = !existed;
             if (IsFirstAppStart)
             {
                 Save();
             }
-            Load();
+            // language field is now populated by Load() — apply culture before any UI is created.
+            ApplyLanguageOverride();
+            IsInteractive = Debugger.IsAttached || IsFirstAppStart || args.Length > 0 && (args.Contains("-interactive") || args.Contains("-i"));
             settingsChanged += this.OnSettingsChanged;
         }
 
@@ -211,9 +213,8 @@ namespace DoubleClickFix
         {
             try
             {
-                string value = LoadLanguageSetting();
-                if (!string.IsNullOrWhiteSpace(value))
-                    ApplyCulture(value);
+                if (!string.IsNullOrWhiteSpace(language))
+                    ApplyCulture(language);
             }
             catch
             {
@@ -266,9 +267,8 @@ namespace DoubleClickFix
         private void OnSettingsChanged() { }
 
         public abstract void Save();
-        protected abstract bool SettingsExist();
-        public abstract void Load();
-        protected abstract string LoadLanguageSetting();
+        /// <summary>Loads all settings. Returns true if previously saved settings were found.</summary>
+        public abstract bool Load();
 
     }
 }

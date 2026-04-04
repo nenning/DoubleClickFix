@@ -50,51 +50,27 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
         key.SetValue("IgnoredDevicePaths", paths.ToArray(), RegistryValueKind.MultiString);
     }
 
-    protected override bool SettingsExist()
-    {
-        try
-        {
-            using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath, false);
-            return key != null;
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
-    public override void Load()
+    public override bool Load()
     {
         using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath, false);
-        if (key != null)
-        {
-            LeftThreshold = LoadSetting(key, LeftThreshold);
-            RightThreshold = LoadSetting(key, RightThreshold);
-            MiddleThreshold = LoadSetting(key, MiddleThreshold);
-            X1Threshold = LoadSetting(key, X1Threshold);
-            X2Threshold = LoadSetting(key, X2Threshold);
-            WheelThreshold = LoadSetting(key, WheelThreshold);
-            MinDelay = LoadSetting(key, MinDelay);
-            if (key.GetValue("IgnoredDevicePaths") is string[] paths)
-                ignoredDevicePaths = [..paths.Where(p => !string.IsNullOrEmpty(p))];
-            DragStartTimeMilliseconds = LoadSetting(key, DragStartTimeMilliseconds);
-            DragStopTimeMilliseconds = LoadSetting(key, DragStopTimeMilliseconds);
-            remoteDesktopDetection = LoadSetting(key, remoteDesktopDetection);
-            if (key.GetValue("language") is string lang && !string.IsNullOrWhiteSpace(lang))
-                language = lang;
-            if (key.GetValue("colorMode") is string cm && Enum.TryParse<ColorMode>(cm, true, out var parsedMode))
-                colorMode = parsedMode;
-        }
-    }
-
-    protected override string LoadLanguageSetting()
-    {
-        try
-        {
-            using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath, false);
-            return key?.GetValue("language") as string ?? "";
-        }
-        catch { return ""; }
+        if (key == null) return false;
+        LeftThreshold = LoadSetting(key, LeftThreshold);
+        RightThreshold = LoadSetting(key, RightThreshold);
+        MiddleThreshold = LoadSetting(key, MiddleThreshold);
+        X1Threshold = LoadSetting(key, X1Threshold);
+        X2Threshold = LoadSetting(key, X2Threshold);
+        WheelThreshold = LoadSetting(key, WheelThreshold);
+        MinDelay = LoadSetting(key, MinDelay);
+        if (key.GetValue("IgnoredDevicePaths") is string[] paths)
+            ignoredDevicePaths = [..paths.Where(p => !string.IsNullOrEmpty(p))];
+        DragStartTimeMilliseconds = LoadSetting(key, DragStartTimeMilliseconds);
+        DragStopTimeMilliseconds = LoadSetting(key, DragStopTimeMilliseconds);
+        remoteDesktopDetection = LoadSetting(key, remoteDesktopDetection);
+        if (key.GetValue("language") is string lang && !string.IsNullOrWhiteSpace(lang))
+            language = lang;
+        if (key.GetValue("colorMode") is string cm && Enum.TryParse<ColorMode>(cm, true, out var parsedMode))
+            colorMode = parsedMode;
+        return true;
     }
 
     private static int LoadSetting(RegistryKey key, int defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string name = "")

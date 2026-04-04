@@ -17,11 +17,11 @@ internal class Program
         }
     }
 
-    private static string GetVersion()
+    private static string GetVersion(bool isRunningFromStore)
     {
         try
         {
-            if (IsRunningFromStore())
+            if (isRunningFromStore)
             {
                 var version = Windows.ApplicationModel.Package.Current.Id.Version;
                 return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
@@ -119,7 +119,7 @@ internal class Program
                 startupRegistry.Register();
             }
 
-            form = new InteractiveForm(startupRegistry, settings, logger, mouseHook, GetVersion());
+            form = new InteractiveForm(startupRegistry, settings, logger, mouseHook, GetVersion(isRunningFromStore));
 
             // register for raw input before installing the hook
             mouseHook.RegisterForRawInput(form.Handle);

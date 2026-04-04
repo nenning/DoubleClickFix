@@ -37,13 +37,9 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         logger.Log(Resources.SettingsSaved);
     }
 
-    protected override bool SettingsExist()
+    public override bool Load()
     {
-        return settings.Values.ContainsKey(nameof(LeftThreshold));
-    }
-
-    public override void Load()
-    {
+        bool existed = settings.Values.ContainsKey(nameof(LeftThreshold));
         leftThreshold = LoadSetting(LeftThreshold);
         rightThreshold = LoadSetting(RightThreshold);
         middleThreshold = LoadSetting(MiddleThreshold);
@@ -62,16 +58,7 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
             language = lang;
         if (settings.Values["colorMode"] is string cm && Enum.TryParse<ColorMode>(cm, true, out var parsedMode))
             colorMode = parsedMode;
-        FireSettingsChanged();
-    }
-
-    protected override string LoadLanguageSetting()
-    {
-        try
-        {
-            return ApplicationData.Current.LocalSettings.Values["language"] as string ?? "";
-        }
-        catch { return ""; }
+        return existed;
     }
 
     private int LoadSetting(int defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string name = "")

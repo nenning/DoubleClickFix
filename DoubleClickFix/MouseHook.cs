@@ -248,13 +248,11 @@ internal class MouseHook : IDisposable
 
     private nint HandleWheel(int nCode, nint wParam, nint lParam)
     {
+        if (!ProcessMouseEvent(nCode, wParam))
+            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+
         var hookStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
         const nint IgnoreMouseEvent = 1;
-
-        if (!ProcessMouseEvent(nCode, wParam))
-        {
-            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
-        }
 
         if ((hookStruct.flags & LLMHF_INJECTED) != 0
             && (!isRemoteSession || settings.IsRemoteDesktopDetectionEnabled))
@@ -316,7 +314,7 @@ internal class MouseHook : IDisposable
         var hookStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
         const int MovementThresholdPixels = 5;
 
-        foreach (var button in currentlyDownButtons.ToList())
+        foreach (var button in currentlyDownButtons)
         {
             lastMoveTime[button] = hookStruct.time;
 
@@ -341,13 +339,11 @@ internal class MouseHook : IDisposable
 
     private nint HandleMouseButton(int nCode, nint wParam, nint lParam)
     {
+        if (!ProcessMouseEvent(nCode, wParam))
+            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
+
         var hookStruct = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(lParam)!;
         const nint IgnoreMouseEvent = 1;
-
-        if (!ProcessMouseEvent(nCode, wParam))
-        {
-            return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
-        }
 
         if ((hookStruct.flags & LLMHF_INJECTED) != 0
             && (!isRemoteSession || settings.IsRemoteDesktopDetectionEnabled))
