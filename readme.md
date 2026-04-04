@@ -4,9 +4,11 @@
 
 A lightweight solution for mitigating double-click issues caused by malfunctioning mice.
 
-**New in release 1.6:** 🚫 **Per-device Ignore List** – have a second mouse or touchpad that you don't want filtered? Move the cursor with that device and check "Ignore this device" in the settings UI. The setting is saved permanently and survives reboots.
-
-**Also new in release 1.6:** 🖥️ **Remote Desktop Support** – controlling this PC via RDP and double-clicks aren't working? Enable the new option in the UI to disable click filtering during remote sessions.
+**New in release 1.6:**
+- 🚫 **Per-device Ignore List** – move the cursor with a second mouse or touchpad and check "Ignore this device" to exclude it from filtering. Saved permanently.
+- 🖥️ **Remote Desktop Support** – enable the option in the UI to disable click filtering during RDP sessions.
+- 🌗 **Dark / Light Theme** – choose between dark, light, or system theme in the settings.
+- 🌐 **Language Switcher** – change the UI language directly from the settings without restarting.
 
 **New in release 1.5:** 🖱️ **Mouse Wheel Fix** – if you have problems with a "bouncy" or "jittery" mouse wheel, you can now enable a fix for it in the UI!
 
@@ -105,6 +107,8 @@ The following options are supported for installing and running the application:
   - **Ignore this device**: Move the cursor with a device you want to exclude (e.g. a secondary mouse or graphics tablet), then check "Ignore this device". The device path is saved permanently and all filtering is bypassed for that device.
   - **Workaround for touch devices**: All double-clicks from touchpads or touchscreens are allowed by default. If you have trouble with this, enable the `Allow 0 ms Double-Click Duration` option in the UI.
   - **Remote Desktop sessions**: Enable `Don't filter clicks in remote desktop sessions` if you control this PC via RDP and double-clicks are not working. Disabled by default.
+  - **Theme**: Choose between dark, light, or system (follows Windows setting).
+  - **Language**: Switch the UI language directly from the settings.
 
 ### 💡 Tips
 - Check the logs in the UI for detailed information on the elapsed time between your mouse clicks and filtered-out double-clicks.
