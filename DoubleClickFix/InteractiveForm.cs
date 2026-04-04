@@ -107,7 +107,8 @@ internal partial class InteractiveForm : Form
         get
         {
             var cp = base.CreateParams;
-            cp.ExStyle |= NativeMethods.WS_EX_TOOLWINDOW;
+            if (settings == null || !settings.IsInteractive)
+                cp.ExStyle |= NativeMethods.WS_EX_TOOLWINDOW;
             return cp;
         }
     }
@@ -565,6 +566,18 @@ internal partial class InteractiveForm : Form
         notifyIcon.Visible = false;
         notifyIcon.Dispose();
         Application.Exit();
+    }
+
+    protected override void OnShown(EventArgs e)
+    {
+        base.OnShown(e);
+        if (settings.IsInteractive)
+        {
+            WindowState = FormWindowState.Normal;
+            Activate();
+            BringToFront();
+            EnsureLogAtEnd();
+        }
     }
 
     private void InteractiveForm_Load(object sender, EventArgs e)
