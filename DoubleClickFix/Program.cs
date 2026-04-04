@@ -79,6 +79,7 @@ internal class Program
         using MouseHook mouseHook = new(settings, logger, new NativeMethods());
         using SystemEventsHandler eventsHandler = new(mouseHook, logger, !isRunningFromStore);
 
+        InteractiveForm? form = null;
         try
         {
             IStartupRegistry startupRegistry = isRunningFromStore
@@ -90,7 +91,7 @@ internal class Program
                 startupRegistry.Register();
             }
 
-            InteractiveForm form = new(startupRegistry, settings, logger, mouseHook, GetVersion());
+            form = new InteractiveForm(startupRegistry, settings, logger, mouseHook, GetVersion());
 
             // register for raw input before installing the hook
             mouseHook.RegisterForRawInput(form.Handle);
@@ -110,6 +111,14 @@ internal class Program
             {
                 try { mutex.ReleaseMutex(); } catch { }
             }
+        }
+
+        // Restart after mutex is released so the new process can acquire it
+        if (form?.RestartArgs != null)
+        {
+            string? exePath = Environment.ProcessPath;
+            if (exePath != null)
+                Process.Start(new ProcessStartInfo(exePath, form.RestartArgs) { UseShellExecute = false });
         }
     }
 

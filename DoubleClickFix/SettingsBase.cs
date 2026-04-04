@@ -25,6 +25,7 @@ namespace DoubleClickFix
         protected int dragStartTimeMilliseconds = -1;
         protected int dragStopTimeMilliseconds = -1;
         protected int remoteDesktopDetection = 0;
+        protected string language = "";
 
         public SettingsBase(string[] args, ILogger logger)
         {
@@ -164,6 +165,12 @@ namespace DoubleClickFix
                 }
             }
         }
+        public string Language
+        {
+            get => language;
+            set { language = value; }
+        }
+
         public bool IsDragCorrectionEnabled => DragStartTimeMilliseconds >= 0 && DragStopTimeMilliseconds >= 0;
 
         public int DragStartTimeMilliseconds { 
@@ -195,24 +202,29 @@ namespace DoubleClickFix
             }
         }
 
-        private static void ApplyLanguageOverride()
+        private void ApplyLanguageOverride()
         {
             try
             {
                 string? value = ConfigurationManager.AppSettings["languageOverride"];
+                if (string.IsNullOrWhiteSpace(value))
+                    value = LoadLanguageSetting();
                 if (!string.IsNullOrWhiteSpace(value))
-                {
-                    CultureInfo culture = new(value);
-                    Application.CurrentCulture = culture;
-                    CultureInfo.DefaultThreadCurrentCulture = culture;
-                    CultureInfo.DefaultThreadCurrentUICulture = culture;
-                    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(culture.Name);
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(culture.Name);
-                }
+                    ApplyCulture(value);
             }
             catch
             {
             }
+        }
+
+        private static void ApplyCulture(string code)
+        {
+            CultureInfo culture = new(code);
+            Application.CurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(culture.Name);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(culture.Name);
         }
 
         private static int GetWindowsMaximumDoubleClickTime()
@@ -253,6 +265,7 @@ namespace DoubleClickFix
         public abstract void Save();
         protected abstract bool SettingsExist();
         public abstract void Load();
+        protected abstract string LoadLanguageSetting();
 
     }
 }

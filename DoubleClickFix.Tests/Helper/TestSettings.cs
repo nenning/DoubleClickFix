@@ -22,6 +22,7 @@ class TestSettings : ISettings
     public bool IsRemoteDesktopDetectionEnabled { get; set; } = false;
 
     public bool IsFirstAppStart => false;
+    public string Language { get; set; } = "";
 
     private Action? listener;
     public void RegisterSettingsChangedListener(Action listener)

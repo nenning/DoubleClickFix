@@ -32,6 +32,7 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         SaveSetting(DragStartTimeMilliseconds);
         SaveSetting(DragStopTimeMilliseconds);
         SaveSetting(remoteDesktopDetection);
+        settings.Values["language"] = language;
         logger.Log(Resources.SettingsSaved);
     }
 
@@ -56,7 +57,18 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
         dragStartTimeMilliseconds = LoadSetting(DragStartTimeMilliseconds);
         dragStopTimeMilliseconds = LoadSetting(DragStopTimeMilliseconds);
         remoteDesktopDetection = LoadSetting(remoteDesktopDetection);
+        if (settings.Values["language"] is string lang && !string.IsNullOrWhiteSpace(lang))
+            language = lang;
         FireSettingsChanged();
+    }
+
+    protected override string LoadLanguageSetting()
+    {
+        try
+        {
+            return ApplicationData.Current.LocalSettings.Values["language"] as string ?? "";
+        }
+        catch { return ""; }
     }
 
     private int LoadSetting(int defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string name = "")

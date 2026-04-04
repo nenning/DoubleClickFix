@@ -15,6 +15,7 @@ internal partial class InteractiveForm : Form
     private readonly System.Windows.Forms.Timer wheelResetTimer;
     private readonly System.Windows.Forms.Timer saveTimer;
     private bool suppressNextShow;
+    internal string? RestartArgs { get; private set; }
 
     public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, MouseHook mouseHook, string version)
     {
@@ -70,6 +71,17 @@ internal partial class InteractiveForm : Form
         this.versionLabel.Text = version;
         this.mouseButtonComboBox.SelectedIndex = 0;
         suppressNextShow = !settings.IsInteractive;
+
+        languageComboBox.SelectedIndexChanged -= OnLanguageChanged;
+        languageComboBox.SelectedIndex = settings.Language switch
+        {
+            "de" => 1,
+            "es" => 2,
+            "fr" => 3,
+            "it" => 4,
+            _    => 0
+        };
+        languageComboBox.SelectedIndexChanged += OnLanguageChanged;
     }
 
     protected override CreateParams CreateParams
@@ -499,6 +511,21 @@ internal partial class InteractiveForm : Form
         {
             Log(@"Failed to open https://github.com/nenning/DoubleClickFix");
         }
+    }
+
+    private void OnLanguageChanged(object? sender, EventArgs e)
+    {
+        string[] codes = ["en", "de", "es", "fr", "it"];
+        int index = languageComboBox.SelectedIndex;
+        if (index < 0 || index >= codes.Length) return;
+        string selectedCode = codes[index];
+        if (selectedCode == settings.Language) return;
+        settings.Language = selectedCode;
+        settings.Save();
+        RestartArgs = "-interactive";
+        notifyIcon.Visible = false;
+        notifyIcon.Dispose();
+        Application.Exit();
     }
 
     private void InteractiveForm_Load(object sender, EventArgs e)

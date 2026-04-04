@@ -27,6 +27,7 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
                 SaveSetting(key, DragStartTimeMilliseconds);
                 SaveSetting(key, DragStopTimeMilliseconds);
                 SaveSetting(key, remoteDesktopDetection);
+                key.SetValue("language", language, RegistryValueKind.String);
                 logger.Log(Resources.SettingsSaved);
             } else { 
                 logger.Log("Failed to create or write registry key."); 
@@ -78,7 +79,19 @@ internal class StandaloneSettings(string[] args, ILogger logger) : SettingsBase(
             DragStartTimeMilliseconds = LoadSetting(key, DragStartTimeMilliseconds);
             DragStopTimeMilliseconds = LoadSetting(key, DragStopTimeMilliseconds);
             remoteDesktopDetection = LoadSetting(key, remoteDesktopDetection);
+            if (key.GetValue("language") is string lang && !string.IsNullOrWhiteSpace(lang))
+                language = lang;
         }
+    }
+
+    protected override string LoadLanguageSetting()
+    {
+        try
+        {
+            using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath, false);
+            return key?.GetValue("language") as string ?? "";
+        }
+        catch { return ""; }
     }
 
     private static int LoadSetting(RegistryKey key, int defaultValue, [CallerArgumentExpression(nameof(defaultValue))] string name = "")

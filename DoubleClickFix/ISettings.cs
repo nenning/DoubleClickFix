@@ -24,6 +24,7 @@ internal interface ISettings
     bool IsRemoteDesktopDetectionEnabled { get; set; }
 
     bool IsFirstAppStart { get; }
+    string Language { get; set; }
     void RegisterSettingsChangedListener(Action listener);
     void Save();
     void Reset();
