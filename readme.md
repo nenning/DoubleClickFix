@@ -176,6 +176,6 @@ Some technical details - mostly for development.
 #### Microsoft Store
 - If needed, adjust the version in `Package.appxmanifest`.
 - To create a store package, use **Publish** → **Create App Packages** in Visual Studio.
-- Publish it through the [Partner Portal](https://partner.microsoft.com/en-us/dashboard/apps-and-games/overview): upload the package (`.msixbundle`), fill in the details and submit it for certification.
+- Publish it through the [Partner Portal](https://partner.microsoft.com/en-us/dashboard/apps-and-games/overview): upload the package (`DoubleClickFix\DoubleClickFix.Package\AppPackages\*.msixbundle`), fill in the details and submit it for certification.
 
 ![logo](./media/main-screen.png)
