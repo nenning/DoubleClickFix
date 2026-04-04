@@ -24,6 +24,10 @@ internal partial class InteractiveForm : Form
         this.logger = logger;
         this.mouseHook = mouseHook;
         InitializeComponent();
+        notifyIcon.Icon = Properties.Resources.AppIcon;
+        pictureBox1.Image = NativeMethods.IsDarkMode(settings.ColorMode)
+            ? Properties.Resources.new_dark
+            : Properties.Resources.new_bright;
         delayTextBox.ReadOnly = true;
         if (NativeMethods.IsDarkMode(settings.ColorMode))
             gitLinkLabel.LinkColor = Color.DeepSkyBlue;

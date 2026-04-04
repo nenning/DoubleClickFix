@@ -26,11 +26,11 @@ This tool ensures smoother operation by filtering unintended double-click events
 - [System Requirements](#-system-requirements)
 - [Installation](#-installation)
 - [Configuration](#️-configuration)
-- [Usage](#-usage)
 - [Contributions](#-contributions)
 - [License](#-license)
 - [Compatibility with Anti-Cheat Software](#️-compatibility-with-anti-cheat-software-vac-eac-battleye-etc)
 - [Technical Notes](#️-technical-notes)
+- [Usage](#-usage)
 
 ---
 
@@ -118,13 +118,6 @@ The following options are supported for installing and running the application:
 
 ---
 
-## 📊 Usage
-Windows Store usage statistics from 2026-04-04:
-
-![logo](./media/distribution.png)
-
----
-
 ## 🤝 Contributions
 Contributions are welcome! Feel free to open issues, submit pull requests, or suggest improvements via the [Issues tab](https://github.com/nenning/DoubleClickFix/issues).
 
@@ -179,4 +172,111 @@ Some technical details - mostly for development.
 - To create a store package, use **Publish** → **Create App Packages** in Visual Studio.
 - Publish it through the [Partner Portal](https://partner.microsoft.com/en-us/dashboard/apps-and-games/overview): upload the package (`DoubleClickFix\DoubleClickFix.Package\AppPackages\*.msixbundle`), fill in the details and submit it for certification.
 
-![logo](./media/main-screen.png)
+---
+
+## 🌍 Usage by Country
+Just FYI - Microsoft Store usage statistics for the last 30 days (2026-04-04):
+
+![logo](./media/distribution.png)
+
+| Country/Region | Active Devices | Sessions |
+|---|---:|---:|
+| Russia | 532 | 707 |
+| Brazil | 336 | 467 |
+| United States | 270 | 327 |
+| Indonesia | 253 | 399 |
+| Philippines | 227 | 316 |
+| Ukraine | 221 | 331 |
+| Vietnam | 197 | 250 |
+| India | 123 | 199 |
+| Turkey | 104 | 141 |
+| Thailand | 100 | 153 |
+| China | 93 | 125 |
+| Bangladesh | 90 | 150 |
+| Egypt | 86 | 120 |
+| Korea | 74 | 104 |
+| Singapore | 73 | 90 |
+| Taiwan | 73 | 81 |
+| Kazakhstan | 71 | 97 |
+| Argentina | 62 | 80 |
+| Colombia | 59 | 76 |
+| Canada | 58 | 82 |
+| Hong Kong SAR | 54 | 74 |
+| Belarus | 47 | 69 |
+| France | 42 | 47 |
+| Germany | 41 | 48 |
+| Morocco | 41 | 65 |
+| Poland | 39 | 46 |
+| Mexico | 37 | 48 |
+| Australia | 34 | 39 |
+| Estonia | 29 | 44 |
+| Venezuela | 29 | 31 |
+| Uzbekistan | 27 | 59 |
+| Moldova | 27 | 34 |
+| United Kingdom | 26 | 31 |
+| Pakistan | 26 | 60 |
+| Sri Lanka | 24 | 48 |
+| Portugal | 23 | 25 |
+| Spain | 23 | 25 |
+| Finland | 21 | 32 |
+| Saudi Arabia | 21 | 27 |
+| Japan | 21 | 27 |
+| Ecuador | 19 | 30 |
+| Netherlands | 18 | 23 |
+| Peru | 17 | 29 |
+| Czech Republic | 14 | 14 |
+| Trinidad and Tobago | 13 | 17 |
+| Hungary | 13 | 14 |
+| Chile | 11 | 14 |
+| Malaysia | 10 | 10 |
+| Austria | 10 | 11 |
+| New Zealand | 9 | 12 |
+| Cambodia | 9 | 11 |
+| Iraq | 9 | 10 |
+| United Arab Emirates | 8 | 11 |
+| Slovakia | 8 | 10 |
+| Algeria | 7 | 8 |
+| Dominican Republic | 7 | 7 |
+| Panama | 7 | 8 |
+| Jordan | 7 | 7 |
+| Romania | 7 | 7 |
+| Israel | 6 | 6 |
+| Switzerland | 6 | 7 |
+| Latvia | 6 | 6 |
+| Reunion | 6 | 8 |
+| Greece | 5 | 6 |
+| Palestinian Authority | 5 | 7 |
+| Cyprus | 5 | 5 |
+| Swaziland | 5 | 5 |
+| Nepal | 4 | 8 |
+| Georgia | 4 | 5 |
+| Bulgaria | 4 | 4 |
+| El Salvador | 4 | 4 |
+| Serbia | 3 | 3 |
+| South Africa | 3 | 3 |
+| Kyrgyzstan | 3 | 4 |
+| Azerbaijan | 3 | 3 |
+| Tunisia | 3 | 3 |
+| Nigeria | 3 | 4 |
+| Senegal | 3 | 3 |
+| French Guiana | 2 | 2 |
+| Belgium | 2 | 2 |
+| Bolivia | 2 | 2 |
+| Seychelles | 2 | 2 |
+| Greenland | 2 | 2 |
+| Kenya | 2 | 2 |
+| Zambia | 1 | 1 |
+| Uruguay | 1 | 1 |
+| Zimbabwe | 1 | 1 |
+| Benin | 1 | 2 |
+| Nicaragua | 1 | 1 |
+| Jamaica | 1 | 1 |
+| Norway | 1 | 1 |
+| Lithuania | 1 | 1 |
+| Armenia | 1 | 1 |
+| Burkina Faso | 1 | 1 |
+| Myanmar | 1 | 1 |
+| Libya | 1 | 1 |
+| Italy | 1 | 1 |
+| Afghanistan | 1 | 3 |
+| Malawi | 1 | 3 |

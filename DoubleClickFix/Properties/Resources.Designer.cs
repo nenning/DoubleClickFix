@@ -69,6 +69,27 @@ namespace DoubleClickFix.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Icon AppIcon {
+            get {
+                object obj = ResourceManager.GetObject("AppIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap new_bright {
+            get {
+                object obj = ResourceManager.GetObject("new_bright", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap new_dark {
+            get {
+                object obj = ResourceManager.GetObject("new_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Another instance of the application is already running..
