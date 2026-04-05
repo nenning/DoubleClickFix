@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="delayLabel.Text" xml:space="preserve">
-    <value>Velocidad mínima de doble clic [ms]</value>
+    <value>Intervalo mínimo de doble clic [ms]</value>
   </data>
   <data name="delayLabel.ToolTip" xml:space="preserve">
-    <value>Ajuste la velocidad mínima de doble clic para el botón del ratón seleccionado. Predeterminado: 50.</value>
+    <value>Establezca el tiempo mínimo entre clics para el botón del ratón seleccionado. Predeterminado: 50 ms.</value>
   </data>
   <data name="delayTextBox.ToolTip" xml:space="preserve">
-    <value>Se ignoran los dobles clics que están separados por menos del tiempo definido.</value>
+    <value>Los clics dentro de este intervalo se tratan como dobles clics accidentales y se filtran.</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Guardar</value>
@@ -139,37 +139,37 @@
     <value>Ejecutar al inicio de Windows</value>
   </data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve">
-    <value>Ejecutar siempre esta aplicación en segundo plano</value>
+    <value>Ejecutar siempre esta aplicación en segundo plano.</value>
   </data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve">
     <value>Retardo final [ms]</value>
   </data>
   <data name="dragEndDelayLabel.ToolTip" xml:space="preserve">
-    <value>Tiempo mínimo que debe mantener el mouse quieto antes de soltar el botón para salir del estado de bloqueo de arrastre. Predeterminado: 150.</value>
+    <value>Tiempo mínimo que el ratón debe permanecer quieto antes de soltar el botón para salir del modo de bloqueo de arrastre. Predeterminado: 150 ms.</value>
   </data>
   <data name="dragStartDelayLabel.Text" xml:space="preserve">
     <value>Retardo de inicio [ms]</value>
   </data>
   <data name="dragStartDelayLabel.ToolTip" xml:space="preserve">
-    <value>Tiempo mínimo que debe arrastrar antes de entrar en el estado de bloqueo de arrastre. Predeterminado: 1000.</value>
+    <value>Duración mínima de arrastre antes de entrar en el modo de bloqueo de arrastre. Predeterminado: 1000 ms.</value>
   </data>
   <data name="fixDraggingCheckBox.Text" xml:space="preserve">
     <value>Corregir problemas de arrastre</value>
   </data>
   <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve">
-    <value>Úselo solo si tiene problemas para arrastrar. Es posible que deba volver a hacer clic para salir del estado de bloqueo de arrastre</value>
+    <value>Úselo solo si tiene problemas de arrastre. Es posible que deba hacer clic de nuevo para salir del modo de bloqueo de arrastre.</value>
   </data>
   <data name="useMinDelayCheckBox.Text" xml:space="preserve">
-    <value>Permitir doble clic con una duración de 0 ms</value>
+    <value>Permitir dobles clics con 0 ms de separación</value>
   </data>
   <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve">
-    <value>Úselo solo si el panel táctil o la pantalla táctil no funcionan correctamente</value>
+    <value>Úselo solo si su panel táctil o pantalla táctil no funciona correctamente.</value>
   </data>
   <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Corrección habilitada</value>
+    <value>Habilitar corrección</value>
   </data>
   <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve">
-    <value>Habilite la corrección de doble clic para cada botón del ratón por separado</value>
+    <value>Habilite la corrección de doble clic para cada botón del ratón por separado.</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Botón izquierdo del ratón</value>
@@ -217,19 +217,19 @@
     <value>Mostrar interfaz de usuario</value>
   </data>
   <data name="exitMenu.Text" xml:space="preserve">
-    <value>Salir de la aplicación</value>
+    <value>Salir</value>
   </data>
   <data name="notifyIcon.Text" xml:space="preserve">
     <value>Corrección de doble clic</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Corrija problemas con ratones defectuosos que envían doble clics accidentales.</value>
+    <value>Previene los dobles clics accidentales causados por un ratón con botones desgastados o defectuosos.</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
-    <value>En los registros, ves el tiempo transcurrido entre los clics y todos los dobles clics que fueron ignorados.
-Observa cuánto tiempo duran tus dobles clics y compáralos con los defectuosos generados por tu ratón.
-Ajusta la velocidad mínima para incluir los clics defectuosos mientras te mantienes por debajo de tu velocidad normal.
-Prueba el comportamiento de tu ratón con la configuración actual con el texto de prueba (clic simple, doble clic, selección de texto).</value>
+    <value>El registro muestra el tiempo transcurrido entre clics y todos los dobles clics que fueron filtrados.
+Observe cuánto duran sus dobles clics normales y compárelos con los accidentales de su ratón.
+Ajuste el umbral para detectar los clics defectuosos sin superar su velocidad normal de doble clic.
+Pruebe el comportamiento de su ratón con la configuración actual usando el área de prueba (clic simple, doble clic, selección de texto, desplazamiento, arrastre).</value>
   </data>
   <data name="richTextBox1.Text" xml:space="preserve">
     <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -259,6 +259,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>No filtrar clics en sesiones de escritorio remoto</value>
   </data>
   <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve">
-    <value>Cuando está habilitado, el filtrado de clics del ratón se desactiva en sesiones de escritorio remoto</value>
+    <value>Cuando está marcado, el filtrado de clics se omite durante las sesiones de escritorio remoto.</value>
   </data>
 </root>

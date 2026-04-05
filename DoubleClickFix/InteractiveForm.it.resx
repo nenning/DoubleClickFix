@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="delayLabel.Text" xml:space="preserve">
-    <value>Velocità minima di doppio clic [ms]</value>
+    <value>Intervallo minimo di doppio clic [ms]</value>
   </data>
   <data name="delayLabel.ToolTip" xml:space="preserve">
-    <value>Regola la velocità minima del doppio clic per il pulsante del mouse selezionato. Predefinito: 50.</value>
+    <value>Imposta il tempo minimo tra i clic per il pulsante del mouse selezionato. Predefinito: 50 ms.</value>
   </data>
   <data name="delayTextBox.ToolTip" xml:space="preserve">
-    <value>I doppi clic che sono a meno del tempo definito di distanza vengono ignorati.</value>
+    <value>I clic entro questo intervallo vengono trattati come doppi clic accidentali e filtrati.</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Salva</value>
@@ -139,37 +139,37 @@
     <value>Esegui all'avvio di Windows</value>
   </data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve">
-    <value>Esegui sempre questa applicazione in background</value>
+    <value>Esegui sempre questa applicazione in background.</value>
   </data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve">
     <value>Ritardo di fine [ms]</value>
   </data>
   <data name="dragEndDelayLabel.ToolTip" xml:space="preserve">
-    <value>Tempo minimo in cui devi tenere fermo il mouse prima di rilasciare il pulsante per uscire dallo stato di blocco del trascinamento. Predefinito: 150.</value>
+    <value>Tempo minimo in cui il mouse deve rimanere fermo prima di rilasciare il pulsante per uscire dalla modalità di blocco del trascinamento. Predefinito: 150 ms.</value>
   </data>
   <data name="dragStartDelayLabel.Text" xml:space="preserve">
     <value>Ritardo di inizio [ms]</value>
   </data>
   <data name="dragStartDelayLabel.ToolTip" xml:space="preserve">
-    <value>Tempo minimo che devi trascinare prima di entrare nello stato di blocco del trascinamento. Predefinito: 1000.</value>
+    <value>Durata minima del trascinamento prima di entrare nella modalità di blocco del trascinamento. Predefinito: 1000 ms.</value>
   </data>
   <data name="fixDraggingCheckBox.Text" xml:space="preserve">
     <value>Risolvi i problemi di trascinamento</value>
   </data>
   <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve">
-    <value>Utilizzare solo se si hanno problemi con il trascinamento. Potrebbe essere necessario fare nuovamente clic per uscire dallo stato di blocco del trascinamento</value>
+    <value>Utilizzare solo se si hanno problemi di trascinamento. Potrebbe essere necessario fare nuovamente clic per uscire dalla modalità di blocco del trascinamento.</value>
   </data>
   <data name="useMinDelayCheckBox.Text" xml:space="preserve">
-    <value>Consenti doppi clic con una durata di 0 ms</value>
+    <value>Consenti doppi clic con un intervallo di 0 ms</value>
   </data>
   <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve">
-    <value>Utilizzare solo se il touchpad o il touchscreen non funzionano correttamente</value>
+    <value>Utilizzare solo se il touchpad o il touchscreen non funziona correttamente.</value>
   </data>
   <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Correzione abilitata</value>
+    <value>Abilita correzione</value>
   </data>
   <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve">
-    <value>Abilita la correzione del doppio clic per ogni pulsante del mouse separatamente</value>
+    <value>Abilita la correzione del doppio clic per ogni pulsante del mouse separatamente.</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Pulsante sinistro del mouse</value>
@@ -217,19 +217,19 @@
     <value>Mostra interfaccia utente</value>
   </data>
   <data name="exitMenu.Text" xml:space="preserve">
-    <value>Esci dall'applicazione</value>
+    <value>Esci</value>
   </data>
   <data name="notifyIcon.Text" xml:space="preserve">
     <value>Correzione del doppio clic</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Risolvere i problemi con i mouse difettosi che inviano doppio clic accidentali.</value>
+    <value>Previene i doppi clic accidentali causati da un mouse con pulsanti usurati o difettosi.</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
-    <value>Nei log, vedi il tempo trascorso tra i clic e tutti i doppio clic che sono stati ignorati.
-Guarda quanto tempo durano i tuoi doppio clic e confrontali con quelli difettosi generati dal tuo mouse.
-Raffina la velocità minima per includere i clic difettosi rimanendo al di sotto della tua velocità normale.
-Testa il comportamento del tuo mouse con le impostazioni attuali con il testo di prova (clic singolo, doppio clic, selezione del testo).</value>
+    <value>Il registro mostra il tempo trascorso tra i clic e tutti i doppi clic che sono stati filtrati.
+Osserva quanto durano i tuoi normali doppi clic e confrontali con quelli accidentali del tuo mouse.
+Regola la soglia per rilevare i clic difettosi restando al di sotto della tua velocità normale.
+Testa il comportamento del tuo mouse con le impostazioni attuali nell'area di test (clic singolo, doppio clic, selezione testo, scorrimento, trascinamento).</value>
   </data>
   <data name="richTextBox1.Text" xml:space="preserve">
     <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -259,6 +259,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>Non filtrare clic nelle sessioni desktop remoto</value>
   </data>
   <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve">
-    <value>Se abilitato, il filtraggio dei clic del mouse viene disabilitato nelle sessioni desktop remoto</value>
+    <value>Se selezionato, il filtraggio dei clic viene ignorato durante le sessioni desktop remoto.</value>
   </data>
 </root>

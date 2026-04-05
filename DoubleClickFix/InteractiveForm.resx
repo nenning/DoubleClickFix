@@ -163,13 +163,13 @@
     <value>1</value>
   </data>
   <data name="delayLabel.Text" xml:space="preserve">
-    <value>Minimal double-click speed [ms]</value>
+    <value>Minimum double-click interval [ms]</value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>479, 22</value>
   </metadata>
   <data name="delayLabel.ToolTip" xml:space="preserve">
-    <value>Adjust the minimum double-click speed for the selected mouse button. Default: 50.</value>
+    <value>Set the minimum time between clicks for the selected mouse button. Default: 50 ms.</value>
   </data>
   <data name="&gt;&gt;delayLabel.Name" xml:space="preserve">
     <value>delayLabel</value>
@@ -193,7 +193,7 @@
     <value>2</value>
   </data>
   <data name="delayTextBox.ToolTip" xml:space="preserve">
-    <value>Double-clicks that are less than the defined time apart are ignored.</value>
+    <value>Clicks within this interval are treated as accidental double-clicks and filtered out.</value>
   </data>
   <data name="&gt;&gt;delayTextBox.Name" xml:space="preserve">
     <value>delayTextBox</value>
@@ -247,7 +247,7 @@
     <value>Run at Windows startup</value>
   </data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve">
-    <value>Always run this application in the background</value>
+    <value>Always run this application in the background.</value>
   </data>
   <data name="&gt;&gt;runAtStartupCheckBox.Name" xml:space="preserve">
     <value>runAtStartupCheckBox</value>
@@ -304,7 +304,7 @@
     <value>End delay [ms]</value>
   </data>
   <data name="dragEndDelayLabel.ToolTip" xml:space="preserve">
-    <value>Minimum time you have to keep your mouse still before releasing the button to exit drag lock state. Default: 150.</value>
+    <value>Minimum time the mouse must stay still before releasing the button to exit drag-lock mode. Default: 150 ms.</value>
   </data>
   <data name="&gt;&gt;dragEndDelayLabel.Name" xml:space="preserve">
     <value>dragEndDelayLabel</value>
@@ -361,7 +361,7 @@
     <value>Start delay [ms]</value>
   </data>
   <data name="dragStartDelayLabel.ToolTip" xml:space="preserve">
-    <value>Minimum time you have to drag before you go into drag lock state. Default: 1000.</value>
+    <value>Minimum drag duration before entering drag-lock mode. Default: 1000 ms.</value>
   </data>
   <data name="&gt;&gt;dragStartDelayLabel.Name" xml:space="preserve">
     <value>dragStartDelayLabel</value>
@@ -394,7 +394,7 @@
     <value>Fix dragging issues</value>
   </data>
   <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve">
-    <value>Use only if you have issues with dragging. You might have to click again to exit the drag lock state</value>
+    <value>Use only if you have dragging issues. You may need to click again to exit drag-lock mode.</value>
   </data>
   <data name="&gt;&gt;fixDraggingCheckBox.Name" xml:space="preserve">
     <value>fixDraggingCheckBox</value>
@@ -424,10 +424,10 @@
     <value>13</value>
   </data>
   <data name="useMinDelayCheckBox.Text" xml:space="preserve">
-    <value>Allow double-clicks with 0ms duration</value>
+    <value>Allow double-clicks with 0 ms gap</value>
   </data>
   <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve">
-    <value>Use only if touchpad or touchscreen is not working correctly</value>
+    <value>Use only if your touchpad or touchscreen is not working correctly.</value>
   </data>
   <data name="&gt;&gt;useMinDelayCheckBox.Name" xml:space="preserve">
     <value>useMinDelayCheckBox</value>
@@ -478,10 +478,10 @@
     <value>11</value>
   </data>
   <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Correction enabled</value>
+    <value>Enable correction</value>
   </data>
   <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve">
-    <value>Enable double click correction for each mouse button separately</value>
+    <value>Enable double-click correction for each mouse button separately.</value>
   </data>
   <data name="&gt;&gt;buttonEnabledCheckBox.Name" xml:space="preserve">
     <value>buttonEnabledCheckBox</value>
@@ -577,7 +577,7 @@
     <value>Don't filter clicks in remote desktop sessions</value>
   </data>
   <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve">
-    <value>When enabled, mouse click filtering is disabled in remote desktop sessions</value>
+    <value>When checked, click filtering is bypassed during remote desktop sessions.</value>
   </data>
   <data name="&gt;&gt;remoteDesktopCheckBox.Name" xml:space="preserve">
     <value>remoteDesktopCheckBox</value>
@@ -868,7 +868,7 @@
     <value>238, 32</value>
   </data>
   <data name="exitMenu.Text" xml:space="preserve">
-    <value>Quit application</value>
+    <value>Exit</value>
   </data>
   <data name="notifyMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 68</value>
@@ -5415,7 +5415,7 @@
     <value>5</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Fixes issues with broken mouse sending accidental double-clicks.</value>
+    <value>Prevents accidental double-clicks from a mouse with worn-out or faulty buttons.</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -5448,10 +5448,10 @@
     <value>2</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
-    <value>In the logs, you see the elapsed time between clicks and any double-clicks that were ignored. 
-See how long your double-clicks take and compare it to the faulty ones generated by your mouse. 
-Fine-tune the minimum speed to include the faulty clicks while staying below your normal speed.
-Test your mouse's behavior with the current settings with the test text (single click, double-click, select text, scroll, drag).</value>
+    <value>The log shows the elapsed time between clicks and any double-clicks that were filtered out.
+See how long your intentional double-clicks take and compare them to the accidental ones from your mouse.
+Fine-tune the threshold to catch faulty clicks while staying below your normal double-click speed.
+Test your mouse's behavior with the current settings using the test area below (single click, double-click, select text, scroll, drag).</value>
   </data>
   <data name="&gt;&gt;descriptionTextBox.Name" xml:space="preserve">
     <value>descriptionTextBox</value>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -127,13 +127,13 @@
     <value>Error</value>
   </data>
   <data name="ExitDragLock" xml:space="preserve">
-    <value>Liberación final de {0} después de arrastrar</value>
+    <value>Saliendo del bloqueo de arrastre para {0} después de arrastrar</value>
   </data>
   <data name="HookNotInstalled" xml:space="preserve">
-    <value>Error en la configuración.</value>
+    <value>No se pudo instalar el gancho del ratón.</value>
   </data>
     <data name="IgnoredDoubleClick" xml:space="preserve">
-    <value>Doble clic ignorado</value>
+    <value>Doble clic filtrado</value>
   </data>
   <data name="IgnoredMouseWheel" xml:space="preserve">
     <value>Rueda del ratón ignorada</value>
@@ -142,7 +142,7 @@
     <value>Delta de la rueda del ratón</value>
   </data>
   <data name="InvalidDelayValue" xml:space="preserve">
-    <value>Valor no válido - no guardado. Rango válido</value>
+    <value>Valor no válido - no guardado. Rango válido:</value>
   </data>
   <data name="Left" xml:space="preserve">
     <value>izquierda</value>

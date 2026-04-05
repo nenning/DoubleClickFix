@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -127,13 +127,13 @@
     <value>Fehler</value>
   </data>
   <data name="ExitDragLock" xml:space="preserve">
-    <value>Endgültige Freigabe von {0} nach dem Ziehen</value>
+    <value>Ziehsperre für {0} wird nach dem Ziehen beendet</value>
   </data>
   <data name="HookNotInstalled" xml:space="preserve">
-    <value>Einrichtung fehlgeschlagen.</value>
+    <value>Maus-Hook konnte nicht installiert werden.</value>
   </data>
   <data name="IgnoredDoubleClick" xml:space="preserve">
-    <value>Doppelklick ignoriert</value>
+    <value>Doppelklick gefiltert</value>
   </data>
   <data name="IgnoredMouseWheel" xml:space="preserve">
     <value>Mausrad ignoriert</value>
@@ -142,7 +142,7 @@
     <value>Mausrad-Delta</value>
   </data>
   <data name="InvalidDelayValue" xml:space="preserve">
-    <value>Ungültiger Wert - nicht gespeichert. Gültige Werte</value>
+    <value>Ungültiger Wert - nicht gespeichert. Gültiger Bereich:</value>
   </data>
   <data name="Left" xml:space="preserve">
     <value>links</value>

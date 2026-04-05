@@ -140,19 +140,19 @@
     <value>Error</value>
   </data>
   <data name="ExitDragLock" xml:space="preserve">
-    <value>Final release of {0} after drag</value>
+    <value>Exiting drag-lock for {0} after drag</value>
   </data>
   <data name="HookNotInstalled" xml:space="preserve">
-    <value>Setup failed.</value>
+    <value>Failed to install mouse hook.</value>
   </data>
   <data name="IgnoredDoubleClick" xml:space="preserve">
-    <value>Ignored double click</value>
+    <value>Filtered double-click</value>
   </data>
   <data name="IgnoredMouseWheel" xml:space="preserve">
     <value>Ignored mouse wheel</value>
   </data>
   <data name="InvalidDelayValue" xml:space="preserve">
-    <value>Invalid value - not saved. Valid range</value>
+    <value>Invalid value - not saved. Valid range:</value>
   </data>
   <data name="Left" xml:space="preserve">
     <value>left</value>

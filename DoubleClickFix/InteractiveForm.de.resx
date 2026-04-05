@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="delayLabel.Text" xml:space="preserve">
-    <value>Minimale Doppelklick-Geschwindigkeit [ms]</value>
+    <value>Minimales Doppelklick-Intervall [ms]</value>
   </data>
   <data name="delayLabel.ToolTip" xml:space="preserve">
-    <value>Passen Sie die minimale Doppelklickgeschwindigkeit für die ausgewählte Maustaste an. Standard: 50.</value>
+    <value>Legen Sie die minimale Zeit zwischen Klicks für die ausgewählte Maustaste fest. Standard: 50 ms.</value>
   </data>
   <data name="delayTextBox.ToolTip" xml:space="preserve">
-    <value>Doppelklicks, die weniger als die definierte Zeit auseinander liegen, werden ignoriert.</value>
+    <value>Klicks innerhalb dieses Intervalls werden als versehentliche Doppelklicks behandelt und herausgefiltert.</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Speichern</value>
@@ -139,37 +139,37 @@
     <value>Beim Starten von Windows ausführen</value>
   </data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve">
-    <value>Diese Anwendung immer im Hintergrund ausführen</value>
+    <value>Diese Anwendung immer im Hintergrund ausführen.</value>
   </data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve">
     <value>Endverzögerung [ms]</value>
   </data>
   <data name="dragEndDelayLabel.ToolTip" xml:space="preserve">
-    <value>Minimale Zeit, die Sie Ihre Maus still halten müssen, bevor Sie die Taste loslassen, um den Ziehsperrzustand zu verlassen. Standard: 150.</value>
+    <value>Minimale Zeit, die die Maus still bleiben muss, bevor Sie die Taste loslassen können, um den Ziehsperr-Modus zu verlassen. Standard: 150 ms.</value>
   </data>
   <data name="dragStartDelayLabel.Text" xml:space="preserve">
     <value>Startverzögerung [ms]</value>
   </data>
   <data name="dragStartDelayLabel.ToolTip" xml:space="preserve">
-    <value>Minimale Zeit, die Sie ziehen müssen, bevor Sie in den Ziehsperrzustand gelangen. Standard: 1000.</value>
+    <value>Minimale Ziehdauer, bevor der Ziehsperr-Modus aktiviert wird. Standard: 1000 ms.</value>
   </data>
   <data name="fixDraggingCheckBox.Text" xml:space="preserve">
     <value>Ziehprobleme beheben</value>
   </data>
   <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve">
-    <value>Nur verwenden, wenn Sie Probleme mit dem Ziehen haben. Möglicherweise müssen Sie erneut klicken, um den Ziehsperrzustand zu beenden</value>
+    <value>Nur verwenden, wenn Sie Ziehprobleme haben. Möglicherweise müssen Sie erneut klicken, um den Ziehsperr-Modus zu beenden.</value>
   </data>
   <data name="useMinDelayCheckBox.Text" xml:space="preserve">
-    <value>Doppelklicks mit 0ms Dauer erlauben</value>
+    <value>Doppelklicks mit 0 ms Abstand erlauben</value>
   </data>
   <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve">
-    <value>Nur verwenden, wenn das Touchpad oder der Touchscreen nicht richtig funktioniert</value>
+    <value>Nur verwenden, wenn das Touchpad oder der Touchscreen nicht richtig funktioniert.</value>
   </data>
   <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Korrektur aktiviert</value>
+    <value>Korrektur aktivieren</value>
   </data>
   <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve">
-    <value>Doppelklick-Korrektur für jede Maustaste separat aktivieren</value>
+    <value>Doppelklick-Korrektur für jede Maustaste separat aktivieren.</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Linke Maustaste</value>
@@ -217,19 +217,19 @@
     <value>Benutzeroberfläche anzeigen</value>
   </data>
   <data name="exitMenu.Text" xml:space="preserve">
-    <value>Applikation beenden</value>
+    <value>Beenden</value>
   </data>
   <data name="notifyIcon.Text" xml:space="preserve">
     <value>Doppelklick-Fix</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Beheben Sie Probleme mit defekten Mäusen, die versehentlich Doppelklicks senden.</value>
+    <value>Verhindert versehentliche Doppelklicks durch eine Maus mit abgenutzten oder defekten Tasten.</value>
   </data>
   <data name="descriptionTextBox.Text" xml:space="preserve">
-    <value>In den Protokollen sehen Sie die verstrichene Zeit zwischen den Klicks und alle Doppelklicks, die ignoriert wurden. 
-Beobachten Sie, wie lange Ihre Doppelklicks dauern, und vergleichen Sie dies mit den fehlerhaften, die von Ihrer Maus generiert wurden. 
-Passen sie die Mindestgeschwindigkeit an, um die fehlerhaften Klicks zu erfassen, während Sie unter Ihrer normalen Geschwindigkeit bleiben.
-Testen Sie das Verhalten Ihrer Maus mit den aktuellen Einstellungen mit dem Test-Text (Einfachklick, Doppelklick, Textauswahl).</value>
+    <value>Das Protokoll zeigt die verstrichene Zeit zwischen Klicks und alle Doppelklicks, die herausgefiltert wurden.
+Beobachten Sie, wie lange Ihre normalen Doppelklicks dauern, und vergleichen Sie sie mit den versehentlichen Ihrer Maus.
+Passen Sie den Schwellenwert an, um fehlerhafte Klicks zu erfassen, während Sie unter Ihrer normalen Doppelklickgeschwindigkeit bleiben.
+Testen Sie das Verhalten Ihrer Maus mit den aktuellen Einstellungen im Testbereich unten (Einfachklick, Doppelklick, Textauswahl, Scrollen, Ziehen).</value>
   </data>
   <data name="richTextBox1.Text" xml:space="preserve">
     <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -259,6 +259,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>Klicks in Remote-Desktop-Sitzungen nicht filtern</value>
   </data>
   <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve">
-    <value>Wenn aktiviert, wird die Mausklick-Filterung in Remote-Desktop-Sitzungen deaktiviert</value>
+    <value>Wenn aktiviert, wird die Klick-Filterung in Remote-Desktop-Sitzungen umgangen.</value>
   </data>
 </root>
