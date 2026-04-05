@@ -621,4 +621,33 @@ public class MouseHookTests
         AssertAllowed(hook, WM_MOUSEMOVE,   350, movedPixels: 20); // 150 ms since down — below 300 ms DragStartTime
         AssertAllowed(hook, WM_LBUTTONUP,   400);                  // released before drag-lock could engage
     }
+
+    [Fact]
+    public void TestSustainedChatteringAllSuppressed()
+    {
+        // Multiple rapid chatter DOWN/UP pairs after a genuine click should all be suppressed,
+        // not just the first one. Regression test for bug where previousUpTime was reset to 0
+        // on a suppressed DOWN, allowing subsequent chatter through.
+        TestNativeMethods nativeMethods = new();
+        MouseHook hook = new(new TestSettings(), new TestLogger(), nativeMethods);
+
+        // Genuine click
+        AssertAllowed(hook, WM_LBUTTONDOWN, 100);
+        AssertAllowed(hook, WM_LBUTTONUP,   110);
+
+        // First chatter pair (1ms after genuine UP — well within 50ms threshold)
+        AssertIgnored(hook, WM_LBUTTONDOWN, 111);
+        AssertIgnored(hook, WM_LBUTTONUP,   112);
+
+        // Second chatter pair (3ms after genuine UP — still within threshold)
+        AssertIgnored(hook, WM_LBUTTONDOWN, 113);
+        AssertIgnored(hook, WM_LBUTTONUP,   114);
+
+        // Third chatter pair (5ms after genuine UP — still within threshold)
+        AssertIgnored(hook, WM_LBUTTONDOWN, 115);
+        AssertIgnored(hook, WM_LBUTTONUP,   116);
+
+        // Only the 2 genuine events should have passed through
+        Assert.Equal(2, nativeMethods.CallNextHookCounter);
+    }
 }

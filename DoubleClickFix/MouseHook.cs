@@ -410,7 +410,6 @@ internal class MouseHook : IDisposable
             {
                 ignoredClicks++;
                 logger.Log($"{ignoredDoubleClickText} ({buttonTextLookup[activeButton]}): {delta} ms (#{ignoredClicks})");
-                previousUpTime[activeButton] = 0;
                 suppressNextUp.Add(activeButton);
                 return IgnoreMouseEvent;
             }
