@@ -24,6 +24,7 @@ internal partial class InteractiveForm : Form
         this.logger = logger;
         this.mouseHook = mouseHook;
         InitializeComponent();
+        descriptionTextBox.Text = descriptionTextBox.Text.Replace("\n", "\r\n");
         notifyIcon.Icon = Properties.Resources.AppIcon;
         pictureBox1.Image = NativeMethods.IsDarkMode(settings.ColorMode)
             ? Properties.Resources.new_dark

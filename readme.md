@@ -5,7 +5,7 @@
 
 A lightweight tool that fixes accidental double-clicks caused by a worn-out or faulty mouse.
 
-> Mentioned in [PCWorld](https://www.pcworld.com/article/2687259/what-to-do-if-your-mouse-is-double-clicking-when-you-dont-mean-it.html#:~:text=If%20the%20accidental%20double%2Dclicks%20persist%2C%20you%20can%20try%20using%20free%20software%20solutions%20such%20as%20Double%2DClick%20Fix%20(also%20available%20via%20the%20Microsoft%20Store).): *"you can try using free software solutions such as Double-Click Fix"*
+> Mentioned in [PCWorld](https://www.pcworld.com/article/2687259/what-to-do-if-your-mouse-is-double-clicking-when-you-dont-mean-it.html#:~:text=If%20the%20accidental%20double%2Dclicks%20persist%2C%20you%20can%20try%20using%20free%20software%20solutions%20such%20as%20Double%2DClick%20Fix%20(also%20available%20via%20the%20Microsoft%20Store)) and [PC-Welt (German)](https://www.pcwelt.de/article/2638630/so-vermeiden-sie-ungewollte-doppel-klicks-der-maus.html#:~:text=Sollte%20das%20Problem%20weiterhin%20bestehen%2C%20k%C3%B6nnen%20Sie%20auf%20kostenlose%20Softwarel%C3%B6sungen%20wie%20%E2%80%9EDoubleClickFix%E2%80%9C%20zur%C3%BCckgreifen.): *"you can try using free software solutions such as Double-Click Fix"*
 
 **New in release 1.6:**
 - 🚫 **Per-device Ignore List** – move the cursor with a second mouse or touchpad and check "Ignore this device" to exclude it from filtering. Saved permanently.
