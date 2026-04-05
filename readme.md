@@ -5,6 +5,8 @@
 
 A lightweight tool that fixes accidental double-clicks caused by a worn-out or faulty mouse.
 
+> Mentioned in [PCWorld](https://www.pcworld.com/article/2687259/what-to-do-if-your-mouse-is-double-clicking-when-you-dont-mean-it.html#:~:text=If%20the%20accidental%20double%2Dclicks%20persist%2C%20you%20can%20try%20using%20free%20software%20solutions%20such%20as%20Double%2DClick%20Fix%20(also%20available%20via%20the%20Microsoft%20Store).): *"you can try using free software solutions such as Double-Click Fix"*
+
 **New in release 1.6:**
 - 🚫 **Per-device Ignore List** – move the cursor with a second mouse or touchpad and check "Ignore this device" to exclude it from filtering. Saved permanently.
 - 🖥️ **Remote Desktop Support** – enable the option in the UI to disable click filtering during RDP sessions.
