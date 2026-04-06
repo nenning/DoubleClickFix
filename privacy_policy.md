@@ -1,6 +1,6 @@
 # Privacy Policy for Double-click Fix
 
-_Last updated: 2025/02/23_
+_Last updated: 2026/04/07_
 
 This Privacy Policy explains how **Double-click Fix** ("the App") collects, uses, and discloses information when you use the App available in the [Microsoft Store](https://www.microsoft.com/store). By using the App, you agree to the collection and use of information in accordance with this policy.
 
@@ -15,6 +15,13 @@ The only data stored by the App are a few configuration settings, which are stor
 ## 2. Third-Party Services
 
 The App does **not use any third-party libraries or services** (such as analytics, error reporting, or crash logging) that may collect data. All functionalities are managed internally without external data sharing.
+
+### Update Check (standalone version only)
+
+The standalone (GitHub release) version of the App contacts the **GitHub API** (`api.github.com`) once on startup to check whether a newer release is available. This request:
+- Is **not** made by the Microsoft Store version (the Store handles updates).
+- Sends no personal data — only a standard HTTPS request with a `User-Agent` header identifying the App.
+- Is subject to [GitHub's Privacy Policy](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 
 ## 3. Scope of This Privacy Policy
 

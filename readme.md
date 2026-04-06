@@ -41,6 +41,7 @@ A lightweight tool that fixes accidental double-clicks caused by a worn-out or f
 - **Remote Desktop Support** — optionally bypass filtering during RDP sessions.
 - **Tray icon** — runs silently in the background; double-click to open settings.
 - **Start with Windows** — registers to run automatically at startup.
+- **Update notifications** (standalone) — checks GitHub for new releases on startup and shows a notification if one is available.
 
 ![logo](./media/main-screen-dark.png)
 
