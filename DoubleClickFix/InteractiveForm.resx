@@ -150,6 +150,9 @@
   <data name="&gt;&gt;logTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>479, 22</value>
+  </metadata>
   <data name="delayLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -157,7 +160,7 @@
     <value>37, 91</value>
   </data>
   <data name="delayLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 25</value>
+    <value>290, 25</value>
   </data>
   <data name="delayLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -165,9 +168,6 @@
   <data name="delayLabel.Text" xml:space="preserve">
     <value>Minimum double-click interval [ms]</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>479, 22</value>
-  </metadata>
   <data name="delayLabel.ToolTip" xml:space="preserve">
     <value>Set the minimum time between clicks for the selected mouse button. Default: 50 ms.</value>
   </data>
@@ -260,6 +260,138 @@
   </data>
   <data name="&gt;&gt;runAtStartupCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayTextBox.Name" xml:space="preserve">
+    <value>dragEndDelayTextBox</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayTextBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayLabel.Name" xml:space="preserve">
+    <value>dragEndDelayLabel</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayLabel.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayTextBox.Name" xml:space="preserve">
+    <value>dragStartDelayTextBox</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayTextBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayLabel.Name" xml:space="preserve">
+    <value>dragStartDelayLabel</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayLabel.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;fixDraggingCheckBox.Name" xml:space="preserve">
+    <value>fixDraggingCheckBox</value>
+  </data>
+  <data name="&gt;&gt;fixDraggingCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fixDraggingCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;fixDraggingCheckBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.Name" xml:space="preserve">
+    <value>useMinDelayCheckBox</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.Name" xml:space="preserve">
+    <value>thresholdSlider</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;buttonEnabledCheckBox.Name" xml:space="preserve">
+    <value>buttonEnabledCheckBox</value>
+  </data>
+  <data name="&gt;&gt;buttonEnabledCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonEnabledCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;buttonEnabledCheckBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;mouseButtonComboBox.Name" xml:space="preserve">
+    <value>mouseButtonComboBox</value>
+  </data>
+  <data name="&gt;&gt;mouseButtonComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mouseButtonComboBox.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;mouseButtonComboBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 160</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>932, 282</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Per Mouse Button</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="dragEndDelayTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -418,7 +550,7 @@
     <value>37, 142</value>
   </data>
   <data name="useMinDelayCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 29</value>
+    <value>309, 29</value>
   </data>
   <data name="useMinDelayCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -472,7 +604,7 @@
     <value>500, 41</value>
   </data>
   <data name="buttonEnabledCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 29</value>
+    <value>174, 29</value>
   </data>
   <data name="buttonEnabledCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -533,30 +665,6 @@
   </data>
   <data name="&gt;&gt;mouseButtonComboBox.ZOrder" xml:space="preserve">
     <value>8</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 160</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>932, 282</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Per Mouse Button</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>9</value>
   </data>
   <data name="remoteDesktopCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -858,18 +966,6 @@
   <metadata name="notifyMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>285, 22</value>
   </metadata>
-  <data name="showUiMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
-  </data>
-  <data name="showUiMenu.Text" xml:space="preserve">
-    <value>Show user interface</value>
-  </data>
-  <data name="exitMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
-  </data>
-  <data name="exitMenu.Text" xml:space="preserve">
-    <value>Exit</value>
-  </data>
   <data name="notifyMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 68</value>
   </data>
@@ -5396,6 +5492,18 @@
   <data name="notifyIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="showUiMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 32</value>
+  </data>
+  <data name="showUiMenu.Text" xml:space="preserve">
+    <value>Show user interface</value>
+  </data>
+  <data name="exitMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 32</value>
+  </data>
+  <data name="exitMenu.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -5409,7 +5517,7 @@
     <value>23, 31</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>563, 25</value>
+    <value>697, 25</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -5427,7 +5535,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="descriptionTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -5529,7 +5637,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="groupBox3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -5556,7 +5664,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="groupBox4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -5583,7 +5691,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="groupBoxDevice.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 82</value>
@@ -5604,7 +5712,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxDevice.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="groupBoxGeneral.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 448</value>
@@ -5628,8 +5736,11 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBoxGeneral.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>479, 22</value>
+  </metadata>
   <data name="versionLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -5658,6 +5769,36 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>$this</value>
   </data>
   <data name="&gt;&gt;versionLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="updateLinkLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="updateLinkLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="updateLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1065, 1063</value>
+  </data>
+  <data name="updateLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 25</value>
+  </data>
+  <data name="updateLinkLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="updateLinkLabel.Text" xml:space="preserve">
+    <value>Update available</value>
+  </data>
+  <data name="&gt;&gt;updateLinkLabel.Name" xml:space="preserve">
+    <value>updateLinkLabel</value>
+  </data>
+  <data name="&gt;&gt;updateLinkLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;updateLinkLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;updateLinkLabel.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="gitLinkLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">

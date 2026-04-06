@@ -180,4 +180,10 @@
   <data name="ThemeDark" xml:space="preserve">
     <value>Oscuro</value>
   </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Actualización disponible</value>
+  </data>
+  <data name="UpdateAvailableMessage" xml:space="preserve">
+    <value>DoubleClickFix v{0} está disponible. Haga clic para descargar.</value>
+  </data>
 </root>

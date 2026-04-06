@@ -19,7 +19,7 @@ namespace DoubleClickFix.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -69,27 +69,6 @@ namespace DoubleClickFix.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
-        internal static System.Drawing.Icon AppIcon {
-            get {
-                object obj = ResourceManager.GetObject("AppIcon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-
-        internal static System.Drawing.Bitmap new_bright {
-            get {
-                object obj = ResourceManager.GetObject("new_bright", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        internal static System.Drawing.Bitmap new_dark {
-            get {
-                object obj = ResourceManager.GetObject("new_dark", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Another instance of the application is already running..
@@ -97,6 +76,25 @@ namespace DoubleClickFix.Properties {
         internal static string AppAlreadyRunning {
             get {
                 return ResourceManager.GetString("AppAlreadyRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon AppIcon {
+            get {
+                object obj = ResourceManager.GetObject("AppIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current device:.
+        /// </summary>
+        internal static string CurrentDevice {
+            get {
+                return ResourceManager.GetString("CurrentDevice", resourceCulture);
             }
         }
         
@@ -119,7 +117,7 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Final release of {0} after drag.
+        ///   Looks up a localized string similar to Exiting drag-lock for {0} after drag.
         /// </summary>
         internal static string ExitDragLock {
             get {
@@ -128,7 +126,7 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setup failed..
+        ///   Looks up a localized string similar to Failed to install mouse hook..
         /// </summary>
         internal static string HookNotInstalled {
             get {
@@ -137,7 +135,16 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ignored double click.
+        ///   Looks up a localized string similar to Ignore this device.
+        /// </summary>
+        internal static string IgnoreCurrentDevice {
+            get {
+                return ResourceManager.GetString("IgnoreCurrentDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filtered double-click.
         /// </summary>
         internal static string IgnoredDoubleClick {
             get {
@@ -155,7 +162,7 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid value - not saved. Valid range.
+        ///   Looks up a localized string similar to Invalid value - not saved. Valid range:.
         /// </summary>
         internal static string InvalidDelayValue {
             get {
@@ -191,6 +198,26 @@ namespace DoubleClickFix.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap new_bright {
+            get {
+                object obj = ResourceManager.GetObject("new_bright", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap new_dark {
+            get {
+                object obj = ResourceManager.GetObject("new_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to right.
         /// </summary>
         internal static string Right {
@@ -205,6 +232,48 @@ namespace DoubleClickFix.Properties {
         internal static string SettingsSaved {
             get {
                 return ResourceManager.GetString("SettingsSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        internal static string ThemeDark {
+            get {
+                return ResourceManager.GetString("ThemeDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        internal static string ThemeLight {
+            get {
+                return ResourceManager.GetString("ThemeLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        internal static string ThemeSystem {
+            get {
+                return ResourceManager.GetString("ThemeSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update available.
+        /// </summary>
+        internal static string UpdateAvailable {
+            get {
+                return ResourceManager.GetString("UpdateAvailable", resourceCulture);
+            }
+        }
+
+        internal static string UpdateAvailableMessage {
+            get {
+                return ResourceManager.GetString("UpdateAvailableMessage", resourceCulture);
             }
         }
         
@@ -234,36 +303,5 @@ namespace DoubleClickFix.Properties {
                 return ResourceManager.GetString("X2", resourceCulture);
             }
         }
-
-        internal static string CurrentDevice {
-            get {
-                return ResourceManager.GetString("CurrentDevice", resourceCulture);
-            }
-        }
-
-        internal static string IgnoreCurrentDevice {
-            get {
-                return ResourceManager.GetString("IgnoreCurrentDevice", resourceCulture);
-            }
-        }
-
-        internal static string ThemeSystem {
-            get {
-                return ResourceManager.GetString("ThemeSystem", resourceCulture);
-            }
-        }
-
-        internal static string ThemeLight {
-            get {
-                return ResourceManager.GetString("ThemeLight", resourceCulture);
-            }
-        }
-
-        internal static string ThemeDark {
-            get {
-                return ResourceManager.GetString("ThemeDark", resourceCulture);
-            }
-        }
-
     }
 }

@@ -119,7 +119,7 @@ internal class Program
                 startupRegistry.Register();
             }
 
-            form = new InteractiveForm(startupRegistry, settings, logger, mouseHook, GetVersion(isRunningFromStore));
+            form = new InteractiveForm(startupRegistry, settings, logger, mouseHook, GetVersion(isRunningFromStore), isRunningFromStore);
 
             // register for raw input before installing the hook
             mouseHook.RegisterForRawInput(form.Handle);

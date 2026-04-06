@@ -69,6 +69,7 @@
             groupBoxGeneral = new GroupBox();
             toolTip1 = new ToolTip(components);
             versionLabel = new Label();
+            updateLinkLabel = new LinkLabel();
             gitLinkLabel = new LinkLabel();
             themeComboBox = new ComboBox();
             languageComboBox = new ComboBox();
@@ -361,6 +362,12 @@
             resources.ApplyResources(versionLabel, "versionLabel");
             versionLabel.Name = "versionLabel";
             // 
+            // updateLinkLabel
+            // 
+            resources.ApplyResources(updateLinkLabel, "updateLinkLabel");
+            updateLinkLabel.Name = "updateLinkLabel";
+            updateLinkLabel.TabStop = true;
+            // 
             // gitLinkLabel
             // 
             resources.ApplyResources(gitLinkLabel, "gitLinkLabel");
@@ -391,6 +398,7 @@
             Controls.Add(themeComboBox);
             Controls.Add(languageComboBox);
             Controls.Add(gitLinkLabel);
+            Controls.Add(updateLinkLabel);
             Controls.Add(versionLabel);
             Controls.Add(groupBox3);
             Controls.Add(label1);
@@ -459,6 +467,7 @@
         private Label dragEndDelayLabel;
         private ToolTip toolTip1;
         private Label versionLabel;
+        private LinkLabel updateLinkLabel;
         private LinkLabel gitLinkLabel;
         private ComboBox themeComboBox;
         private ComboBox languageComboBox;

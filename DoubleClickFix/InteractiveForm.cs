@@ -1,6 +1,11 @@
 ﻿using DoubleClickFix.Properties;
 using System.Diagnostics;
 using System.Globalization;
+using System.Net.Http;
+using System.Security;
+using System.Text.Json;
+using Windows.Data.Xml.Dom;
+using Windows.UI.Notifications;
 namespace DoubleClickFix;
 
 internal partial class InteractiveForm : Form
@@ -15,15 +20,29 @@ internal partial class InteractiveForm : Form
     private readonly System.Windows.Forms.Timer wheelResetTimer;
     private readonly System.Windows.Forms.Timer saveTimer;
     private bool suppressNextShow;
+    private readonly bool isStore;
     internal string? RestartArgs { get; private set; }
 
-    public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, MouseHook mouseHook, string version)
+    public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, MouseHook mouseHook, string version, bool isStore = false)
     {
         this.startup = startup;
         this.settings = settings;
         this.logger = logger;
         this.mouseHook = mouseHook;
         InitializeComponent();
+        updateLinkLabel.Text = string.Empty;
+        updateLinkLabel.Visible = false;
+        if (NativeMethods.IsDarkMode(settings.ColorMode))
+            updateLinkLabel.LinkColor = Color.DeepSkyBlue;
+        updateLinkLabel.LinkClicked += (s, e) =>
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo(
+                    "https://github.com/nenning/DoubleClickFix/releases") { UseShellExecute = true });
+            }
+            catch { }
+        };
         descriptionTextBox.Text = descriptionTextBox.Text.Replace("\n", "\r\n");
         notifyIcon.Icon = Properties.Resources.AppIcon;
         pictureBox1.Image = NativeMethods.IsDarkMode(settings.ColorMode)
@@ -101,6 +120,19 @@ internal partial class InteractiveForm : Form
             _    => 0
         };
         languageComboBox.SelectedIndexChanged += OnLanguageChanged;
+
+        this.isStore = isStore;
+        if (!isStore)
+        {
+            var updateTimer = new System.Windows.Forms.Timer(components) { Interval = 5000 };
+            updateTimer.Tick += async (s, e) =>
+            {
+                updateTimer.Stop();
+                await CheckForUpdateAsync();
+            };
+            updateTimer.Start();
+        }
+
     }
 
     protected override CreateParams CreateParams
@@ -583,7 +615,72 @@ internal partial class InteractiveForm : Form
 
     private void InteractiveForm_Load(object sender, EventArgs e)
     {
+    }
 
+    private async Task CheckForUpdateAsync()
+    {
+        try
+        {
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("DoubleClickFix");
+            var json = await client.GetStringAsync(
+                "https://api.github.com/repos/nenning/DoubleClickFix/releases/latest");
+            using var doc = JsonDocument.Parse(json);
+            var tag = doc.RootElement.GetProperty("tag_name").GetString() ?? "";
+            var latestVersion = Version.Parse(tag.TrimStart('v'));
+            var currentVersion = typeof(InteractiveForm).Assembly.GetName().Version!;
+            if (latestVersion > currentVersion)
+            {
+                var versionString = latestVersion.ToString(3);
+                ShowUpdateToast(versionString);
+                AddUpdateMenuItem(versionString);
+            }
+        }
+        catch { }
+    }
+
+    private void AddUpdateMenuItem(string version)
+    {
+        var item = new ToolStripMenuItem($"{Resources.UpdateAvailable}: v{version}")
+        {
+            Font = new Font(notifyMenuStrip.Font, FontStyle.Bold)
+        };
+        item.Click += (s, e) =>
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo(
+                    "https://github.com/nenning/DoubleClickFix/releases") { UseShellExecute = true });
+            }
+            catch { }
+        };
+        notifyMenuStrip.Items.Insert(0, item);
+        notifyMenuStrip.Items.Insert(1, new ToolStripSeparator());
+
+        updateLinkLabel.Text = Resources.UpdateAvailable;
+        updateLinkLabel.Visible = true;
+    }
+
+    private static void ShowUpdateToast(string version)
+    {
+        try
+        {
+            const string releasesUrl = "https://github.com/nenning/DoubleClickFix/releases";
+            var title = SecurityElement.Escape(Resources.UpdateAvailable);
+            var body = SecurityElement.Escape(string.Format(Resources.UpdateAvailableMessage, version));
+            var xml = $"""
+                <toast activationType="protocol" launch="{releasesUrl}">
+                    <visual><binding template="ToastGeneric">
+                        <text>{title}</text>
+                        <text>{body}</text>
+                    </binding></visual>
+                </toast>
+                """;
+            var doc = new XmlDocument();
+            doc.LoadXml(xml);
+            ToastNotificationManager.CreateToastNotifier("DoubleClickFix").Show(new ToastNotification(doc));
+        }
+        catch { }
     }
 
 }
