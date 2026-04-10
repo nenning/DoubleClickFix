@@ -615,6 +615,13 @@ internal partial class InteractiveForm : Form
 
     private void InteractiveForm_Load(object sender, EventArgs e)
     {
+        var wa = Screen.FromControl(this).WorkingArea;
+        if (Height > wa.Height) Height = wa.Height;
+        if (Width  > wa.Width)  Width  = wa.Width;
+        if (Left   < wa.Left)   Left   = wa.Left;
+        if (Top    < wa.Top)    Top    = wa.Top;
+        if (Left + Width  > wa.Right)  Left = wa.Right  - Width;
+        if (Top  + Height > wa.Bottom) Top  = wa.Bottom - Height;
     }
 
     private async Task CheckForUpdateAsync()

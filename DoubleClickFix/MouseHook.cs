@@ -215,7 +215,11 @@ internal class MouseHook : IDisposable
             currentDevice = device;
             knownDeviceTypes.TryGetValue(device, out var knownType);
             isCurrentDeviceTouchDevice = knownType != DeviceType.Mouse;
-            CurrentDevicePath = knownDevicePaths.TryGetValue(device, out var p) && p.Length > 0 ? p : null;
+            var newPath = knownDevicePaths.TryGetValue(device, out var p) && p.Length > 0 ? p : null;
+            if (newPath != null || CurrentDevicePath == null)
+            {
+                CurrentDevicePath = newPath;
+            }
             isCurrentDeviceIgnored = CurrentDevicePath != null
                 && settings.IgnoredDevicePaths.Contains(CurrentDevicePath);
         }
