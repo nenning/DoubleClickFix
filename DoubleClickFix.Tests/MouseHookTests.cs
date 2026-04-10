@@ -259,6 +259,51 @@ public class MouseHookTests
     }
 
     [Fact]
+    public void TestCurrentDevicePathSetOnFirstDevice()
+    {
+        const string devicePath = "/dev/test_mouse";
+        var nativeMethods = new TestNativeMethods { TryGetDevicePathFunc = _ => devicePath };
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+
+        hook.ProcessRawInput(123);
+
+        Assert.Equal(devicePath, hook.CurrentDevicePath);
+    }
+
+    [Fact]
+    public void TestCurrentDevicePathRetainedWhenNewDeviceHasNoPath()
+    {
+        const string devicePath = "/dev/test_mouse";
+        var nativeMethods = new TestNativeMethods
+        {
+            TryGetDevicePathFunc = handle => handle == 123 ? devicePath : null
+        };
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+
+        hook.ProcessRawInput(123); // device with valid path
+        hook.ProcessRawInput(456); // device with no path — should keep previous path
+
+        Assert.Equal(devicePath, hook.CurrentDevicePath);
+    }
+
+    [Fact]
+    public void TestCurrentDevicePathUpdatedWhenNewDeviceHasPath()
+    {
+        const string pathA = "/dev/mouse_a";
+        const string pathB = "/dev/mouse_b";
+        var nativeMethods = new TestNativeMethods
+        {
+            TryGetDevicePathFunc = handle => handle == 123 ? pathA : pathB
+        };
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+
+        hook.ProcessRawInput(123);
+        hook.ProcessRawInput(456);
+
+        Assert.Equal(pathB, hook.CurrentDevicePath);
+    }
+
+    [Fact]
     public void TestDragLockEnabled()
     {
         TestSettings settings = new()
