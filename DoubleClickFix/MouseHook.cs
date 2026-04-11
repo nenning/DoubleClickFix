@@ -245,7 +245,7 @@ internal class MouseHook : IDisposable
         }
         catch (Exception ex)
         {
-            logger.Log($"Error in hook callback: {ex}");
+            try { logger.Log($"Error in hook callback: {ex}"); } catch { }
             return nativeMethods.CallNextHook(hookHandle, nCode, wParam, lParam);
         }
     }

@@ -41,7 +41,7 @@ internal class Logger : ILogger, IDisposable
         if (!foregroundOnly || IsAppVisible)
         {
             logQueue.Enqueue(message);
-            logSignal.Set();
+            try { logSignal.Set(); } catch (ObjectDisposedException) { }
         }
     }
 

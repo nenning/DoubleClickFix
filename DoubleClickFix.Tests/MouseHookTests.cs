@@ -695,4 +695,24 @@ public class MouseHookTests
         // Only the 2 genuine events should have passed through
         Assert.Equal(2, nativeMethods.CallNextHookCounter);
     }
+
+    [Fact]
+    public void HookCallback_LoggerThrows_DoesNotCrash()
+    {
+        TestNativeMethods nativeMethods = new();
+        // ThrowingLogger simulates a disposed logger throwing ObjectDisposedException
+        MouseHook hook = new(new TestSettings(), new ThrowingLogger(), nativeMethods);
+
+        // First click: allowed
+        AssertAllowed(hook, WM_LBUTTONDOWN, 100);
+        AssertAllowed(hook, WM_LBUTTONUP, 110);
+
+        // Second click within threshold triggers suppression → logger.Log() → throws.
+        // The hardened catch block swallows the exception and falls through to CallNextHook
+        // (returning 0 = allowed) instead of crashing. The key assertion is no exception escapes.
+        using var data = HookStruct.Create(120);
+        var result = hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer);
+        // Result is 0 (CallNextHook) because the catch block handled the exception gracefully
+        Assert.Equal(0, result);
+    }
 }

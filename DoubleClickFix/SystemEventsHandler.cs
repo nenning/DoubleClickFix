@@ -9,17 +9,14 @@ internal class SystemEventsHandler : IDisposable
     private readonly MouseHook mouseHook;
     private readonly ILogger logger;
 
-    public SystemEventsHandler(MouseHook mouseHook, ILogger logger, bool installExceptionHandlers)
+    public SystemEventsHandler(MouseHook mouseHook, ILogger logger, bool isRunningFromStore)
     {
         this.mouseHook = mouseHook;
         this.logger = logger;
 
         try
         {
-            if (installExceptionHandlers)
-            {
-                SetupExceptionHandlers(mouseHook, logger);
-            }
+            SetupExceptionHandlers(mouseHook, logger, isRunningFromStore);
             SystemEvents.SessionSwitch += OnSessionSwitch;
             SystemEvents.SessionEnding += OnSessionEnding;
             SystemEvents.PowerModeChanged += OnPowerModeChanged;
@@ -86,45 +83,46 @@ internal class SystemEventsHandler : IDisposable
                 break;
         }
     }
-    private static void SetupExceptionHandlers(MouseHook mouseHook, ILogger logger)
+    private static void SetupExceptionHandlers(MouseHook mouseHook, ILogger logger, bool isRunningFromStore)
     {
-        Application.ThreadException += (sender, e) =>
+        if (!isRunningFromStore)
         {
-            // Uninstall hook to clean up
-            mouseHook.Uninstall();
-            logger.Log($"[UI Exception] Please report this as a github issue: {e.Exception}");
-
-            // Ask the user what to do
-            var result = MessageBox.Show(
-                "An unexpected error occurred: \n\n" +
-                $"{e.Exception.Message}\n\n" +
-                "Would you like to restart the application?\n\n" +
-                "Yes = Restart   No = Exit   Cancel = Continue",
-                "Double-click fix: Application Error",
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Error,
-                MessageBoxDefaultButton.Button1);
-
-            switch (result)
+            // Standalone: show a dialog so the user can restart, exit, or continue
+            Application.ThreadException += (sender, e) =>
             {
-                case DialogResult.Yes:
-                    // Restart: launches a fresh copy, then exits this one
-                    Application.Restart();
-                    Environment.Exit(0);
-                    break;
+                mouseHook.Uninstall();
+                logger.Log($"[UI Exception] Please report this as a github issue: {e.Exception}");
 
-                case DialogResult.No:
-                    // Exit without restarting
-                    Application.Exit();
-                    break;
+                var result = MessageBox.Show(
+                    "An unexpected error occurred: \n\n" +
+                    $"{e.Exception.Message}\n\n" +
+                    "Would you like to restart the application?\n\n" +
+                    "Yes = Restart   No = Exit   Cancel = Continue",
+                    "Double-click fix: Application Error",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
 
-                case DialogResult.Cancel:
-                default:
-                    // Continue running: re-install mouse hook and carry on
-                    mouseHook.Install();
-                    break;
-            }
-        };
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        Application.Restart();
+                        Environment.Exit(0);
+                        break;
+
+                    case DialogResult.No:
+                        Application.Exit();
+                        break;
+
+                    case DialogResult.Cancel:
+                    default:
+                        mouseHook.Install();
+                        break;
+                }
+            };
+        }
+        // Store builds use SetUnhandledExceptionMode(ThrowException) in Program.cs,
+        // so UI thread exceptions route to AppDomain.UnhandledException → WER.
 
         // Handle exceptions on any non-UI thread (thread‑pool, timers, etc.)
         AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
@@ -136,15 +134,43 @@ internal class SystemEventsHandler : IDisposable
                 {
                     Debug.WriteLine($"[Domain Exception] {ex}");
                     logger.Log($"[Domain Exception] Please report this as a github issue: {ex}");
+                    WriteCrashLog(ex);
                 }
                 catch { }
             }
+            // Let the crash propagate to WER — do not call Environment.Exit() or FailFast()
         };
 
         // Handle unobserved task exceptions as a last‑resort for async code
-        TaskScheduler.UnobservedTaskException += (sender, e) => {
-            logger.Log($"[Task Exception] Please report this as a github issue: {e.Exception}");
-            e.SetObserved();     // prevent the exception escalation policy (which might crash)
+        TaskScheduler.UnobservedTaskException += (sender, e) =>
+        {
+            try
+            {
+                logger.Log($"[Task Exception] Please report this as a github issue: {e.Exception}");
+                WriteCrashLog(e.Exception);
+            }
+            catch { }
+
+            if (!isRunningFromStore)
+            {
+                e.SetObserved(); // standalone: prevent crash, keep running
+            }
+            // Store: don't call SetObserved() — let the exception escalate to WER
         };
+    }
+
+    private static void WriteCrashLog(Exception ex)
+    {
+        try
+        {
+            string folder = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "DoubleClickFix");
+            Directory.CreateDirectory(folder);
+            string path = Path.Combine(folder, "crashlog.txt");
+            string entry = $"[{DateTime.UtcNow:O}] {ex}\n\n";
+            File.AppendAllText(path, entry);
+        }
+        catch { }
     }
 }

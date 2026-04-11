@@ -105,7 +105,14 @@ internal class Program
         }
 
         using MouseHook mouseHook = new(settings, logger, new NativeMethods());
-        using SystemEventsHandler eventsHandler = new(mouseHook, logger, !isRunningFromStore);
+        using SystemEventsHandler eventsHandler = new(mouseHook, logger, isRunningFromStore);
+
+        if (isRunningFromStore)
+        {
+            // Let UI thread exceptions propagate to AppDomain.UnhandledException → WER
+            // so Partner Center gets real stack traces instead of "Unknown" failures
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
+        }
 
         InteractiveForm? form = null;
         try
