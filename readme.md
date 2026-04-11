@@ -25,6 +25,7 @@ A lightweight tool that fixes accidental double-clicks caused by a worn-out or f
 - [Installation](#-installation)
 - [Configuration](#️-configuration)
 - [How It Works: Filtering Mouse Clicks](#️-how-it-works-filtering-mouse-clicks)
+- [Troubleshooting & Error Reporting](#-troubleshooting--error-reporting)
 - [Contributions](#-contributions)
 - [License](#-license)
 - [Compatibility with Anti-Cheat Software](#️-compatibility-with-anti-cheat-software-vac-eac-battleye-etc)
@@ -109,6 +110,16 @@ The application intercepts mouse events at a low level to distinguish intentiona
     *   **Time-Based Debouncing**: A scroll in the *opposite* direction within the threshold is treated as jitter and ignored.
     *   **Preserving Fast Scrolling**: Intentional same-direction scrolling is never affected.
 6.  **Forwarding Events**: Events that pass filtering are forwarded via `CallNextHookEx`, ensuring normal behavior for all other applications.
+
+---
+
+## 🐛 Troubleshooting & Error Reporting
+If the app crashes or hangs, a crash log is written to `%LocalAppData%\DoubleClickFix\crashlog.txt`. Please include this file when reporting issues.
+
+To report a bug or crash:
+1. Open the [Issues tab](https://github.com/nenning/DoubleClickFix/issues) and create a new issue.
+2. Attach the crash log file (if it exists).
+3. Describe what you were doing when the issue occurred.
 
 ---
 
