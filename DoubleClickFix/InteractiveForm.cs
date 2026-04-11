@@ -21,6 +21,7 @@ internal partial class InteractiveForm : Form
     private readonly System.Windows.Forms.Timer saveTimer;
     private bool suppressNextShow;
     private readonly bool isStore;
+    private readonly object? packageCatalog; // prevent GC of PackageCatalog
     internal string? RestartArgs { get; private set; }
 
     public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, MouseHook mouseHook, string version, bool isStore = false)
@@ -122,7 +123,20 @@ internal partial class InteractiveForm : Form
         languageComboBox.SelectedIndexChanged += OnLanguageChanged;
 
         this.isStore = isStore;
-        if (!isStore)
+        if (isStore)
+        {
+            try
+            {
+                var catalog = Windows.ApplicationModel.PackageCatalog.OpenForCurrentPackage();
+                catalog.PackageUpdating += OnPackageUpdating;
+                packageCatalog = catalog;
+            }
+            catch (Exception ex)
+            {
+                logger.Log($"PackageCatalog registration failed: {ex.Message}");
+            }
+        }
+        else
         {
             var updateTimer = new System.Windows.Forms.Timer(components) { Interval = 5000 };
             updateTimer.Tick += async (s, e) =>
@@ -677,6 +691,40 @@ internal partial class InteractiveForm : Form
             var body = SecurityElement.Escape(string.Format(Resources.UpdateAvailableMessage, version));
             var xml = $"""
                 <toast activationType="protocol" launch="{releasesUrl}">
+                    <visual><binding template="ToastGeneric">
+                        <text>{title}</text>
+                        <text>{body}</text>
+                    </binding></visual>
+                </toast>
+                """;
+            var doc = new XmlDocument();
+            doc.LoadXml(xml);
+            ToastNotificationManager.CreateToastNotifier("DoubleClickFix").Show(new ToastNotification(doc));
+        }
+        catch { }
+    }
+
+    private void OnPackageUpdating(Windows.ApplicationModel.PackageCatalog sender,
+        Windows.ApplicationModel.PackageUpdatingEventArgs args)
+    {
+        logger.Log("Store update installing, exiting for update...");
+        BeginInvoke(() =>
+        {
+            ShowStoreUpdateToast();
+            notifyIcon.Visible = false;
+            notifyIcon.Dispose();
+            Application.Exit();
+        });
+    }
+
+    private static void ShowStoreUpdateToast()
+    {
+        try
+        {
+            var title = SecurityElement.Escape(Resources.UpdateAvailable);
+            var body = SecurityElement.Escape(Resources.StoreUpdateRestarting);
+            var xml = $"""
+                <toast>
                     <visual><binding template="ToastGeneric">
                         <text>{title}</text>
                         <text>{body}</text>

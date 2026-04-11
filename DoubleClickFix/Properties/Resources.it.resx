@@ -186,4 +186,7 @@
   <data name="UpdateAvailableMessage" xml:space="preserve">
     <value>DoubleClickFix v{0} è disponibile. Fare clic per scaricare.</value>
   </data>
+  <data name="StoreUpdateRestarting" xml:space="preserve">
+    <value>È in corso l'installazione di un aggiornamento. L'app verrà riavviata automaticamente.</value>
+  </data>
 </root>

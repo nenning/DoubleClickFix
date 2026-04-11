@@ -276,6 +276,12 @@ namespace DoubleClickFix.Properties {
                 return ResourceManager.GetString("UpdateAvailableMessage", resourceCulture);
             }
         }
+
+        internal static string StoreUpdateRestarting {
+            get {
+                return ResourceManager.GetString("StoreUpdateRestarting", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Failed to write to startup registry..
