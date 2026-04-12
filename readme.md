@@ -36,7 +36,7 @@ A lightweight tool that fixes accidental double-clicks caused by a worn-out or f
 
 ## ✨ Features
 - **Double-click filtering** — filters accidental clicks per button with a configurable threshold. Default: 50 ms.
-- **Drag & Drop Fix** — prevents faulty mice from dropping during a drag gesture.
+- **Drag & Drop Fix** — (experimental) prevents faulty mice from dropping during a drag gesture.
 - **Mouse Wheel Fix** — filters spurious reverse-direction scroll events.
 - **Per-device Ignore List** — exclude specific devices (e.g. touchpad, second mouse) from filtering.
 - **Remote Desktop Support** — optionally bypass filtering during RDP sessions.
