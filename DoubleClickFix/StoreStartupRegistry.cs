@@ -20,7 +20,10 @@ internal class StoreStartupRegistry(ILogger Logger) : IStartupRegistry {
 		}
 	}
 
-	private static StartupTask? GetStartupTask() => StartupTask.GetForCurrentPackageAsync().GetAwaiter().GetResult().FirstOrDefault();
+	private static StartupTask? GetStartupTask() {
+		var tasks = StartupTask.GetForCurrentPackageAsync().GetAwaiter().GetResult();
+		return tasks.Count > 0 ? tasks[0] : null;
+	}
 
 	public bool Register() {
 		if (isRegistered) {

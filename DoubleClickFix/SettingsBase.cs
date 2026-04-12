@@ -4,7 +4,6 @@ using System.Globalization;
 namespace DoubleClickFix;
 
 internal abstract class SettingsBase : ISettings {
-	private readonly int windowsDoubleClickTimeMilliseconds = GetWindowsMaximumDoubleClickTime();
 	private Action settingsChanged;
 
 	protected readonly ILogger logger;
@@ -102,7 +101,8 @@ internal abstract class SettingsBase : ISettings {
 	public bool UseHook { get; private set; }
 
 	public int WindowsDoubleClickTimeMilliseconds {
-		get => windowsDoubleClickTimeMilliseconds;
+		init => field = GetWindowsMaximumDoubleClickTime();
+        get;
 	}
 	public int X1Threshold {
 		get => x1Threshold;

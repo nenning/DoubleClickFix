@@ -18,7 +18,7 @@ internal class StoreSettings(string[] args, ILogger logger) : SettingsBase(args,
 		SaveSetting(X2Threshold);
 		SaveSetting(WheelThreshold);
 		SaveSetting(MinDelay);
-		ApplicationDataCompositeValue composite = new Windows.Storage.ApplicationDataCompositeValue();
+		ApplicationDataCompositeValue composite = [];
 		int i = 0;
 		foreach (var path in ignoredDevicePaths) {
 			composite[$"p{i++}"] = path;

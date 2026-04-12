@@ -1,5 +1,9 @@
 <Project>
   <PropertyGroup>
     <Version>1.6.5.0</Version>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <WarningLevel>9999</WarningLevel>
   </PropertyGroup>
 </Project>

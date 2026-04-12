@@ -3,8 +3,8 @@
 namespace DoubleClickFix;
 
 internal class StandaloneStartupRegistry(ILogger Logger) : IStartupRegistry {
-	private const string registryPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
-	private const string registryKey = @"DoubleClickFix";
+	private const string RegistryPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+	private const string RegistryKey = @"DoubleClickFix";
 
 	private readonly string registryValue = Environment.ProcessPath!;
 
@@ -12,8 +12,8 @@ internal class StandaloneStartupRegistry(ILogger Logger) : IStartupRegistry {
 
 	public bool IsRegistered() {
 		try {
-			using var key = Registry.CurrentUser.OpenSubKey(registryPath, writable: false);
-			var value = key!.GetValue(registryKey, null);
+			using var key = Registry.CurrentUser.OpenSubKey(RegistryPath, writable: false);
+			var value = key!.GetValue(RegistryKey, null);
 			isRegistered = value != null && (string)value == registryValue;
 			return isRegistered;
 		} catch (Exception ex) {
@@ -28,8 +28,8 @@ internal class StandaloneStartupRegistry(ILogger Logger) : IStartupRegistry {
 			return true;
 		}
 		try {
-			using var key = Registry.CurrentUser.OpenSubKey(registryPath, true);
-			key!.SetValue(registryKey, registryValue, RegistryValueKind.String);
+			using var key = Registry.CurrentUser.OpenSubKey(RegistryPath, true);
+			key!.SetValue(RegistryKey, registryValue, RegistryValueKind.String);
 		} catch (Exception ex) {
 			Logger.Log($"Error: {ex}");
 			return false;
@@ -42,8 +42,8 @@ internal class StandaloneStartupRegistry(ILogger Logger) : IStartupRegistry {
 			return true;
 		}
 		try {
-			using var key = Registry.CurrentUser.OpenSubKey(registryPath, true);
-			key!.DeleteValue(registryKey, false);
+			using var key = Registry.CurrentUser.OpenSubKey(RegistryPath, true);
+			key!.DeleteValue(RegistryKey, false);
 		} catch (Exception ex) {
 			Logger.Log($"Error: {ex}");
 			return false;
