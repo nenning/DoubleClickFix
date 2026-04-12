@@ -715,4 +715,48 @@ public class MouseHookTests
         // Result is 0 (CallNextHook) because the catch block handled the exception gracefully
         Assert.Equal(0, result);
     }
+
+    [Fact]
+    public void TestDeviceZeroAlwaysIgnored()
+    {
+        var nativeMethods = new TestNativeMethods
+        {
+            TryGetDevicePathFunc = _ => null
+        };
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+
+        // Device handle 0 (unidentifiable source) should pass through unfiltered
+        hook.ProcessRawInput(0);
+
+        // Rapid clicks that would normally be suppressed should all pass through
+        using (var data = HookStruct.Create(100)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        using (var data = HookStruct.Create(120)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(130)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        Assert.Equal(4, nativeMethods.CallNextHookCounter);
+    }
+
+    [Fact]
+    public void TestDeviceZeroIgnoredThenRealDeviceFiltered()
+    {
+        const string devicePath = "/dev/real_mouse";
+        var nativeMethods = new TestNativeMethods
+        {
+            TryGetDevicePathFunc = handle => handle == 42 ? devicePath : null
+        };
+        var hook = new MouseHook(new TestSettings(), new TestLogger(), nativeMethods);
+
+        // Device 0: passes through
+        hook.ProcessRawInput(0);
+        using (var data = HookStruct.Create(100)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(110)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+        using (var data = HookStruct.Create(120)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+        using (var data = HookStruct.Create(130)) Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+
+        // Switch to real device: rapid second click should be filtered
+        hook.ProcessRawInput(42);
+        AssertAllowed(hook, WM_LBUTTONDOWN, 200);
+        AssertAllowed(hook, WM_LBUTTONUP, 210);
+        AssertIgnored(hook, WM_LBUTTONDOWN, 220);
+    }
 }

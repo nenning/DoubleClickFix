@@ -41,6 +41,7 @@ namespace DoubleClickFix
             // language field is now populated by Load() — apply culture before any UI is created.
             ApplyLanguageOverride();
             IsInteractive = Debugger.IsAttached || IsFirstAppStart || args.Length > 0 && (args.Contains("-interactive") || args.Contains("-i"));
+            RestartBounds = ParseBounds(args);
             settingsChanged += this.OnSettingsChanged;
         }
 
@@ -58,6 +59,7 @@ namespace DoubleClickFix
 
         public bool IsFirstAppStart { get; private init; }
         public bool IsInteractive { get; private set; }
+        public Rectangle? RestartBounds { get; private set; }
         public int LeftThreshold
         {
             get => leftThreshold;
@@ -270,5 +272,21 @@ namespace DoubleClickFix
         /// <summary>Loads all settings. Returns true if previously saved settings were found.</summary>
         public abstract bool Load();
 
+        private static Rectangle? ParseBounds(string[] args)
+        {
+            int i = Array.IndexOf(args, "-bounds");
+            if (i < 0 || i + 1 >= args.Length) return null;
+            string[] parts = args[i + 1].Split(',');
+            if (parts.Length == 4
+                && int.TryParse(parts[0], out int x)
+                && int.TryParse(parts[1], out int y)
+                && int.TryParse(parts[2], out int w)
+                && int.TryParse(parts[3], out int h)
+                && w > 0 && h > 0)
+            {
+                return new Rectangle(x, y, w, h);
+            }
+            return null;
+        }
     }
 }

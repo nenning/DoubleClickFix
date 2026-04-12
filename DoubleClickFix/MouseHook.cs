@@ -55,13 +55,16 @@ internal class MouseHook : IDisposable
     // make sure we keep a reference so it's not garbage collected
     private LowLevelMouseProc? mouseProc;
     private nint hookHandle = nint.Zero;
+    private readonly Lock hookLock = new();
     private const nint InvalidDevice = -1;
     private nint currentDevice = InvalidDevice;
     private bool isCurrentDeviceTouchDevice;
     private bool isCurrentDeviceIgnored;
     private readonly Dictionary<nint, DeviceType> knownDeviceTypes = [];
+
     private readonly Dictionary<nint, string> knownDevicePaths = [];
     public string? CurrentDevicePath { get; private set; }
+    public event Action? CurrentDeviceChanged;
     public bool IsInstalled => hookHandle != nint.Zero;
 
     private readonly Dictionary<MouseButtons, uint> previousUpTime = new() { {MouseButtons.Left , 0 }, {MouseButtons.Right , 0}, {MouseButtons.Middle , 0}, {MouseButtons.XButton1 , 0}, {MouseButtons.XButton2 , 0} };
@@ -127,9 +130,9 @@ internal class MouseHook : IDisposable
             ResetDragLockState();
         }
         observedMessages = messages.ToFrozenSet();
-        isCurrentDeviceIgnored = CurrentDevicePath != null
-            && settings.IgnoredDevicePaths.Contains(CurrentDevicePath);
+        isCurrentDeviceIgnored = IsCurrentDeviceIgnored();
     }
+    private bool IsCurrentDeviceIgnored() => currentDevice == 0 || (CurrentDevicePath != null && settings.IgnoredDevicePaths.Contains(CurrentDevicePath));
 
     internal void ResetDragLockState()
     {
@@ -143,37 +146,45 @@ internal class MouseHook : IDisposable
 
     public bool Install()
     {
-        if (settings.UseHook && hookHandle == nint.Zero)
+        lock (hookLock)
         {
-            try
+            if (settings.UseHook && hookHandle == nint.Zero)
             {
-                mouseProc = HookCallback;
-                hookHandle = nativeMethods.SetHook(mouseProc);
+                try
+                {
+                    mouseProc = HookCallback;
+                    hookHandle = nativeMethods.SetHook(mouseProc);
+                }
+                catch (Win32Exception ex)
+                {
+                    logger.Log($"{Resources.HookNotInstalled}: {ex.Message}");
+                    return false;
+                }
             }
-            catch (Win32Exception ex)
-            {
-                logger.Log($"{Resources.HookNotInstalled}: {ex.Message}");
-                return false;
-            }
+            return hookHandle != nint.Zero;
         }
-        return hookHandle != nint.Zero;
     }
+
     public void Uninstall()
     {
-        if (settings.UseHook && hookHandle != nint.Zero)
+        lock (hookLock)
         {
-            try
+            if (hookHandle != nint.Zero)
             {
-                nativeMethods.UnhookWindowsHook(hookHandle);
-            }
-            catch (Win32Exception ex)
-            {
-                logger.Log($"Failed to uninstall hook: {ex.Message}");
-            }
-            finally
-            {
-                hookHandle = nint.Zero;
-                mouseProc = null;
+                try
+                {
+                    nativeMethods.UnhookWindowsHook(hookHandle);
+                }
+                catch (Win32Exception ex)
+                {
+                    logger.Log($"Failed to uninstall hook: {ex.Message}");
+                }
+                finally
+                {
+                    hookHandle = nint.Zero;
+                    // Keep mouseProc alive until next Install() — prevents the delegate
+                    // from being collected while a hook callback may still be in-flight.
+                }
             }
         }
     }
@@ -220,8 +231,8 @@ internal class MouseHook : IDisposable
             {
                 CurrentDevicePath = newPath;
             }
-            isCurrentDeviceIgnored = CurrentDevicePath != null
-                && settings.IgnoredDevicePaths.Contains(CurrentDevicePath);
+            isCurrentDeviceIgnored = IsCurrentDeviceIgnored();
+            CurrentDeviceChanged?.Invoke();
         }
     }
 
@@ -324,12 +335,15 @@ internal class MouseHook : IDisposable
 
             if (!isDragLocked.GetValueOrDefault(button, false))
             {
-                var start = initialDownPosition[button];
+                if (!initialDownPosition.TryGetValue(button, out var start))
+                    continue;
                 int dx = hookStruct.pt.x - start.x;
                 int dy = hookStruct.pt.y - start.y;
                 int distSq = dx * dx + dy * dy;
 
-                long elapsedSinceDown = hookStruct.time - initialDownTime[button];
+                if (!initialDownTime.TryGetValue(button, out var downTime))
+                    continue;
+                long elapsedSinceDown = hookStruct.time - downTime;
 
                 if (distSq >= MovementThresholdPixels * MovementThresholdPixels &&
                     elapsedSinceDown >= settings.DragStartTimeMilliseconds)
@@ -373,7 +387,7 @@ internal class MouseHook : IDisposable
             else if (buttonUp)
             {
                 // only allow the real release once movement has paused long enough
-                long elapsedSinceMove = hookStruct.time - lastMoveTime[activeButton];
+                long elapsedSinceMove = hookStruct.time - lastMoveTime.GetValueOrDefault(activeButton, hookStruct.time);
                 if (elapsedSinceMove >= settings.DragStopTimeMilliseconds)
                 {
                     // exit drag‐lock, forward genuine release
@@ -497,5 +511,7 @@ internal class MouseHook : IDisposable
     public void Dispose()
     {
         Uninstall();
+        GC.KeepAlive(mouseProc);
+        mouseProc = null;
     }
 }

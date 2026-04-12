@@ -48,13 +48,19 @@ internal class Program
         if (otherPids.Count == 0)
             return false;
 
+        // Grant each running instance the right to bring itself to the foreground.
+        // Without this, Windows just flashes the taskbar button instead.
+        foreach (uint pid in otherPids)
+            NativeMethods.AllowSetForegroundWindow((int)pid);
+
         // Send WM_SHOWME to all top-level windows of the other process.
         // WinForms creates several internal windows alongside the form, so we
         // broadcast to all of them — only InteractiveForm.WndProc handles it.
         bool sent = false;
         NativeMethods.EnumWindows((hWnd, _) =>
         {
-            NativeMethods.GetWindowThreadProcessId(hWnd, out uint pid);
+            if (NativeMethods.GetWindowThreadProcessId(hWnd, out uint pid) == 0)
+                return true; // skip this window on failure
             if (otherPids.Contains(pid))
             {
                 NativeMethods.PostMessage(hWnd, NativeMethods.WM_SHOWME, IntPtr.Zero, IntPtr.Zero);
@@ -104,6 +110,15 @@ internal class Program
             return;
         }
 
+        // Elevate process priority so the hook callback gets scheduled promptly
+        // during boot when many startup apps compete for CPU.
+        try
+        {
+            using var process = Process.GetCurrentProcess();
+            process.PriorityClass = ProcessPriorityClass.AboveNormal;
+        }
+        catch { }
+
         using MouseHook mouseHook = new(settings, logger, new NativeMethods());
         using SystemEventsHandler eventsHandler = new(mouseHook, logger, isRunningFromStore);
 
@@ -114,30 +129,54 @@ internal class Program
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
         }
 
+        // Install the hook as early as possible using a lightweight message-only window
+        // for raw input, deferring the heavy InteractiveForm construction until after
+        // the message pump starts.
+        using RawInputWindow rawInputWindow = new(mouseHook);
+        mouseHook.RegisterForRawInput(rawInputWindow.Handle);
+        bool hookInstalled = mouseHook.Install();
+        if (!hookInstalled)
+        {
+            logger.Log($"{Resources.Error}: {Resources.HookNotInstalled}");
+        }
+
         InteractiveForm? form = null;
+        var appContext = new ApplicationContext();
         try
         {
-            IStartupRegistry startupRegistry = isRunningFromStore
-                ? new StoreStartupRegistry(logger)
-                : new StandaloneStartupRegistry(logger);
+            Application.Idle += OnFirstIdle;
 
-            if (settings.IsFirstAppStart)
+            void OnFirstIdle(object? sender, EventArgs e)
             {
-                startupRegistry.Register();
+                Application.Idle -= OnFirstIdle;
+
+                IStartupRegistry startupRegistry = isRunningFromStore
+                    ? new StoreStartupRegistry(logger)
+                    : new StandaloneStartupRegistry(logger);
+
+                if (settings.IsFirstAppStart)
+                {
+                    startupRegistry.Register();
+                }
+
+                form = new InteractiveForm(startupRegistry, settings, logger, mouseHook, GetVersion(isRunningFromStore), isRunningFromStore);
+
+                if (!hookInstalled)
+                {
+                    form.Text = "No mouse hook installed!";
+                    form.BackColor = NativeMethods.IsDarkMode(settings.ColorMode) ? Color.Crimson : Color.DarkRed;
+                }
+
+                // Setting MainForm makes ApplicationContext exit when the form closes,
+                // and triggers Show() which creates the handle (SetVisibleCore suppresses
+                // the actual show when not interactive).
+                appContext.MainForm = form;
+                form.Show();
+
+                rawInputWindow.SetShowMeHandler(() => form.BeginInvoke(() => form.ShowFromTray()));
             }
 
-            form = new InteractiveForm(startupRegistry, settings, logger, mouseHook, GetVersion(isRunningFromStore), isRunningFromStore);
-
-            // register for raw input before installing the hook
-            mouseHook.RegisterForRawInput(form.Handle);
-            if (!mouseHook.Install())
-            {
-                form.Text = "No mouse hook installed!";
-                form.BackColor = NativeMethods.IsDarkMode(settings.ColorMode) ? Color.Crimson : Color.DarkRed;
-                logger.Log($"{Resources.Error}: {Resources.HookNotInstalled}");
-            }
-
-            Application.Run(form);
+            Application.Run(appContext);
         }
         finally
         {

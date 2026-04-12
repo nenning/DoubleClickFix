@@ -10,8 +10,6 @@ namespace DoubleClickFix;
 
 internal partial class InteractiveForm : Form
 {
-    private const int WM_INPUT = 0x00FF;
-
     private readonly IStartupRegistry startup;
     private readonly ISettings settings;
     private readonly Logger logger;
@@ -30,9 +28,10 @@ internal partial class InteractiveForm : Form
         this.logger = logger;
         this.mouseHook = mouseHook;
         InitializeComponent();
+        bool isDark = NativeMethods.IsDarkMode(settings.ColorMode);
         updateLinkLabel.Text = string.Empty;
         updateLinkLabel.Visible = false;
-        if (NativeMethods.IsDarkMode(settings.ColorMode))
+        if (isDark)
             updateLinkLabel.LinkColor = Color.DeepSkyBlue;
         updateLinkLabel.LinkClicked += (s, e) =>
         {
@@ -45,11 +44,11 @@ internal partial class InteractiveForm : Form
         };
         descriptionTextBox.Text = descriptionTextBox.Text.Replace("\n", "\r\n");
         notifyIcon.Icon = Properties.Resources.AppIcon;
-        pictureBox1.Image = NativeMethods.IsDarkMode(settings.ColorMode)
+        pictureBox1.Image = isDark
             ? Properties.Resources.new_dark
             : Properties.Resources.new_bright;
         delayTextBox.ReadOnly = true;
-        if (NativeMethods.IsDarkMode(settings.ColorMode))
+        if (isDark)
             gitLinkLabel.LinkColor = Color.DeepSkyBlue;
 
         debounceTimer = new()
@@ -80,8 +79,9 @@ internal partial class InteractiveForm : Form
         settings.RegisterSettingsChangedListener(() => { saveTimer.Stop(); saveTimer.Start(); });
 
         this.FormClosing += OnFormClosing;
-        this.runAtStartupCheckBox.Checked = startup.IsRegistered();
+        this.runAtStartupCheckBox.Checked = false;
         this.runAtStartupCheckBox.CheckedChanged += OnRunAtStartupCheckBoxChanged;
+        _ = LoadStartupRegistryStateAsync();
         this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
 
         this.remoteDesktopCheckBox.Checked = settings.IsRemoteDesktopDetectionEnabled;
@@ -95,6 +95,13 @@ internal partial class InteractiveForm : Form
 
         ignoreCurrentDeviceCheckBox.Text = Resources.IgnoreCurrentDevice;
         UpdateIgnoreDeviceControls();
+        mouseHook.CurrentDeviceChanged += () =>
+        {
+            if (InvokeRequired)
+                BeginInvoke(UpdateIgnoreDeviceControls);
+            else
+                UpdateIgnoreDeviceControls();
+        };
         logger.AddGuiLogger(text => Log(text));
         SetupTestArea();
         this.versionLabel.Text = version;
@@ -165,25 +172,21 @@ internal partial class InteractiveForm : Form
 
     protected override void WndProc(ref Message m)
     {
-        if (m.Msg == WM_INPUT)
-        {
-            mouseHook.ProcessRawInput(m.LParam);
-            UpdateIgnoreDeviceControls();
-        }
-        else if (m.Msg == NativeMethods.WM_SHOWME)
+        if (m.Msg == NativeMethods.WM_SHOWME)
         {
             ShowFromTray();
         }
         base.WndProc(ref m);
     }
 
-    private void ShowFromTray()
+    internal void ShowFromTray()
     {
         var extendedStyle = NativeMethods.GetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE);
         _ = NativeMethods.SetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE, extendedStyle & ~NativeMethods.WS_EX_TOOLWINDOW);
 
         Show();
         WindowState = FormWindowState.Normal;
+        NativeMethods.SetForegroundWindow(Handle);
         Activate();
         BringToFront();
         EnsureLogAtEnd();
@@ -269,6 +272,17 @@ internal partial class InteractiveForm : Form
             case MouseButtons.XButton2:
                 x2.BackColor = Color.Transparent;
                 break;
+        }
+    }
+
+    private async Task LoadStartupRegistryStateAsync()
+    {
+        bool registered = await Task.Run(() => startup.IsRegistered());
+        if (!IsDisposed)
+        {
+            runAtStartupCheckBox.CheckedChanged -= OnRunAtStartupCheckBoxChanged;
+            runAtStartupCheckBox.Checked = registered;
+            runAtStartupCheckBox.CheckedChanged += OnRunAtStartupCheckBoxChanged;
         }
     }
 
@@ -580,7 +594,7 @@ internal partial class InteractiveForm : Form
         if (selectedCode == settings.Language) return;
         settings.Language = selectedCode;
         settings.Save();
-        RestartArgs = "-interactive";
+        RestartArgs = $"-interactive -bounds {Left},{Top},{Width},{Height}";
         notifyIcon.Visible = false;
         notifyIcon.Dispose();
         Application.Exit();
@@ -595,7 +609,7 @@ internal partial class InteractiveForm : Form
         if (selected == settings.ColorMode) return;
         settings.ColorMode = selected;
         settings.Save();
-        RestartArgs = "-interactive";
+        RestartArgs = $"-interactive -bounds {Left},{Top},{Width},{Height}";
         notifyIcon.Visible = false;
         notifyIcon.Dispose();
         Application.Exit();
@@ -615,6 +629,10 @@ internal partial class InteractiveForm : Form
 
     private void InteractiveForm_Load(object sender, EventArgs e)
     {
+        if (settings.RestartBounds is Rectangle b)
+        {
+            SetBounds(b.X, b.Y, b.Width, b.Height);
+        }
         var wa = Screen.FromControl(this).WorkingArea;
         if (Height > wa.Height) Height = wa.Height;
         if (Width  > wa.Width)  Width  = wa.Width;

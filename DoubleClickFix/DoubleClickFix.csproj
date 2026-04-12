@@ -59,6 +59,10 @@
 	<PropertyGroup>
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<PublishReadyToRun>true</PublishReadyToRun>
+	</PropertyGroup>
 	
 	<ItemGroup>
 		<Content Include="app.ico" />

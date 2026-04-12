@@ -1,4 +1,5 @@
-﻿namespace DoubleClickFix.Tests.Helper;
+﻿using System.Drawing;
+namespace DoubleClickFix.Tests.Helper;
 
 class TestSettings : ISettings
 {
@@ -21,6 +22,7 @@ class TestSettings : ISettings
     public int DragStopTimeMilliseconds { get; set; } = -1;
     public bool IsRemoteDesktopDetectionEnabled { get; set; } = false;
 
+    public Rectangle? RestartBounds { get; set; }
     public bool IsFirstAppStart => false;
     public string Language { get; set; } = "";
     public ColorMode ColorMode { get; set; } = ColorMode.System;

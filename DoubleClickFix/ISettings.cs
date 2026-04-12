@@ -27,6 +27,7 @@ internal interface ISettings
     string Language { get; set; }
     ColorMode ColorMode { get; set; }
     void RegisterSettingsChangedListener(Action listener);
+    Rectangle? RestartBounds { get; }
     void Save();
     void Reset();
 }
