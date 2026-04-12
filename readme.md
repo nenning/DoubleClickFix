@@ -158,6 +158,7 @@ Technical details — mostly for development.
 ### 📦 Creating a Release
 
 #### GitHub
+- Update version in https://github.com/nenning/DoubleClickFix/blob/master/Directory.Build.props
 - To create a GitHub release (zip), run:
     - `git tag -a v1.0.1.0`
     - `git push origin v1.0.1.0`
