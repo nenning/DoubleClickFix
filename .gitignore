@@ -362,8 +362,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-# Claude Code local data
-.claude/
+# Claude Code local settings (machine-specific, not for source control)
+.claude/settings.local.json
 
 # Local .NET SDK home
 .dotnet_home/
