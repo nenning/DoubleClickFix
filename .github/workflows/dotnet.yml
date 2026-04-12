@@ -32,7 +32,8 @@ jobs:
     - name: Package binaries
       run: |
         mkdir Release
-        Copy-Item -Path DoubleClickFix/bin/Release/net10.0-windows10.0.17763.0/* -Destination Release/ -Recurse        
+        Copy-Item -Path DoubleClickFix/bin/Release/net10.0-windows10.0.17763.0/* -Destination Release/ -Recurse
+        Copy-Item -Path update.bat -Destination Release/
       shell: pwsh
 
     - name: Create ZIP file
@@ -47,9 +48,9 @@ jobs:
           *Installation*: Download the binaries, extract the DoubleClickFix.zip file and launch DoubleClickFix.exe.
           This will launch a Windows tray icon. Double-click it to open the UI and fine-tune the settings.
           Windows only. Requires .NET 10 run-time.
-          *Update*: No automatic updates are supported. Exit the application (by right-clicking on the tray icon).
-          Then copy over the contents of the zip into your application directory.
-          If you start the updated application from a different directory, you have to unregister and re-register 
+          *Update*: Run `update.bat` from the extracted zip — it finds the running application, copies the new files, and restarts it.
+          Alternatively, exit the application manually (right-click the tray icon), copy the files, and restart.
+          If you start the updated application from a different directory, you have to unregister and re-register
           the app to launch at Windows startup.
         draft: false
         prerelease: false

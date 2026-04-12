@@ -64,6 +64,7 @@ A lightweight tool that fixes accidental double-clicks caused by a worn-out or f
 2. **Unzip & Run**: Extract the files and execute the `.exe`.
     - Settings are stored in the registry under `HKEY_CURRENT_USER\Software\DoubleClickFix`.
     - If you move the app to a different folder, deregister and re-register it to restore the startup entry.
+3. **Update**: Extract the new release and run `update.bat` — it finds the running application, copies the new files over, and restarts it automatically.
 
 ### Build from Source
 Clone the repository and build with Visual Studio or the .NET CLI.
