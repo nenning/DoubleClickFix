@@ -3,197 +3,170 @@ using DoubleClickFix.Properties;
 using Microsoft.Win32;
 
 namespace DoubleClickFix;
-internal class Program
-{
-    private static bool IsRunningFromStore()
-    {
-        try
-        {
-            return Windows.ApplicationModel.Package.Current != null;
-        }
-        catch
-        {
-            return false; // standalone executable
-        }
-    }
 
-    private static string GetVersion(bool isRunningFromStore)
-    {
-        try
-        {
-            if (isRunningFromStore)
-            {
-                var version = Windows.ApplicationModel.Package.Current.Id.Version;
-                return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
-            }
-            else
-            {
-                return typeof(Program).Assembly.GetName().Version?.ToString() ?? "";
-            }
-        }
-        catch
-        {
-            return "";
-        }
-    }
+internal class Program {
+	private static bool IsRunningFromStore() {
+		try {
+			return Windows.ApplicationModel.Package.Current != null;
+		} catch {
+			return false; // standalone executable
+		}
+	}
 
-    private static bool NotifyRunningInstance()
-    {
-        string processName = Process.GetCurrentProcess().ProcessName;
-        var otherPids = Process.GetProcessesByName(processName)
-            .Where(p => p.Id != Environment.ProcessId)
-            .Select(p => (uint)p.Id)
-            .ToHashSet();
+	private static string GetVersion(bool isRunningFromStore) {
+		try {
+			if (isRunningFromStore) {
+				var version = Windows.ApplicationModel.Package.Current.Id.Version;
+				return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+			} else {
+				return typeof(Program).Assembly.GetName().Version?.ToString() ?? "";
+			}
+		} catch {
+			return "";
+		}
+	}
 
-        if (otherPids.Count == 0)
-            return false;
+	private static bool NotifyRunningInstance() {
+		string processName = Process.GetCurrentProcess().ProcessName;
+		HashSet<uint> otherPids = [.. Process.GetProcessesByName(processName)
+			.Where(p => p.Id != Environment.ProcessId)
+			.Select(p => (uint)p.Id)];
 
-        // Grant each running instance the right to bring itself to the foreground.
-        // Without this, Windows just flashes the taskbar button instead.
-        foreach (uint pid in otherPids)
-            NativeMethods.AllowSetForegroundWindow((int)pid);
+		if (otherPids.Count == 0) {
+			return false;
+		}
 
-        // Send WM_SHOWME to all top-level windows of the other process.
-        // WinForms creates several internal windows alongside the form, so we
-        // broadcast to all of them — only InteractiveForm.WndProc handles it.
-        bool sent = false;
-        NativeMethods.EnumWindows((hWnd, _) =>
-        {
-            if (NativeMethods.GetWindowThreadProcessId(hWnd, out uint pid) == 0)
-                return true; // skip this window on failure
-            if (otherPids.Contains(pid))
-            {
-                NativeMethods.PostMessage(hWnd, NativeMethods.WM_SHOWME, IntPtr.Zero, IntPtr.Zero);
-                sent = true;
-            }
-            return true; // continue enumeration
-        }, IntPtr.Zero);
-        return sent;
-    }
+		// Grant each running instance the right to bring itself to the foreground.
+		// Without this, Windows just flashes the taskbar button instead.
+		foreach (uint pid in otherPids) {
+			NativeMethods.AllowSetForegroundWindow((int)pid);
+		}
 
-    [STAThread]
-    private static void Main(string[] args)
-    {
-        Application.EnableVisualStyles();
-        Application.SetCompatibleTextRenderingDefault(false);
+		// Send WM_SHOWME to all top-level windows of the other process.
+		// WinForms creates several internal windows alongside the form, so we
+		// broadcast to all of them — only InteractiveForm.WndProc handles it.
+		bool sent = false;
+		NativeMethods.EnumWindows((hWnd, _) => {
+			if (NativeMethods.GetWindowThreadProcessId(hWnd, out uint pid) == 0) {
+				return true; // skip this window on failure
+			}
 
-        using Logger logger = new();
+			if (otherPids.Contains(pid)) {
+				NativeMethods.PostMessage(hWnd, NativeMethods.WM_SHOWME, IntPtr.Zero, IntPtr.Zero);
+				sent = true;
+			}
+			return true; // continue enumeration
+		}, IntPtr.Zero);
+		return sent;
+	}
 
-        bool isRunningFromStore = IsRunningFromStore();
-        if (isRunningFromStore)
-        {
-            // allow the store to restart the app after an update
-            _ = NativeMethods.RegisterApplicationRestart("-restart", 0);
-        }
+	[STAThread]
+	private static void Main(string[] args) {
+		Application.EnableVisualStyles();
+		Application.SetCompatibleTextRenderingDefault(false);
 
-        ISettings settings = isRunningFromStore
-            ? new StoreSettings(args, logger)
-            : new StandaloneSettings(args, logger);
+		using Logger logger = new();
 
-        Application.SetColorMode(settings.ColorMode switch
-        {
-            ColorMode.Dark  => SystemColorMode.Dark,
-            ColorMode.Light => SystemColorMode.Classic,
-            _               => SystemColorMode.System
-        });
+		bool isRunningFromStore = IsRunningFromStore();
+		if (isRunningFromStore) {
+			// allow the store to restart the app after an update
+			_ = NativeMethods.RegisterApplicationRestart("-restart", 0);
+		}
 
-        // enforce single instance via mutex
-        using Mutex mutex = new(true, "{F8049D9C-AD6B-4158-92A3-E537355EF536}");
-        if (settings.UseHook && !mutex.WaitOne(TimeSpan.Zero, true))
-        {
-            // an instance is already running – bring its UI to the front
-            if (!NotifyRunningInstance())
-            {
-                // Fallback if the window can't be found for some reason
-                MessageBox.Show(Resources.AppAlreadyRunning, "Double-click Fix");
-            }
-            return;
-        }
+		ISettings settings = isRunningFromStore
+			? new StoreSettings(args, logger)
+			: new StandaloneSettings(args, logger);
 
-        // Elevate process priority so the hook callback gets scheduled promptly
-        // during boot when many startup apps compete for CPU.
-        try
-        {
-            using var process = Process.GetCurrentProcess();
-            process.PriorityClass = ProcessPriorityClass.AboveNormal;
-        }
-        catch { }
+		Application.SetColorMode(settings.ColorMode switch {
+			ColorMode.Dark => SystemColorMode.Dark,
+			ColorMode.Light => SystemColorMode.Classic,
+			_ => SystemColorMode.System
+		});
 
-        using MouseHook mouseHook = new(settings, logger, new NativeMethods());
-        using SystemEventsHandler eventsHandler = new(mouseHook, logger, isRunningFromStore);
+		// enforce single instance via mutex
+		using Mutex mutex = new(true, "{F8049D9C-AD6B-4158-92A3-E537355EF536}");
+		if (settings.UseHook && !mutex.WaitOne(TimeSpan.Zero, true)) {
+			// an instance is already running – bring its UI to the front
+			if (!NotifyRunningInstance()) {
+				// Fallback if the window can't be found for some reason
+				MessageBox.Show(Resources.AppAlreadyRunning, "Double-click Fix");
+			}
+			return;
+		}
 
-        if (isRunningFromStore)
-        {
-            // Let UI thread exceptions propagate to AppDomain.UnhandledException → WER
-            // so Partner Center gets real stack traces instead of "Unknown" failures
-            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
-        }
+		// Elevate process priority so the hook callback gets scheduled promptly
+		// during boot when many startup apps compete for CPU.
+		try {
+			using Process process = Process.GetCurrentProcess();
+			process.PriorityClass = ProcessPriorityClass.AboveNormal;
+		} catch { }
 
-        // Install the hook as early as possible using a lightweight message-only window
-        // for raw input, deferring the heavy InteractiveForm construction until after
-        // the message pump starts.
-        using RawInputWindow rawInputWindow = new(mouseHook);
-        mouseHook.RegisterForRawInput(rawInputWindow.Handle);
-        bool hookInstalled = mouseHook.Install();
-        if (!hookInstalled)
-        {
-            logger.Log($"{Resources.Error}: {Resources.HookNotInstalled}");
-        }
+		using MouseHook mouseHook = new(settings, logger, new NativeMethods());
+		using SystemEventsHandler eventsHandler = new(mouseHook, logger, isRunningFromStore);
 
-        InteractiveForm? form = null;
-        var appContext = new ApplicationContext();
-        try
-        {
-            Application.Idle += OnFirstIdle;
+		if (isRunningFromStore) {
+			// Let UI thread exceptions propagate to AppDomain.UnhandledException → WER
+			// so Partner Center gets real stack traces instead of "Unknown" failures
+			Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
+		}
 
-            void OnFirstIdle(object? sender, EventArgs e)
-            {
-                Application.Idle -= OnFirstIdle;
+		// Install the hook as early as possible using a lightweight message-only window
+		// for raw input, deferring the heavy InteractiveForm construction until after
+		// the message pump starts.
+		using RawInputWindow rawInputWindow = new(mouseHook);
+		mouseHook.RegisterForRawInput(rawInputWindow.Handle);
+		bool hookInstalled = mouseHook.Install();
+		if (!hookInstalled) {
+			logger.Log($"{Resources.Error}: {Resources.HookNotInstalled}");
+		}
 
-                IStartupRegistry startupRegistry = isRunningFromStore
-                    ? new StoreStartupRegistry(logger)
-                    : new StandaloneStartupRegistry(logger);
+		InteractiveForm? form = null;
+		ApplicationContext appContext = new();
+		try {
+			Application.Idle += OnFirstIdle;
 
-                if (settings.IsFirstAppStart)
-                {
-                    startupRegistry.Register();
-                }
+			void OnFirstIdle(object? sender, EventArgs e) {
+				Application.Idle -= OnFirstIdle;
 
-                form = new InteractiveForm(startupRegistry, settings, logger, mouseHook, GetVersion(isRunningFromStore), isRunningFromStore);
+				IStartupRegistry startupRegistry = isRunningFromStore
+					? new StoreStartupRegistry(logger)
+					: new StandaloneStartupRegistry(logger);
 
-                if (!hookInstalled)
-                {
-                    form.Text = "No mouse hook installed!";
-                    form.BackColor = NativeMethods.IsDarkMode(settings.ColorMode) ? Color.Crimson : Color.DarkRed;
-                }
+				if (settings.IsFirstAppStart) {
+					startupRegistry.Register();
+				}
 
-                // Setting MainForm makes ApplicationContext exit when the form closes,
-                // and triggers Show() which creates the handle (SetVisibleCore suppresses
-                // the actual show when not interactive).
-                appContext.MainForm = form;
-                form.Show();
+				form = new(startupRegistry, settings, logger, mouseHook, GetVersion(isRunningFromStore), isRunningFromStore);
 
-                rawInputWindow.SetShowMeHandler(() => form.BeginInvoke(() => form.ShowFromTray()));
-            }
+				if (!hookInstalled) {
+					form.Text = "No mouse hook installed!";
+					form.BackColor = NativeMethods.IsDarkMode(settings.ColorMode) ? Color.Crimson : Color.DarkRed;
+				}
 
-            Application.Run(appContext);
-        }
-        finally
-        {
-            // release the mutex if we acquired it
-            if (settings.UseHook)
-            {
-                try { mutex.ReleaseMutex(); } catch { }
-            }
-        }
+				// Setting MainForm makes ApplicationContext exit when the form closes,
+				// and triggers Show() which creates the handle (SetVisibleCore suppresses
+				// the actual show when not interactive).
+				appContext.MainForm = form;
+				form.Show();
 
-        // Restart after mutex is released so the new process can acquire it
-        if (form?.RestartArgs != null)
-        {
-            string? exePath = Environment.ProcessPath;
-            if (exePath != null)
-                Process.Start(new ProcessStartInfo(exePath, form.RestartArgs) { UseShellExecute = false });
-        }
-    }
+				rawInputWindow.SetShowMeHandler(() => form.BeginInvoke(() => form.ShowFromTray()));
+			}
+
+			Application.Run(appContext);
+		} finally {
+			// release the mutex if we acquired it
+			if (settings.UseHook) {
+				try { mutex.ReleaseMutex(); } catch { }
+			}
+		}
+
+		// Restart after mutex is released so the new process can acquire it
+		if (form?.RestartArgs != null) {
+			string? exePath = Environment.ProcessPath;
+			if (exePath != null) {
+				Process.Start(new ProcessStartInfo(exePath, form.RestartArgs) { UseShellExecute = false });
+			}
+		}
+	}
 
 }

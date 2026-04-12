@@ -1,699 +1,654 @@
-﻿using DoubleClickFix.Properties;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using System.Net.Http;
 using System.Security;
 using System.Text.Json;
+using DoubleClickFix.Properties;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 namespace DoubleClickFix;
 
-internal partial class InteractiveForm : Form
-{
-    private readonly IStartupRegistry startup;
-    private readonly ISettings settings;
-    private readonly Logger logger;
-    private readonly MouseHook mouseHook;
-    private readonly System.Windows.Forms.Timer debounceTimer;
-    private readonly System.Windows.Forms.Timer wheelResetTimer;
-    private readonly System.Windows.Forms.Timer saveTimer;
-    private bool suppressNextShow;
-    private readonly bool isStore;
-    internal string? RestartArgs { get; private set; }
+internal partial class InteractiveForm : Form {
+	private readonly IStartupRegistry startup;
+	private readonly ISettings settings;
+	private readonly Logger logger;
+	private readonly MouseHook mouseHook;
+	private readonly System.Windows.Forms.Timer debounceTimer;
+	private readonly System.Windows.Forms.Timer wheelResetTimer;
+	private readonly System.Windows.Forms.Timer saveTimer;
+	private bool suppressNextShow;
+	private readonly bool isStore;
+	internal string? RestartArgs { get; private set; }
 
-    public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, MouseHook mouseHook, string version, bool isStore = false)
-    {
-        this.startup = startup;
-        this.settings = settings;
-        this.logger = logger;
-        this.mouseHook = mouseHook;
-        InitializeComponent();
-        bool isDark = NativeMethods.IsDarkMode(settings.ColorMode);
-        updateLinkLabel.Text = string.Empty;
-        updateLinkLabel.Visible = false;
-        if (isDark)
-            updateLinkLabel.LinkColor = Color.DeepSkyBlue;
-        updateLinkLabel.LinkClicked += (s, e) =>
-        {
-            try
-            {
-                Process.Start(new ProcessStartInfo(
-                    "https://github.com/nenning/DoubleClickFix/releases") { UseShellExecute = true });
-            }
-            catch { }
-        };
-        descriptionTextBox.Text = descriptionTextBox.Text.Replace("\n", "\r\n");
-        notifyIcon.Icon = Properties.Resources.AppIcon;
-        pictureBox1.Image = isDark
-            ? Properties.Resources.new_dark
-            : Properties.Resources.new_bright;
-        delayTextBox.ReadOnly = true;
-        if (isDark)
-            gitLinkLabel.LinkColor = Color.DeepSkyBlue;
+	public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, MouseHook mouseHook, string version, bool isStore = false) {
+		this.startup = startup;
+		this.settings = settings;
+		this.logger = logger;
+		this.mouseHook = mouseHook;
+		InitializeComponent();
+		bool isDark = NativeMethods.IsDarkMode(settings.ColorMode);
+		updateLinkLabel.Text = string.Empty;
+		updateLinkLabel.Visible = false;
+		if (isDark) {
+			updateLinkLabel.LinkColor = Color.DeepSkyBlue;
+		}
 
-        debounceTimer = new()
-        {
-            Interval = 100
-        };
-        debounceTimer.Tick += OnDebounceTimerTick;
-        components!.Add(debounceTimer);
+		updateLinkLabel.LinkClicked += (s, e) => {
+			try {
+				Process.Start(new ProcessStartInfo(
+					"https://github.com/nenning/DoubleClickFix/releases") { UseShellExecute = true });
+			} catch { }
+		};
+		descriptionTextBox.Text = descriptionTextBox.Text.Replace("\n", "\r\n");
+		notifyIcon.Icon = Properties.Resources.AppIcon;
+		pictureBox1.Image = isDark
+			? Properties.Resources.new_dark
+			: Properties.Resources.new_bright;
+		delayTextBox.ReadOnly = true;
+		if (isDark) {
+			gitLinkLabel.LinkColor = Color.DeepSkyBlue;
+		}
 
-        wheelResetTimer = new()
-        {
-            Interval = 500
-        };
-        wheelResetTimer.Tick += (s, args) =>
-        {
-            wheel.BackColor = Color.Transparent;
-            wheelResetTimer.Stop();
-        };
-        components!.Add(wheelResetTimer);
+		debounceTimer = new() {
+			Interval = 100
+		};
+		debounceTimer.Tick += OnDebounceTimerTick;
+		components!.Add(debounceTimer);
 
-        saveTimer = new() { Interval = 200 };
-        saveTimer.Tick += (s, args) =>
-        {
-            settings.Save();
-            saveTimer.Stop();
-        };
-        components!.Add(saveTimer);
-        settings.RegisterSettingsChangedListener(() => { saveTimer.Stop(); saveTimer.Start(); });
+		wheelResetTimer = new() {
+			Interval = 500
+		};
+		wheelResetTimer.Tick += (s, args) => {
+			wheel.BackColor = Color.Transparent;
+			wheelResetTimer.Stop();
+		};
+		components!.Add(wheelResetTimer);
 
-        this.FormClosing += OnFormClosing;
-        this.runAtStartupCheckBox.Checked = false;
-        this.runAtStartupCheckBox.CheckedChanged += OnRunAtStartupCheckBoxChanged;
-        _ = LoadStartupRegistryStateAsync();
-        this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
+		saveTimer = new() { Interval = 200 };
+		saveTimer.Tick += (s, args) => {
+			settings.Save();
+			saveTimer.Stop();
+		};
+		components!.Add(saveTimer);
+		settings.RegisterSettingsChangedListener(() => { saveTimer.Stop(); saveTimer.Start(); });
 
-        this.remoteDesktopCheckBox.Checked = settings.IsRemoteDesktopDetectionEnabled;
+		this.FormClosing += OnFormClosing;
+		this.runAtStartupCheckBox.Checked = false;
+		this.runAtStartupCheckBox.CheckedChanged += OnRunAtStartupCheckBoxChanged;
+		_ = LoadStartupRegistryStateAsync();
+		this.useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
 
-        bool fixDragging = settings.IsDragCorrectionEnabled;
-        this.fixDraggingCheckBox.Checked = fixDragging;
-        this.dragStartDelayTextBox.Enabled = fixDragging;
-        this.dragEndDelayTextBox.Enabled = fixDragging;
-        this.dragStartDelayTextBox.Text = fixDragging ? settings.DragStartTimeMilliseconds.ToString() : string.Empty;
-        this.dragEndDelayTextBox.Text = fixDragging ? settings.DragStopTimeMilliseconds.ToString() : string.Empty;
+		this.remoteDesktopCheckBox.Checked = settings.IsRemoteDesktopDetectionEnabled;
 
-        ignoreCurrentDeviceCheckBox.Text = Resources.IgnoreCurrentDevice;
-        UpdateIgnoreDeviceControls();
-        mouseHook.CurrentDeviceChanged += () =>
-        {
-            if (InvokeRequired)
-                BeginInvoke(UpdateIgnoreDeviceControls);
-            else
-                UpdateIgnoreDeviceControls();
-        };
-        logger.AddGuiLogger(text => Log(text));
-        SetupTestArea();
-        this.versionLabel.Text = version;
-        this.mouseButtonComboBox.SelectedIndex = 0;
-        suppressNextShow = !settings.IsInteractive;
+		bool fixDragging = settings.IsDragCorrectionEnabled;
+		this.fixDraggingCheckBox.Checked = fixDragging;
+		this.dragStartDelayTextBox.Enabled = fixDragging;
+		this.dragEndDelayTextBox.Enabled = fixDragging;
+		this.dragStartDelayTextBox.Text = fixDragging ? settings.DragStartTimeMilliseconds.ToString() : string.Empty;
+		this.dragEndDelayTextBox.Text = fixDragging ? settings.DragStopTimeMilliseconds.ToString() : string.Empty;
 
-        themeComboBox.Items.AddRange([Resources.ThemeSystem, Resources.ThemeLight, Resources.ThemeDark]);
-        themeComboBox.SelectedIndex = settings.ColorMode switch
-        {
-            ColorMode.Light => 1,
-            ColorMode.Dark  => 2,
-            _               => 0
-        };
-        themeComboBox.SelectedIndexChanged += OnThemeChanged;
+		ignoreCurrentDeviceCheckBox.Text = Resources.IgnoreCurrentDevice;
+		UpdateIgnoreDeviceControls();
+		mouseHook.CurrentDeviceChanged += () => {
+			if (InvokeRequired) {
+				BeginInvoke(UpdateIgnoreDeviceControls);
+			} else {
+				UpdateIgnoreDeviceControls();
+			}
+		};
+		logger.AddGuiLogger(text => Log(text));
+		SetupTestArea();
+		this.versionLabel.Text = version;
+		this.mouseButtonComboBox.SelectedIndex = 0;
+		suppressNextShow = !settings.IsInteractive;
 
-        languageComboBox.SelectedIndexChanged -= OnLanguageChanged;
-        languageComboBox.SelectedIndex = settings.Language switch
-        {
-            "de" => 1,
-            "es" => 2,
-            "fr" => 3,
-            "it" => 4,
-            _    => 0
-        };
-        languageComboBox.SelectedIndexChanged += OnLanguageChanged;
+		themeComboBox.Items.AddRange([Resources.ThemeSystem, Resources.ThemeLight, Resources.ThemeDark]);
+		themeComboBox.SelectedIndex = settings.ColorMode switch {
+			ColorMode.Light => 1,
+			ColorMode.Dark => 2,
+			_ => 0
+		};
+		themeComboBox.SelectedIndexChanged += OnThemeChanged;
 
-        this.isStore = isStore;
-        if (!isStore)
-        {
-            var updateTimer = new System.Windows.Forms.Timer(components) { Interval = 5000 };
-            updateTimer.Tick += async (s, e) =>
-            {
-                updateTimer.Stop();
-                await CheckForUpdateAsync();
-            };
-            updateTimer.Start();
-        }
+		languageComboBox.SelectedIndexChanged -= OnLanguageChanged;
+		languageComboBox.SelectedIndex = settings.Language switch {
+			"de" => 1,
+			"es" => 2,
+			"fr" => 3,
+			"it" => 4,
+			_ => 0
+		};
+		languageComboBox.SelectedIndexChanged += OnLanguageChanged;
 
-    }
+		this.isStore = isStore;
+		if (!isStore) {
+			System.Windows.Forms.Timer updateTimer = new System.Windows.Forms.Timer(components) { Interval = 5000 };
+			updateTimer.Tick += async (s, e) => {
+				updateTimer.Stop();
+				await CheckForUpdateAsync();
+			};
+			updateTimer.Start();
+		}
 
-    protected override CreateParams CreateParams
-    {
-        get
-        {
-            var cp = base.CreateParams;
-            if (settings == null || !settings.IsInteractive)
-                cp.ExStyle |= NativeMethods.WS_EX_TOOLWINDOW;
-            return cp;
-        }
-    }
+	}
 
-    protected override void OnHandleCreated(EventArgs e)
-    {
-        base.OnHandleCreated(e);
-        NativeMethods.ApplyDarkTitleBar(Handle, settings.ColorMode);
-    }
+	protected override CreateParams CreateParams {
+		get {
+			var cp = base.CreateParams;
+			if (settings == null || !settings.IsInteractive) {
+				cp.ExStyle |= NativeMethods.WS_EX_TOOLWINDOW;
+			}
 
-    protected override void SetVisibleCore(bool value)
-    {
-        if (value && suppressNextShow)
-        {
-            suppressNextShow = false;
-            if (!IsHandleCreated) CreateHandle();
-            return;
-        }
-        base.SetVisibleCore(value);
-    }
+			return cp;
+		}
+	}
 
-    protected override void WndProc(ref Message m)
-    {
-        if (m.Msg == NativeMethods.WM_SHOWME)
-        {
-            ShowFromTray();
-        }
-        base.WndProc(ref m);
-    }
+	protected override void OnHandleCreated(EventArgs e) {
+		base.OnHandleCreated(e);
+		NativeMethods.ApplyDarkTitleBar(Handle, settings.ColorMode);
+	}
 
-    internal void ShowFromTray()
-    {
-        var extendedStyle = NativeMethods.GetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE);
-        _ = NativeMethods.SetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE, extendedStyle & ~NativeMethods.WS_EX_TOOLWINDOW);
+	protected override void SetVisibleCore(bool value) {
+		if (value && suppressNextShow) {
+			suppressNextShow = false;
+			if (!IsHandleCreated) {
+				CreateHandle();
+			}
 
-        Show();
-        WindowState = FormWindowState.Normal;
-        NativeMethods.SetForegroundWindow(Handle);
-        Activate();
-        BringToFront();
-        EnsureLogAtEnd();
-    }
+			return;
+		}
+		base.SetVisibleCore(value);
+	}
 
-    protected override void OnActivated(EventArgs e)
-    {
-        base.OnActivated(e);
-        EnsureLogAtEnd();
-    }
+	protected override void WndProc(ref Message m) {
+		if (m.Msg == NativeMethods.WM_SHOWME) {
+			ShowFromTray();
+		}
+		base.WndProc(ref m);
+	}
 
-    private void EnsureLogAtEnd()
-    {
-        if (logTextBox.IsDisposed) return;
-        logTextBox.SelectionStart = logTextBox.TextLength;
-        logTextBox.SelectionLength = 0;
-        logTextBox.ScrollToCaret();
-    }
-    private void SetupTestArea()
-    {
-        foreach (var cb in new[] { left, right, middle, x1, x2, wheel })
-        {
-            cb.AutoCheck = false;
-            cb.MouseDown += OnTestMouseDown;
-            cb.MouseUp += OnTestMouseUp;
-            cb.MouseWheel += OnTestMouseWheel;
-        }
+	internal void ShowFromTray() {
+		var extendedStyle = NativeMethods.GetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE);
+		_ = NativeMethods.SetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE, extendedStyle & ~NativeMethods.WS_EX_TOOLWINDOW);
 
-        pictureBox1.MouseDown += OnTestMouseDown;
-        pictureBox1.MouseUp += OnTestMouseUp;
-        pictureBox1.MouseWheel += OnTestMouseWheel;
-        richTextBox1.MouseDown += OnTestMouseDown;
-        richTextBox1.MouseUp += OnTestMouseUp;
-        richTextBox1.MouseWheel += OnTestMouseWheel;
-        OnHideTestControls(this, EventArgs.Empty);
-    }
+		Show();
+		WindowState = FormWindowState.Normal;
+		NativeMethods.SetForegroundWindow(Handle);
+		Activate();
+		BringToFront();
+		EnsureLogAtEnd();
+	}
 
-    private void OnTestMouseWheel(object? sender, MouseEventArgs e)
-    {
-        wheel.BackColor = Color.Red;
-        wheelResetTimer.Stop();
-        wheelResetTimer.Start();
-    }
+	protected override void OnActivated(EventArgs e) {
+		base.OnActivated(e);
+		EnsureLogAtEnd();
+	}
 
-    private void OnTestMouseDown(object? sender, MouseEventArgs e)
-    {
-        switch (e.Button)
-        {
-            case MouseButtons.Left:
-                left.BackColor = Color.Red;
-                break;
-            case MouseButtons.Right:
-                right.BackColor = Color.Red;
-                break;
-            case MouseButtons.Middle:
-                middle.BackColor = Color.Red;
-                break;
-            case MouseButtons.XButton1:
-                x1.BackColor = Color.Red;
-                break;
-            case MouseButtons.XButton2:
-                x2.BackColor = Color.Red;
-                break;
-        }
-    }
+	private void EnsureLogAtEnd() {
+		if (logTextBox.IsDisposed) {
+			return;
+		}
 
-    private void OnTestMouseUp(object? sender, MouseEventArgs e)
-    {
-        switch (e.Button)
-        {
-            case MouseButtons.Left:
-                left.BackColor = Color.Transparent;
-                break;
-            case MouseButtons.Right:
-                right.BackColor = Color.Transparent;
-                break;
-            case MouseButtons.Middle:
-                middle.BackColor = Color.Transparent;
-                break;
-            case MouseButtons.XButton1:
-                x1.BackColor = Color.Transparent;
-                break;
-            case MouseButtons.XButton2:
-                x2.BackColor = Color.Transparent;
-                break;
-        }
-    }
+		logTextBox.SelectionStart = logTextBox.TextLength;
+		logTextBox.SelectionLength = 0;
+		logTextBox.ScrollToCaret();
+	}
+	private void SetupTestArea() {
+		foreach (var cb in new[] { left, right, middle, x1, x2, wheel }) {
+			cb.AutoCheck = false;
+			cb.MouseDown += OnTestMouseDown;
+			cb.MouseUp += OnTestMouseUp;
+			cb.MouseWheel += OnTestMouseWheel;
+		}
 
-    private async Task LoadStartupRegistryStateAsync()
-    {
-        bool registered = await Task.Run(() => startup.IsRegistered());
-        if (!IsDisposed)
-        {
-            runAtStartupCheckBox.CheckedChanged -= OnRunAtStartupCheckBoxChanged;
-            runAtStartupCheckBox.Checked = registered;
-            runAtStartupCheckBox.CheckedChanged += OnRunAtStartupCheckBoxChanged;
-        }
-    }
+		pictureBox1.MouseDown += OnTestMouseDown;
+		pictureBox1.MouseUp += OnTestMouseUp;
+		pictureBox1.MouseWheel += OnTestMouseWheel;
+		richTextBox1.MouseDown += OnTestMouseDown;
+		richTextBox1.MouseUp += OnTestMouseUp;
+		richTextBox1.MouseWheel += OnTestMouseWheel;
+		OnHideTestControls(this, EventArgs.Empty);
+	}
 
-    private void Log(string message)
-    {
-        if (!IsDisposed)
-        {
-            logTextBox.AppendText(message + Environment.NewLine);
-        }
-    }
+	private void OnTestMouseWheel(object? sender, MouseEventArgs e) {
+		wheel.BackColor = Color.Red;
+		wheelResetTimer.Stop();
+		wheelResetTimer.Start();
+	}
 
-    private void OnFormClosing(object? sender, FormClosingEventArgs e)
-    {
-        if (e.CloseReason == CloseReason.UserClosing)
-        {
-            if (!mouseHook.IsInstalled)
-            {
-                notifyIcon.Visible = false;
-                notifyIcon.Dispose();
-                return;
-            }
-            e.Cancel = true;
-            HideWindow();
-        }
-    }
+	private void OnTestMouseDown(object? sender, MouseEventArgs e) {
+		switch (e.Button) {
+			case MouseButtons.Left:
+				left.BackColor = Color.Red;
+				break;
+			case MouseButtons.Right:
+				right.BackColor = Color.Red;
+				break;
+			case MouseButtons.Middle:
+				middle.BackColor = Color.Red;
+				break;
+			case MouseButtons.XButton1:
+				x1.BackColor = Color.Red;
+				break;
+			case MouseButtons.XButton2:
+				x2.BackColor = Color.Red;
+				break;
+		}
+	}
 
-    private void HideWindow()
-    {
-        Hide();
-        var extendedStyle = NativeMethods.GetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE);
-        _ = NativeMethods.SetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE, extendedStyle | NativeMethods.WS_EX_TOOLWINDOW);
-    }
+	private void OnTestMouseUp(object? sender, MouseEventArgs e) {
+		switch (e.Button) {
+			case MouseButtons.Left:
+				left.BackColor = Color.Transparent;
+				break;
+			case MouseButtons.Right:
+				right.BackColor = Color.Transparent;
+				break;
+			case MouseButtons.Middle:
+				middle.BackColor = Color.Transparent;
+				break;
+			case MouseButtons.XButton1:
+				x1.BackColor = Color.Transparent;
+				break;
+			case MouseButtons.XButton2:
+				x2.BackColor = Color.Transparent;
+				break;
+		}
+	}
 
-    private void OnResetButtonClicked(object? sender, EventArgs e)
-    {
-        settings.Reset();
-        settings.Save();
+	private async Task LoadStartupRegistryStateAsync() {
+		bool registered = await Task.Run(() => startup.IsRegistered());
+		if (!IsDisposed) {
+			runAtStartupCheckBox.CheckedChanged -= OnRunAtStartupCheckBoxChanged;
+			runAtStartupCheckBox.Checked = registered;
+			runAtStartupCheckBox.CheckedChanged += OnRunAtStartupCheckBoxChanged;
+		}
+	}
 
-        useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
-        remoteDesktopCheckBox.Checked = settings.IsRemoteDesktopDetectionEnabled;
+	private void Log(string message) {
+		if (!IsDisposed) {
+			logTextBox.AppendText(message + Environment.NewLine);
+		}
+	}
 
-        bool fixDragging = settings.IsDragCorrectionEnabled;
-        fixDraggingCheckBox.Checked = fixDragging;
-        dragStartDelayTextBox.Enabled = fixDragging;
-        dragEndDelayTextBox.Enabled = fixDragging;
-        dragStartDelayTextBox.Text = fixDragging ? settings.DragStartTimeMilliseconds.ToString() : string.Empty;
-        dragEndDelayTextBox.Text = fixDragging ? settings.DragStopTimeMilliseconds.ToString() : string.Empty;
+	private void OnFormClosing(object? sender, FormClosingEventArgs e) {
+		if (e.CloseReason == CloseReason.UserClosing) {
+			if (!mouseHook.IsInstalled) {
+				notifyIcon.Visible = false;
+				notifyIcon.Dispose();
+				return;
+			}
+			e.Cancel = true;
+			HideWindow();
+		}
+	}
 
-        UpdateIgnoreDeviceControls();
-        OnSelectedMouseButtonChanged(this, EventArgs.Empty);
-    }
+	private void HideWindow() {
+		Hide();
+		var extendedStyle = NativeMethods.GetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE);
+		_ = NativeMethods.SetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE, extendedStyle | NativeMethods.WS_EX_TOOLWINDOW);
+	}
 
-    private void OnRunAtStartupCheckBoxChanged(object? sender, EventArgs e)
-    {
-        bool success = runAtStartupCheckBox.Checked ? startup.Register() : startup.Unregister();
-        Log(success ? Resources.SettingsSaved : Resources.WritingRegistryFailed);
-    }
+	private void OnResetButtonClicked(object? sender, EventArgs e) {
+		settings.Reset();
+		settings.Save();
 
-    private void OnLogTextBoxChanged(object? sender, EventArgs e)
-    {
-        if (logTextBox.TextLength > logTextBox.MaxLength - 1000)
-        {
-            logTextBox.Clear();
-        }
-    }
+		useMinDelayCheckBox.Checked = settings.MinDelay >= 0;
+		remoteDesktopCheckBox.Checked = settings.IsRemoteDesktopDetectionEnabled;
 
-    private void OnNotifyIconDoubleClick(object? sender, MouseEventArgs e)
-    {
-        ShowFromTray();
-    }
+		bool fixDragging = settings.IsDragCorrectionEnabled;
+		fixDraggingCheckBox.Checked = fixDragging;
+		dragStartDelayTextBox.Enabled = fixDragging;
+		dragEndDelayTextBox.Enabled = fixDragging;
+		dragStartDelayTextBox.Text = fixDragging ? settings.DragStartTimeMilliseconds.ToString() : string.Empty;
+		dragEndDelayTextBox.Text = fixDragging ? settings.DragStopTimeMilliseconds.ToString() : string.Empty;
 
-    private void OnShowUiMenuClick(object? sender, EventArgs e)
-    {
-        ShowFromTray();
-    }
+		UpdateIgnoreDeviceControls();
+		OnSelectedMouseButtonChanged(this, EventArgs.Empty);
+	}
 
-    protected override void OnVisibleChanged(EventArgs e)
-    {
-        base.OnVisibleChanged(e);
-        logger.IsAppVisible = this.Visible;
-    }
+	private void OnRunAtStartupCheckBoxChanged(object? sender, EventArgs e) {
+		bool success = runAtStartupCheckBox.Checked ? startup.Register() : startup.Unregister();
+		Log(success ? Resources.SettingsSaved : Resources.WritingRegistryFailed);
+	}
 
-    private void OnExitMenuClick(object? sender, EventArgs e)
-    {
-        notifyIcon.Visible = false;
-        // make sure the icon is removed from the system tray
-        notifyIcon.Dispose();
-        Application.Exit();
-    }
+	private void OnLogTextBoxChanged(object? sender, EventArgs e) {
+		if (logTextBox.TextLength > logTextBox.MaxLength - 1000) {
+			logTextBox.Clear();
+		}
+	}
 
-    private void OnSelectedMouseButtonChanged(object sender, EventArgs e)
-    {
-        int threshold = -1;
-        var index = mouseButtonComboBox.SelectedIndex;
-        switch (index)
-        {
-            case 0:
-                threshold = settings.LeftThreshold;
-                break;
-            case 1:
-                threshold = settings.RightThreshold;
-                break;
-            case 2:
-                threshold = settings.MiddleThreshold;
-                break;
-            case 3:
-                threshold = settings.X1Threshold;
-                break;
-            case 4:
-                threshold = settings.X2Threshold;
-                break;
-            case 5:
-                threshold = settings.WheelThreshold;
-                break;
-        }
-        buttonEnabledCheckBox.Checked = threshold >= 0;
-        thresholdSlider.Value = threshold;
-    }
+	private void OnNotifyIconDoubleClick(object? sender, MouseEventArgs e) => ShowFromTray();
 
-    private void OnShowTestControls(object sender, EventArgs e)
-    {
-        left.Show();
-        right.Show();
-        middle.Show();
-        x1.Show();
-        x2.Show();
-        wheel.Show();
-        left.Checked = settings.LeftThreshold >= 0;
-        right.Checked = settings.RightThreshold >= 0;
-        middle.Checked = settings.MiddleThreshold >= 0;
-        x1.Checked = settings.X1Threshold >= 0;
-        x2.Checked = settings.X2Threshold >= 0;
-        wheel.Checked = settings.WheelThreshold >= 0;
-    }
+	private void OnShowUiMenuClick(object? sender, EventArgs e) => ShowFromTray();
 
-    private void OnHideTestControls(object sender, EventArgs e)
-    {
-        left.Hide();
-        right.Hide();
-        middle.Hide();
-        x1.Hide();
-        x2.Hide();
-        wheel.Hide();
-        pictureBox1.Invalidate();
-    }
+	protected override void OnVisibleChanged(EventArgs e) {
+		base.OnVisibleChanged(e);
+		logger.IsAppVisible = this.Visible;
+	}
 
-    private void OnThresholdValueChanged(object sender, EventArgs e)
-    {
-        this.delayTextBox.Text = thresholdSlider.Value.ToString();
-        bool enabled = thresholdSlider.Value >= 0;
-        if (enabled != buttonEnabledCheckBox.Checked)
-        {
-            buttonEnabledCheckBox.Checked = enabled;
-        }
-        ResetDebounceTimer();
-    }
+	private void OnExitMenuClick(object? sender, EventArgs e) {
+		notifyIcon.Visible = false;
+		// make sure the icon is removed from the system tray
+		notifyIcon.Dispose();
+		Application.Exit();
+	}
 
-    private void ResetDebounceTimer()
-    {
-        // Restart the debounce timer whenever the TrackBar value changes
-        debounceTimer.Stop();
-        debounceTimer.Start();
-    }
+	private void OnSelectedMouseButtonChanged(object sender, EventArgs e) {
+		int threshold = -1;
+		var index = mouseButtonComboBox.SelectedIndex;
+		switch (index) {
+			case 0:
+				threshold = settings.LeftThreshold;
+				break;
+			case 1:
+				threshold = settings.RightThreshold;
+				break;
+			case 2:
+				threshold = settings.MiddleThreshold;
+				break;
+			case 3:
+				threshold = settings.X1Threshold;
+				break;
+			case 4:
+				threshold = settings.X2Threshold;
+				break;
+			case 5:
+				threshold = settings.WheelThreshold;
+				break;
+		}
+		buttonEnabledCheckBox.Checked = threshold >= 0;
+		thresholdSlider.Value = threshold;
+	}
 
-    private void OnDebounceTimerTick(object? sender, EventArgs e)
-    {
-        UpdateSettings();
-        debounceTimer.Stop();
-    }
+	private void OnShowTestControls(object sender, EventArgs e) {
+		left.Show();
+		right.Show();
+		middle.Show();
+		x1.Show();
+		x2.Show();
+		wheel.Show();
+		left.Checked = settings.LeftThreshold >= 0;
+		right.Checked = settings.RightThreshold >= 0;
+		middle.Checked = settings.MiddleThreshold >= 0;
+		x1.Checked = settings.X1Threshold >= 0;
+		x2.Checked = settings.X2Threshold >= 0;
+		wheel.Checked = settings.WheelThreshold >= 0;
+	}
 
-    private void UpdateSettings()
-    {
-        int threshold = thresholdSlider.Value;
-        switch (mouseButtonComboBox.SelectedIndex)
-        {
-            case 0:
-                settings.LeftThreshold = threshold;
-                break;
-            case 1:
-                settings.RightThreshold = threshold;
-                break;
-            case 2:
-                settings.MiddleThreshold = threshold;
-                break;
-            case 3:
-                settings.X1Threshold = threshold;
-                break;
-            case 4:
-                settings.X2Threshold = threshold;
-                break;
-            case 5:
-                settings.WheelThreshold = threshold;
-                break;
-        }
-    }
+	private void OnHideTestControls(object sender, EventArgs e) {
+		left.Hide();
+		right.Hide();
+		middle.Hide();
+		x1.Hide();
+		x2.Hide();
+		wheel.Hide();
+		pictureBox1.Invalidate();
+	}
 
-    private void OnButtonEnabledCheckedChanged(object sender, EventArgs e)
-    {
-        if (!buttonEnabledCheckBox.Checked)
-        {
-            thresholdSlider.Value = -1;
-        }
-        else
-        {
-            if (buttonEnabledCheckBox.Focused)
-            {
-                thresholdSlider.Value = 50;
-            }
-        }
-    }
+	private void OnThresholdValueChanged(object sender, EventArgs e) {
+		this.delayTextBox.Text = thresholdSlider.Value.ToString();
+		bool enabled = thresholdSlider.Value >= 0;
+		if (enabled != buttonEnabledCheckBox.Checked) {
+			buttonEnabledCheckBox.Checked = enabled;
+		}
+		ResetDebounceTimer();
+	}
 
-    private void UseMinDelayCheckBoxCheckedChanged(object sender, EventArgs e)
-    {
-        settings.MinDelay = useMinDelayCheckBox.Checked ? 0 : -1;
-    }
+	private void ResetDebounceTimer() {
+		// Restart the debounce timer whenever the TrackBar value changes
+		debounceTimer.Stop();
+		debounceTimer.Start();
+	}
 
-    private void OnRemoteDesktopCheckBoxChanged(object sender, EventArgs e)
-    {
-        settings.IsRemoteDesktopDetectionEnabled = remoteDesktopCheckBox.Checked;
-    }
+	private void OnDebounceTimerTick(object? sender, EventArgs e) {
+		UpdateSettings();
+		debounceTimer.Stop();
+	}
 
-    private void UpdateIgnoreDeviceControls()
-    {
-        var path = mouseHook.CurrentDevicePath;
-        currentDeviceLabel.Text = Resources.CurrentDevice + " " + FormatDevicePath(path);
-        ignoreCurrentDeviceCheckBox.Enabled = path != null;
-        ignoreCurrentDeviceCheckBox.CheckedChanged -= OnIgnoreCurrentDeviceCheckBoxChanged;
-        ignoreCurrentDeviceCheckBox.Checked = path != null && settings.IgnoredDevicePaths.Contains(path);
-        ignoreCurrentDeviceCheckBox.CheckedChanged += OnIgnoreCurrentDeviceCheckBoxChanged;
-    }
+	private void UpdateSettings() {
+		int threshold = thresholdSlider.Value;
+		switch (mouseButtonComboBox.SelectedIndex) {
+			case 0:
+				settings.LeftThreshold = threshold;
+				break;
+			case 1:
+				settings.RightThreshold = threshold;
+				break;
+			case 2:
+				settings.MiddleThreshold = threshold;
+				break;
+			case 3:
+				settings.X1Threshold = threshold;
+				break;
+			case 4:
+				settings.X2Threshold = threshold;
+				break;
+			case 5:
+				settings.WheelThreshold = threshold;
+				break;
+		}
+	}
 
-    private static string FormatDevicePath(string? path)
-    {
-        if (path == null) return "–";
-        var parts = path.Split('#');
-        return parts.Length > 1 ? parts[1] : path;
-    }
+	private void OnButtonEnabledCheckedChanged(object sender, EventArgs e) {
+		if (!buttonEnabledCheckBox.Checked) {
+			thresholdSlider.Value = -1;
+		} else {
+			if (buttonEnabledCheckBox.Focused) {
+				thresholdSlider.Value = 50;
+			}
+		}
+	}
 
-    private void OnIgnoreCurrentDeviceCheckBoxChanged(object? sender, EventArgs e)
-    {
-        var path = mouseHook.CurrentDevicePath;
-        if (path == null) return;
-        if (ignoreCurrentDeviceCheckBox.Checked)
-            settings.AddIgnoredDevice(path);
-        else
-            settings.RemoveIgnoredDevice(path);
-    }
+	private void UseMinDelayCheckBoxCheckedChanged(object sender, EventArgs e) => settings.MinDelay = useMinDelayCheckBox.Checked ? 0 : -1;
 
-    private void OnFixDraggingCheckBoxChanged(object sender, EventArgs e)
-    {
-        this.dragStartDelayTextBox.Enabled = fixDraggingCheckBox.Checked;
-        this.dragEndDelayTextBox.Enabled = fixDraggingCheckBox.Checked;
-        if (fixDraggingCheckBox.Checked)
-        {
-            if (settings.DragStartTimeMilliseconds < 0) settings.DragStartTimeMilliseconds = 1000;
-            if (settings.DragStopTimeMilliseconds < 0) settings.DragStopTimeMilliseconds = 150;
-            this.dragStartDelayTextBox.Text = settings.DragStartTimeMilliseconds.ToString(CultureInfo.InvariantCulture);
-            this.dragEndDelayTextBox.Text = settings.DragStopTimeMilliseconds.ToString(CultureInfo.InvariantCulture);
-        }
-        else
-        {
-            settings.DragStartTimeMilliseconds = -1;
-            settings.DragStopTimeMilliseconds = -1;
-            this.dragStartDelayTextBox.Text = "";
-            this.dragEndDelayTextBox.Text = "";
-        }
-    }
+	private void OnRemoteDesktopCheckBoxChanged(object sender, EventArgs e) => settings.IsRemoteDesktopDetectionEnabled = remoteDesktopCheckBox.Checked;
 
-    private void OnDragStartDelayTextChanged(object sender, EventArgs e)
-    {
-        if (!fixDraggingCheckBox.Checked && string.IsNullOrWhiteSpace(dragStartDelayTextBox.Text)) return;
-        if (int.TryParse(dragStartDelayTextBox.Text.Trim(), CultureInfo.InvariantCulture, out int value))
-        {
-            settings.DragStartTimeMilliseconds = value;
-        }
-    }
+	private void UpdateIgnoreDeviceControls() {
+		var path = mouseHook.CurrentDevicePath;
+		currentDeviceLabel.Text = Resources.CurrentDevice + " " + FormatDevicePath(path);
+		ignoreCurrentDeviceCheckBox.Enabled = path != null;
+		ignoreCurrentDeviceCheckBox.CheckedChanged -= OnIgnoreCurrentDeviceCheckBoxChanged;
+		ignoreCurrentDeviceCheckBox.Checked = path != null && settings.IgnoredDevicePaths.Contains(path);
+		ignoreCurrentDeviceCheckBox.CheckedChanged += OnIgnoreCurrentDeviceCheckBoxChanged;
+	}
 
-    private void OnDragStopDelayTextChanged(object sender, EventArgs e)
-    {
-        if (!fixDraggingCheckBox.Checked && string.IsNullOrWhiteSpace(dragEndDelayTextBox.Text)) return;
-        if (int.TryParse(dragEndDelayTextBox.Text.Trim(), CultureInfo.InvariantCulture, out int value))
-        {
-            settings.DragStopTimeMilliseconds = value;
-        }
-    }
+	private static string FormatDevicePath(string? path) {
+		if (path == null) {
+			return "–";
+		}
 
-    private void OnGitLinkLabelClicked(object sender, LinkLabelLinkClickedEventArgs e)
-    {
-        try
-        {
-            ProcessStartInfo info = new(@"https://github.com/nenning/DoubleClickFix")
-            {
-                UseShellExecute = true
-            };
-            Process.Start(info);
-        }
-        catch
-        {
-            Log(@"Failed to open https://github.com/nenning/DoubleClickFix");
-        }
-    }
+		var parts = path.Split('#');
+		return parts.Length > 1 ? parts[1] : path;
+	}
 
-    private void OnLanguageChanged(object? sender, EventArgs e)
-    {
-        string[] codes = ["en", "de", "es", "fr", "it"];
-        int index = languageComboBox.SelectedIndex;
-        if (index < 0 || index >= codes.Length) return;
-        string selectedCode = codes[index];
-        if (selectedCode == settings.Language) return;
-        settings.Language = selectedCode;
-        settings.Save();
-        RestartArgs = $"-interactive -bounds {Left},{Top},{Width},{Height}";
-        notifyIcon.Visible = false;
-        notifyIcon.Dispose();
-        Application.Exit();
-    }
+	private void OnIgnoreCurrentDeviceCheckBoxChanged(object? sender, EventArgs e) {
+		var path = mouseHook.CurrentDevicePath;
+		if (path == null) {
+			return;
+		}
 
-    private void OnThemeChanged(object? sender, EventArgs e)
-    {
-        ColorMode[] modes = [ColorMode.System, ColorMode.Light, ColorMode.Dark];
-        int index = themeComboBox.SelectedIndex;
-        if (index < 0 || index >= modes.Length) return;
-        ColorMode selected = modes[index];
-        if (selected == settings.ColorMode) return;
-        settings.ColorMode = selected;
-        settings.Save();
-        RestartArgs = $"-interactive -bounds {Left},{Top},{Width},{Height}";
-        notifyIcon.Visible = false;
-        notifyIcon.Dispose();
-        Application.Exit();
-    }
+		if (ignoreCurrentDeviceCheckBox.Checked) {
+			settings.AddIgnoredDevice(path);
+		} else {
+			settings.RemoveIgnoredDevice(path);
+		}
+	}
 
-    protected override void OnShown(EventArgs e)
-    {
-        base.OnShown(e);
-        if (settings.IsInteractive)
-        {
-            WindowState = FormWindowState.Normal;
-            Activate();
-            BringToFront();
-            EnsureLogAtEnd();
-        }
-    }
+	private void OnFixDraggingCheckBoxChanged(object sender, EventArgs e) {
+		this.dragStartDelayTextBox.Enabled = fixDraggingCheckBox.Checked;
+		this.dragEndDelayTextBox.Enabled = fixDraggingCheckBox.Checked;
+		if (fixDraggingCheckBox.Checked) {
+			if (settings.DragStartTimeMilliseconds < 0) {
+				settings.DragStartTimeMilliseconds = 1000;
+			}
 
-    private void InteractiveForm_Load(object sender, EventArgs e)
-    {
-        if (settings.RestartBounds is Rectangle b)
-        {
-            SetBounds(b.X, b.Y, b.Width, b.Height);
-        }
-        var wa = Screen.FromControl(this).WorkingArea;
-        if (Height > wa.Height) Height = wa.Height;
-        if (Width  > wa.Width)  Width  = wa.Width;
-        if (Left   < wa.Left)   Left   = wa.Left;
-        if (Top    < wa.Top)    Top    = wa.Top;
-        if (Left + Width  > wa.Right)  Left = wa.Right  - Width;
-        if (Top  + Height > wa.Bottom) Top  = wa.Bottom - Height;
-    }
+			if (settings.DragStopTimeMilliseconds < 0) {
+				settings.DragStopTimeMilliseconds = 150;
+			}
 
-    private async Task CheckForUpdateAsync()
-    {
-        try
-        {
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.UserAgent.ParseAdd("DoubleClickFix");
-            var json = await client.GetStringAsync(
-                "https://api.github.com/repos/nenning/DoubleClickFix/releases/latest");
-            using var doc = JsonDocument.Parse(json);
-            var tag = doc.RootElement.GetProperty("tag_name").GetString() ?? "";
-            var latestVersion = Version.Parse(tag.TrimStart('v'));
-            var currentVersion = typeof(InteractiveForm).Assembly.GetName().Version!;
-            if (latestVersion > currentVersion)
-            {
-                var versionString = latestVersion.ToString(3);
-                ShowUpdateToast(versionString);
-                AddUpdateMenuItem(versionString);
-            }
-        }
-        catch { }
-    }
+			this.dragStartDelayTextBox.Text = settings.DragStartTimeMilliseconds.ToString(CultureInfo.InvariantCulture);
+			this.dragEndDelayTextBox.Text = settings.DragStopTimeMilliseconds.ToString(CultureInfo.InvariantCulture);
+		} else {
+			settings.DragStartTimeMilliseconds = -1;
+			settings.DragStopTimeMilliseconds = -1;
+			this.dragStartDelayTextBox.Text = "";
+			this.dragEndDelayTextBox.Text = "";
+		}
+	}
 
-    private void AddUpdateMenuItem(string version)
-    {
-        var item = new ToolStripMenuItem($"{Resources.UpdateAvailable}: v{version}")
-        {
-            Font = new Font(notifyMenuStrip.Font, FontStyle.Bold)
-        };
-        item.Click += (s, e) =>
-        {
-            try
-            {
-                Process.Start(new ProcessStartInfo(
-                    "https://github.com/nenning/DoubleClickFix/releases") { UseShellExecute = true });
-            }
-            catch { }
-        };
-        notifyMenuStrip.Items.Insert(0, item);
-        notifyMenuStrip.Items.Insert(1, new ToolStripSeparator());
+	private void OnDragStartDelayTextChanged(object sender, EventArgs e) {
+		if (!fixDraggingCheckBox.Checked && string.IsNullOrWhiteSpace(dragStartDelayTextBox.Text)) {
+			return;
+		}
 
-        updateLinkLabel.Text = Resources.UpdateAvailable;
-        updateLinkLabel.Visible = true;
-    }
+		if (int.TryParse(dragStartDelayTextBox.Text.Trim(), CultureInfo.InvariantCulture, out int value)) {
+			settings.DragStartTimeMilliseconds = value;
+		}
+	}
 
-    private static void ShowUpdateToast(string version)
-    {
-        try
-        {
-            const string releasesUrl = "https://github.com/nenning/DoubleClickFix/releases";
-            var title = SecurityElement.Escape(Resources.UpdateAvailable);
-            var body = SecurityElement.Escape(string.Format(Resources.UpdateAvailableMessage, version));
-            var xml = $"""
+	private void OnDragStopDelayTextChanged(object sender, EventArgs e) {
+		if (!fixDraggingCheckBox.Checked && string.IsNullOrWhiteSpace(dragEndDelayTextBox.Text)) {
+			return;
+		}
+
+		if (int.TryParse(dragEndDelayTextBox.Text.Trim(), CultureInfo.InvariantCulture, out int value)) {
+			settings.DragStopTimeMilliseconds = value;
+		}
+	}
+
+	private void OnGitLinkLabelClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+		try {
+			ProcessStartInfo info = new(@"https://github.com/nenning/DoubleClickFix") {
+				UseShellExecute = true
+			};
+			Process.Start(info);
+		} catch {
+			Log(@"Failed to open https://github.com/nenning/DoubleClickFix");
+		}
+	}
+
+	private void OnLanguageChanged(object? sender, EventArgs e) {
+		string[] codes = ["en", "de", "es", "fr", "it"];
+		int index = languageComboBox.SelectedIndex;
+		if (index < 0 || index >= codes.Length) {
+			return;
+		}
+
+		string selectedCode = codes[index];
+		if (selectedCode == settings.Language) {
+			return;
+		}
+
+		settings.Language = selectedCode;
+		settings.Save();
+		RestartArgs = $"-interactive -bounds {Left},{Top},{Width},{Height}";
+		notifyIcon.Visible = false;
+		notifyIcon.Dispose();
+		Application.Exit();
+	}
+
+	private void OnThemeChanged(object? sender, EventArgs e) {
+		ColorMode[] modes = [ColorMode.System, ColorMode.Light, ColorMode.Dark];
+		int index = themeComboBox.SelectedIndex;
+		if (index < 0 || index >= modes.Length) {
+			return;
+		}
+
+		ColorMode selected = modes[index];
+		if (selected == settings.ColorMode) {
+			return;
+		}
+
+		settings.ColorMode = selected;
+		settings.Save();
+		RestartArgs = $"-interactive -bounds {Left},{Top},{Width},{Height}";
+		notifyIcon.Visible = false;
+		notifyIcon.Dispose();
+		Application.Exit();
+	}
+
+	protected override void OnShown(EventArgs e) {
+		base.OnShown(e);
+		if (settings.IsInteractive) {
+			WindowState = FormWindowState.Normal;
+			Activate();
+			BringToFront();
+			EnsureLogAtEnd();
+		}
+	}
+
+	private void InteractiveForm_Load(object sender, EventArgs e) {
+		if (settings.RestartBounds is Rectangle b) {
+			SetBounds(b.X, b.Y, b.Width, b.Height);
+		}
+		var wa = Screen.FromControl(this).WorkingArea;
+		if (Height > wa.Height) {
+			Height = wa.Height;
+		}
+
+		if (Width > wa.Width) {
+			Width = wa.Width;
+		}
+
+		if (Left < wa.Left) {
+			Left = wa.Left;
+		}
+
+		if (Top < wa.Top) {
+			Top = wa.Top;
+		}
+
+		if (Left + Width > wa.Right) {
+			Left = wa.Right - Width;
+		}
+
+		if (Top + Height > wa.Bottom) {
+			Top = wa.Bottom - Height;
+		}
+	}
+
+	private async Task CheckForUpdateAsync() {
+		try {
+			using HttpClient client = new();
+			client.DefaultRequestHeaders.UserAgent.ParseAdd("DoubleClickFix");
+			var json = await client.GetStringAsync(
+				"https://api.github.com/repos/nenning/DoubleClickFix/releases/latest");
+			using JsonDocument doc = JsonDocument.Parse(json);
+			var tag = doc.RootElement.GetProperty("tag_name").GetString() ?? "";
+			Version latestVersion = Version.Parse(tag.TrimStart('v'));
+			var currentVersion = typeof(InteractiveForm).Assembly.GetName().Version!;
+			if (latestVersion > currentVersion) {
+				var versionString = latestVersion.ToString(3);
+				ShowUpdateToast(versionString);
+				AddUpdateMenuItem(versionString);
+			}
+		} catch { }
+	}
+
+	private void AddUpdateMenuItem(string version) {
+		ToolStripMenuItem item = new($"{Resources.UpdateAvailable}: v{version}") {
+			Font = new(notifyMenuStrip.Font, FontStyle.Bold)
+		};
+		item.Click += (s, e) => {
+			try {
+				Process.Start(new ProcessStartInfo(
+					"https://github.com/nenning/DoubleClickFix/releases") { UseShellExecute = true });
+			} catch { }
+		};
+		notifyMenuStrip.Items.Insert(0, item);
+		notifyMenuStrip.Items.Insert(1, new ToolStripSeparator());
+
+		updateLinkLabel.Text = Resources.UpdateAvailable;
+		updateLinkLabel.Visible = true;
+	}
+
+	private static void ShowUpdateToast(string version) {
+		try {
+			const string releasesUrl = "https://github.com/nenning/DoubleClickFix/releases";
+			var title = SecurityElement.Escape(Resources.UpdateAvailable);
+			var body = SecurityElement.Escape(string.Format(Resources.UpdateAvailableMessage, version));
+			var xml = $"""
                 <toast activationType="protocol" launch="{releasesUrl}">
                     <visual><binding template="ToastGeneric">
                         <text>{title}</text>
@@ -701,11 +656,10 @@ internal partial class InteractiveForm : Form
                     </binding></visual>
                 </toast>
                 """;
-            var doc = new XmlDocument();
-            doc.LoadXml(xml);
-            ToastNotificationManager.CreateToastNotifier("DoubleClickFix").Show(new ToastNotification(doc));
-        }
-        catch { }
-    }
+			XmlDocument doc = new();
+			doc.LoadXml(xml);
+			ToastNotificationManager.CreateToastNotifier("DoubleClickFix").Show(new ToastNotification(doc));
+		} catch { }
+	}
 
 }
