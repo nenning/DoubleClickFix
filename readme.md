@@ -1,4 +1,4 @@
-# 🖱️ Double-click Fix
+﻿# 🖱️ Double-click Fix
 <img align="right" src="media/icon.png" width="200" height="200" />
 
 [![.NET](https://github.com/nenning/DoubleClickFix/actions/workflows/dotnet.yml/badge.svg)](https://github.com/nenning/DoubleClickFix/actions/workflows/dotnet.yml) &nbsp; [![GitHub release (latest by date)](https://img.shields.io/github/v/release/nenning/DoubleClickFix)](https://github.com/nenning/DoubleClickFix/releases/latest) &nbsp; [![License](https://img.shields.io/github/license/nenning/DoubleClickFix)](LICENSE.txt) &nbsp; [![Microsoft Store](https://img.shields.io/badge/Microsoft_Store-Get_it_now-blue?logo=microsoft-store)](https://apps.microsoft.com/detail/9PDGM7NL2FF2)
@@ -36,12 +36,12 @@ A lightweight tool that fixes accidental double-clicks caused by a worn-out or f
 
 ## ✨ Features
 - **Double-click filtering** — filters accidental clicks per button with a configurable threshold. Default: 50 ms.
+- **Mouse Wheel Fix** — filters spurious reverse-direction scroll events (vertical and horizontal). Disabled by default; enable it in the per-button settings.
 - **Drag & Drop Fix** — (experimental) prevents faulty mice from dropping during a drag gesture.
-- **Mouse Wheel Fix** — filters spurious reverse-direction scroll events.
+- **Start with Windows** — registers to run automatically at startup.
 - **Per-device Ignore List** — exclude specific devices (e.g. touchpad, second mouse) from filtering.
 - **Remote Desktop Support** — optionally bypass filtering during RDP sessions.
 - **Tray icon** — runs silently in the background; double-click to open settings.
-- **Start with Windows** — registers to run automatically at startup.
 - **Update notifications** (standalone) — checks GitHub for new releases on startup and shows a notification if one is available.
 
 ![logo](./media/main-screen-dark.png)
@@ -75,9 +75,10 @@ Clone the repository and build with Visual Studio or the .NET CLI.
 
 ### 🛠️ Settings
   - **Per-button delay**: Set the minimum time (in ms) between clicks for each button. Clicks arriving faster than this threshold are filtered out. Default: 50 ms, left button only.
-  - **Fix dragging issues**: Enable only if your mouse drops items unexpectedly during a drag. While in drag-lock mode, spurious button events are ignored; a short pause at the end completes the release.
-  - **Drag start delay**: Minimum drag duration (in ms) before entering drag-lock mode. Default: 1000 ms.
-  - **Drag release delay**: Minimum time (in ms) the mouse must stay still before the button release is registered. You can also click manually to exit drag-lock mode. Default: 150 ms.
+  - **Mouse Wheel Fix**: Select **Wheel** in the button dropdown, check the enable box, and set a threshold. A scroll event that reverses direction (e.g. a momentary upward tick while scrolling down) within the threshold is suppressed as jitter. Covers both vertical (↑↓) and horizontal (←→) scroll wheels. **Disabled by default.**
+  - **Fix dragging issues**: (experimental) Enable only if your mouse drops items unexpectedly during a drag. While in drag-lock mode, spurious button events are ignored; a short pause at the end completes the release.
+    - **Drag start delay**: Minimum drag duration (in ms) before entering drag-lock mode. Default: 1000 ms.
+    - **Drag release delay**: Minimum time (in ms) the mouse must stay still before the button release is registered. You can also click manually to exit drag-lock mode. Default: 150 ms.
   - **Ignore this device**: Move the cursor with any device you want to exclude (e.g. a secondary mouse or graphics tablet), then check "Ignore this device". Saved permanently — survives reboots and Bluetooth reconnects.
   - **Workaround for touch devices**: Touch and touchpad clicks pass through unfiltered by default. Enable `Allow double-clicks with 0 ms gap` only if your touchpad or touchscreen isn't working correctly.
   - **Remote Desktop sessions**: Enable `Don't filter clicks in remote desktop sessions` if you control this PC via RDP and double-clicks aren't working.
@@ -102,14 +103,14 @@ The application intercepts mouse events at a low level to distinguish intentiona
     *   If this duration is shorter than the user-defined **threshold** (e.g., 50 ms), the event is considered an erroneous double-click and is filtered out — the system and other applications never receive it.
     *   The matching **up** event for a suppressed down is also suppressed, preventing orphaned release events from reaching applications.
     *   If the duration is longer than the threshold, the click is considered intentional and passed along as usual.
-4.  **Drag & Drop Correction**: Faulty mice can send spurious "up" events while holding a button, interrupting drags. The "Fix dragging issues" feature addresses this:
+4.  **Mouse Wheel Filtering**: Faulty wheels can scroll in the wrong direction momentarily, causing a jittery effect. This feature is **disabled by default**; enable it by selecting **Wheel** in the button dropdown in Settings.
+    *   **Direction-Aware Filtering**: The app tracks the last scroll direction for both vertical (↑↓) and horizontal (←→) wheels.
+    *   **Time-Based Debouncing**: A scroll event that reverses direction within the threshold is treated as jitter and suppressed.
+    *   **Preserving Fast Scrolling**: Intentional same-direction scrolling is never affected.
+5.  **Drag & Drop Correction**: Faulty mice can send spurious "up" events while holding a button, interrupting drags. The "Fix dragging issues" feature addresses this:
     *   **Entering Drag-Lock**: After pressing and holding a button and moving beyond a small distance, the app enters drag-lock mode for that button.
     *   **Suppressing Jitter**: While in drag-lock, spurious `down` or `up` events are ignored so the drag isn't accidentally interrupted.
     *   **Releasing the Drag**: The drag ends only after the mouse has been still for the configured release delay, at which point a genuine "up" event is sent.
-5.  **Mouse Wheel Filtering**: Faulty wheels can scroll in the wrong direction momentarily, causing a jittery effect.
-    *   **Direction-Aware Filtering**: The app tracks the last scroll direction (up/down or left/right).
-    *   **Time-Based Debouncing**: A scroll in the *opposite* direction within the threshold is treated as jitter and ignored.
-    *   **Preserving Fast Scrolling**: Intentional same-direction scrolling is never affected.
 6.  **Forwarding Events**: Events that pass filtering are forwarded via `CallNextHookEx`, ensuring normal behavior for all other applications.
 
 ---
