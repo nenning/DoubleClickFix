@@ -2,6 +2,13 @@ param (
     [string]$Version
 )
 
+# Ensure we're on the master branch
+$branch = git rev-parse --abbrev-ref HEAD
+if ($branch -ne "master") {
+    Write-Error "Must be on master branch to release. Current branch: $branch"
+    exit 1
+}
+
 # If no version is provided, read the current version and increment it
 if (-not $Version) {
     Write-Host "No version argument provided. Auto-incrementing version..."
@@ -41,12 +48,16 @@ if ($LASTEXITCODE -ne 0) {
 # 5. Create Git tag
 Write-Host "Creating git tag v$Version"
 git add Directory.Build.props
-git commit -m "Bump version to $Version"
+git commit Directory.Build.props -m "Bump version to $Version"
 git tag -a "v$Version" -m "Version $Version"
 
-Write-Host "Release process complete."
+# 6. Push the version bump commit and tag
+Write-Host "Pushing to origin..."
+git push origin master:master
+git push origin "v$Version"
+
+Write-Host "Release process complete. The GitHub Action will create the release."
 Write-Host "Next steps:"
-Write-Host "1. Push the commit and tag to GitHub: git push --follow-tags"
-Write-Host "   This will trigger the GitHub Action to create the release."
+Write-Host "1. Add release notes on GitHub."
 Write-Host "2. Publish the package project from Visual Studio."
 Write-Host "   Upload the generated .msixbundle from DoubleClickFix.Package/AppPackages to the Microsoft Partner Center."

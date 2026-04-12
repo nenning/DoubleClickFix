@@ -159,12 +159,15 @@ Technical details — mostly for development.
 ### 📦 Creating a Release
 
 #### GitHub
-- Update version in https://github.com/nenning/DoubleClickFix/blob/master/Directory.Build.props
-- To create a GitHub release (zip), run:
-    - `git tag -a v1.0.1.0`
-    - `git push origin v1.0.1.0`
-- This will trigger the GitHub Action that creates the release.
-- Add the release notes on GitHub.
+Run `release.ps1` to auto-increment the version, build, commit, and tag:
+```powershell
+# Auto-increment the build number:
+.\release.ps1
+
+# Or specify a version explicitly:
+.\release.ps1 -Version 1.7.0.0
+```
+The script automatically pushes the commit and tag to origin, triggering the GitHub Action that creates the release. Add the release notes on GitHub afterward.
 
 #### Microsoft Store
 - If needed, adjust the version in `Package.appxmanifest`.
