@@ -11,7 +11,7 @@ A lightweight tool that fixes accidental double-clicks caused by a worn-out or f
 - 🚫 **Per-device Ignore List** – move the cursor with a second mouse or touchpad and check "Ignore this device" to exclude it from filtering. Saved permanently.
 - 🖥️ **Remote Desktop Support** – enable the option in the UI to disable click filtering during RDP sessions.
 - 🌗 **Dark / Light Theme** – choose between dark, light, or system theme in the settings.
-- 🌐 **Language Switcher** – change the UI language directly from the settings without restarting.
+- 🌐 **Language Switcher** – support of 21 languages (translated by AI).
 
 ---
 
