@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <Version>1.6.5.0</Version>
+    <Version>1.6.6.0</Version>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
