@@ -9,6 +9,36 @@ if ($branch -ne "master") {
     exit 1
 }
 
+# Check for upstream changes before doing anything
+Write-Host "Checking for upstream changes..."
+git fetch origin 2>&1 | Out-Null
+$upstreamChanges = git log HEAD..origin/master --oneline
+if ($upstreamChanges) {
+    Write-Warning "Upstream changes detected on origin/master. Pull before releasing:"
+    Write-Host $upstreamChanges
+    exit 1
+}
+
+# Locate msbuild via vswhere, fall back to dotnet
+$msbuild = $null
+$vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+if (Test-Path $vswhere) {
+    $vsPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath 2>$null
+    if ($vsPath) {
+        $candidate = Join-Path $vsPath "MSBuild\Current\Bin\MSBuild.exe"
+        if (Test-Path $candidate) {
+            $msbuild = $candidate
+        }
+    }
+}
+if (-not $msbuild) {
+    if (-not (Get-Command dotnet -ErrorAction SilentlyContinue)) {
+        Write-Error "Neither msbuild nor dotnet could be found. Install Visual Studio or the .NET SDK and try again."
+        exit 1
+    }
+    Write-Host "msbuild not found via vswhere, will use 'dotnet build'."
+}
+
 # If no version is provided, read the current version and increment it
 if (-not $Version) {
     Write-Host "No version argument provided. Auto-incrementing version..."
@@ -39,7 +69,11 @@ Write-Host "Updated version to $Version in Directory.Build.props"
 
 # Build the standalone release
 Write-Host "Building standalone release for AnyCPU..."
-msbuild DoubleClickFix/DoubleClickFix.csproj /p:Configuration=Release /p:Platform=AnyCPU
+if ($msbuild) {
+    & $msbuild DoubleClickFix/DoubleClickFix.csproj /p:Configuration=Release /p:Platform=AnyCPU
+} else {
+    dotnet build DoubleClickFix/DoubleClickFix.csproj --configuration Release
+}
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Standalone release build failed. Aborting release."
     exit 1
