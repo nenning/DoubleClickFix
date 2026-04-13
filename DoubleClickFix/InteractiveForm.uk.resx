@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element>
+          <xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="delayLabel.Text" xml:space="preserve"><value>Мінімальний інтервал подвійного кліку [мс]</value></data>
+  <data name="delayLabel.ToolTip" xml:space="preserve"><value>Встановіть мінімальний час між кліками для вибраної кнопки миші. За замовчуванням: 50 мс.</value></data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Кліки в цьому інтервалі вважаються випадковими подвійними кліками та фільтруються.</value></data>
+  <data name="saveButton.Text" xml:space="preserve"><value>Зберегти</value></data>
+  <data name="resetButton.Text" xml:space="preserve"><value>Скинути</value></data>
+  <data name="saveButton.ToolTip" xml:space="preserve"><value>Зберегти налаштування</value></data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Запускати при старті Windows</value></data>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Завжди запускати цю програму у фоновому режимі.</value></data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Затримка завершення [мс]</value></data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve"><value>Мінімальний час, протягом якого миша повинна залишатися нерухомою перед відпусканням кнопки для виходу з режиму блокування перетягування. За замовчуванням: 150 мс.</value></data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve"><value>Затримка початку [мс]</value></data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve"><value>Мінімальна тривалість перетягування перед активацією режиму блокування перетягування. За замовчуванням: 1000 мс.</value></data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve"><value>Виправити проблеми перетягування</value></data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve"><value>Використовуйте лише за наявності проблем із перетягуванням. Може знадобитися повторний клік для виходу з режиму блокування перетягування.</value></data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve"><value>Дозволити подвійні кліки із затримкою 0 мс</value></data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve"><value>Використовуйте лише якщо тачпад або сенсорний екран не працює належним чином.</value></data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve"><value>Увімкнути виправлення</value></data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve"><value>Увімкнути виправлення подвійного кліку для кожної кнопки миші окремо.</value></data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve"><value>Ліва кнопка миші</value></data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve"><value>Права кнопка миші</value></data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve"><value>Середня кнопка миші</value></data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve"><value>Кнопка X1 миші</value></data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve"><value>Кнопка X2 миші</value></data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve"><value>Колесо миші</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>По кнопці миші</value></data>
+  <data name="groupBoxDevice.Text" xml:space="preserve"><value></value></data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve"><value>Загальні</value></data>
+  <data name="x2.Text" xml:space="preserve"><value>X2</value></data>
+  <data name="x1.Text" xml:space="preserve"><value>X1</value></data>
+  <data name="middle.Text" xml:space="preserve"><value>Середня</value></data>
+  <data name="right.Text" xml:space="preserve"><value>Права</value></data>
+  <data name="left.Text" xml:space="preserve"><value>Ліва</value></data>
+  <data name="showUiMenu.Text" xml:space="preserve"><value>Показати інтерфейс</value></data>
+  <data name="exitMenu.Text" xml:space="preserve"><value>Вихід</value></data>
+  <data name="notifyIcon.Text" xml:space="preserve"><value>Виправлення подвійного кліку</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>Запобігає випадковим подвійним клікам через зношені або несправні кнопки миші.</value></data>
+  <data name="descriptionTextBox.Text" xml:space="preserve"><value>Журнал показує час між кліками та всі відфільтровані подвійні кліки.
+Подивіться, скільки часу займають ваші звичайні подвійні кліки, і порівняйте з випадковими від миші.
+Налаштуйте поріг для відсіювання випадкових кліків, залишаючись нижче нормальної швидкості подвійного кліку.
+Перевірте поведінку миші з поточними налаштуваннями в тестовій області нижче (одинарний клік, подвійний клік, виділення тексту, прокрутка, перетягування).</value></data>
+  <data name="richTextBox1.Text" xml:space="preserve"><value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value></data>
+  <data name="groupBox2.Text" xml:space="preserve"><value>Нотатки</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>Журнали</value></data>
+  <data name="groupBox4.Text" xml:space="preserve"><value>Тест</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>Виправлення подвійного кліку</value></data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve"><value>Не фільтрувати кліки у сеансах віддаленого робочого стола</value></data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve"><value>Якщо увімкнено, фільтрація кліків вимикається під час сеансів віддаленого робочого стола.</value></data>
+</root>

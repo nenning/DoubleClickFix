@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element>
+          <xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="delayLabel.Text" xml:space="preserve"><value>Minimum çift tıklama aralığı [ms]</value></data>
+  <data name="delayLabel.ToolTip" xml:space="preserve"><value>Seçili fare düğmesi için tıklamalar arasındaki minimum süreyi ayarlayın. Varsayılan: 50 ms.</value></data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Bu aralıktaki tıklamalar yanlışlıkla yapılan çift tıklamalar olarak kabul edilir ve filtrelenir.</value></data>
+  <data name="saveButton.Text" xml:space="preserve"><value>Kaydet</value></data>
+  <data name="resetButton.Text" xml:space="preserve"><value>Sıfırla</value></data>
+  <data name="saveButton.ToolTip" xml:space="preserve"><value>Ayarları kaydet</value></data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Windows başlangıcında çalıştır</value></data>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Bu uygulamayı her zaman arka planda çalıştır.</value></data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Bitiş gecikmesi [ms]</value></data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve"><value>Sürükleme kilidi modundan çıkmak için düğmeyi bırakmadan önce farenin en az bu kadar süre hareketsiz kalması gerekir. Varsayılan: 150 ms.</value></data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve"><value>Başlangıç gecikmesi [ms]</value></data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve"><value>Sürükleme kilidi modu etkinleşmeden önce minimum sürükleme süresi. Varsayılan: 1000 ms.</value></data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve"><value>Sürükleme sorunlarını düzelt</value></data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve"><value>Yalnızca sürükleme sorununuz varsa kullanın. Sürükleme kilidi modundan çıkmak için tekrar tıklamanız gerekebilir.</value></data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve"><value>0 ms gecikmeli çift tıklamaya izin ver</value></data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve"><value>Yalnızca dokunmatik yüzey veya dokunmatik ekran düzgün çalışmıyorsa kullanın.</value></data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve"><value>Düzeltmeyi etkinleştir</value></data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve"><value>Her fare düğmesi için çift tıklama düzeltmesini ayrı ayrı etkinleştirin.</value></data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve"><value>Sol fare düğmesi</value></data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve"><value>Sağ fare düğmesi</value></data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve"><value>Orta fare düğmesi</value></data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve"><value>Fare X1 düğmesi</value></data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve"><value>Fare X2 düğmesi</value></data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve"><value>Fare tekerleği</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>Düğme başına</value></data>
+  <data name="groupBoxDevice.Text" xml:space="preserve"><value></value></data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve"><value>Genel</value></data>
+  <data name="x2.Text" xml:space="preserve"><value>X2</value></data>
+  <data name="x1.Text" xml:space="preserve"><value>X1</value></data>
+  <data name="middle.Text" xml:space="preserve"><value>Orta</value></data>
+  <data name="right.Text" xml:space="preserve"><value>Sağ</value></data>
+  <data name="left.Text" xml:space="preserve"><value>Sol</value></data>
+  <data name="showUiMenu.Text" xml:space="preserve"><value>Arayüzü göster</value></data>
+  <data name="exitMenu.Text" xml:space="preserve"><value>Çıkış</value></data>
+  <data name="notifyIcon.Text" xml:space="preserve"><value>Çift Tıklama Düzeltmesi</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>Aşınmış veya arızalı düğmeleri olan fareden kaynaklanan yanlışlıkla çift tıklamaları önler.</value></data>
+  <data name="descriptionTextBox.Text" xml:space="preserve"><value>Günlük, tıklamalar arasındaki geçen süreyi ve filtrelenen tüm çift tıklamaları gösterir.
+Normal çift tıklamalarınızın ne kadar sürdüğünü görün ve farenizden gelen yanlışlıklarla karşılaştırın.
+Normal çift tıklama hızınızın altında kalırken hatalı tıklamaları yakalamak için eşiği ayarlayın.
+Mevcut ayarlarla fare davranışını aşağıdaki test alanında test edin (tek tıklama, çift tıklama, metin seçimi, kaydırma, sürükleme).</value></data>
+  <data name="richTextBox1.Text" xml:space="preserve"><value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value></data>
+  <data name="groupBox2.Text" xml:space="preserve"><value>Notlar</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>Günlükler</value></data>
+  <data name="groupBox4.Text" xml:space="preserve"><value>Test</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>Çift Tıklama Düzeltmesi</value></data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve"><value>Uzak Masaüstü oturumlarında tıklamaları filtreleme</value></data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve"><value>Etkinleştirildiğinde, Uzak Masaüstü oturumları sırasında tıklama filtrelemesi atlanır.</value></data>
+</root>

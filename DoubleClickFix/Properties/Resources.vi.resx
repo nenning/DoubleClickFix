@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppAlreadyRunning" xml:space="preserve">
+    <value>Một phiên bản khác của ứng dụng đã đang chạy.</value>
+  </data>
+  <data name="EnterDragLock" xml:space="preserve">
+    <value>Đang bật khóa kéo cho {0} sau {1} ms</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="ExitDragLock" xml:space="preserve">
+    <value>Đang tắt khóa kéo cho {0} sau khi kéo</value>
+  </data>
+  <data name="HookNotInstalled" xml:space="preserve">
+    <value>Không thể cài đặt hook chuột.</value>
+  </data>
+  <data name="IgnoredDoubleClick" xml:space="preserve">
+    <value>Đã lọc nhấp đúp</value>
+  </data>
+  <data name="IgnoredMouseWheel" xml:space="preserve">
+    <value>Đã bỏ qua bánh xe chuột</value>
+  </data>
+  <data name="MouseWheelDelta" xml:space="preserve">
+    <value>Delta bánh xe chuột</value>
+  </data>
+  <data name="InvalidDelayValue" xml:space="preserve">
+    <value>Giá trị không hợp lệ — không lưu. Phạm vi hợp lệ:</value>
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value>trái</value>
+  </data>
+  <data name="Middle" xml:space="preserve">
+    <value>giữa</value>
+  </data>
+  <data name="Right" xml:space="preserve">
+    <value>phải</value>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>Đã lưu cài đặt.</value>
+  </data>
+  <data name="WritingRegistryFailed" xml:space="preserve">
+    <value>Không thể ghi vào registry khởi động.</value>
+  </data>
+  <data name="X1" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="X2" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="CurrentDevice" xml:space="preserve">
+    <value>Thiết bị hiện tại:</value>
+  </data>
+  <data name="IgnoreCurrentDevice" xml:space="preserve">
+    <value>Bỏ qua thiết bị này</value>
+  </data>
+  <data name="ThemeSystem" xml:space="preserve">
+    <value>Hệ thống</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Sáng</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Tối</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Có bản cập nhật</value>
+  </data>
+  <data name="UpdateAvailableMessage" xml:space="preserve">
+    <value>DoubleClickFix v{0} đã có sẵn. Nhấp để tải xuống.</value>
+  </data>
+</root>

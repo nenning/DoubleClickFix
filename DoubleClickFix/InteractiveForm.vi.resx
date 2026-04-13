@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element>
+          <xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="delayLabel.Text" xml:space="preserve"><value>Khoảng thời gian nhấp đúp tối thiểu [ms]</value></data>
+  <data name="delayLabel.ToolTip" xml:space="preserve"><value>Đặt thời gian tối thiểu giữa các lần nhấp cho nút chuột đã chọn. Mặc định: 50 ms.</value></data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Các lần nhấp trong khoảng thời gian này sẽ được coi là nhấp đúp ngẫu nhiên và bị lọc.</value></data>
+  <data name="saveButton.Text" xml:space="preserve"><value>Lưu</value></data>
+  <data name="resetButton.Text" xml:space="preserve"><value>Đặt lại</value></data>
+  <data name="saveButton.ToolTip" xml:space="preserve"><value>Lưu cài đặt</value></data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Chạy khi khởi động Windows</value></data>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Luôn chạy ứng dụng này trong nền.</value></data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Độ trễ kết thúc [ms]</value></data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve"><value>Thời gian tối thiểu chuột phải đứng yên trước khi thả nút để thoát chế độ khóa kéo. Mặc định: 150 ms.</value></data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve"><value>Độ trễ bắt đầu [ms]</value></data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve"><value>Thời gian kéo tối thiểu trước khi kích hoạt chế độ khóa kéo. Mặc định: 1000 ms.</value></data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve"><value>Sửa lỗi kéo</value></data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve"><value>Chỉ dùng nếu có vấn đề kéo. Có thể cần nhấp lại để thoát chế độ khóa kéo.</value></data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve"><value>Cho phép nhấp đúp với độ trễ 0 ms</value></data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve"><value>Chỉ dùng nếu touchpad hoặc màn hình cảm ứng không hoạt động đúng.</value></data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve"><value>Bật tính năng sửa lỗi</value></data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve"><value>Bật tính năng sửa lỗi nhấp đúp cho từng nút chuột riêng biệt.</value></data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve"><value>Nút chuột trái</value></data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve"><value>Nút chuột phải</value></data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve"><value>Nút chuột giữa</value></data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve"><value>Nút X1 chuột</value></data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve"><value>Nút X2 chuột</value></data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve"><value>Bánh xe chuột</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>Theo nút</value></data>
+  <data name="groupBoxDevice.Text" xml:space="preserve"><value></value></data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve"><value>Chung</value></data>
+  <data name="x2.Text" xml:space="preserve"><value>X2</value></data>
+  <data name="x1.Text" xml:space="preserve"><value>X1</value></data>
+  <data name="middle.Text" xml:space="preserve"><value>Giữa</value></data>
+  <data name="right.Text" xml:space="preserve"><value>Phải</value></data>
+  <data name="left.Text" xml:space="preserve"><value>Trái</value></data>
+  <data name="showUiMenu.Text" xml:space="preserve"><value>Hiển thị giao diện</value></data>
+  <data name="exitMenu.Text" xml:space="preserve"><value>Thoát</value></data>
+  <data name="notifyIcon.Text" xml:space="preserve"><value>Sửa lỗi nhấp đúp</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>Ngăn chặn các lần nhấp đúp ngẫu nhiên do chuột có nút bị mòn hoặc lỗi.</value></data>
+  <data name="descriptionTextBox.Text" xml:space="preserve"><value>Nhật ký hiển thị thời gian trôi qua giữa các lần nhấp và tất cả các lần nhấp đúp đã bị lọc.
+Xem thời gian nhấp đúp bình thường của bạn mất bao lâu và so sánh với các lần ngẫu nhiên từ chuột.
+Điều chỉnh ngưỡng để bắt các lần nhấp lỗi trong khi vẫn dưới tốc độ nhấp đúp bình thường của bạn.
+Kiểm tra hành vi chuột với cài đặt hiện tại ở vùng kiểm tra bên dưới (nhấp đơn, nhấp đúp, chọn văn bản, cuộn, kéo).</value></data>
+  <data name="richTextBox1.Text" xml:space="preserve"><value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value></data>
+  <data name="groupBox2.Text" xml:space="preserve"><value>Ghi chú</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>Nhật ký</value></data>
+  <data name="groupBox4.Text" xml:space="preserve"><value>Kiểm tra</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>Sửa lỗi nhấp đúp</value></data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve"><value>Không lọc nhấp trong phiên Remote Desktop</value></data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve"><value>Khi bật, tính năng lọc nhấp bị bỏ qua trong các phiên Remote Desktop.</value></data>
+</root>

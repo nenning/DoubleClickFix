@@ -19,6 +19,31 @@ internal partial class InteractiveForm : Form {
 	private bool suppressNextShow;
 	private readonly bool isStore;
 	internal string? RestartArgs { get; private set; }
+	private string[] sortedLanguageCodes = [];
+
+	private static readonly (string Code, string NativeName, string Flag)[] AllLanguages = [
+		("en",    "English",            "🇺🇸"),
+		("ar",    "العربية",            "🇪🇬"),
+		("bn",    "বাংলা",              "🇧🇩"),
+		("de",    "Deutsch",            "🇩🇪"),
+		("es",    "Español",            "🇪🇸"),
+		("fil",   "Filipino",           "🇵🇭"),
+		("fr",    "Français",           "🇫🇷"),
+		("hi",    "हिन्दी",             "🇮🇳"),
+		("id",    "Bahasa Indonesia",   "🇮🇩"),
+		("it",    "Italiano",           "🇮🇹"),
+		("kk",    "Қазақша",            "🇰🇿"),
+		("ko",    "한국어",              "🇰🇷"),
+		("ms",    "Bahasa Melayu",      "🇸🇬"),
+		("pt-BR", "Português (Brasil)", "🇧🇷"),
+		("ru",    "Русский",            "🇷🇺"),
+		("th",    "ภาษาไทย",            "🇹🇭"),
+		("tr",    "Türkçe",             "🇹🇷"),
+		("uk",    "Українська",         "🇺🇦"),
+		("vi",    "Tiếng Việt",         "🇻🇳"),
+		("zh-CN", "中文(简体)",          "🇨🇳"),
+		("zh-TW", "繁體中文",            "🇹🇼"),
+	];
 
 	public InteractiveForm(IStartupRegistry startup, ISettings settings, Logger logger, MouseHook mouseHook, string version, bool isStore = false) {
 		this.startup = startup;
@@ -111,13 +136,9 @@ internal partial class InteractiveForm : Form {
 		themeComboBox.SelectedIndexChanged += OnThemeChanged;
 
 		languageComboBox.SelectedIndexChanged -= OnLanguageChanged;
-		languageComboBox.SelectedIndex = settings.Language switch {
-			"de" => 1,
-			"es" => 2,
-			"fr" => 3,
-			"it" => 4,
-			_ => 0
-		};
+		PopulateLanguages(settings.Language);
+		int langIndex = Array.IndexOf(sortedLanguageCodes, settings.Language);
+		languageComboBox.SelectedIndex = langIndex >= 0 ? langIndex : 0;
 		languageComboBox.SelectedIndexChanged += OnLanguageChanged;
 
 		this.isStore = isStore;
@@ -528,14 +549,26 @@ internal partial class InteractiveForm : Form {
 		}
 	}
 
+	private void PopulateLanguages(string currentCode) {
+		string effectiveCurrent = string.IsNullOrWhiteSpace(currentCode) ? "en" : currentCode;
+		var sorted = AllLanguages
+			.OrderBy(x => x.Code == effectiveCurrent ? 0 : x.Code == "en" ? 1 : 2)
+			.ThenBy(x => x.NativeName, StringComparer.Ordinal)
+			.ToArray();
+		sortedLanguageCodes = sorted.Select(x => x.Code).ToArray();
+		languageComboBox.Items.Clear();
+		foreach (var (_, nativeName, flag) in sorted) {
+			languageComboBox.Items.Add($"{flag} {nativeName}");
+		}
+	}
+
 	private void OnLanguageChanged(object? sender, EventArgs e) {
-		string[] codes = ["en", "de", "es", "fr", "it"];
 		int index = languageComboBox.SelectedIndex;
-		if (index < 0 || index >= codes.Length) {
+		if (index < 0 || index >= sortedLanguageCodes.Length) {
 			return;
 		}
 
-		string selectedCode = codes[index];
+		string selectedCode = sortedLanguageCodes[index];
 		if (selectedCode == settings.Language) {
 			return;
 		}

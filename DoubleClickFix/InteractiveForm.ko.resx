@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element>
+          <xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="delayLabel.Text" xml:space="preserve"><value>최소 더블 클릭 간격 [ms]</value></data>
+  <data name="delayLabel.ToolTip" xml:space="preserve"><value>선택한 마우스 버튼의 클릭 간 최소 시간을 설정합니다. 기본값: 50ms.</value></data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve"><value>이 간격 내의 클릭은 우발적인 더블 클릭으로 처리되어 필터링됩니다.</value></data>
+  <data name="saveButton.Text" xml:space="preserve"><value>저장</value></data>
+  <data name="resetButton.Text" xml:space="preserve"><value>초기화</value></data>
+  <data name="saveButton.ToolTip" xml:space="preserve"><value>설정 저장</value></data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Windows 시작 시 실행</value></data>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>이 애플리케이션을 항상 백그라운드에서 실행합니다.</value></data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>종료 지연 [ms]</value></data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve"><value>드래그 잠금 모드에서 나오기 위해 버튼을 놓기 전 마우스가 최소한 이 시간 동안 정지해 있어야 합니다. 기본값: 150ms.</value></data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve"><value>시작 지연 [ms]</value></data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve"><value>드래그 잠금 모드가 활성화되기 전 최소 드래그 지속 시간입니다. 기본값: 1000ms.</value></data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve"><value>드래그 문제 수정</value></data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve"><value>드래그 문제가 있을 때만 사용합니다. 드래그 잠금 모드에서 나오기 위해 다시 클릭해야 할 수 있습니다.</value></data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve"><value>0ms 간격 더블 클릭 허용</value></data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve"><value>터치패드 또는 터치스크린이 제대로 작동하지 않을 때만 사용합니다.</value></data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve"><value>수정 활성화</value></data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve"><value>각 마우스 버튼에 대해 개별적으로 더블 클릭 수정을 활성화합니다.</value></data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve"><value>마우스 왼쪽 버튼</value></data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve"><value>마우스 오른쪽 버튼</value></data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve"><value>마우스 가운데 버튼</value></data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve"><value>마우스 X1 버튼</value></data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve"><value>마우스 X2 버튼</value></data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve"><value>마우스 휠</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>마우스 버튼별</value></data>
+  <data name="groupBoxDevice.Text" xml:space="preserve"><value></value></data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve"><value>일반</value></data>
+  <data name="x2.Text" xml:space="preserve"><value>X2</value></data>
+  <data name="x1.Text" xml:space="preserve"><value>X1</value></data>
+  <data name="middle.Text" xml:space="preserve"><value>가운데</value></data>
+  <data name="right.Text" xml:space="preserve"><value>오른쪽</value></data>
+  <data name="left.Text" xml:space="preserve"><value>왼쪽</value></data>
+  <data name="showUiMenu.Text" xml:space="preserve"><value>인터페이스 표시</value></data>
+  <data name="exitMenu.Text" xml:space="preserve"><value>종료</value></data>
+  <data name="notifyIcon.Text" xml:space="preserve"><value>더블 클릭 수정</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>닳거나 결함 있는 버튼이 있는 마우스로 인한 우발적인 더블 클릭을 방지합니다.</value></data>
+  <data name="descriptionTextBox.Text" xml:space="preserve"><value>로그는 클릭 간 경과 시간과 필터링된 모든 더블 클릭을 표시합니다.
+일반 더블 클릭에 걸리는 시간을 확인하고 마우스의 우발적인 클릭과 비교하세요.
+일반 더블 클릭 속도 이하를 유지하면서 오류 클릭을 잡도록 임계값을 조정하세요.
+아래 테스트 영역에서 현재 설정으로 마우스 동작을 테스트하세요 (단일 클릭, 더블 클릭, 텍스트 선택, 스크롤, 드래그).</value></data>
+  <data name="richTextBox1.Text" xml:space="preserve"><value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value></data>
+  <data name="groupBox2.Text" xml:space="preserve"><value>메모</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>로그</value></data>
+  <data name="groupBox4.Text" xml:space="preserve"><value>테스트</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>더블 클릭 수정</value></data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve"><value>원격 데스크톱 세션에서 클릭 필터링 안 함</value></data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve"><value>활성화되면 원격 데스크톱 세션 중 클릭 필터링을 적용하지 않습니다.</value></data>
+</root>

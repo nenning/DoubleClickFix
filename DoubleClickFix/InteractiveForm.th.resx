@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element>
+          <xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="delayLabel.Text" xml:space="preserve"><value>ช่วงเวลาดับเบิลคลิกขั้นต่ำ [ms]</value></data>
+  <data name="delayLabel.ToolTip" xml:space="preserve"><value>ตั้งค่าเวลาขั้นต่ำระหว่างการคลิกสำหรับปุ่มเมาส์ที่เลือก ค่าเริ่มต้น: 50 ms</value></data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve"><value>การคลิกในช่วงเวลานี้จะถือว่าเป็นดับเบิลคลิกโดยไม่ตั้งใจและจะถูกกรอง</value></data>
+  <data name="saveButton.Text" xml:space="preserve"><value>บันทึก</value></data>
+  <data name="resetButton.Text" xml:space="preserve"><value>รีเซ็ต</value></data>
+  <data name="saveButton.ToolTip" xml:space="preserve"><value>บันทึกการตั้งค่า</value></data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>เรียกใช้เมื่อเริ่ม Windows</value></data>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>เรียกใช้แอปพลิเคชันนี้ในพื้นหลังเสมอ</value></data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>หน่วงเวลาสิ้นสุด [ms]</value></data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve"><value>เวลาขั้นต่ำที่เมาส์ต้องนิ่งก่อนปล่อยปุ่มเพื่อออกจากโหมดล็อกการลาก ค่าเริ่มต้น: 150 ms</value></data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve"><value>หน่วงเวลาเริ่มต้น [ms]</value></data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve"><value>ระยะเวลาลากขั้นต่ำก่อนเปิดใช้งานโหมดล็อกการลาก ค่าเริ่มต้น: 1000 ms</value></data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve"><value>แก้ไขปัญหาการลาก</value></data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve"><value>ใช้เฉพาะเมื่อมีปัญหาการลาก อาจต้องคลิกอีกครั้งเพื่อออกจากโหมดล็อกการลาก</value></data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve"><value>อนุญาตดับเบิลคลิกที่มีช่วงห่าง 0 ms</value></data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve"><value>ใช้เฉพาะเมื่อทัชแพดหรือหน้าจอสัมผัสไม่ทำงานอย่างถูกต้อง</value></data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve"><value>เปิดใช้งานการแก้ไข</value></data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve"><value>เปิดใช้งานการแก้ไขดับเบิลคลิกสำหรับแต่ละปุ่มเมาส์แยกกัน</value></data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve"><value>ปุ่มซ้ายของเมาส์</value></data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve"><value>ปุ่มขวาของเมาส์</value></data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve"><value>ปุ่มกลางของเมาส์</value></data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve"><value>ปุ่ม X1 ของเมาส์</value></data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve"><value>ปุ่ม X2 ของเมาส์</value></data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve"><value>ล้อเมาส์</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>ต่อปุ่มเมาส์</value></data>
+  <data name="groupBoxDevice.Text" xml:space="preserve"><value></value></data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve"><value>ทั่วไป</value></data>
+  <data name="x2.Text" xml:space="preserve"><value>X2</value></data>
+  <data name="x1.Text" xml:space="preserve"><value>X1</value></data>
+  <data name="middle.Text" xml:space="preserve"><value>กลาง</value></data>
+  <data name="right.Text" xml:space="preserve"><value>ขวา</value></data>
+  <data name="left.Text" xml:space="preserve"><value>ซ้าย</value></data>
+  <data name="showUiMenu.Text" xml:space="preserve"><value>แสดงอินเทอร์เฟซ</value></data>
+  <data name="exitMenu.Text" xml:space="preserve"><value>ออก</value></data>
+  <data name="notifyIcon.Text" xml:space="preserve"><value>แก้ไขดับเบิลคลิก</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>ป้องกันดับเบิลคลิกโดยไม่ตั้งใจจากเมาส์ที่มีปุ่มสึกหรอหรือชำรุด</value></data>
+  <data name="descriptionTextBox.Text" xml:space="preserve"><value>ล็อกแสดงเวลาที่ผ่านไประหว่างการคลิกและดับเบิลคลิกทั้งหมดที่ถูกกรองออก
+ดูว่าดับเบิลคลิกปกติของคุณใช้เวลานานเท่าใดและเปรียบเทียบกับที่เกิดขึ้นโดยไม่ตั้งใจจากเมาส์
+ปรับเกณฑ์เพื่อจับการคลิกที่ผิดพลาดในขณะที่ยังอยู่ต่ำกว่าความเร็วดับเบิลคลิกปกติของคุณ
+ทดสอบพฤติกรรมเมาส์ด้วยการตั้งค่าปัจจุบันในพื้นที่ทดสอบด้านล่าง (คลิกเดี่ยว ดับเบิลคลิก เลือกข้อความ เลื่อน ลาก)</value></data>
+  <data name="richTextBox1.Text" xml:space="preserve"><value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value></data>
+  <data name="groupBox2.Text" xml:space="preserve"><value>หมายเหตุ</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>ล็อก</value></data>
+  <data name="groupBox4.Text" xml:space="preserve"><value>ทดสอบ</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>แก้ไขดับเบิลคลิก</value></data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve"><value>ไม่กรองการคลิกในเซสชัน Remote Desktop</value></data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve"><value>เมื่อเปิดใช้งาน การกรองการคลิกจะถูกข้ามในระหว่างเซสชัน Remote Desktop</value></data>
+</root>

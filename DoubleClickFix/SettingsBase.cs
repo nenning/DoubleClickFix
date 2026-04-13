@@ -100,10 +100,8 @@ internal abstract class SettingsBase : ISettings {
 	/// </summary>
 	public bool UseHook { get; private set; }
 
-	public int WindowsDoubleClickTimeMilliseconds {
-		init => field = GetWindowsMaximumDoubleClickTime();
-        get;
-	}
+	public int WindowsDoubleClickTimeMilliseconds { get; } = GetWindowsMaximumDoubleClickTime();
+
 	public int X1Threshold {
 		get => x1Threshold;
 		set {

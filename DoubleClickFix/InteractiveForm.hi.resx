@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element>
+          <xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="delayLabel.Text" xml:space="preserve"><value>न्यूनतम डबल-क्लिक अंतराल [ms]</value></data>
+  <data name="delayLabel.ToolTip" xml:space="preserve"><value>चयनित माउस बटन के लिए क्लिक के बीच न्यूनतम समय सेट करें। डिफ़ॉल्ट: 50 ms।</value></data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve"><value>इस अंतराल में क्लिक को आकस्मिक डबल-क्लिक माना जाएगा और फ़िल्टर किया जाएगा।</value></data>
+  <data name="saveButton.Text" xml:space="preserve"><value>सहेजें</value></data>
+  <data name="resetButton.Text" xml:space="preserve"><value>रीसेट</value></data>
+  <data name="saveButton.ToolTip" xml:space="preserve"><value>सेटिंग्स सहेजें</value></data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Windows स्टार्टअप पर चलाएं</value></data>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>इस एप्लिकेशन को हमेशा पृष्ठभूमि में चलाएं।</value></data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>समाप्ति विलंब [ms]</value></data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve"><value>ड्रैग-लॉक मोड से बाहर निकलने के लिए बटन छोड़ने से पहले माउस को न्यूनतम इतने समय तक स्थिर रहना होगा। डिफ़ॉल्ट: 150 ms।</value></data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve"><value>प्रारंभ विलंब [ms]</value></data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve"><value>ड्रैग-लॉक मोड सक्रिय होने से पहले न्यूनतम ड्रैग अवधि। डिफ़ॉल्ट: 1000 ms।</value></data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve"><value>ड्रैगिंग समस्याएं ठीक करें</value></data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve"><value>केवल तभी उपयोग करें जब ड्रैगिंग में समस्या हो। ड्रैग-लॉक मोड से बाहर निकलने के लिए फिर से क्लिक करना पड़ सकता है।</value></data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve"><value>0 ms अंतराल के साथ डबल-क्लिक की अनुमति दें</value></data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve"><value>केवल तभी उपयोग करें जब टचपैड या टचस्क्रीन ठीक से काम न करे।</value></data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve"><value>सुधार सक्षम करें</value></data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve"><value>प्रत्येक माउस बटन के लिए अलग से डबल-क्लिक सुधार सक्षम करें।</value></data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve"><value>बायाँ माउस बटन</value></data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve"><value>दायाँ माउस बटन</value></data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve"><value>मध्य माउस बटन</value></data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve"><value>X1 माउस बटन</value></data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve"><value>X2 माउस बटन</value></data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve"><value>माउस व्हील</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>माउस बटन के अनुसार</value></data>
+  <data name="groupBoxDevice.Text" xml:space="preserve"><value></value></data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve"><value>सामान्य</value></data>
+  <data name="x2.Text" xml:space="preserve"><value>X2</value></data>
+  <data name="x1.Text" xml:space="preserve"><value>X1</value></data>
+  <data name="middle.Text" xml:space="preserve"><value>मध्य</value></data>
+  <data name="right.Text" xml:space="preserve"><value>दायाँ</value></data>
+  <data name="left.Text" xml:space="preserve"><value>बायाँ</value></data>
+  <data name="showUiMenu.Text" xml:space="preserve"><value>इंटरफ़ेस दिखाएं</value></data>
+  <data name="exitMenu.Text" xml:space="preserve"><value>बाहर निकलें</value></data>
+  <data name="notifyIcon.Text" xml:space="preserve"><value>डबल क्लिक फिक्स</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>घिसे हुए या दोषपूर्ण बटन वाले माउस से आकस्मिक डबल-क्लिक को रोकता है।</value></data>
+  <data name="descriptionTextBox.Text" xml:space="preserve"><value>लॉग क्लिक के बीच बीता हुआ समय और सभी फ़िल्टर किए गए डबल-क्लिक दिखाता है।
+देखें कि आपके सामान्य डबल-क्लिक में कितना समय लगता है और माउस के आकस्मिक क्लिक से तुलना करें।
+गलत क्लिक पकड़ने के लिए थ्रेशोल्ड समायोजित करें और सामान्य डबल-क्लिक गति से नीचे रखें।
+नीचे दिए गए परीक्षण क्षेत्र में वर्तमान सेटिंग्स के साथ माउस के व्यवहार का परीक्षण करें (एकल क्लिक, डबल-क्लिक, टेक्स्ट चयन, स्क्रॉल, ड्रैग)।</value></data>
+  <data name="richTextBox1.Text" xml:space="preserve"><value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value></data>
+  <data name="groupBox2.Text" xml:space="preserve"><value>नोट्स</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>लॉग्स</value></data>
+  <data name="groupBox4.Text" xml:space="preserve"><value>परीक्षण</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>डबल क्लिक फिक्स</value></data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve"><value>रिमोट डेस्कटॉप सत्रों में क्लिक फ़िल्टर न करें</value></data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve"><value>सक्षम होने पर, रिमोट डेस्कटॉप सत्रों के दौरान क्लिक फ़िल्टरिंग बंद हो जाती है।</value></data>
+</root>

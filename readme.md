@@ -46,6 +46,16 @@ A lightweight tool that fixes accidental double-clicks caused by a worn-out or f
 
 ![logo](./media/main-screen-dark.png)
 
+### 🌐 Translations
+
+The UI is available in the following languages (translated with AI):
+
+🇺🇸 English &nbsp; 🇸🇦 Arabic &nbsp; 🇧🇩 Bengali &nbsp; 🇩🇪 German &nbsp; 🇪🇸 Spanish &nbsp; 🇵🇭 Filipino &nbsp; 🇫🇷 French &nbsp; 🇮🇳 Hindi &nbsp; 🇮🇩 Indonesian &nbsp; 🇮🇹 Italian &nbsp; 🇰🇿 Kazakh &nbsp; 🇰🇷 Korean &nbsp; 🇸🇬 Malay &nbsp; 🇧🇷 Portuguese (Brazil) &nbsp; 🇷🇺 Russian &nbsp; 🇹🇭 Thai &nbsp; 🇹🇷 Turkish &nbsp; 🇺🇦 Ukrainian &nbsp; 🇻🇳 Vietnamese &nbsp; 🇨🇳 Chinese (Simplified) &nbsp; 🇹🇼 Chinese (Traditional)
+
+---
+
+
+
 ---
 
 ## 🖥️ System Requirements

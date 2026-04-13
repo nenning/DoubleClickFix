@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppAlreadyRunning" xml:space="preserve">
+    <value>Uygulamanın başka bir örneği zaten çalışıyor.</value>
+  </data>
+  <data name="EnterDragLock" xml:space="preserve">
+    <value>{0} için {1} ms sonra sürükleme kilidi etkinleştiriliyor</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="ExitDragLock" xml:space="preserve">
+    <value>{0} için sürükleme sonrası sürükleme kilidi devre dışı bırakılıyor</value>
+  </data>
+  <data name="HookNotInstalled" xml:space="preserve">
+    <value>Fare kancası yüklenemedi.</value>
+  </data>
+  <data name="IgnoredDoubleClick" xml:space="preserve">
+    <value>Çift tıklama filtrelendi</value>
+  </data>
+  <data name="IgnoredMouseWheel" xml:space="preserve">
+    <value>Fare tekerleği yoksayıldı</value>
+  </data>
+  <data name="MouseWheelDelta" xml:space="preserve">
+    <value>Fare tekerleği deltası</value>
+  </data>
+  <data name="InvalidDelayValue" xml:space="preserve">
+    <value>Geçersiz değer — kaydedilmedi. Geçerli aralık:</value>
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value>sol</value>
+  </data>
+  <data name="Middle" xml:space="preserve">
+    <value>orta</value>
+  </data>
+  <data name="Right" xml:space="preserve">
+    <value>sağ</value>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>Ayarlar kaydedildi.</value>
+  </data>
+  <data name="WritingRegistryFailed" xml:space="preserve">
+    <value>Başlangıç kayıt defterine yazılamadı.</value>
+  </data>
+  <data name="X1" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="X2" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="CurrentDevice" xml:space="preserve">
+    <value>Geçerli cihaz:</value>
+  </data>
+  <data name="IgnoreCurrentDevice" xml:space="preserve">
+    <value>Bu cihazı yoksay</value>
+  </data>
+  <data name="ThemeSystem" xml:space="preserve">
+    <value>Sistem</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Koyu</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>Güncelleme mevcut</value>
+  </data>
+  <data name="UpdateAvailableMessage" xml:space="preserve">
+    <value>DoubleClickFix v{0} mevcut. İndirmek için tıklayın.</value>
+  </data>
+</root>

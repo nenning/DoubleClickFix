@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element>
+          <xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="delayLabel.Text" xml:space="preserve"><value>Екі рет басудың ең аз аралығы [мс]</value></data>
+  <data name="delayLabel.ToolTip" xml:space="preserve"><value>Таңдалған тінтуір түймесі үшін басулар арасындағы ең аз уақытты орнатыңыз. Әдепкі: 50 мс.</value></data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Осы аралықтағы басулар кездейсоқ екі рет басу ретінде қарастырылып, сүзіледі.</value></data>
+  <data name="saveButton.Text" xml:space="preserve"><value>Сақтау</value></data>
+  <data name="resetButton.Text" xml:space="preserve"><value>Қалпына келтіру</value></data>
+  <data name="saveButton.ToolTip" xml:space="preserve"><value>Параметрлерді сақтау</value></data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Windows жүктелгенде іске қосу</value></data>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Бұл қолданбаны әрқашан фонда іске қосу.</value></data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Аяқталу кідірісі [мс]</value></data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve"><value>Сүйрей жабу режимінен шығу үшін түймені жіберер алдында тінтуір ең аз осынша уақыт қозғалмай тұруы керек. Әдепкі: 150 мс.</value></data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve"><value>Бастапқы кідіріс [мс]</value></data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve"><value>Сүйрей жабу режимі белсендірілер алдындағы ең аз сүйрею ұзақтығы. Әдепкі: 1000 мс.</value></data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve"><value>Сүйрею мәселелерін түзету</value></data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve"><value>Тек сүйрею мәселесі болса ғана пайдаланыңыз. Сүйрей жабу режимінен шығу үшін қайта басу қажет болуы мүмкін.</value></data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve"><value>0 мс кідірісте екі рет басуға рұқсат беру</value></data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve"><value>Тек сенсорлық тақта немесе сенсорлық экран дұрыс жұмыс істемесе ғана пайдаланыңыз.</value></data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve"><value>Түзетуді қосу</value></data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve"><value>Әр тінтуір түймесі үшін жеке екі рет басу түзетуін қосыңыз.</value></data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve"><value>Тінтуірдің сол түймесі</value></data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve"><value>Тінтуірдің оң түймесі</value></data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve"><value>Тінтуірдің ортаңғы түймесі</value></data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve"><value>Тінтуір X1 түймесі</value></data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve"><value>Тінтуір X2 түймесі</value></data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve"><value>Тінтуір дөңгелегі</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>Түйме бойынша</value></data>
+  <data name="groupBoxDevice.Text" xml:space="preserve"><value></value></data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve"><value>Жалпы</value></data>
+  <data name="x2.Text" xml:space="preserve"><value>X2</value></data>
+  <data name="x1.Text" xml:space="preserve"><value>X1</value></data>
+  <data name="middle.Text" xml:space="preserve"><value>Ортаңғы</value></data>
+  <data name="right.Text" xml:space="preserve"><value>Оң</value></data>
+  <data name="left.Text" xml:space="preserve"><value>Сол</value></data>
+  <data name="showUiMenu.Text" xml:space="preserve"><value>Интерфейсті көрсету</value></data>
+  <data name="exitMenu.Text" xml:space="preserve"><value>Шығу</value></data>
+  <data name="notifyIcon.Text" xml:space="preserve"><value>Екі рет басуды түзету</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>Тозған немесе ақаулы түймелері бар тінтуірдің кездейсоқ екі рет басылуын болдырмайды.</value></data>
+  <data name="descriptionTextBox.Text" xml:space="preserve"><value>Журнал басулар арасындағы өткен уақытты және сүзілген барлық екі рет басуларды көрсетеді.
+Қалыпты екі рет басуларыңыздың қанша уақыт алатынын біліп, тінтуірдің кездейсоқ басулармен салыстырыңыз.
+Қалыпты екі рет басу жылдамдығынан төмен бола отырып, қате басуларды ұстау үшін шекті мәнді реттеңіз.
+Ағымдағы параметрлермен тінтуір мінез-құлқын төмендегі сынақ аймағында тексеріңіз (бір басу, екі рет басу, мәтін таңдау, айналдыру, сүйрею).</value></data>
+  <data name="richTextBox1.Text" xml:space="preserve"><value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value></data>
+  <data name="groupBox2.Text" xml:space="preserve"><value>Ескертпелер</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>Журналдар</value></data>
+  <data name="groupBox4.Text" xml:space="preserve"><value>Сынақ</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>Екі рет басуды түзету</value></data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve"><value>Қашықтан жұмыс үстелі сеанстарында басуларды сүзбеу</value></data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve"><value>Қосылғанда, Қашықтан жұмыс үстелі сеанстары кезінде басуларды сүзу өткізіп жіберіледі.</value></data>
+</root>

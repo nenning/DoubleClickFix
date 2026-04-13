@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element>
+          <xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="delayLabel.Text" xml:space="preserve"><value>ন্যূনতম ডাবল-ক্লিক বিরতি [ms]</value></data>
+  <data name="delayLabel.ToolTip" xml:space="preserve"><value>নির্বাচিত মাউস বোতামের জন্য ক্লিকের মধ্যে ন্যূনতম সময় সেট করুন। ডিফল্ট: 50 ms।</value></data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve"><value>এই বিরতির মধ্যে ক্লিকগুলি দুর্ঘটনাবশত ডাবল-ক্লিক হিসাবে বিবেচিত হবে এবং ফিল্টার করা হবে।</value></data>
+  <data name="saveButton.Text" xml:space="preserve"><value>সংরক্ষণ করুন</value></data>
+  <data name="resetButton.Text" xml:space="preserve"><value>রিসেট</value></data>
+  <data name="saveButton.ToolTip" xml:space="preserve"><value>সেটিংস সংরক্ষণ করুন</value></data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Windows চালু হওয়ার সময় চালান</value></data>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>সবসময় এই অ্যাপ্লিকেশনটি পটভূমিতে চালান।</value></data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>সমাপ্তি বিলম্ব [ms]</value></data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve"><value>ড্র্যাগ-লক মোড থেকে বের হতে বোতাম ছাড়ার আগে মাউসকে ন্যূনতম এতক্ষণ স্থির থাকতে হবে। ডিফল্ট: 150 ms।</value></data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve"><value>শুরু বিলম্ব [ms]</value></data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve"><value>ড্র্যাগ-লক মোড সক্রিয় হওয়ার আগে ন্যূনতম ড্র্যাগ সময়কাল। ডিফল্ট: 1000 ms।</value></data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve"><value>ড্র্যাগিং সমস্যা সমাধান করুন</value></data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve"><value>শুধুমাত্র ড্র্যাগিং সমস্যা থাকলে ব্যবহার করুন। ড্র্যাগ-লক মোড থেকে বের হতে আবার ক্লিক করতে হতে পারে।</value></data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve"><value>0 ms ব্যবধানে ডাবল-ক্লিকের অনুমতি দিন</value></data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve"><value>শুধুমাত্র তখনই ব্যবহার করুন যখন টাচপ্যাড বা টাচস্ক্রিন সঠিকভাবে কাজ না করে।</value></data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve"><value>সংশোধন সক্ষম করুন</value></data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve"><value>প্রতিটি মাউস বোতামের জন্য আলাদাভাবে ডাবল-ক্লিক সংশোধন সক্ষম করুন।</value></data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve"><value>মাউসের বাম বোতাম</value></data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve"><value>মাউসের ডান বোতাম</value></data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve"><value>মাউসের মাঝের বোতাম</value></data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve"><value>মাউস X1 বোতাম</value></data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve"><value>মাউস X2 বোতাম</value></data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve"><value>মাউস হুইল</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>মাউস বোতাম অনুযায়ী</value></data>
+  <data name="groupBoxDevice.Text" xml:space="preserve"><value></value></data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve"><value>সাধারণ</value></data>
+  <data name="x2.Text" xml:space="preserve"><value>X2</value></data>
+  <data name="x1.Text" xml:space="preserve"><value>X1</value></data>
+  <data name="middle.Text" xml:space="preserve"><value>মধ্য</value></data>
+  <data name="right.Text" xml:space="preserve"><value>ডান</value></data>
+  <data name="left.Text" xml:space="preserve"><value>বাম</value></data>
+  <data name="showUiMenu.Text" xml:space="preserve"><value>ইন্টারফেস দেখান</value></data>
+  <data name="exitMenu.Text" xml:space="preserve"><value>প্রস্থান</value></data>
+  <data name="notifyIcon.Text" xml:space="preserve"><value>ডাবল ক্লিক ফিক্স</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>ক্ষয়প্রাপ্ত বা ত্রুটিপূর্ণ বোতামযুক্ত মাউস থেকে দুর্ঘটনাবশত ডাবল-ক্লিক প্রতিরোধ করে।</value></data>
+  <data name="descriptionTextBox.Text" xml:space="preserve"><value>লগ ক্লিকের মধ্যে অতিবাহিত সময় এবং সমস্ত ফিল্টার করা ডাবল-ক্লিক দেখায়।
+আপনার স্বাভাবিক ডাবল-ক্লিক কতক্ষণ নেয় তা দেখুন এবং মাউসের দুর্ঘটনাবশত ক্লিকের সাথে তুলনা করুন।
+ত্রুটিপূর্ণ ক্লিক ধরতে থ্রেশহোল্ড সামঞ্জস্য করুন এবং স্বাভাবিক ডাবল-ক্লিক গতির নিচে রাখুন।
+নীচের পরীক্ষা এলাকায় বর্তমান সেটিংস দিয়ে মাউসের আচরণ পরীক্ষা করুন (একক ক্লিক, ডাবল-ক্লিক, টেক্সট নির্বাচন, স্ক্রল, ড্র্যাগ)।</value></data>
+  <data name="richTextBox1.Text" xml:space="preserve"><value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value></data>
+  <data name="groupBox2.Text" xml:space="preserve"><value>নোট</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>লগ</value></data>
+  <data name="groupBox4.Text" xml:space="preserve"><value>পরীক্ষা</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>ডাবল ক্লিক ফিক্স</value></data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve"><value>রিমোট ডেস্কটপ সেশনে ক্লিক ফিল্টার করবেন না</value></data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve"><value>সক্ষম হলে, রিমোট ডেস্কটপ সেশনের সময় ক্লিক ফিল্টারিং এড়িয়ে যাওয়া হয়।</value></data>
+</root>

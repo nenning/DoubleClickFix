@@ -150,9 +150,6 @@
   <data name="&gt;&gt;logTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>479, 22</value>
-  </metadata>
   <data name="delayLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -168,6 +165,9 @@
   <data name="delayLabel.Text" xml:space="preserve">
     <value>Minimum double-click interval [ms]</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>479, 22</value>
+  </metadata>
   <data name="delayLabel.ToolTip" xml:space="preserve">
     <value>Set the minimum time between clicks for the selected mouse button. Default: 50 ms.</value>
   </data>
@@ -260,30 +260,6 @@
   </data>
   <data name="&gt;&gt;runAtStartupCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 160</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>932, 282</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Per Mouse Button</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>10</value>
   </data>
   <data name="dragEndDelayTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -557,6 +533,30 @@
   </data>
   <data name="&gt;&gt;mouseButtonComboBox.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 160</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>932, 282</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Per Mouse Button</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="remoteDesktopCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -858,6 +858,18 @@
   <metadata name="notifyMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>285, 22</value>
   </metadata>
+  <data name="showUiMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 32</value>
+  </data>
+  <data name="showUiMenu.Text" xml:space="preserve">
+    <value>Show user interface</value>
+  </data>
+  <data name="exitMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 32</value>
+  </data>
+  <data name="exitMenu.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
   <data name="notifyMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 68</value>
   </data>
@@ -5384,18 +5396,6 @@
   <data name="notifyIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="showUiMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
-  </data>
-  <data name="showUiMenu.Text" xml:space="preserve">
-    <value>Show user interface</value>
-  </data>
-  <data name="exitMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
-  </data>
-  <data name="exitMenu.Text" xml:space="preserve">
-    <value>Exit</value>
-  </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -5630,9 +5630,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="&gt;&gt;groupBoxGeneral.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>479, 22</value>
-  </metadata>
   <data name="versionLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
@@ -5727,7 +5724,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>Top, Right</value>
   </data>
   <data name="themeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>965, 28</value>
+    <value>926, 28</value>
   </data>
   <data name="themeComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 33</value>
@@ -5750,26 +5747,11 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="languageComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="languageComboBox.Items" xml:space="preserve">
-    <value>🇺🇸 EN</value>
-  </data>
-  <data name="languageComboBox.Items1" xml:space="preserve">
-    <value>🇩🇪 DE</value>
-  </data>
-  <data name="languageComboBox.Items2" xml:space="preserve">
-    <value>🇪🇸 ES</value>
-  </data>
-  <data name="languageComboBox.Items3" xml:space="preserve">
-    <value>🇫🇷 FR</value>
-  </data>
-  <data name="languageComboBox.Items4" xml:space="preserve">
-    <value>🇮🇹 IT</value>
-  </data>
   <data name="languageComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1103, 28</value>
+    <value>1062, 28</value>
   </data>
   <data name="languageComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 33</value>
+    <value>221, 33</value>
   </data>
   <data name="languageComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>

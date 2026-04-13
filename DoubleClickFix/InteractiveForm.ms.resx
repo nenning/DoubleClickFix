@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element>
+          <xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="delayLabel.Text" xml:space="preserve"><value>Selang klik dua kali minimum [ms]</value></data>
+  <data name="delayLabel.ToolTip" xml:space="preserve"><value>Tetapkan masa minimum antara klik untuk butang tetikus yang dipilih. Lalai: 50 ms.</value></data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Klik dalam selang ini akan dianggap sebagai klik dua kali yang tidak disengaja dan ditapis.</value></data>
+  <data name="saveButton.Text" xml:space="preserve"><value>Simpan</value></data>
+  <data name="resetButton.Text" xml:space="preserve"><value>Tetapkan Semula</value></data>
+  <data name="saveButton.ToolTip" xml:space="preserve"><value>Simpan tetapan</value></data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Jalankan semasa permulaan Windows</value></data>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Sentiasa jalankan aplikasi ini di latar belakang.</value></data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Kelewatan tamat [ms]</value></data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve"><value>Masa minimum tetikus mesti pegun sebelum anda boleh melepaskan butang untuk keluar dari mod kunci seret. Lalai: 150 ms.</value></data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve"><value>Kelewatan mula [ms]</value></data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve"><value>Tempoh seret minimum sebelum mod kunci seret diaktifkan. Lalai: 1000 ms.</value></data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve"><value>Baiki masalah seret</value></data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve"><value>Gunakan hanya jika anda mempunyai masalah seret. Anda mungkin perlu klik semula untuk keluar dari mod kunci seret.</value></data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve"><value>Benarkan klik dua kali dengan kelewatan 0 ms</value></data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve"><value>Gunakan hanya jika pad sentuh atau skrin sentuh tidak berfungsi dengan betul.</value></data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve"><value>Aktifkan pembetulan</value></data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve"><value>Aktifkan pembetulan klik dua kali untuk setiap butang tetikus secara berasingan.</value></data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve"><value>Butang kiri tetikus</value></data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve"><value>Butang kanan tetikus</value></data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve"><value>Butang tengah tetikus</value></data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve"><value>Butang X1 tetikus</value></data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve"><value>Butang X2 tetikus</value></data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve"><value>Roda tetikus</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>Setiap butang</value></data>
+  <data name="groupBoxDevice.Text" xml:space="preserve"><value></value></data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve"><value>Umum</value></data>
+  <data name="x2.Text" xml:space="preserve"><value>X2</value></data>
+  <data name="x1.Text" xml:space="preserve"><value>X1</value></data>
+  <data name="middle.Text" xml:space="preserve"><value>Tengah</value></data>
+  <data name="right.Text" xml:space="preserve"><value>Kanan</value></data>
+  <data name="left.Text" xml:space="preserve"><value>Kiri</value></data>
+  <data name="showUiMenu.Text" xml:space="preserve"><value>Tunjuk antara muka</value></data>
+  <data name="exitMenu.Text" xml:space="preserve"><value>Keluar</value></data>
+  <data name="notifyIcon.Text" xml:space="preserve"><value>Pembetulan Klik Dua Kali</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>Mencegah klik dua kali yang tidak disengaja akibat tetikus dengan butang yang lusuh atau rosak.</value></data>
+  <data name="descriptionTextBox.Text" xml:space="preserve"><value>Log menunjukkan masa yang berlalu antara klik dan semua klik dua kali yang ditapis.
+Lihat berapa lama klik dua kali biasa anda dan bandingkan dengan yang tidak disengaja daripada tetikus anda.
+Laraskan ambang untuk menangkap klik yang salah sambil kekal di bawah kelajuan klik dua kali biasa anda.
+Uji tingkah laku tetikus dengan tetapan semasa di kawasan ujian di bawah (klik tunggal, klik dua kali, pilih teks, tatal, seret).</value></data>
+  <data name="richTextBox1.Text" xml:space="preserve"><value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value></data>
+  <data name="groupBox2.Text" xml:space="preserve"><value>Nota</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>Log</value></data>
+  <data name="groupBox4.Text" xml:space="preserve"><value>Ujian</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>Pembetulan Klik Dua Kali</value></data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve"><value>Jangan tapis klik dalam sesi Desktop Jauh</value></data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve"><value>Apabila diaktifkan, penapisan klik diabaikan semasa sesi Desktop Jauh.</value></data>
+</root>

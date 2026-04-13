@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppAlreadyRunning" xml:space="preserve">
+    <value>แอปพลิเคชันอีกหนึ่งอินสแตนซ์กำลังทำงานอยู่แล้ว</value>
+  </data>
+  <data name="EnterDragLock" xml:space="preserve">
+    <value>กำลังเปิดใช้งานการล็อกการลาก {0} หลังจาก {1} ms</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>ข้อผิดพลาด</value>
+  </data>
+  <data name="ExitDragLock" xml:space="preserve">
+    <value>กำลังปิดใช้งานการล็อกการลาก {0} หลังจากการลาก</value>
+  </data>
+  <data name="HookNotInstalled" xml:space="preserve">
+    <value>ติดตั้ง mouse hook ไม่สำเร็จ</value>
+  </data>
+  <data name="IgnoredDoubleClick" xml:space="preserve">
+    <value>กรองการดับเบิลคลิกแล้ว</value>
+  </data>
+  <data name="IgnoredMouseWheel" xml:space="preserve">
+    <value>ละเว้นล้อเมาส์แล้ว</value>
+  </data>
+  <data name="MouseWheelDelta" xml:space="preserve">
+    <value>เดลต้าล้อเมาส์</value>
+  </data>
+  <data name="InvalidDelayValue" xml:space="preserve">
+    <value>ค่าไม่ถูกต้อง — ไม่ได้บันทึก ช่วงที่ถูกต้อง:</value>
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value>ซ้าย</value>
+  </data>
+  <data name="Middle" xml:space="preserve">
+    <value>กลาง</value>
+  </data>
+  <data name="Right" xml:space="preserve">
+    <value>ขวา</value>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>บันทึกการตั้งค่าแล้ว</value>
+  </data>
+  <data name="WritingRegistryFailed" xml:space="preserve">
+    <value>ไม่สามารถเขียนลงใน startup registry ได้</value>
+  </data>
+  <data name="X1" xml:space="preserve">
+    <value>X1</value>
+  </data>
+  <data name="X2" xml:space="preserve">
+    <value>X2</value>
+  </data>
+  <data name="CurrentDevice" xml:space="preserve">
+    <value>อุปกรณ์ปัจจุบัน:</value>
+  </data>
+  <data name="IgnoreCurrentDevice" xml:space="preserve">
+    <value>ละเว้นอุปกรณ์นี้</value>
+  </data>
+  <data name="ThemeSystem" xml:space="preserve">
+    <value>ระบบ</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>สว่าง</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>มืด</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>มีการอัปเดต</value>
+  </data>
+  <data name="UpdateAvailableMessage" xml:space="preserve">
+    <value>DoubleClickFix v{0} พร้อมใช้งาน คลิกเพื่อดาวน์โหลด</value>
+  </data>
+</root>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element>
+          <xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element>
+          <xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="delayLabel.Text" xml:space="preserve"><value>最小双击间隔 [ms]</value></data>
+  <data name="delayLabel.ToolTip" xml:space="preserve"><value>设置所选鼠标按钮的点击之间的最短时间。默认值：50 ms。</value></data>
+  <data name="delayTextBox.ToolTip" xml:space="preserve"><value>在此间隔内的点击将被视为意外双击并被过滤。</value></data>
+  <data name="saveButton.Text" xml:space="preserve"><value>保存</value></data>
+  <data name="resetButton.Text" xml:space="preserve"><value>重置</value></data>
+  <data name="saveButton.ToolTip" xml:space="preserve"><value>保存设置</value></data>
+  <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>在 Windows 启动时运行</value></data>
+  <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>始终在后台运行此应用程序。</value></data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>结束延迟 [ms]</value></data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve"><value>退出拖动锁定模式前鼠标必须保持静止的最短时间。默认值：150 ms。</value></data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve"><value>开始延迟 [ms]</value></data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve"><value>激活拖动锁定模式前的最短拖动时间。默认值：1000 ms。</value></data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve"><value>修复拖动问题</value></data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve"><value>仅在有拖动问题时使用。可能需要再次点击以退出拖动锁定模式。</value></data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve"><value>允许 0 ms 延迟的双击</value></data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve"><value>仅在触控板或触摸屏无法正常工作时使用。</value></data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve"><value>启用修复</value></data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve"><value>为每个鼠标按钮单独启用双击修复。</value></data>
+  <data name="mouseButtonComboBox.Items" xml:space="preserve"><value>鼠标左键</value></data>
+  <data name="mouseButtonComboBox.Items1" xml:space="preserve"><value>鼠标右键</value></data>
+  <data name="mouseButtonComboBox.Items2" xml:space="preserve"><value>鼠标中键</value></data>
+  <data name="mouseButtonComboBox.Items3" xml:space="preserve"><value>鼠标 X1 键</value></data>
+  <data name="mouseButtonComboBox.Items4" xml:space="preserve"><value>鼠标 X2 键</value></data>
+  <data name="mouseButtonComboBox.Items5" xml:space="preserve"><value>鼠标滚轮</value></data>
+  <data name="groupBox1.Text" xml:space="preserve"><value>各鼠标按钮</value></data>
+  <data name="groupBoxDevice.Text" xml:space="preserve"><value></value></data>
+  <data name="groupBoxGeneral.Text" xml:space="preserve"><value>常规</value></data>
+  <data name="x2.Text" xml:space="preserve"><value>X2</value></data>
+  <data name="x1.Text" xml:space="preserve"><value>X1</value></data>
+  <data name="middle.Text" xml:space="preserve"><value>中键</value></data>
+  <data name="right.Text" xml:space="preserve"><value>右键</value></data>
+  <data name="left.Text" xml:space="preserve"><value>左键</value></data>
+  <data name="showUiMenu.Text" xml:space="preserve"><value>显示界面</value></data>
+  <data name="exitMenu.Text" xml:space="preserve"><value>退出</value></data>
+  <data name="notifyIcon.Text" xml:space="preserve"><value>双击修复</value></data>
+  <data name="label1.Text" xml:space="preserve"><value>防止因鼠标按键磨损或故障导致的意外双击。</value></data>
+  <data name="descriptionTextBox.Text" xml:space="preserve"><value>日志显示点击之间的时间间隔以及所有被过滤的双击。
+查看您正常双击所需时间并与鼠标的意外双击进行比较。
+调整阈值以拦截误触点击，同时保持低于您正常的双击速度。
+在下方测试区域使用当前设置测试鼠标行为（单击、双击、选择文本、滚动、拖动）。</value></data>
+  <data name="richTextBox1.Text" xml:space="preserve"><value>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</value></data>
+  <data name="groupBox2.Text" xml:space="preserve"><value>备注</value></data>
+  <data name="groupBox3.Text" xml:space="preserve"><value>日志</value></data>
+  <data name="groupBox4.Text" xml:space="preserve"><value>测试</value></data>
+  <data name="$this.Text" xml:space="preserve"><value>双击修复</value></data>
+  <data name="remoteDesktopCheckBox.Text" xml:space="preserve"><value>在远程桌面会话中不过滤点击</value></data>
+  <data name="remoteDesktopCheckBox.ToolTip" xml:space="preserve"><value>启用后，在远程桌面会话期间跳过点击过滤。</value></data>
+</root>
