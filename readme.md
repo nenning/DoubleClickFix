@@ -12,7 +12,7 @@ A lightweight tool that fixes accidental double-clicks caused by a worn-out or f
 - 🖥️ **Remote Desktop Support** – enable the option in the UI to disable click filtering during RDP sessions.
 - 🌗 **Dark / Light Theme** – choose between dark, light, or system theme in the settings.
 - 🌐 **Language Switcher** – support for 21 languages (translated by AI).
-- 🔄 **Easy Update Script** – run `update.bat` from the extracted ZIP to automatically stop, update, and restart the app in-place.
+- 🔄 **Easy Update Script** – (github release only) run `update.bat` from the extracted ZIP to automatically stop, update, and restart the app in-place.
 
 ---
 
