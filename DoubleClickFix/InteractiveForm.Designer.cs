@@ -72,6 +72,7 @@
 			gitLinkLabel = new LinkLabel();
 			themeComboBox = new ComboBox();
 			languageComboBox = new ComboBox();
+			bottomPanel = new Panel();
 			groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)thresholdSlider).BeginInit();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -81,6 +82,7 @@
 			groupBox4.SuspendLayout();
 			groupBoxDevice.SuspendLayout();
 			groupBoxGeneral.SuspendLayout();
+			bottomPanel.SuspendLayout();
 			SuspendLayout();
 			// 
 			// logTextBox
@@ -388,16 +390,21 @@
 			languageComboBox.FormattingEnabled = true;
 			languageComboBox.Name = "languageComboBox";
 			languageComboBox.SelectedIndexChanged += OnLanguageChanged;
-			// 
+			//
+			// bottomPanel
+			//
+			resources.ApplyResources(bottomPanel, "bottomPanel");
+			bottomPanel.Name = "bottomPanel";
+			bottomPanel.Controls.Add(gitLinkLabel);
+			bottomPanel.Controls.Add(updateLinkLabel);
+			bottomPanel.Controls.Add(versionLabel);
+			//
 			// InteractiveForm
-			// 
+			//
 			resources.ApplyResources(this, "$this");
 			AutoScaleMode = AutoScaleMode.Font;
 			Controls.Add(themeComboBox);
 			Controls.Add(languageComboBox);
-			Controls.Add(gitLinkLabel);
-			Controls.Add(updateLinkLabel);
-			Controls.Add(versionLabel);
 			Controls.Add(groupBox3);
 			Controls.Add(label1);
 			Controls.Add(groupBox2);
@@ -405,6 +412,7 @@
 			Controls.Add(groupBox1);
 			Controls.Add(groupBoxDevice);
 			Controls.Add(groupBox4);
+			Controls.Add(bottomPanel);
 			Name = "InteractiveForm";
 			Load += InteractiveForm_Load;
 			groupBox1.ResumeLayout(false);
@@ -422,6 +430,8 @@
 			groupBoxDevice.PerformLayout();
 			groupBoxGeneral.ResumeLayout(false);
 			groupBoxGeneral.PerformLayout();
+			bottomPanel.ResumeLayout(false);
+			bottomPanel.PerformLayout();
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -471,5 +481,6 @@
         private ComboBox languageComboBox;
         private GroupBox groupBoxDevice;
         private GroupBox groupBoxGeneral;
+        private Panel bottomPanel;
     }
 }

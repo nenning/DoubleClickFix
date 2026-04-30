@@ -21,7 +21,7 @@ internal partial class InteractiveForm : Form {
 	internal string? RestartArgs { get; private set; }
 	private string[] sortedLanguageCodes = [];
 
-	private static readonly (string Code, string NativeName, string Flag)[] AllLanguages = [
+	private static readonly (string Code, string NativeName, string Flag)[] allLanguages = [
 		("en",    "English",            "🇺🇸"),
 		("ar",    "العربية",            "🇪🇬"),
 		("bn",    "বাংলা",              "🇧🇩"),
@@ -215,7 +215,8 @@ internal partial class InteractiveForm : Form {
 		logTextBox.ScrollToCaret();
 	}
 	private void SetupTestArea() {
-		foreach (var cb in new[] { left, right, middle, x1, x2, wheel }) {
+		CheckBox[] testButtons = [left, right, middle, x1, x2, wheel];
+		foreach (var cb in testButtons) {
 			cb.AutoCheck = false;
 			cb.MouseDown += OnTestMouseDown;
 			cb.MouseUp += OnTestMouseUp;
@@ -551,11 +552,11 @@ internal partial class InteractiveForm : Form {
 
 	private void PopulateLanguages(string currentCode) {
 		string effectiveCurrent = string.IsNullOrWhiteSpace(currentCode) ? "en" : currentCode;
-		var sorted = AllLanguages
+		var sorted = allLanguages
 			.OrderBy(x => x.Code == effectiveCurrent ? 0 : x.Code == "en" ? 1 : 2)
 			.ThenBy(x => x.NativeName, StringComparer.Ordinal)
 			.ToArray();
-		sortedLanguageCodes = sorted.Select(x => x.Code).ToArray();
+		sortedLanguageCodes = [.. sorted.Select(x => x.Code)];
 		languageComboBox.Items.Clear();
 		foreach (var (_, nativeName, flag) in sorted) {
 			languageComboBox.Items.Add($"{flag} {nativeName}");
@@ -616,28 +617,17 @@ internal partial class InteractiveForm : Form {
 			SetBounds(b.X, b.Y, b.Width, b.Height);
 		}
 		var wa = Screen.FromControl(this).WorkingArea;
-		if (Height > wa.Height) {
-			Height = wa.Height;
-		}
-
-		if (Width > wa.Width) {
-			Width = wa.Width;
-		}
-
-		if (Left < wa.Left) {
-			Left = wa.Left;
-		}
-
-		if (Top < wa.Top) {
-			Top = wa.Top;
-		}
-
 		if (Left + Width > wa.Right) {
 			Left = wa.Right - Width;
 		}
-
 		if (Top + Height > wa.Bottom) {
 			Top = wa.Bottom - Height;
+		}
+		if (Left < wa.Left) {
+			Left = wa.Left;
+		}
+		if (Top < wa.Top) {
+			Top = wa.Top;
 		}
 	}
 

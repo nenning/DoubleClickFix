@@ -5630,20 +5630,44 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="&gt;&gt;groupBoxGeneral.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="bottomPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="bottomPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 1047</value>
+  </data>
+  <data name="bottomPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1305, 50</value>
+  </data>
+  <data name="bottomPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;bottomPanel.Name" xml:space="preserve">
+    <value>bottomPanel</value>
+  </data>
+  <data name="&gt;&gt;bottomPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bottomPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;bottomPanel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
   <data name="versionLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="versionLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="versionLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1214, 1063</value>
+    <value>1214, 12</value>
   </data>
   <data name="versionLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 25</value>
   </data>
   <data name="versionLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>2</value>
   </data>
   <data name="versionLabel.Text" xml:space="preserve">
     <value>version</value>
@@ -5655,25 +5679,25 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;versionLabel.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>bottomPanel</value>
   </data>
   <data name="&gt;&gt;versionLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>2</value>
   </data>
   <data name="updateLinkLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="updateLinkLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="updateLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1065, 1063</value>
+    <value>1065, 12</value>
   </data>
   <data name="updateLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 25</value>
   </data>
   <data name="updateLinkLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>1</value>
   </data>
   <data name="updateLinkLabel.Text" xml:space="preserve">
     <value>Update available</value>
@@ -5685,25 +5709,25 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;updateLinkLabel.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>bottomPanel</value>
   </data>
   <data name="&gt;&gt;updateLinkLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="gitLinkLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+    <value>Top, Left</value>
   </data>
   <data name="gitLinkLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="gitLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 1063</value>
+    <value>23, 12</value>
   </data>
   <data name="gitLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>355, 25</value>
   </data>
   <data name="gitLinkLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>0</value>
   </data>
   <data name="gitLinkLabel.Text" xml:space="preserve">
     <value>https://github.com/nenning/DoubleClickFix</value>
@@ -5715,10 +5739,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;gitLinkLabel.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>bottomPanel</value>
   </data>
   <data name="&gt;&gt;gitLinkLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>0</value>
   </data>
   <data name="themeComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -5776,6 +5800,9 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1305, 1097</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>980, 700</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
