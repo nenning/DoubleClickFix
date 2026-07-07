@@ -604,6 +604,9 @@ internal partial class InteractiveForm : Form {
 
 	protected override void OnShown(EventArgs e) {
 		base.OnShown(e);
+		// Safety net: at high DPI on startup, Load may run before WinForms finalizes
+		// DPI scaling. By OnShown the form has its final scaled size, so re-clamp here.
+		ClampToWorkingArea();
 		if (settings.IsInteractive) {
 			WindowState = FormWindowState.Normal;
 			Activate();
@@ -616,18 +619,29 @@ internal partial class InteractiveForm : Form {
 		if (settings.RestartBounds is Rectangle b) {
 			SetBounds(b.X, b.Y, b.Width, b.Height);
 		}
+		ClampToWorkingArea();
+	}
+
+	private void ClampToWorkingArea() {
 		var wa = Screen.FromControl(this).WorkingArea;
-		if (Left + Width > wa.Right) {
-			Left = wa.Right - Width;
+		int newWidth = Math.Min(Width, wa.Width);
+		int newHeight = Math.Min(Height, wa.Height);
+		int newLeft = Left;
+		int newTop = Top;
+		if (newLeft + newWidth > wa.Right) {
+			newLeft = wa.Right - newWidth;
 		}
-		if (Top + Height > wa.Bottom) {
-			Top = wa.Bottom - Height;
+		if (newTop + newHeight > wa.Bottom) {
+			newTop = wa.Bottom - newHeight;
 		}
-		if (Left < wa.Left) {
-			Left = wa.Left;
+		if (newLeft < wa.Left) {
+			newLeft = wa.Left;
 		}
-		if (Top < wa.Top) {
-			Top = wa.Top;
+		if (newTop < wa.Top) {
+			newTop = wa.Top;
+		}
+		if (newLeft != Left || newTop != Top || newWidth != Width || newHeight != Height) {
+			SetBounds(newLeft, newTop, newWidth, newHeight);
 		}
 	}
 
