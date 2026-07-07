@@ -10,7 +10,9 @@
 		<Platforms>AnyCPU;x86;x64;ARM64</Platforms>
 		<ApplicationVisualStyles>true</ApplicationVisualStyles>
 		<ApplicationUseCompatibleTextRendering>false</ApplicationUseCompatibleTextRendering>
-		<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+		<!-- SystemAware: layout is computed once at startup DPI and bitmap-stretched on DPI changes.
+		     PerMonitorV2 breaks this form's absolute resx-based layout when the monitor DPI changes at runtime. -->
+		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Prefer32Bit>false</Prefer32Bit>
 	</PropertyGroup>
