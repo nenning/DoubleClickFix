@@ -35,6 +35,7 @@
 			resetButton = new Button();
 			runAtStartupCheckBox = new CheckBox();
 			groupBox1 = new GroupBox();
+			groupBox1Layout = new TableLayoutPanel();
 			dragEndDelayTextBox = new TextBox();
 			dragEndDelayLabel = new Label();
 			dragStartDelayTextBox = new TextBox();
@@ -64,8 +65,11 @@
 			groupBox2 = new GroupBox();
 			groupBox3 = new GroupBox();
 			groupBox4 = new GroupBox();
+			testPicturePanel = new Panel();
 			groupBoxDevice = new GroupBox();
+			groupBoxDeviceLayout = new TableLayoutPanel();
 			groupBoxGeneral = new GroupBox();
+			groupBoxGeneralLayout = new TableLayoutPanel();
 			toolTip1 = new ToolTip(components);
 			versionLabel = new Label();
 			updateLinkLabel = new LinkLabel();
@@ -73,350 +77,566 @@
 			themeComboBox = new ComboBox();
 			languageComboBox = new ComboBox();
 			bottomPanel = new Panel();
+			rootLayout = new TableLayoutPanel();
+			headerLayout = new TableLayoutPanel();
+			middleLayout = new TableLayoutPanel();
 			groupBox1.SuspendLayout();
+			groupBox1Layout.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)thresholdSlider).BeginInit();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			notifyMenuStrip.SuspendLayout();
 			groupBox2.SuspendLayout();
 			groupBox3.SuspendLayout();
 			groupBox4.SuspendLayout();
+			testPicturePanel.SuspendLayout();
 			groupBoxDevice.SuspendLayout();
+			groupBoxDeviceLayout.SuspendLayout();
 			groupBoxGeneral.SuspendLayout();
+			groupBoxGeneralLayout.SuspendLayout();
 			bottomPanel.SuspendLayout();
+			rootLayout.SuspendLayout();
+			headerLayout.SuspendLayout();
+			middleLayout.SuspendLayout();
 			SuspendLayout();
-			// 
+			//
 			// logTextBox
-			// 
+			//
 			resources.ApplyResources(logTextBox, "logTextBox");
+			logTextBox.Dock = DockStyle.Fill;
 			logTextBox.Name = "logTextBox";
 			logTextBox.ReadOnly = true;
 			logTextBox.TabStop = false;
 			logTextBox.TextChanged += OnLogTextBoxChanged;
-			// 
+			//
 			// delayLabel
-			// 
+			//
 			resources.ApplyResources(delayLabel, "delayLabel");
+			delayLabel.AutoSize = true;
+			delayLabel.Anchor = AnchorStyles.Left;
+			delayLabel.Margin = new Padding(3, 8, 3, 8);
 			delayLabel.Name = "delayLabel";
 			toolTip1.SetToolTip(delayLabel, resources.GetString("delayLabel.ToolTip"));
-			// 
+			//
 			// delayTextBox
-			// 
+			//
 			resources.ApplyResources(delayTextBox, "delayTextBox");
+			delayTextBox.Anchor = AnchorStyles.Left;
+			delayTextBox.Margin = new Padding(9, 3, 3, 3);
 			delayTextBox.Name = "delayTextBox";
+			delayTextBox.Width = 70;
 			toolTip1.SetToolTip(delayTextBox, resources.GetString("delayTextBox.ToolTip"));
-			// 
+			//
 			// resetButton
-			// 
+			//
 			resources.ApplyResources(resetButton, "resetButton");
+			resetButton.Anchor = AnchorStyles.Right;
+			resetButton.AutoSize = true;
+			resetButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			resetButton.Margin = new Padding(9, 3, 3, 3);
+			resetButton.Padding = new Padding(16, 4, 16, 4);
 			resetButton.Name = "resetButton";
 			resetButton.UseVisualStyleBackColor = true;
 			resetButton.Click += OnResetButtonClicked;
-			// 
+			//
 			// runAtStartupCheckBox
-			// 
+			//
 			resources.ApplyResources(runAtStartupCheckBox, "runAtStartupCheckBox");
+			runAtStartupCheckBox.AutoSize = true;
+			runAtStartupCheckBox.Anchor = AnchorStyles.Left;
+			runAtStartupCheckBox.Margin = new Padding(3, 8, 3, 8);
 			runAtStartupCheckBox.Name = "runAtStartupCheckBox";
 			toolTip1.SetToolTip(runAtStartupCheckBox, resources.GetString("runAtStartupCheckBox.ToolTip"));
 			runAtStartupCheckBox.UseVisualStyleBackColor = true;
-			// 
+			//
 			// groupBox1
-			// 
-			groupBox1.Controls.Add(dragEndDelayTextBox);
-			groupBox1.Controls.Add(dragEndDelayLabel);
-			groupBox1.Controls.Add(dragStartDelayTextBox);
-			groupBox1.Controls.Add(dragStartDelayLabel);
-			groupBox1.Controls.Add(fixDraggingCheckBox);
-			groupBox1.Controls.Add(useMinDelayCheckBox);
-			groupBox1.Controls.Add(thresholdSlider);
-			groupBox1.Controls.Add(buttonEnabledCheckBox);
-			groupBox1.Controls.Add(mouseButtonComboBox);
-			groupBox1.Controls.Add(delayTextBox);
-			groupBox1.Controls.Add(delayLabel);
+			//
+			groupBox1.Controls.Add(groupBox1Layout);
 			resources.ApplyResources(groupBox1, "groupBox1");
+			groupBox1.AutoSize = true;
+			groupBox1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			groupBox1.Dock = DockStyle.Top;
 			groupBox1.Name = "groupBox1";
 			groupBox1.TabStop = false;
-			// 
+			//
+			// groupBox1Layout
+			//
+			groupBox1Layout.AutoSize = true;
+			groupBox1Layout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			groupBox1Layout.Dock = DockStyle.Fill;
+			groupBox1Layout.ColumnCount = 3;
+			groupBox1Layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			groupBox1Layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			groupBox1Layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			groupBox1Layout.RowCount = 5;
+			groupBox1Layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			groupBox1Layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			groupBox1Layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			groupBox1Layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			groupBox1Layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			groupBox1Layout.Controls.Add(mouseButtonComboBox, 0, 0);
+			groupBox1Layout.Controls.Add(buttonEnabledCheckBox, 1, 0);
+			groupBox1Layout.Controls.Add(delayLabel, 0, 1);
+			groupBox1Layout.Controls.Add(thresholdSlider, 1, 1);
+			groupBox1Layout.Controls.Add(delayTextBox, 2, 1);
+			groupBox1Layout.Controls.Add(useMinDelayCheckBox, 0, 2);
+			groupBox1Layout.SetColumnSpan(useMinDelayCheckBox, 3);
+			groupBox1Layout.Controls.Add(fixDraggingCheckBox, 0, 3);
+			groupBox1Layout.Controls.Add(dragStartDelayLabel, 1, 3);
+			groupBox1Layout.Controls.Add(dragStartDelayTextBox, 2, 3);
+			groupBox1Layout.Controls.Add(dragEndDelayLabel, 1, 4);
+			groupBox1Layout.Controls.Add(dragEndDelayTextBox, 2, 4);
+			groupBox1Layout.Name = "groupBox1Layout";
+			groupBox1Layout.Padding = new Padding(6);
+			//
 			// dragEndDelayTextBox
-			// 
+			//
 			resources.ApplyResources(dragEndDelayTextBox, "dragEndDelayTextBox");
+			dragEndDelayTextBox.Anchor = AnchorStyles.Left;
+			dragEndDelayTextBox.Margin = new Padding(9, 3, 3, 3);
 			dragEndDelayTextBox.Name = "dragEndDelayTextBox";
+			dragEndDelayTextBox.Width = 70;
 			dragEndDelayTextBox.TextChanged += OnDragStopDelayTextChanged;
-			// 
+			//
 			// dragEndDelayLabel
-			// 
+			//
 			resources.ApplyResources(dragEndDelayLabel, "dragEndDelayLabel");
+			dragEndDelayLabel.AutoSize = true;
+			dragEndDelayLabel.Anchor = AnchorStyles.Left;
+			dragEndDelayLabel.Margin = new Padding(3, 8, 3, 8);
 			dragEndDelayLabel.Name = "dragEndDelayLabel";
 			toolTip1.SetToolTip(dragEndDelayLabel, resources.GetString("dragEndDelayLabel.ToolTip"));
-			// 
+			//
 			// dragStartDelayTextBox
-			// 
+			//
 			resources.ApplyResources(dragStartDelayTextBox, "dragStartDelayTextBox");
+			dragStartDelayTextBox.Anchor = AnchorStyles.Left;
+			dragStartDelayTextBox.Margin = new Padding(9, 3, 3, 3);
 			dragStartDelayTextBox.Name = "dragStartDelayTextBox";
+			dragStartDelayTextBox.Width = 70;
 			dragStartDelayTextBox.TextChanged += OnDragStartDelayTextChanged;
-			// 
+			//
 			// dragStartDelayLabel
-			// 
+			//
 			resources.ApplyResources(dragStartDelayLabel, "dragStartDelayLabel");
+			dragStartDelayLabel.AutoSize = true;
+			dragStartDelayLabel.Anchor = AnchorStyles.Left;
+			dragStartDelayLabel.Margin = new Padding(3, 8, 3, 8);
 			dragStartDelayLabel.Name = "dragStartDelayLabel";
 			toolTip1.SetToolTip(dragStartDelayLabel, resources.GetString("dragStartDelayLabel.ToolTip"));
-			// 
+			//
 			// fixDraggingCheckBox
-			// 
+			//
 			resources.ApplyResources(fixDraggingCheckBox, "fixDraggingCheckBox");
+			fixDraggingCheckBox.AutoSize = true;
+			fixDraggingCheckBox.Anchor = AnchorStyles.Left;
+			fixDraggingCheckBox.Margin = new Padding(3, 8, 3, 8);
 			fixDraggingCheckBox.Name = "fixDraggingCheckBox";
 			toolTip1.SetToolTip(fixDraggingCheckBox, resources.GetString("fixDraggingCheckBox.ToolTip"));
 			fixDraggingCheckBox.UseVisualStyleBackColor = true;
 			fixDraggingCheckBox.CheckedChanged += OnFixDraggingCheckBoxChanged;
-			// 
+			//
 			// useMinDelayCheckBox
-			// 
+			//
 			resources.ApplyResources(useMinDelayCheckBox, "useMinDelayCheckBox");
+			useMinDelayCheckBox.AutoSize = true;
+			useMinDelayCheckBox.Anchor = AnchorStyles.Left;
+			useMinDelayCheckBox.Margin = new Padding(3, 8, 3, 8);
 			useMinDelayCheckBox.Name = "useMinDelayCheckBox";
 			toolTip1.SetToolTip(useMinDelayCheckBox, resources.GetString("useMinDelayCheckBox.ToolTip"));
 			useMinDelayCheckBox.UseVisualStyleBackColor = true;
 			useMinDelayCheckBox.CheckedChanged += UseMinDelayCheckBoxCheckedChanged;
-			// 
+			//
 			// thresholdSlider
-			// 
+			//
 			resources.ApplyResources(thresholdSlider, "thresholdSlider");
+			thresholdSlider.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+			thresholdSlider.Margin = new Padding(9, 3, 9, 3);
+			thresholdSlider.Height = 56;
 			thresholdSlider.LargeChange = 20;
 			thresholdSlider.Maximum = 200;
 			thresholdSlider.Minimum = -1;
 			thresholdSlider.Name = "thresholdSlider";
 			thresholdSlider.TickFrequency = 10;
 			thresholdSlider.ValueChanged += OnThresholdValueChanged;
-			// 
+			//
 			// buttonEnabledCheckBox
-			// 
+			//
 			resources.ApplyResources(buttonEnabledCheckBox, "buttonEnabledCheckBox");
+			buttonEnabledCheckBox.AutoSize = true;
+			buttonEnabledCheckBox.Anchor = AnchorStyles.Left;
+			buttonEnabledCheckBox.Margin = new Padding(24, 8, 3, 8);
 			buttonEnabledCheckBox.Name = "buttonEnabledCheckBox";
 			toolTip1.SetToolTip(buttonEnabledCheckBox, resources.GetString("buttonEnabledCheckBox.ToolTip"));
 			buttonEnabledCheckBox.UseVisualStyleBackColor = true;
 			buttonEnabledCheckBox.CheckedChanged += OnButtonEnabledCheckedChanged;
-			// 
+			//
 			// mouseButtonComboBox
-			// 
+			//
 			mouseButtonComboBox.FormattingEnabled = true;
 			mouseButtonComboBox.Items.AddRange(new object[] { resources.GetString("mouseButtonComboBox.Items"), resources.GetString("mouseButtonComboBox.Items1"), resources.GetString("mouseButtonComboBox.Items2"), resources.GetString("mouseButtonComboBox.Items3"), resources.GetString("mouseButtonComboBox.Items4"), resources.GetString("mouseButtonComboBox.Items5") });
 			resources.ApplyResources(mouseButtonComboBox, "mouseButtonComboBox");
+			mouseButtonComboBox.Anchor = AnchorStyles.Left;
+			mouseButtonComboBox.Margin = new Padding(3, 3, 3, 3);
+			mouseButtonComboBox.Width = 260;
 			mouseButtonComboBox.Name = "mouseButtonComboBox";
 			mouseButtonComboBox.SelectedIndexChanged += OnSelectedMouseButtonChanged;
-			// 
+			//
 			// remoteDesktopCheckBox
-			// 
+			//
 			resources.ApplyResources(remoteDesktopCheckBox, "remoteDesktopCheckBox");
+			remoteDesktopCheckBox.AutoSize = true;
+			remoteDesktopCheckBox.Anchor = AnchorStyles.Left;
+			remoteDesktopCheckBox.Margin = new Padding(3, 8, 3, 8);
 			remoteDesktopCheckBox.Name = "remoteDesktopCheckBox";
 			toolTip1.SetToolTip(remoteDesktopCheckBox, resources.GetString("remoteDesktopCheckBox.ToolTip"));
 			remoteDesktopCheckBox.UseVisualStyleBackColor = true;
 			remoteDesktopCheckBox.CheckedChanged += OnRemoteDesktopCheckBoxChanged;
-			// 
+			//
 			// currentDeviceLabel
-			// 
+			//
 			resources.ApplyResources(currentDeviceLabel, "currentDeviceLabel");
+			currentDeviceLabel.AutoSize = true;
+			currentDeviceLabel.Anchor = AnchorStyles.Left;
+			currentDeviceLabel.Margin = new Padding(3, 8, 3, 8);
 			currentDeviceLabel.Name = "currentDeviceLabel";
-			// 
+			//
 			// ignoreCurrentDeviceCheckBox
-			// 
+			//
 			resources.ApplyResources(ignoreCurrentDeviceCheckBox, "ignoreCurrentDeviceCheckBox");
+			ignoreCurrentDeviceCheckBox.AutoSize = true;
+			ignoreCurrentDeviceCheckBox.Anchor = AnchorStyles.Right;
+			ignoreCurrentDeviceCheckBox.Margin = new Padding(24, 8, 3, 8);
 			ignoreCurrentDeviceCheckBox.Name = "ignoreCurrentDeviceCheckBox";
 			ignoreCurrentDeviceCheckBox.UseVisualStyleBackColor = true;
 			ignoreCurrentDeviceCheckBox.CheckedChanged += OnIgnoreCurrentDeviceCheckBoxChanged;
-			// 
+			//
 			// x2
-			// 
+			//
 			resources.ApplyResources(x2, "x2");
+			x2.AutoSize = true;
+			x2.Location = new Point(28, 152);
 			x2.Name = "x2";
 			x2.UseVisualStyleBackColor = true;
-			// 
+			//
 			// x1
-			// 
+			//
 			resources.ApplyResources(x1, "x1");
+			x1.AutoSize = true;
+			x1.Location = new Point(28, 209);
 			x1.Name = "x1";
 			x1.UseVisualStyleBackColor = true;
-			// 
+			//
 			// middle
-			// 
+			//
 			resources.ApplyResources(middle, "middle");
+			middle.AutoSize = true;
+			middle.Location = new Point(101, 59);
 			middle.Name = "middle";
 			middle.UseVisualStyleBackColor = true;
-			// 
+			//
 			// right
-			// 
+			//
 			resources.ApplyResources(right, "right");
+			right.AutoSize = true;
+			right.Location = new Point(198, 97);
 			right.Name = "right";
 			right.UseVisualStyleBackColor = true;
-			// 
+			//
 			// left
-			// 
+			//
 			resources.ApplyResources(left, "left");
+			left.AutoSize = true;
+			left.Location = new Point(28, 97);
 			left.Name = "left";
 			left.UseVisualStyleBackColor = true;
-			// 
+			//
 			// wheel
-			// 
+			//
 			resources.ApplyResources(wheel, "wheel");
+			wheel.AutoSize = true;
+			wheel.Location = new Point(124, 179);
 			wheel.Name = "wheel";
 			wheel.UseVisualStyleBackColor = true;
-			// 
+			//
 			// pictureBox1
-			// 
+			//
 			resources.ApplyResources(pictureBox1, "pictureBox1");
 			pictureBox1.Image = Properties.Resources.app;
+			pictureBox1.Location = new Point(19, 42);
+			pictureBox1.Size = new Size(259, 291);
 			pictureBox1.Name = "pictureBox1";
 			pictureBox1.TabStop = false;
 			pictureBox1.MouseEnter += OnShowTestControls;
 			pictureBox1.MouseLeave += OnHideTestControls;
-			// 
+			//
 			// notifyIcon
-			// 
+			//
 			notifyIcon.ContextMenuStrip = notifyMenuStrip;
 			resources.ApplyResources(notifyIcon, "notifyIcon");
 			notifyIcon.MouseDoubleClick += OnNotifyIconDoubleClick;
-			// 
+			//
 			// notifyMenuStrip
-			// 
+			//
 			notifyMenuStrip.ImageScalingSize = new Size(24, 24);
 			notifyMenuStrip.Items.AddRange(new ToolStripItem[] { showUiMenu, exitMenu });
 			notifyMenuStrip.Name = "contextMenuStrip1";
 			resources.ApplyResources(notifyMenuStrip, "notifyMenuStrip");
-			// 
+			//
 			// showUiMenu
-			// 
+			//
 			showUiMenu.Name = "showUiMenu";
 			resources.ApplyResources(showUiMenu, "showUiMenu");
 			showUiMenu.Click += OnShowUiMenuClick;
-			// 
+			//
 			// exitMenu
-			// 
+			//
 			exitMenu.Name = "exitMenu";
 			resources.ApplyResources(exitMenu, "exitMenu");
 			exitMenu.Click += OnExitMenuClick;
-			// 
+			//
 			// label1
-			// 
+			//
 			resources.ApplyResources(label1, "label1");
+			label1.AutoSize = true;
+			label1.Anchor = AnchorStyles.Left;
+			label1.Margin = new Padding(3, 8, 3, 8);
 			label1.Name = "label1";
-			// 
+			//
 			// descriptionTextBox
-			// 
+			//
 			resources.ApplyResources(descriptionTextBox, "descriptionTextBox");
 			descriptionTextBox.BackColor = SystemColors.Control;
+			descriptionTextBox.Dock = DockStyle.Fill;
 			descriptionTextBox.Name = "descriptionTextBox";
 			descriptionTextBox.ReadOnly = true;
 			descriptionTextBox.TabStop = false;
-			// 
+			//
 			// richTextBox1
-			// 
+			//
 			resources.ApplyResources(richTextBox1, "richTextBox1");
+			richTextBox1.Dock = DockStyle.Fill;
 			richTextBox1.Name = "richTextBox1";
 			richTextBox1.ReadOnly = true;
 			richTextBox1.MouseEnter += OnShowTestControls;
 			richTextBox1.MouseLeave += OnHideTestControls;
-			// 
+			//
 			// groupBox2
-			// 
+			//
 			resources.ApplyResources(groupBox2, "groupBox2");
 			groupBox2.Controls.Add(descriptionTextBox);
+			groupBox2.Dock = DockStyle.Fill;
 			groupBox2.Name = "groupBox2";
 			groupBox2.TabStop = false;
-			// 
+			//
 			// groupBox3
-			// 
+			//
 			resources.ApplyResources(groupBox3, "groupBox3");
 			groupBox3.Controls.Add(logTextBox);
+			groupBox3.Dock = DockStyle.Fill;
 			groupBox3.Name = "groupBox3";
 			groupBox3.TabStop = false;
-			// 
+			//
 			// groupBox4
-			// 
+			//
 			resources.ApplyResources(groupBox4, "groupBox4");
-			groupBox4.Controls.Add(x2);
-			groupBox4.Controls.Add(x1);
-			groupBox4.Controls.Add(middle);
-			groupBox4.Controls.Add(left);
-			groupBox4.Controls.Add(right);
-			groupBox4.Controls.Add(wheel);
 			groupBox4.Controls.Add(richTextBox1);
-			groupBox4.Controls.Add(pictureBox1);
+			groupBox4.Controls.Add(testPicturePanel);
+			groupBox4.Dock = DockStyle.Left;
+			groupBox4.Width = 320;
 			groupBox4.Name = "groupBox4";
 			groupBox4.TabStop = false;
-			// 
+			//
+			// testPicturePanel
+			//
+			testPicturePanel.Controls.Add(x2);
+			testPicturePanel.Controls.Add(x1);
+			testPicturePanel.Controls.Add(middle);
+			testPicturePanel.Controls.Add(left);
+			testPicturePanel.Controls.Add(right);
+			testPicturePanel.Controls.Add(wheel);
+			testPicturePanel.Controls.Add(pictureBox1);
+			testPicturePanel.Dock = DockStyle.Top;
+			testPicturePanel.Height = 340;
+			testPicturePanel.Name = "testPicturePanel";
+			//
 			// groupBoxDevice
-			// 
-			groupBoxDevice.Controls.Add(currentDeviceLabel);
-			groupBoxDevice.Controls.Add(ignoreCurrentDeviceCheckBox);
+			//
+			groupBoxDevice.Controls.Add(groupBoxDeviceLayout);
 			resources.ApplyResources(groupBoxDevice, "groupBoxDevice");
+			groupBoxDevice.AutoSize = true;
+			groupBoxDevice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			groupBoxDevice.Dock = DockStyle.Top;
 			groupBoxDevice.Name = "groupBoxDevice";
 			groupBoxDevice.TabStop = false;
-			// 
+			//
+			// groupBoxDeviceLayout
+			//
+			groupBoxDeviceLayout.AutoSize = true;
+			groupBoxDeviceLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			groupBoxDeviceLayout.Dock = DockStyle.Fill;
+			groupBoxDeviceLayout.ColumnCount = 2;
+			groupBoxDeviceLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			groupBoxDeviceLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			groupBoxDeviceLayout.RowCount = 1;
+			groupBoxDeviceLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			groupBoxDeviceLayout.Controls.Add(currentDeviceLabel, 0, 0);
+			groupBoxDeviceLayout.Controls.Add(ignoreCurrentDeviceCheckBox, 1, 0);
+			groupBoxDeviceLayout.Name = "groupBoxDeviceLayout";
+			groupBoxDeviceLayout.Padding = new Padding(6);
+			//
 			// groupBoxGeneral
-			// 
-			groupBoxGeneral.Controls.Add(remoteDesktopCheckBox);
-			groupBoxGeneral.Controls.Add(runAtStartupCheckBox);
-			groupBoxGeneral.Controls.Add(resetButton);
+			//
+			groupBoxGeneral.Controls.Add(groupBoxGeneralLayout);
 			resources.ApplyResources(groupBoxGeneral, "groupBoxGeneral");
+			groupBoxGeneral.AutoSize = true;
+			groupBoxGeneral.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			groupBoxGeneral.Dock = DockStyle.Top;
 			groupBoxGeneral.Name = "groupBoxGeneral";
 			groupBoxGeneral.TabStop = false;
-			// 
+			//
+			// groupBoxGeneralLayout
+			//
+			groupBoxGeneralLayout.AutoSize = true;
+			groupBoxGeneralLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			groupBoxGeneralLayout.Dock = DockStyle.Fill;
+			groupBoxGeneralLayout.ColumnCount = 2;
+			groupBoxGeneralLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			groupBoxGeneralLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			groupBoxGeneralLayout.RowCount = 2;
+			groupBoxGeneralLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			groupBoxGeneralLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			groupBoxGeneralLayout.Controls.Add(remoteDesktopCheckBox, 0, 0);
+			groupBoxGeneralLayout.Controls.Add(resetButton, 1, 0);
+			groupBoxGeneralLayout.SetRowSpan(resetButton, 2);
+			groupBoxGeneralLayout.Controls.Add(runAtStartupCheckBox, 0, 1);
+			groupBoxGeneralLayout.Name = "groupBoxGeneralLayout";
+			groupBoxGeneralLayout.Padding = new Padding(6);
+			//
 			// versionLabel
-			// 
+			//
 			resources.ApplyResources(versionLabel, "versionLabel");
+			versionLabel.AutoSize = true;
+			versionLabel.Anchor = AnchorStyles.Right;
+			versionLabel.Margin = new Padding(9, 12, 12, 12);
 			versionLabel.Name = "versionLabel";
-			// 
+			//
 			// updateLinkLabel
-			// 
+			//
 			resources.ApplyResources(updateLinkLabel, "updateLinkLabel");
+			updateLinkLabel.AutoSize = true;
+			updateLinkLabel.Anchor = AnchorStyles.Right;
+			updateLinkLabel.Margin = new Padding(9, 12, 9, 12);
 			updateLinkLabel.Name = "updateLinkLabel";
 			updateLinkLabel.TabStop = true;
-			// 
+			//
 			// gitLinkLabel
-			// 
+			//
 			resources.ApplyResources(gitLinkLabel, "gitLinkLabel");
+			gitLinkLabel.AutoSize = true;
+			gitLinkLabel.Anchor = AnchorStyles.Left;
+			gitLinkLabel.Margin = new Padding(12, 12, 9, 12);
 			gitLinkLabel.Name = "gitLinkLabel";
 			gitLinkLabel.TabStop = true;
 			gitLinkLabel.LinkClicked += OnGitLinkLabelClicked;
-			// 
+			//
 			// themeComboBox
-			// 
+			//
 			resources.ApplyResources(themeComboBox, "themeComboBox");
+			themeComboBox.Anchor = AnchorStyles.Right;
+			themeComboBox.Margin = new Padding(9, 3, 3, 3);
+			themeComboBox.Width = 130;
 			themeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 			themeComboBox.FormattingEnabled = true;
 			themeComboBox.Name = "themeComboBox";
-			// 
+			//
 			// languageComboBox
-			// 
+			//
 			resources.ApplyResources(languageComboBox, "languageComboBox");
+			languageComboBox.Anchor = AnchorStyles.Right;
+			languageComboBox.Margin = new Padding(9, 3, 3, 3);
+			languageComboBox.Width = 221;
 			languageComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 			languageComboBox.FormattingEnabled = true;
 			languageComboBox.Name = "languageComboBox";
 			languageComboBox.SelectedIndexChanged += OnLanguageChanged;
-			// 
+			//
 			// bottomPanel
-			// 
+			//
 			bottomPanel.Controls.Add(gitLinkLabel);
 			bottomPanel.Controls.Add(updateLinkLabel);
 			bottomPanel.Controls.Add(versionLabel);
 			resources.ApplyResources(bottomPanel, "bottomPanel");
+			bottomPanel.Dock = DockStyle.Top;
+			bottomPanel.AutoSize = true;
+			bottomPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 			bottomPanel.Name = "bottomPanel";
-			// 
+			//
+			// headerLayout
+			//
+			headerLayout.AutoSize = true;
+			headerLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			headerLayout.Dock = DockStyle.Top;
+			headerLayout.ColumnCount = 3;
+			headerLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			headerLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			headerLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			headerLayout.RowCount = 1;
+			headerLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			headerLayout.Controls.Add(label1, 0, 0);
+			headerLayout.Controls.Add(themeComboBox, 1, 0);
+			headerLayout.Controls.Add(languageComboBox, 2, 0);
+			headerLayout.Name = "headerLayout";
+			headerLayout.Padding = new Padding(12, 12, 12, 6);
+			//
+			// middleLayout
+			//
+			middleLayout.Dock = DockStyle.Fill;
+			middleLayout.ColumnCount = 2;
+			middleLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42F));
+			middleLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58F));
+			middleLayout.RowCount = 1;
+			middleLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			middleLayout.Controls.Add(groupBox2, 0, 0);
+			middleLayout.Controls.Add(groupBox3, 1, 0);
+			middleLayout.Name = "middleLayout";
+			middleLayout.Padding = new Padding(12, 6, 12, 6);
+			//
+			// rootLayout
+			//
+			rootLayout.Dock = DockStyle.Fill;
+			rootLayout.ColumnCount = 2;
+			rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			rootLayout.RowCount = 6;
+			rootLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			rootLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			rootLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			rootLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			rootLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+			rootLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			rootLayout.Controls.Add(headerLayout, 0, 0);
+			rootLayout.SetColumnSpan(headerLayout, 2);
+			rootLayout.Controls.Add(groupBoxDevice, 0, 1);
+			rootLayout.Controls.Add(groupBox1, 0, 2);
+			rootLayout.Controls.Add(groupBoxGeneral, 0, 3);
+			rootLayout.Controls.Add(middleLayout, 0, 4);
+			rootLayout.Controls.Add(bottomPanel, 0, 5);
+			rootLayout.SetColumnSpan(bottomPanel, 2);
+			rootLayout.Controls.Add(groupBox4, 1, 1);
+			rootLayout.SetRowSpan(groupBox4, 4);
+			rootLayout.Name = "rootLayout";
+			//
 			// InteractiveForm
-			// 
+			//
 			resources.ApplyResources(this, "$this");
 			AutoScaleMode = AutoScaleMode.Font;
-			Controls.Add(themeComboBox);
-			Controls.Add(languageComboBox);
-			Controls.Add(groupBox3);
-			Controls.Add(label1);
-			Controls.Add(groupBox2);
-			Controls.Add(groupBoxGeneral);
-			Controls.Add(groupBox1);
-			Controls.Add(groupBoxDevice);
-			Controls.Add(groupBox4);
-			Controls.Add(bottomPanel);
+			ClientSize = new Size(1305, 1097);
+			Controls.Add(rootLayout);
 			Name = "InteractiveForm";
 			Load += InteractiveForm_Load;
 			groupBox1.ResumeLayout(false);
-			groupBox1.PerformLayout();
+			groupBox1Layout.ResumeLayout(false);
+			groupBox1Layout.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)thresholdSlider).EndInit();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
 			notifyMenuStrip.ResumeLayout(false);
@@ -425,15 +645,22 @@
 			groupBox3.ResumeLayout(false);
 			groupBox3.PerformLayout();
 			groupBox4.ResumeLayout(false);
-			groupBox4.PerformLayout();
+			testPicturePanel.ResumeLayout(false);
+			testPicturePanel.PerformLayout();
 			groupBoxDevice.ResumeLayout(false);
-			groupBoxDevice.PerformLayout();
+			groupBoxDeviceLayout.ResumeLayout(false);
+			groupBoxDeviceLayout.PerformLayout();
 			groupBoxGeneral.ResumeLayout(false);
-			groupBoxGeneral.PerformLayout();
+			groupBoxGeneralLayout.ResumeLayout(false);
+			groupBoxGeneralLayout.PerformLayout();
 			bottomPanel.ResumeLayout(false);
 			bottomPanel.PerformLayout();
+			rootLayout.ResumeLayout(false);
+			rootLayout.PerformLayout();
+			headerLayout.ResumeLayout(false);
+			headerLayout.PerformLayout();
+			middleLayout.ResumeLayout(false);
 			ResumeLayout(false);
-			PerformLayout();
 		}
 
 		#endregion
@@ -444,6 +671,7 @@
         private Button resetButton;
         private CheckBox runAtStartupCheckBox;
         private GroupBox groupBox1;
+        private TableLayoutPanel groupBox1Layout;
         private PictureBox pictureBox1;
         private NotifyIcon notifyIcon;
         private ContextMenuStrip notifyMenuStrip;
@@ -455,6 +683,7 @@
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private GroupBox groupBox4;
+        private Panel testPicturePanel;
         private CheckBox right;
         private CheckBox left;
         private CheckBox x2;
@@ -480,7 +709,12 @@
         private ComboBox themeComboBox;
         private ComboBox languageComboBox;
         private GroupBox groupBoxDevice;
+        private TableLayoutPanel groupBoxDeviceLayout;
         private GroupBox groupBoxGeneral;
+        private TableLayoutPanel groupBoxGeneralLayout;
         private Panel bottomPanel;
+        private TableLayoutPanel rootLayout;
+        private TableLayoutPanel headerLayout;
+        private TableLayoutPanel middleLayout;
     }
 }
