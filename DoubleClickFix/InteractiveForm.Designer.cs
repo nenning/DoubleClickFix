@@ -390,17 +390,17 @@
 			languageComboBox.FormattingEnabled = true;
 			languageComboBox.Name = "languageComboBox";
 			languageComboBox.SelectedIndexChanged += OnLanguageChanged;
-			//
+			// 
 			// bottomPanel
-			//
-			resources.ApplyResources(bottomPanel, "bottomPanel");
-			bottomPanel.Name = "bottomPanel";
+			// 
 			bottomPanel.Controls.Add(gitLinkLabel);
 			bottomPanel.Controls.Add(updateLinkLabel);
 			bottomPanel.Controls.Add(versionLabel);
-			//
+			resources.ApplyResources(bottomPanel, "bottomPanel");
+			bottomPanel.Name = "bottomPanel";
+			// 
 			// InteractiveForm
-			//
+			// 
 			resources.ApplyResources(this, "$this");
 			AutoScaleMode = AutoScaleMode.Font;
 			Controls.Add(themeComboBox);
