@@ -77,6 +77,7 @@
 			themeComboBox = new ComboBox();
 			languageComboBox = new ComboBox();
 			bottomPanel = new Panel();
+			bottomLayout = new TableLayoutPanel();
 			rootLayout = new TableLayoutPanel();
 			headerLayout = new TableLayoutPanel();
 			middleLayout = new TableLayoutPanel();
@@ -94,6 +95,7 @@
 			groupBoxGeneral.SuspendLayout();
 			groupBoxGeneralLayout.SuspendLayout();
 			bottomPanel.SuspendLayout();
+			bottomLayout.SuspendLayout();
 			rootLayout.SuspendLayout();
 			headerLayout.SuspendLayout();
 			middleLayout.SuspendLayout();
@@ -113,7 +115,7 @@
 			resources.ApplyResources(delayLabel, "delayLabel");
 			delayLabel.AutoSize = true;
 			delayLabel.Anchor = AnchorStyles.Left;
-			delayLabel.Margin = new Padding(3, 8, 3, 8);
+			delayLabel.Margin = new Padding(3, 4, 3, 4);
 			delayLabel.Name = "delayLabel";
 			toolTip1.SetToolTip(delayLabel, resources.GetString("delayLabel.ToolTip"));
 			//
@@ -121,7 +123,7 @@
 			//
 			resources.ApplyResources(delayTextBox, "delayTextBox");
 			delayTextBox.Anchor = AnchorStyles.Left;
-			delayTextBox.Margin = new Padding(9, 3, 3, 3);
+			delayTextBox.Margin = new Padding(9, 1, 3, 1);
 			delayTextBox.Name = "delayTextBox";
 			delayTextBox.Width = 70;
 			toolTip1.SetToolTip(delayTextBox, resources.GetString("delayTextBox.ToolTip"));
@@ -132,7 +134,7 @@
 			resetButton.Anchor = AnchorStyles.Right;
 			resetButton.AutoSize = true;
 			resetButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-			resetButton.Margin = new Padding(9, 3, 3, 3);
+			resetButton.Margin = new Padding(9, 1, 3, 1);
 			resetButton.Padding = new Padding(16, 4, 16, 4);
 			resetButton.Name = "resetButton";
 			resetButton.UseVisualStyleBackColor = true;
@@ -143,7 +145,7 @@
 			resources.ApplyResources(runAtStartupCheckBox, "runAtStartupCheckBox");
 			runAtStartupCheckBox.AutoSize = true;
 			runAtStartupCheckBox.Anchor = AnchorStyles.Left;
-			runAtStartupCheckBox.Margin = new Padding(3, 8, 3, 8);
+			runAtStartupCheckBox.Margin = new Padding(3, 4, 3, 4);
 			runAtStartupCheckBox.Name = "runAtStartupCheckBox";
 			toolTip1.SetToolTip(runAtStartupCheckBox, resources.GetString("runAtStartupCheckBox.ToolTip"));
 			runAtStartupCheckBox.UseVisualStyleBackColor = true;
@@ -155,6 +157,7 @@
 			groupBox1.AutoSize = true;
 			groupBox1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 			groupBox1.Dock = DockStyle.Top;
+			groupBox1.Margin = new Padding(0, 4, 0, 0);
 			groupBox1.Name = "groupBox1";
 			groupBox1.TabStop = false;
 			//
@@ -186,13 +189,13 @@
 			groupBox1Layout.Controls.Add(dragEndDelayLabel, 1, 4);
 			groupBox1Layout.Controls.Add(dragEndDelayTextBox, 2, 4);
 			groupBox1Layout.Name = "groupBox1Layout";
-			groupBox1Layout.Padding = new Padding(6);
+			groupBox1Layout.Padding = new Padding(4, 10, 4, 10);
 			//
 			// dragEndDelayTextBox
 			//
 			resources.ApplyResources(dragEndDelayTextBox, "dragEndDelayTextBox");
 			dragEndDelayTextBox.Anchor = AnchorStyles.Left;
-			dragEndDelayTextBox.Margin = new Padding(9, 3, 3, 3);
+			dragEndDelayTextBox.Margin = new Padding(9, 1, 3, 3);
 			dragEndDelayTextBox.Name = "dragEndDelayTextBox";
 			dragEndDelayTextBox.Width = 70;
 			dragEndDelayTextBox.TextChanged += OnDragStopDelayTextChanged;
@@ -202,7 +205,7 @@
 			resources.ApplyResources(dragEndDelayLabel, "dragEndDelayLabel");
 			dragEndDelayLabel.AutoSize = true;
 			dragEndDelayLabel.Anchor = AnchorStyles.Left;
-			dragEndDelayLabel.Margin = new Padding(3, 8, 3, 8);
+			dragEndDelayLabel.Margin = new Padding(3, 1, 3, 4);
 			dragEndDelayLabel.Name = "dragEndDelayLabel";
 			toolTip1.SetToolTip(dragEndDelayLabel, resources.GetString("dragEndDelayLabel.ToolTip"));
 			//
@@ -210,7 +213,7 @@
 			//
 			resources.ApplyResources(dragStartDelayTextBox, "dragStartDelayTextBox");
 			dragStartDelayTextBox.Anchor = AnchorStyles.Left;
-			dragStartDelayTextBox.Margin = new Padding(9, 3, 3, 3);
+			dragStartDelayTextBox.Margin = new Padding(9, 3, 3, 1);
 			dragStartDelayTextBox.Name = "dragStartDelayTextBox";
 			dragStartDelayTextBox.Width = 70;
 			dragStartDelayTextBox.TextChanged += OnDragStartDelayTextChanged;
@@ -220,7 +223,7 @@
 			resources.ApplyResources(dragStartDelayLabel, "dragStartDelayLabel");
 			dragStartDelayLabel.AutoSize = true;
 			dragStartDelayLabel.Anchor = AnchorStyles.Left;
-			dragStartDelayLabel.Margin = new Padding(3, 8, 3, 8);
+			dragStartDelayLabel.Margin = new Padding(3, 4, 3, 1);
 			dragStartDelayLabel.Name = "dragStartDelayLabel";
 			toolTip1.SetToolTip(dragStartDelayLabel, resources.GetString("dragStartDelayLabel.ToolTip"));
 			//
@@ -229,7 +232,7 @@
 			resources.ApplyResources(fixDraggingCheckBox, "fixDraggingCheckBox");
 			fixDraggingCheckBox.AutoSize = true;
 			fixDraggingCheckBox.Anchor = AnchorStyles.Left;
-			fixDraggingCheckBox.Margin = new Padding(3, 8, 3, 8);
+			fixDraggingCheckBox.Margin = new Padding(3, 4, 3, 4);
 			fixDraggingCheckBox.Name = "fixDraggingCheckBox";
 			toolTip1.SetToolTip(fixDraggingCheckBox, resources.GetString("fixDraggingCheckBox.ToolTip"));
 			fixDraggingCheckBox.UseVisualStyleBackColor = true;
@@ -240,7 +243,7 @@
 			resources.ApplyResources(useMinDelayCheckBox, "useMinDelayCheckBox");
 			useMinDelayCheckBox.AutoSize = true;
 			useMinDelayCheckBox.Anchor = AnchorStyles.Left;
-			useMinDelayCheckBox.Margin = new Padding(3, 8, 3, 8);
+			useMinDelayCheckBox.Margin = new Padding(3, 4, 3, 4);
 			useMinDelayCheckBox.Name = "useMinDelayCheckBox";
 			toolTip1.SetToolTip(useMinDelayCheckBox, resources.GetString("useMinDelayCheckBox.ToolTip"));
 			useMinDelayCheckBox.UseVisualStyleBackColor = true;
@@ -264,7 +267,7 @@
 			resources.ApplyResources(buttonEnabledCheckBox, "buttonEnabledCheckBox");
 			buttonEnabledCheckBox.AutoSize = true;
 			buttonEnabledCheckBox.Anchor = AnchorStyles.Left;
-			buttonEnabledCheckBox.Margin = new Padding(24, 8, 3, 8);
+			buttonEnabledCheckBox.Margin = new Padding(24, 4, 3, 4);
 			buttonEnabledCheckBox.Name = "buttonEnabledCheckBox";
 			toolTip1.SetToolTip(buttonEnabledCheckBox, resources.GetString("buttonEnabledCheckBox.ToolTip"));
 			buttonEnabledCheckBox.UseVisualStyleBackColor = true;
@@ -286,7 +289,7 @@
 			resources.ApplyResources(remoteDesktopCheckBox, "remoteDesktopCheckBox");
 			remoteDesktopCheckBox.AutoSize = true;
 			remoteDesktopCheckBox.Anchor = AnchorStyles.Left;
-			remoteDesktopCheckBox.Margin = new Padding(3, 8, 3, 8);
+			remoteDesktopCheckBox.Margin = new Padding(3, 4, 3, 4);
 			remoteDesktopCheckBox.Name = "remoteDesktopCheckBox";
 			toolTip1.SetToolTip(remoteDesktopCheckBox, resources.GetString("remoteDesktopCheckBox.ToolTip"));
 			remoteDesktopCheckBox.UseVisualStyleBackColor = true;
@@ -297,7 +300,7 @@
 			resources.ApplyResources(currentDeviceLabel, "currentDeviceLabel");
 			currentDeviceLabel.AutoSize = true;
 			currentDeviceLabel.Anchor = AnchorStyles.Left;
-			currentDeviceLabel.Margin = new Padding(3, 8, 3, 8);
+			currentDeviceLabel.Margin = new Padding(3, 4, 3, 4);
 			currentDeviceLabel.Name = "currentDeviceLabel";
 			//
 			// ignoreCurrentDeviceCheckBox
@@ -305,7 +308,7 @@
 			resources.ApplyResources(ignoreCurrentDeviceCheckBox, "ignoreCurrentDeviceCheckBox");
 			ignoreCurrentDeviceCheckBox.AutoSize = true;
 			ignoreCurrentDeviceCheckBox.Anchor = AnchorStyles.Right;
-			ignoreCurrentDeviceCheckBox.Margin = new Padding(24, 8, 3, 8);
+			ignoreCurrentDeviceCheckBox.Margin = new Padding(24, 4, 3, 4);
 			ignoreCurrentDeviceCheckBox.Name = "ignoreCurrentDeviceCheckBox";
 			ignoreCurrentDeviceCheckBox.UseVisualStyleBackColor = true;
 			ignoreCurrentDeviceCheckBox.CheckedChanged += OnIgnoreCurrentDeviceCheckBoxChanged;
@@ -399,7 +402,7 @@
 			resources.ApplyResources(label1, "label1");
 			label1.AutoSize = true;
 			label1.Anchor = AnchorStyles.Left;
-			label1.Margin = new Padding(3, 8, 3, 8);
+			label1.Margin = new Padding(3, 0, 3, 2);
 			label1.Name = "label1";
 			//
 			// descriptionTextBox
@@ -442,7 +445,8 @@
 			groupBox4.Controls.Add(richTextBox1);
 			groupBox4.Controls.Add(testPicturePanel);
 			groupBox4.Dock = DockStyle.Left;
-			groupBox4.Width = 320;
+			groupBox4.Margin = new Padding(0);
+			groupBox4.Width = 301;
 			groupBox4.Name = "groupBox4";
 			groupBox4.TabStop = false;
 			//
@@ -466,6 +470,7 @@
 			groupBoxDevice.AutoSize = true;
 			groupBoxDevice.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 			groupBoxDevice.Dock = DockStyle.Top;
+			groupBoxDevice.Margin = new Padding(0, 4, 0, 0);
 			groupBoxDevice.Name = "groupBoxDevice";
 			groupBoxDevice.TabStop = false;
 			//
@@ -482,7 +487,7 @@
 			groupBoxDeviceLayout.Controls.Add(currentDeviceLabel, 0, 0);
 			groupBoxDeviceLayout.Controls.Add(ignoreCurrentDeviceCheckBox, 1, 0);
 			groupBoxDeviceLayout.Name = "groupBoxDeviceLayout";
-			groupBoxDeviceLayout.Padding = new Padding(6);
+			groupBoxDeviceLayout.Padding = new Padding(4, 7, 4, 7);
 			//
 			// groupBoxGeneral
 			//
@@ -491,6 +496,7 @@
 			groupBoxGeneral.AutoSize = true;
 			groupBoxGeneral.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 			groupBoxGeneral.Dock = DockStyle.Top;
+			groupBoxGeneral.Margin = new Padding(0, 4, 0, 0);
 			groupBoxGeneral.Name = "groupBoxGeneral";
 			groupBoxGeneral.TabStop = false;
 			//
@@ -510,7 +516,7 @@
 			groupBoxGeneralLayout.SetRowSpan(resetButton, 2);
 			groupBoxGeneralLayout.Controls.Add(runAtStartupCheckBox, 0, 1);
 			groupBoxGeneralLayout.Name = "groupBoxGeneralLayout";
-			groupBoxGeneralLayout.Padding = new Padding(6);
+			groupBoxGeneralLayout.Padding = new Padding(4);
 			//
 			// versionLabel
 			//
@@ -543,7 +549,7 @@
 			//
 			resources.ApplyResources(themeComboBox, "themeComboBox");
 			themeComboBox.Anchor = AnchorStyles.Right;
-			themeComboBox.Margin = new Padding(9, 3, 3, 3);
+			themeComboBox.Margin = new Padding(9, 1, 3, 1);
 			themeComboBox.Width = 130;
 			themeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 			themeComboBox.FormattingEnabled = true;
@@ -553,20 +559,35 @@
 			//
 			resources.ApplyResources(languageComboBox, "languageComboBox");
 			languageComboBox.Anchor = AnchorStyles.Right;
-			languageComboBox.Margin = new Padding(9, 3, 3, 3);
+			languageComboBox.Margin = new Padding(9, 1, 3, 1);
 			languageComboBox.Width = 221;
 			languageComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 			languageComboBox.FormattingEnabled = true;
 			languageComboBox.Name = "languageComboBox";
 			languageComboBox.SelectedIndexChanged += OnLanguageChanged;
 			//
+			// bottomLayout
+			//
+			bottomLayout.AutoSize = true;
+			bottomLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+			bottomLayout.Dock = DockStyle.Fill;
+			bottomLayout.ColumnCount = 3;
+			bottomLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			bottomLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			bottomLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			bottomLayout.RowCount = 1;
+			bottomLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			bottomLayout.Controls.Add(gitLinkLabel, 0, 0);
+			bottomLayout.Controls.Add(updateLinkLabel, 1, 0);
+			bottomLayout.Controls.Add(versionLabel, 2, 0);
+			bottomLayout.Name = "bottomLayout";
+			bottomLayout.Padding = new Padding(12, 8, 12, 8);
+			//
 			// bottomPanel
 			//
-			bottomPanel.Controls.Add(gitLinkLabel);
-			bottomPanel.Controls.Add(updateLinkLabel);
-			bottomPanel.Controls.Add(versionLabel);
-			resources.ApplyResources(bottomPanel, "bottomPanel");
+			bottomPanel.Controls.Add(bottomLayout);
 			bottomPanel.Dock = DockStyle.Top;
+			bottomPanel.Margin = new Padding(0, 4, 0, 0);
 			bottomPanel.AutoSize = true;
 			bottomPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 			bottomPanel.Name = "bottomPanel";
@@ -586,11 +607,13 @@
 			headerLayout.Controls.Add(themeComboBox, 1, 0);
 			headerLayout.Controls.Add(languageComboBox, 2, 0);
 			headerLayout.Name = "headerLayout";
-			headerLayout.Padding = new Padding(12, 12, 12, 6);
+			headerLayout.Padding = new Padding(12, 0, 12, 0);
+			headerLayout.Margin = new Padding(0);
 			//
 			// middleLayout
 			//
 			middleLayout.Dock = DockStyle.Fill;
+			middleLayout.Margin = new Padding(0);
 			middleLayout.ColumnCount = 2;
 			middleLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42F));
 			middleLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58F));
@@ -599,11 +622,12 @@
 			middleLayout.Controls.Add(groupBox2, 0, 0);
 			middleLayout.Controls.Add(groupBox3, 1, 0);
 			middleLayout.Name = "middleLayout";
-			middleLayout.Padding = new Padding(12, 6, 12, 6);
+			middleLayout.Padding = new Padding(0, 6, 0, 6);
 			//
 			// rootLayout
 			//
 			rootLayout.Dock = DockStyle.Fill;
+			rootLayout.Padding = new Padding(13, 0, 13, 0);
 			rootLayout.ColumnCount = 2;
 			rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 			rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
@@ -655,6 +679,8 @@
 			groupBoxGeneralLayout.PerformLayout();
 			bottomPanel.ResumeLayout(false);
 			bottomPanel.PerformLayout();
+			bottomLayout.ResumeLayout(false);
+			bottomLayout.PerformLayout();
 			rootLayout.ResumeLayout(false);
 			rootLayout.PerformLayout();
 			headerLayout.ResumeLayout(false);
@@ -713,6 +739,7 @@
         private GroupBox groupBoxGeneral;
         private TableLayoutPanel groupBoxGeneralLayout;
         private Panel bottomPanel;
+        private TableLayoutPanel bottomLayout;
         private TableLayoutPanel rootLayout;
         private TableLayoutPanel headerLayout;
         private TableLayoutPanel middleLayout;
