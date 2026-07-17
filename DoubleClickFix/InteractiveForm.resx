@@ -468,23 +468,8 @@
   <data name="&gt;&gt;remoteDesktopCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="currentDeviceLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
   <data name="currentDeviceLabel.Text" xml:space="preserve">
-    <value>Current device: –</value>
-  </data>
-  <data name="&gt;&gt;currentDeviceLabel.Name" xml:space="preserve">
-    <value>currentDeviceLabel</value>
-  </data>
-  <data name="&gt;&gt;currentDeviceLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;currentDeviceLabel.Parent" xml:space="preserve">
-    <value>groupBoxDevice</value>
-  </data>
-  <data name="&gt;&gt;currentDeviceLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>–</value>
   </data>
   <data name="ignoreCurrentDeviceCheckBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>

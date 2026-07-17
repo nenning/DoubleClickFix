@@ -112,6 +112,7 @@ internal partial class InteractiveForm : Form {
 		this.dragStartDelayTextBox.Text = fixDragging ? settings.DragStartTimeMilliseconds.ToString() : string.Empty;
 		this.dragEndDelayTextBox.Text = fixDragging ? settings.DragStopTimeMilliseconds.ToString() : string.Empty;
 
+		groupBoxDevice.Text = Resources.CurrentDevice;
 		ignoreCurrentDeviceCheckBox.Text = Resources.IgnoreCurrentDevice;
 		UpdateIgnoreDeviceControls();
 		mouseHook.CurrentDeviceChanged += () => {
@@ -468,7 +469,7 @@ internal partial class InteractiveForm : Form {
 
 	private void UpdateIgnoreDeviceControls() {
 		var path = mouseHook.CurrentDevicePath;
-		currentDeviceLabel.Text = Resources.CurrentDevice + " " + FormatDevicePath(path);
+		currentDeviceLabel.Text = FormatDevicePath(path);
 		ignoreCurrentDeviceCheckBox.Enabled = path != null;
 		ignoreCurrentDeviceCheckBox.CheckedChanged -= OnIgnoreCurrentDeviceCheckBoxChanged;
 		ignoreCurrentDeviceCheckBox.Checked = path != null && settings.IgnoredDevicePaths.Contains(path);
