@@ -428,6 +428,7 @@
 			resources.ApplyResources(groupBox2, "groupBox2");
 			groupBox2.Controls.Add(descriptionTextBox);
 			groupBox2.Dock = DockStyle.Fill;
+			groupBox2.Padding = new Padding(8, 0, 8, 0);
 			groupBox2.Name = "groupBox2";
 			groupBox2.TabStop = false;
 			//
@@ -436,6 +437,7 @@
 			resources.ApplyResources(groupBox3, "groupBox3");
 			groupBox3.Controls.Add(logTextBox);
 			groupBox3.Dock = DockStyle.Fill;
+			groupBox3.Padding = new Padding(8, 0, 8, 0);
 			groupBox3.Name = "groupBox3";
 			groupBox3.TabStop = false;
 			//
@@ -446,6 +448,7 @@
 			groupBox4.Controls.Add(testPicturePanel);
 			groupBox4.Dock = DockStyle.Left;
 			groupBox4.Margin = new Padding(20, 4, 0, 0);
+			groupBox4.Padding = new Padding(8, 0, 8, 0);
 			groupBox4.Width = 301;
 			groupBox4.Name = "groupBox4";
 			groupBox4.TabStop = false;
@@ -607,7 +610,7 @@
 			headerLayout.Controls.Add(themeComboBox, 1, 0);
 			headerLayout.Controls.Add(languageComboBox, 2, 0);
 			headerLayout.Name = "headerLayout";
-			headerLayout.Padding = new Padding(12, 0, 12, 0);
+			headerLayout.Padding = new Padding(12, 10, 12, 3);
 			headerLayout.Margin = new Padding(0);
 			//
 			// middleLayout
