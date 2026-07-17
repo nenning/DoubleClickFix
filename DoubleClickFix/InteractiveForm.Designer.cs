@@ -300,7 +300,7 @@
 			resources.ApplyResources(currentDeviceLabel, "currentDeviceLabel");
 			currentDeviceLabel.AutoSize = true;
 			currentDeviceLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-			currentDeviceLabel.Margin = new Padding(3, 4, 3, 4);
+			currentDeviceLabel.Margin = new Padding(3, 2, 3, 2);
 			currentDeviceLabel.Name = "currentDeviceLabel";
 			//
 			// ignoreCurrentDeviceCheckBox
@@ -308,7 +308,7 @@
 			resources.ApplyResources(ignoreCurrentDeviceCheckBox, "ignoreCurrentDeviceCheckBox");
 			ignoreCurrentDeviceCheckBox.AutoSize = true;
 			ignoreCurrentDeviceCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-			ignoreCurrentDeviceCheckBox.Margin = new Padding(24, 4, 3, 4);
+			ignoreCurrentDeviceCheckBox.Margin = new Padding(24, 2, 3, 2);
 			ignoreCurrentDeviceCheckBox.Name = "ignoreCurrentDeviceCheckBox";
 			ignoreCurrentDeviceCheckBox.UseVisualStyleBackColor = true;
 			ignoreCurrentDeviceCheckBox.CheckedChanged += OnIgnoreCurrentDeviceCheckBoxChanged;
@@ -317,7 +317,7 @@
 			//
 			resources.ApplyResources(x2, "x2");
 			x2.AutoSize = true;
-			x2.Location = new Point(28, 152);
+			x2.Location = new Point(28, 110);
 			x2.Name = "x2";
 			x2.UseVisualStyleBackColor = true;
 			//
@@ -325,7 +325,7 @@
 			//
 			resources.ApplyResources(x1, "x1");
 			x1.AutoSize = true;
-			x1.Location = new Point(28, 209);
+			x1.Location = new Point(28, 167);
 			x1.Name = "x1";
 			x1.UseVisualStyleBackColor = true;
 			//
@@ -333,7 +333,7 @@
 			//
 			resources.ApplyResources(middle, "middle");
 			middle.AutoSize = true;
-			middle.Location = new Point(101, 59);
+			middle.Location = new Point(101, 17);
 			middle.Name = "middle";
 			middle.UseVisualStyleBackColor = true;
 			//
@@ -341,7 +341,7 @@
 			//
 			resources.ApplyResources(right, "right");
 			right.AutoSize = true;
-			right.Location = new Point(198, 97);
+			right.Location = new Point(198, 55);
 			right.Name = "right";
 			right.UseVisualStyleBackColor = true;
 			//
@@ -349,7 +349,7 @@
 			//
 			resources.ApplyResources(left, "left");
 			left.AutoSize = true;
-			left.Location = new Point(28, 97);
+			left.Location = new Point(28, 55);
 			left.Name = "left";
 			left.UseVisualStyleBackColor = true;
 			//
@@ -357,7 +357,7 @@
 			//
 			resources.ApplyResources(wheel, "wheel");
 			wheel.AutoSize = true;
-			wheel.Location = new Point(124, 179);
+			wheel.Location = new Point(124, 137);
 			wheel.Name = "wheel";
 			wheel.UseVisualStyleBackColor = true;
 			//
@@ -365,7 +365,7 @@
 			//
 			resources.ApplyResources(pictureBox1, "pictureBox1");
 			pictureBox1.Image = Properties.Resources.app;
-			pictureBox1.Location = new Point(19, 42);
+			pictureBox1.Location = new Point(19, 0);
 			pictureBox1.Size = new Size(259, 291);
 			pictureBox1.Name = "pictureBox1";
 			pictureBox1.TabStop = false;
@@ -460,7 +460,7 @@
 			testPicturePanel.Controls.Add(wheel);
 			testPicturePanel.Controls.Add(pictureBox1);
 			testPicturePanel.Dock = DockStyle.Top;
-			testPicturePanel.Height = 340;
+			testPicturePanel.Height = 300;
 			testPicturePanel.Name = "testPicturePanel";
 			//
 			// groupBoxDevice
@@ -487,7 +487,7 @@
 			groupBoxDeviceLayout.Controls.Add(currentDeviceLabel, 0, 0);
 			groupBoxDeviceLayout.Controls.Add(ignoreCurrentDeviceCheckBox, 1, 0);
 			groupBoxDeviceLayout.Name = "groupBoxDeviceLayout";
-			groupBoxDeviceLayout.Padding = new Padding(4, 7, 4, 7);
+			groupBoxDeviceLayout.Padding = new Padding(4, 1, 4, 1);
 			//
 			// groupBoxGeneral
 			//
@@ -523,7 +523,7 @@
 			resources.ApplyResources(versionLabel, "versionLabel");
 			versionLabel.AutoSize = true;
 			versionLabel.Anchor = AnchorStyles.Right;
-			versionLabel.Margin = new Padding(9, 12, 12, 12);
+			versionLabel.Margin = new Padding(9, 4, 12, 4);
 			versionLabel.Name = "versionLabel";
 			//
 			// updateLinkLabel
@@ -531,7 +531,7 @@
 			resources.ApplyResources(updateLinkLabel, "updateLinkLabel");
 			updateLinkLabel.AutoSize = true;
 			updateLinkLabel.Anchor = AnchorStyles.Right;
-			updateLinkLabel.Margin = new Padding(9, 12, 9, 12);
+			updateLinkLabel.Margin = new Padding(9, 4, 9, 4);
 			updateLinkLabel.Name = "updateLinkLabel";
 			updateLinkLabel.TabStop = true;
 			//
@@ -540,7 +540,7 @@
 			resources.ApplyResources(gitLinkLabel, "gitLinkLabel");
 			gitLinkLabel.AutoSize = true;
 			gitLinkLabel.Anchor = AnchorStyles.Left;
-			gitLinkLabel.Margin = new Padding(12, 12, 9, 12);
+			gitLinkLabel.Margin = new Padding(12, 4, 9, 4);
 			gitLinkLabel.Name = "gitLinkLabel";
 			gitLinkLabel.TabStop = true;
 			gitLinkLabel.LinkClicked += OnGitLinkLabelClicked;
@@ -581,13 +581,13 @@
 			bottomLayout.Controls.Add(updateLinkLabel, 1, 0);
 			bottomLayout.Controls.Add(versionLabel, 2, 0);
 			bottomLayout.Name = "bottomLayout";
-			bottomLayout.Padding = new Padding(12, 8, 12, 8);
+			bottomLayout.Padding = new Padding(12, 1, 12, 1);
 			//
 			// bottomPanel
 			//
 			bottomPanel.Controls.Add(bottomLayout);
 			bottomPanel.Dock = DockStyle.Top;
-			bottomPanel.Margin = new Padding(0, 4, 0, 0);
+			bottomPanel.Margin = new Padding(0, 0, 0, 0);
 			bottomPanel.AutoSize = true;
 			bottomPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 			bottomPanel.Name = "bottomPanel";
@@ -622,7 +622,7 @@
 			middleLayout.Controls.Add(groupBox2, 0, 0);
 			middleLayout.Controls.Add(groupBox3, 1, 0);
 			middleLayout.Name = "middleLayout";
-			middleLayout.Padding = new Padding(0, 6, 0, 6);
+			middleLayout.Padding = new Padding(0, 6, 0, 2);
 			//
 			// rootLayout
 			//
