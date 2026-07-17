@@ -445,7 +445,7 @@
 			groupBox4.Controls.Add(richTextBox1);
 			groupBox4.Controls.Add(testPicturePanel);
 			groupBox4.Dock = DockStyle.Left;
-			groupBox4.Margin = new Padding(0);
+			groupBox4.Margin = new Padding(20, 4, 0, 0);
 			groupBox4.Width = 301;
 			groupBox4.Name = "groupBox4";
 			groupBox4.TabStop = false;

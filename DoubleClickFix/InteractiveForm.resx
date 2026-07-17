@@ -5309,6 +5309,9 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   <data name="groupBoxDevice.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
+  <data name="groupBoxDevice.Text" xml:space="preserve">
+    <value>Current device</value>
+  </data>
   <data name="&gt;&gt;groupBoxDevice.Name" xml:space="preserve">
     <value>groupBoxDevice</value>
   </data>
