@@ -114,7 +114,7 @@
 			//
 			resources.ApplyResources(delayLabel, "delayLabel");
 			delayLabel.AutoSize = true;
-			delayLabel.Anchor = AnchorStyles.Left;
+			delayLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			delayLabel.Margin = new Padding(3, 4, 3, 4);
 			delayLabel.Name = "delayLabel";
 			toolTip1.SetToolTip(delayLabel, resources.GetString("delayLabel.ToolTip"));
@@ -122,7 +122,7 @@
 			// delayTextBox
 			//
 			resources.ApplyResources(delayTextBox, "delayTextBox");
-			delayTextBox.Anchor = AnchorStyles.Left;
+			delayTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			delayTextBox.Margin = new Padding(9, 1, 3, 1);
 			delayTextBox.Name = "delayTextBox";
 			delayTextBox.Width = 70;
@@ -131,7 +131,7 @@
 			// resetButton
 			//
 			resources.ApplyResources(resetButton, "resetButton");
-			resetButton.Anchor = AnchorStyles.Right;
+			resetButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 			resetButton.AutoSize = true;
 			resetButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 			resetButton.Margin = new Padding(9, 1, 3, 1);
@@ -144,7 +144,7 @@
 			//
 			resources.ApplyResources(runAtStartupCheckBox, "runAtStartupCheckBox");
 			runAtStartupCheckBox.AutoSize = true;
-			runAtStartupCheckBox.Anchor = AnchorStyles.Left;
+			runAtStartupCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			runAtStartupCheckBox.Margin = new Padding(3, 4, 3, 4);
 			runAtStartupCheckBox.Name = "runAtStartupCheckBox";
 			toolTip1.SetToolTip(runAtStartupCheckBox, resources.GetString("runAtStartupCheckBox.ToolTip"));
@@ -180,9 +180,9 @@
 			groupBox1Layout.Controls.Add(buttonEnabledCheckBox, 1, 0);
 			groupBox1Layout.Controls.Add(delayLabel, 0, 1);
 			groupBox1Layout.Controls.Add(thresholdSlider, 1, 1);
+			groupBox1Layout.SetRowSpan(thresholdSlider, 2);
 			groupBox1Layout.Controls.Add(delayTextBox, 2, 1);
 			groupBox1Layout.Controls.Add(useMinDelayCheckBox, 0, 2);
-			groupBox1Layout.SetColumnSpan(useMinDelayCheckBox, 3);
 			groupBox1Layout.Controls.Add(fixDraggingCheckBox, 0, 3);
 			groupBox1Layout.Controls.Add(dragStartDelayLabel, 1, 3);
 			groupBox1Layout.Controls.Add(dragStartDelayTextBox, 2, 3);
@@ -194,7 +194,7 @@
 			// dragEndDelayTextBox
 			//
 			resources.ApplyResources(dragEndDelayTextBox, "dragEndDelayTextBox");
-			dragEndDelayTextBox.Anchor = AnchorStyles.Left;
+			dragEndDelayTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			dragEndDelayTextBox.Margin = new Padding(9, 1, 3, 3);
 			dragEndDelayTextBox.Name = "dragEndDelayTextBox";
 			dragEndDelayTextBox.Width = 70;
@@ -204,7 +204,7 @@
 			//
 			resources.ApplyResources(dragEndDelayLabel, "dragEndDelayLabel");
 			dragEndDelayLabel.AutoSize = true;
-			dragEndDelayLabel.Anchor = AnchorStyles.Left;
+			dragEndDelayLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			dragEndDelayLabel.Margin = new Padding(3, 1, 3, 4);
 			dragEndDelayLabel.Name = "dragEndDelayLabel";
 			toolTip1.SetToolTip(dragEndDelayLabel, resources.GetString("dragEndDelayLabel.ToolTip"));
@@ -212,7 +212,7 @@
 			// dragStartDelayTextBox
 			//
 			resources.ApplyResources(dragStartDelayTextBox, "dragStartDelayTextBox");
-			dragStartDelayTextBox.Anchor = AnchorStyles.Left;
+			dragStartDelayTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			dragStartDelayTextBox.Margin = new Padding(9, 3, 3, 1);
 			dragStartDelayTextBox.Name = "dragStartDelayTextBox";
 			dragStartDelayTextBox.Width = 70;
@@ -222,7 +222,7 @@
 			//
 			resources.ApplyResources(dragStartDelayLabel, "dragStartDelayLabel");
 			dragStartDelayLabel.AutoSize = true;
-			dragStartDelayLabel.Anchor = AnchorStyles.Left;
+			dragStartDelayLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			dragStartDelayLabel.Margin = new Padding(3, 4, 3, 1);
 			dragStartDelayLabel.Name = "dragStartDelayLabel";
 			toolTip1.SetToolTip(dragStartDelayLabel, resources.GetString("dragStartDelayLabel.ToolTip"));
@@ -231,7 +231,7 @@
 			//
 			resources.ApplyResources(fixDraggingCheckBox, "fixDraggingCheckBox");
 			fixDraggingCheckBox.AutoSize = true;
-			fixDraggingCheckBox.Anchor = AnchorStyles.Left;
+			fixDraggingCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			fixDraggingCheckBox.Margin = new Padding(3, 4, 3, 4);
 			fixDraggingCheckBox.Name = "fixDraggingCheckBox";
 			toolTip1.SetToolTip(fixDraggingCheckBox, resources.GetString("fixDraggingCheckBox.ToolTip"));
@@ -242,7 +242,7 @@
 			//
 			resources.ApplyResources(useMinDelayCheckBox, "useMinDelayCheckBox");
 			useMinDelayCheckBox.AutoSize = true;
-			useMinDelayCheckBox.Anchor = AnchorStyles.Left;
+			useMinDelayCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			useMinDelayCheckBox.Margin = new Padding(3, 4, 3, 4);
 			useMinDelayCheckBox.Name = "useMinDelayCheckBox";
 			toolTip1.SetToolTip(useMinDelayCheckBox, resources.GetString("useMinDelayCheckBox.ToolTip"));
@@ -252,9 +252,9 @@
 			// thresholdSlider
 			//
 			resources.ApplyResources(thresholdSlider, "thresholdSlider");
-			thresholdSlider.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+			thresholdSlider.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 			thresholdSlider.Margin = new Padding(9, 3, 9, 3);
-			thresholdSlider.Height = 56;
+			thresholdSlider.Height = 69;
 			thresholdSlider.LargeChange = 20;
 			thresholdSlider.Maximum = 200;
 			thresholdSlider.Minimum = -1;
@@ -266,7 +266,7 @@
 			//
 			resources.ApplyResources(buttonEnabledCheckBox, "buttonEnabledCheckBox");
 			buttonEnabledCheckBox.AutoSize = true;
-			buttonEnabledCheckBox.Anchor = AnchorStyles.Left;
+			buttonEnabledCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			buttonEnabledCheckBox.Margin = new Padding(24, 4, 3, 4);
 			buttonEnabledCheckBox.Name = "buttonEnabledCheckBox";
 			toolTip1.SetToolTip(buttonEnabledCheckBox, resources.GetString("buttonEnabledCheckBox.ToolTip"));
@@ -278,7 +278,7 @@
 			mouseButtonComboBox.FormattingEnabled = true;
 			mouseButtonComboBox.Items.AddRange(new object[] { resources.GetString("mouseButtonComboBox.Items"), resources.GetString("mouseButtonComboBox.Items1"), resources.GetString("mouseButtonComboBox.Items2"), resources.GetString("mouseButtonComboBox.Items3"), resources.GetString("mouseButtonComboBox.Items4"), resources.GetString("mouseButtonComboBox.Items5") });
 			resources.ApplyResources(mouseButtonComboBox, "mouseButtonComboBox");
-			mouseButtonComboBox.Anchor = AnchorStyles.Left;
+			mouseButtonComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			mouseButtonComboBox.Margin = new Padding(3, 3, 3, 3);
 			mouseButtonComboBox.Width = 260;
 			mouseButtonComboBox.Name = "mouseButtonComboBox";
@@ -288,7 +288,7 @@
 			//
 			resources.ApplyResources(remoteDesktopCheckBox, "remoteDesktopCheckBox");
 			remoteDesktopCheckBox.AutoSize = true;
-			remoteDesktopCheckBox.Anchor = AnchorStyles.Left;
+			remoteDesktopCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			remoteDesktopCheckBox.Margin = new Padding(3, 4, 3, 4);
 			remoteDesktopCheckBox.Name = "remoteDesktopCheckBox";
 			toolTip1.SetToolTip(remoteDesktopCheckBox, resources.GetString("remoteDesktopCheckBox.ToolTip"));
@@ -299,7 +299,7 @@
 			//
 			resources.ApplyResources(currentDeviceLabel, "currentDeviceLabel");
 			currentDeviceLabel.AutoSize = true;
-			currentDeviceLabel.Anchor = AnchorStyles.Left;
+			currentDeviceLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 			currentDeviceLabel.Margin = new Padding(3, 4, 3, 4);
 			currentDeviceLabel.Name = "currentDeviceLabel";
 			//
@@ -307,7 +307,7 @@
 			//
 			resources.ApplyResources(ignoreCurrentDeviceCheckBox, "ignoreCurrentDeviceCheckBox");
 			ignoreCurrentDeviceCheckBox.AutoSize = true;
-			ignoreCurrentDeviceCheckBox.Anchor = AnchorStyles.Right;
+			ignoreCurrentDeviceCheckBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 			ignoreCurrentDeviceCheckBox.Margin = new Padding(24, 4, 3, 4);
 			ignoreCurrentDeviceCheckBox.Name = "ignoreCurrentDeviceCheckBox";
 			ignoreCurrentDeviceCheckBox.UseVisualStyleBackColor = true;
