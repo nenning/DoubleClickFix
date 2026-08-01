@@ -6,6 +6,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 DoubleClickFix is a C# .NET 10 Windows Forms application that intercepts and filters erroneous mouse double-clicks (hardware "chattering") via a low-level `WH_MOUSE_LL` mouse hook. It also supports drag-and-drop stabilization, mouse wheel bounce filtering, and per-device ignore lists. Distributed via Microsoft Store (MSIX) and GitHub Releases (standalone ZIP).
 
+## Build Commands
+
+```bash
+# Build main application
+msbuild DoubleClickFix/DoubleClickFix.csproj /p:Configuration=Release /p:Platform=AnyCPU
+
+# Or with dotnet CLI
+dotnet build DoubleClickFix/DoubleClickFix.csproj --configuration Release
+
+# Run tests
+dotnet test DoubleClickFix.Tests/DoubleClickFix.Tests.csproj
+
+# Run a single test
+dotnet test DoubleClickFix.Tests/DoubleClickFix.Tests.csproj --filter "FullyQualifiedName~TestLeftClickIgnored"
+```
+
 **Important:** Always keep C# file encodings as UTF-8 with BOM (code page 65001) when editing.
 
 Release process: see the `create-release` skill.
