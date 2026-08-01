@@ -24,7 +24,7 @@ dotnet test DoubleClickFix.Tests/DoubleClickFix.Tests.csproj --filter "FullyQual
 
 **Important:** Always keep C# file encodings as UTF-8 with BOM (code page 65001) when editing.
 
-Release process: see the `create-release` skill.
+Release process: run `./release.ps1` (auto-bumps the version in `Directory.Build.props`, builds, tags, and pushes — the GitHub Action then publishes the release; still requires manually publishing the Store package from Visual Studio afterward).
 
 ## Architecture
 
