@@ -6,44 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 DoubleClickFix is a C# .NET 10 Windows Forms application that intercepts and filters erroneous mouse double-clicks (hardware "chattering") via a low-level `WH_MOUSE_LL` mouse hook. It also supports drag-and-drop stabilization, mouse wheel bounce filtering, and per-device ignore lists. Distributed via Microsoft Store (MSIX) and GitHub Releases (standalone ZIP).
 
-## Build Commands
-
-```bash
-# Build main application
-msbuild DoubleClickFix/DoubleClickFix.csproj /p:Configuration=Release /p:Platform=AnyCPU
-
-# Or with dotnet CLI
-dotnet build DoubleClickFix/DoubleClickFix.csproj --configuration Release
-
-# Run tests
-dotnet test DoubleClickFix.Tests/DoubleClickFix.Tests.csproj
-
-# Run a single test
-dotnet test DoubleClickFix.Tests/DoubleClickFix.Tests.csproj --filter "FullyQualifiedName~TestLeftClickIgnored"
-```
-
 **Important:** Always keep C# file encodings as UTF-8 with BOM (code page 65001) when editing.
 
-## Creating Releases
-
-**GitHub release (standalone ZIP):**
-```bash
-git tag -a v1.x.x.x
-git push origin v1.x.x.x
-```
-This triggers the GitHub Action that builds and publishes the release. Add release notes on GitHub afterward.
-
-**Microsoft Store package:** Use Visual Studio → Publish → Create App Packages (builds `.msixbundle` for x86/x64/arm64). Upload via Partner Portal.
+Release process: see the `create-release` skill.
 
 ## Architecture
-
-### Solution Structure
-
-- **`DoubleClickFix/`** – Main WinForms app (core logic + UI)
-- **`DoubleClickFix.Tests/`** – xUnit tests with mock infrastructure
-- **`DoubleClickFix.Package/`** – MSIX packaging for the Store
-- **`DoubleClickFix.Benchmarks/`** – BenchmarkDotNet benchmarks
-- **`Directory.Build.props`** – Shared version number (currently 1.4.13.0)
 
 ### Core Components and Data Flow
 
