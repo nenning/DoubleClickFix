@@ -107,7 +107,7 @@
     <value>X2</value>
   </data>
   <data name="CurrentDevice" xml:space="preserve">
-    <value>当前设备：</value>
+    <value>当前设备</value>
   </data>
   <data name="IgnoreCurrentDevice" xml:space="preserve">
     <value>忽略此设备</value>

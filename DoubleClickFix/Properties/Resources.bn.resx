@@ -107,7 +107,7 @@
     <value>X2</value>
   </data>
   <data name="CurrentDevice" xml:space="preserve">
-    <value>বর্তমান ডিভাইস:</value>
+    <value>বর্তমান ডিভাইস</value>
   </data>
   <data name="IgnoreCurrentDevice" xml:space="preserve">
     <value>এই ডিভাইসটি উপেক্ষা করুন</value>

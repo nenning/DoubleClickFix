@@ -118,12 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="logTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
+  <data name="logTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="logTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 47</value>
+    <value>10, 38</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="logTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="logTextBox.Multiline" type="System.Boolean, mscorlib">
@@ -133,7 +137,7 @@
     <value>Vertical</value>
   </data>
   <data name="logTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>478, 400</value>
+    <value>631, 647</value>
   </data>
   <data name="logTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -154,10 +158,13 @@
     <value>True</value>
   </data>
   <data name="delayLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 91</value>
+    <value>7, 61</value>
+  </data>
+  <data name="delayLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
   </data>
   <data name="delayLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>290, 25</value>
+    <value>339, 30</value>
   </data>
   <data name="delayLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -178,16 +185,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;delayLabel.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBox1Layout</value>
   </data>
   <data name="&gt;&gt;delayLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>2</value>
   </data>
   <data name="delayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>718, 95</value>
+    <value>1045, 57</value>
+  </data>
+  <data name="delayTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 1, 2, 1</value>
   </data>
   <data name="delayTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 31</value>
+    <value>83, 35</value>
   </data>
   <data name="delayTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -202,22 +212,25 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;delayTextBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBox1Layout</value>
   </data>
   <data name="&gt;&gt;delayTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="resetButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>733, 67</value>
-  </data>
-  <data name="resetButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 41</value>
-  </data>
-  <data name="resetButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="resetButton.Text" xml:space="preserve">
-    <value>Reset</value>
+  <data name="resetButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="resetButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1038, 7</value>
+  </data>
+  <data name="resetButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="resetButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 26</value>
+  </data>
+  <data name="resetButton.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
   </data>
   <data name="&gt;&gt;resetButton.Name" xml:space="preserve">
     <value>resetButton</value>
@@ -226,19 +239,22 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;resetButton.Parent" xml:space="preserve">
-    <value>groupBoxGeneral</value>
+    <value>groupBoxGeneralLayout</value>
   </data>
   <data name="&gt;&gt;resetButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="runAtStartupCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="runAtStartupCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 79</value>
+    <value>7, 54</value>
+  </data>
+  <data name="runAtStartupCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
   </data>
   <data name="runAtStartupCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 29</value>
+    <value>262, 34</value>
   </data>
   <data name="runAtStartupCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -256,244 +272,25 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;runAtStartupCheckBox.Parent" xml:space="preserve">
-    <value>groupBoxGeneral</value>
+    <value>groupBoxGeneralLayout</value>
   </data>
   <data name="&gt;&gt;runAtStartupCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="dragEndDelayTextBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="dragEndDelayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>619, 227</value>
-  </data>
-  <data name="dragEndDelayTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 31</value>
-  </data>
-  <data name="dragEndDelayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;dragEndDelayTextBox.Name" xml:space="preserve">
-    <value>dragEndDelayTextBox</value>
-  </data>
-  <data name="&gt;&gt;dragEndDelayTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dragEndDelayTextBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;dragEndDelayTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="dragEndDelayLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="dragEndDelayLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="dragEndDelayLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 230</value>
-  </data>
-  <data name="dragEndDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 25</value>
-  </data>
-  <data name="dragEndDelayLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="dragEndDelayLabel.Text" xml:space="preserve">
-    <value>End delay [ms]</value>
-  </data>
-  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve">
-    <value>Minimum time the mouse must stay still before releasing the button to exit drag-lock mode. Default: 150 ms.</value>
-  </data>
-  <data name="&gt;&gt;dragEndDelayLabel.Name" xml:space="preserve">
-    <value>dragEndDelayLabel</value>
-  </data>
-  <data name="&gt;&gt;dragEndDelayLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dragEndDelayLabel.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;dragEndDelayLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="dragStartDelayTextBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="dragStartDelayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>619, 190</value>
-  </data>
-  <data name="dragStartDelayTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 31</value>
-  </data>
-  <data name="dragStartDelayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;dragStartDelayTextBox.Name" xml:space="preserve">
-    <value>dragStartDelayTextBox</value>
-  </data>
-  <data name="&gt;&gt;dragStartDelayTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dragStartDelayTextBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;dragStartDelayTextBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="dragStartDelayLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="groupBox1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="dragStartDelayLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="groupBox1.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
-  <data name="dragStartDelayLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 196</value>
+  <data name="groupBox1Layout.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="dragStartDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 25</value>
+  <data name="groupBox1Layout.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
-  <data name="dragStartDelayLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="dragStartDelayLabel.Text" xml:space="preserve">
-    <value>Start delay [ms]</value>
-  </data>
-  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve">
-    <value>Minimum drag duration before entering drag-lock mode. Default: 1000 ms.</value>
-  </data>
-  <data name="&gt;&gt;dragStartDelayLabel.Name" xml:space="preserve">
-    <value>dragStartDelayLabel</value>
-  </data>
-  <data name="&gt;&gt;dragStartDelayLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dragStartDelayLabel.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;dragStartDelayLabel.ZOrder" xml:space="preserve">
+  <data name="groupBox1Layout.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
-  </data>
-  <data name="fixDraggingCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="fixDraggingCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="fixDraggingCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 195</value>
-  </data>
-  <data name="fixDraggingCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 29</value>
-  </data>
-  <data name="fixDraggingCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="fixDraggingCheckBox.Text" xml:space="preserve">
-    <value>Fix dragging issues</value>
-  </data>
-  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve">
-    <value>Use only if you have dragging issues. You may need to click again to exit drag-lock mode.</value>
-  </data>
-  <data name="&gt;&gt;fixDraggingCheckBox.Name" xml:space="preserve">
-    <value>fixDraggingCheckBox</value>
-  </data>
-  <data name="&gt;&gt;fixDraggingCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;fixDraggingCheckBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;fixDraggingCheckBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="useMinDelayCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="useMinDelayCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="useMinDelayCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 142</value>
-  </data>
-  <data name="useMinDelayCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 29</value>
-  </data>
-  <data name="useMinDelayCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="useMinDelayCheckBox.Text" xml:space="preserve">
-    <value>Allow double-clicks with 0 ms gap</value>
-  </data>
-  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve">
-    <value>Use only if your touchpad or touchscreen is not working correctly.</value>
-  </data>
-  <data name="&gt;&gt;useMinDelayCheckBox.Name" xml:space="preserve">
-    <value>useMinDelayCheckBox</value>
-  </data>
-  <data name="&gt;&gt;useMinDelayCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;useMinDelayCheckBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;useMinDelayCheckBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="thresholdSlider.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="thresholdSlider.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 88</value>
-  </data>
-  <data name="thresholdSlider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>310, 69</value>
-  </data>
-  <data name="thresholdSlider.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;thresholdSlider.Name" xml:space="preserve">
-    <value>thresholdSlider</value>
-  </data>
-  <data name="&gt;&gt;thresholdSlider.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;thresholdSlider.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;thresholdSlider.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="buttonEnabledCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="buttonEnabledCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>500, 41</value>
-  </data>
-  <data name="buttonEnabledCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 29</value>
-  </data>
-  <data name="buttonEnabledCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
-    <value>Enable correction</value>
-  </data>
-  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve">
-    <value>Enable double-click correction for each mouse button separately.</value>
-  </data>
-  <data name="&gt;&gt;buttonEnabledCheckBox.Name" xml:space="preserve">
-    <value>buttonEnabledCheckBox</value>
-  </data>
-  <data name="&gt;&gt;buttonEnabledCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonEnabledCheckBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;buttonEnabledCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
   </data>
   <data name="mouseButtonComboBox.Items" xml:space="preserve">
     <value>Left mouse button</value>
@@ -514,10 +311,13 @@
     <value>Mouse wheel</value>
   </data>
   <data name="mouseButtonComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 39</value>
+    <value>7, 14</value>
+  </data>
+  <data name="mouseButtonComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="mouseButtonComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 33</value>
+    <value>311, 38</value>
   </data>
   <data name="mouseButtonComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -529,16 +329,322 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mouseButtonComboBox.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>groupBox1Layout</value>
   </data>
   <data name="&gt;&gt;mouseButtonComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonEnabledCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buttonEnabledCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>391, 17</value>
+  </data>
+  <data name="buttonEnabledCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>29, 5, 2, 5</value>
+  </data>
+  <data name="buttonEnabledCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 34</value>
+  </data>
+  <data name="buttonEnabledCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="buttonEnabledCheckBox.Text" xml:space="preserve">
+    <value>Enable correction</value>
+  </data>
+  <data name="buttonEnabledCheckBox.ToolTip" xml:space="preserve">
+    <value>Enable double-click correction for each mouse button separately.</value>
+  </data>
+  <data name="&gt;&gt;buttonEnabledCheckBox.Name" xml:space="preserve">
+    <value>buttonEnabledCheckBox</value>
+  </data>
+  <data name="&gt;&gt;buttonEnabledCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonEnabledCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1Layout</value>
+  </data>
+  <data name="&gt;&gt;buttonEnabledCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="thresholdSlider.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="thresholdSlider.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="thresholdSlider.Location" type="System.Drawing.Point, System.Drawing">
+    <value>373, 58</value>
+  </data>
+  <data name="thresholdSlider.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 2, 11, 2</value>
+  </data>
+  <data name="thresholdSlider.Size" type="System.Drawing.Size, System.Drawing">
+    <value>650, 80</value>
+  </data>
+  <data name="thresholdSlider.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.Name" xml:space="preserve">
+    <value>thresholdSlider</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.Parent" xml:space="preserve">
+    <value>groupBox1Layout</value>
+  </data>
+  <data name="&gt;&gt;thresholdSlider.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="useMinDelayCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="useMinDelayCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="useMinDelayCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 101</value>
+  </data>
+  <data name="useMinDelayCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
+  </data>
+  <data name="useMinDelayCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>353, 34</value>
+  </data>
+  <data name="useMinDelayCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="useMinDelayCheckBox.Text" xml:space="preserve">
+    <value>Allow double-clicks with 0 ms gap</value>
+  </data>
+  <data name="useMinDelayCheckBox.ToolTip" xml:space="preserve">
+    <value>Use only if your touchpad or touchscreen is not working correctly.</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.Name" xml:space="preserve">
+    <value>useMinDelayCheckBox</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1Layout</value>
+  </data>
+  <data name="&gt;&gt;useMinDelayCheckBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="fixDraggingCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="fixDraggingCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="fixDraggingCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 145</value>
+  </data>
+  <data name="fixDraggingCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
+  </data>
+  <data name="fixDraggingCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 34</value>
+  </data>
+  <data name="fixDraggingCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="fixDraggingCheckBox.Text" xml:space="preserve">
+    <value>Fix dragging issues</value>
+  </data>
+  <data name="fixDraggingCheckBox.ToolTip" xml:space="preserve">
+    <value>Use only if you have dragging issues. You may need to click again to exit drag-lock mode.</value>
+  </data>
+  <data name="&gt;&gt;fixDraggingCheckBox.Name" xml:space="preserve">
+    <value>fixDraggingCheckBox</value>
+  </data>
+  <data name="&gt;&gt;fixDraggingCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fixDraggingCheckBox.Parent" xml:space="preserve">
+    <value>groupBox1Layout</value>
+  </data>
+  <data name="&gt;&gt;fixDraggingCheckBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="dragStartDelayLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="dragStartDelayLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="dragStartDelayLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 145</value>
+  </data>
+  <data name="dragStartDelayLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 1</value>
+  </data>
+  <data name="dragStartDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 30</value>
+  </data>
+  <data name="dragStartDelayLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="dragStartDelayLabel.Text" xml:space="preserve">
+    <value>Start delay [ms]</value>
+  </data>
+  <data name="dragStartDelayLabel.ToolTip" xml:space="preserve">
+    <value>Minimum drag duration before entering drag-lock mode. Default: 1000 ms.</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayLabel.Name" xml:space="preserve">
+    <value>dragStartDelayLabel</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayLabel.Parent" xml:space="preserve">
+    <value>groupBox1Layout</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="dragStartDelayTextBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="dragStartDelayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1045, 142</value>
+  </data>
+  <data name="dragStartDelayTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 2, 2, 1</value>
+  </data>
+  <data name="dragStartDelayTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 35</value>
+  </data>
+  <data name="dragStartDelayTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayTextBox.Name" xml:space="preserve">
+    <value>dragStartDelayTextBox</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayTextBox.Parent" xml:space="preserve">
+    <value>groupBox1Layout</value>
+  </data>
+  <data name="&gt;&gt;dragStartDelayTextBox.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="dragEndDelayLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="dragEndDelayLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="dragEndDelayLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 185</value>
+  </data>
+  <data name="dragEndDelayLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 1, 2, 5</value>
+  </data>
+  <data name="dragEndDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 30</value>
+  </data>
+  <data name="dragEndDelayLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="dragEndDelayLabel.Text" xml:space="preserve">
+    <value>End delay [ms]</value>
+  </data>
+  <data name="dragEndDelayLabel.ToolTip" xml:space="preserve">
+    <value>Minimum time the mouse must stay still before releasing the button to exit drag-lock mode. Default: 150 ms.</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayLabel.Name" xml:space="preserve">
+    <value>dragEndDelayLabel</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayLabel.Parent" xml:space="preserve">
+    <value>groupBox1Layout</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="dragEndDelayTextBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="dragEndDelayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1045, 185</value>
+  </data>
+  <data name="dragEndDelayTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 1, 2, 2</value>
+  </data>
+  <data name="dragEndDelayTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 35</value>
+  </data>
+  <data name="dragEndDelayTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayTextBox.Name" xml:space="preserve">
+    <value>dragEndDelayTextBox</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayTextBox.Parent" xml:space="preserve">
+    <value>groupBox1Layout</value>
+  </data>
+  <data name="&gt;&gt;dragEndDelayTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="groupBox1Layout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="groupBox1Layout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 30</value>
+  </data>
+  <data name="groupBox1Layout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="groupBox1Layout.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 12, 5, 12</value>
+  </data>
+  <data name="groupBox1Layout.RowCount" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="groupBox1Layout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1135, 234</value>
+  </data>
+  <data name="groupBox1Layout.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;groupBox1Layout.Name" xml:space="preserve">
+    <value>groupBox1Layout</value>
+  </data>
+  <data name="&gt;&gt;groupBox1Layout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1Layout.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1Layout.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox1Layout.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="mouseButtonComboBox" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonEnabledCheckBox" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="delayLabel" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="thresholdSlider" Row="1" RowSpan="2" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="delayTextBox" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="useMinDelayCheckBox" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="fixDraggingCheckBox" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dragStartDelayLabel" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="dragStartDelayTextBox" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="dragEndDelayLabel" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="dragEndDelayTextBox" Row="4" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,Percent,100,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="groupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 160</value>
+    <value>14, 138</value>
+  </data>
+  <data name="groupBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 5, 0, 0</value>
+  </data>
+  <data name="groupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>932, 282</value>
+    <value>1139, 266</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -553,10 +659,10 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>rootLayout</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="remoteDesktopCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -565,10 +671,13 @@
     <value>NoControl</value>
   </data>
   <data name="remoteDesktopCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 35</value>
+    <value>7, 10</value>
+  </data>
+  <data name="remoteDesktopCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
   </data>
   <data name="remoteDesktopCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 29</value>
+    <value>449, 34</value>
   </data>
   <data name="remoteDesktopCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -586,7 +695,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;remoteDesktopCheckBox.Parent" xml:space="preserve">
-    <value>groupBoxGeneral</value>
+    <value>groupBoxGeneralLayout</value>
   </data>
   <data name="&gt;&gt;remoteDesktopCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -595,16 +704,19 @@
     <value>True</value>
   </data>
   <data name="currentDeviceLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 26</value>
+    <value>7, 3</value>
+  </data>
+  <data name="currentDeviceLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="currentDeviceLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 25</value>
+    <value>24, 30</value>
   </data>
   <data name="currentDeviceLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>0</value>
   </data>
   <data name="currentDeviceLabel.Text" xml:space="preserve">
-    <value>Current device: –</value>
+    <value>–</value>
   </data>
   <data name="&gt;&gt;currentDeviceLabel.Name" xml:space="preserve">
     <value>currentDeviceLabel</value>
@@ -613,10 +725,13 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;currentDeviceLabel.Parent" xml:space="preserve">
-    <value>groupBoxDevice</value>
+    <value>groupBoxDeviceLayout</value>
   </data>
   <data name="&gt;&gt;currentDeviceLabel.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="ignoreCurrentDeviceCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -625,10 +740,13 @@
     <value>False</value>
   </data>
   <data name="ignoreCurrentDeviceCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>500, 25</value>
+    <value>925, 3</value>
+  </data>
+  <data name="ignoreCurrentDeviceCheckBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>29, 2, 2, 2</value>
   </data>
   <data name="ignoreCurrentDeviceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 29</value>
+    <value>203, 34</value>
   </data>
   <data name="ignoreCurrentDeviceCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -643,7 +761,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.Parent" xml:space="preserve">
-    <value>groupBoxDevice</value>
+    <value>groupBoxDeviceLayout</value>
   </data>
   <data name="&gt;&gt;ignoreCurrentDeviceCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -655,10 +773,16 @@
     <value>NoControl</value>
   </data>
   <data name="x2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 152</value>
+    <value>34, 132</value>
+  </data>
+  <data name="x2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="x2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 0, 0</value>
   </data>
   <data name="x2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 29</value>
+    <value>66, 34</value>
   </data>
   <data name="x2.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -673,7 +797,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;x2.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>testPicturePanel</value>
   </data>
   <data name="&gt;&gt;x2.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -685,10 +809,16 @@
     <value>NoControl</value>
   </data>
   <data name="x1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 209</value>
+    <value>34, 202</value>
+  </data>
+  <data name="x1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="x1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 0, 0</value>
   </data>
   <data name="x1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 29</value>
+    <value>66, 34</value>
   </data>
   <data name="x1.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -703,7 +833,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;x1.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>testPicturePanel</value>
   </data>
   <data name="&gt;&gt;x1.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -712,10 +842,16 @@
     <value>True</value>
   </data>
   <data name="middle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>101, 59</value>
+    <value>121, 22</value>
+  </data>
+  <data name="middle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="middle.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 0, 0</value>
   </data>
   <data name="middle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 29</value>
+    <value>107, 34</value>
   </data>
   <data name="middle.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -730,7 +866,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;middle.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>testPicturePanel</value>
   </data>
   <data name="&gt;&gt;middle.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -742,10 +878,16 @@
     <value>NoControl</value>
   </data>
   <data name="right.Location" type="System.Drawing.Point, System.Drawing">
-    <value>198, 97</value>
+    <value>205, 66</value>
+  </data>
+  <data name="right.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="right.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 0, 0</value>
   </data>
   <data name="right.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 29</value>
+    <value>92, 34</value>
   </data>
   <data name="right.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -760,7 +902,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;right.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>testPicturePanel</value>
   </data>
   <data name="&gt;&gt;right.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -769,10 +911,16 @@
     <value>True</value>
   </data>
   <data name="left.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 97</value>
+    <value>34, 66</value>
+  </data>
+  <data name="left.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="left.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 0, 0</value>
   </data>
   <data name="left.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 29</value>
+    <value>78, 34</value>
   </data>
   <data name="left.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -787,7 +935,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;left.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>testPicturePanel</value>
   </data>
   <data name="&gt;&gt;left.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -799,10 +947,16 @@
     <value>NoControl</value>
   </data>
   <data name="wheel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 179</value>
+    <value>149, 166</value>
+  </data>
+  <data name="wheel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="wheel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 0, 0</value>
   </data>
   <data name="wheel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 29</value>
+    <value>53, 34</value>
   </data>
   <data name="wheel.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -817,7 +971,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;wheel.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>testPicturePanel</value>
   </data>
   <data name="&gt;&gt;wheel.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -829,10 +983,13 @@
     <value>NoControl</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 42</value>
+    <value>14, 0</value>
+  </data>
+  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 291</value>
+    <value>311, 349</value>
   </data>
   <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
@@ -847,10 +1004,10 @@
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
-    <value>groupBox4</value>
+    <value>testPicturePanel</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <metadata name="notifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -859,19 +1016,19 @@
     <value>285, 22</value>
   </metadata>
   <data name="showUiMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
+    <value>268, 36</value>
   </data>
   <data name="showUiMenu.Text" xml:space="preserve">
     <value>Show user interface</value>
   </data>
   <data name="exitMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
+    <value>268, 36</value>
   </data>
   <data name="exitMenu.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
   <data name="notifyMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>239, 68</value>
+    <value>269, 76</value>
   </data>
   <data name="&gt;&gt;notifyMenuStrip.Name" xml:space="preserve">
     <value>notifyMenuStrip</value>
@@ -5396,20 +5553,23 @@
   <data name="notifyIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
   </data>
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 31</value>
+    <value>16, 16</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 2</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>697, 25</value>
+    <value>755, 30</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -5424,16 +5584,19 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>headerLayout</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>0</value>
   </data>
-  <data name="descriptionTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
+  <data name="descriptionTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="descriptionTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 54</value>
+    <value>10, 38</value>
+  </data>
+  <data name="descriptionTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="descriptionTextBox.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5442,7 +5605,7 @@
     <value>Vertical</value>
   </data>
   <data name="descriptionTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 393</value>
+    <value>453, 647</value>
   </data>
   <data name="descriptionTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -5465,17 +5628,20 @@ Test your mouse's behavior with the current settings using the test area below (
   <data name="&gt;&gt;descriptionTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="richTextBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="richTextBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="richTextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 401</value>
+    <value>10, 398</value>
+  </data>
+  <data name="richTextBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 14, 2, 14</value>
   </data>
   <data name="richTextBox1.ScrollBars" type="System.Windows.Forms.RichTextBoxScrollBars, System.Windows.Forms">
     <value>Vertical</value>
   </data>
   <data name="richTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 543</value>
+    <value>341, 779</value>
   </data>
   <data name="richTextBox1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -5502,16 +5668,22 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;richTextBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>0</value>
   </data>
-  <data name="groupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
+  <data name="groupBox2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 579</value>
+    <value>0, 12</value>
+  </data>
+  <data name="groupBox2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 5, 5, 5</value>
+  </data>
+  <data name="groupBox2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>10, 10, 10, 10</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 470</value>
+    <value>473, 695</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -5526,19 +5698,25 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>middleLayout</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>0</value>
   </data>
-  <data name="groupBox3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
+  <data name="groupBox3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 579</value>
+    <value>483, 12</value>
+  </data>
+  <data name="groupBox3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="groupBox3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>10, 10, 10, 10</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>533, 470</value>
+    <value>651, 695</value>
   </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -5553,46 +5731,223 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>middleLayout</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
-  <data name="groupBox4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="testPicturePanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
-  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>982, 82</value>
+  <data name="testPicturePanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 38</value>
   </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 967</value>
+  <data name="testPicturePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
-  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="testPicturePanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>341, 360</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Test</value>
+  <data name="testPicturePanel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+  <data name="&gt;&gt;testPicturePanel.Name" xml:space="preserve">
+    <value>testPicturePanel</value>
+  </data>
+  <data name="&gt;&gt;testPicturePanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;testPicturePanel.Parent" xml:space="preserve">
     <value>groupBox4</value>
   </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;testPicturePanel.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="groupBox4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
   </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1177, 59</value>
+  </data>
+  <data name="groupBox4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>24, 5, 0, 5</value>
+  </data>
+  <data name="groupBox4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>10, 10, 10, 10</value>
+  </data>
+  <data name="rootLayout.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="headerLayout.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="headerLayout.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="headerLayout.ColumnCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="themeComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="themeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1074, 13</value>
+  </data>
+  <data name="themeComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 1, 2, 1</value>
+  </data>
+  <data name="themeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 38</value>
+  </data>
+  <data name="themeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;themeComboBox.Name" xml:space="preserve">
+    <value>themeComboBox</value>
+  </data>
+  <data name="&gt;&gt;themeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;themeComboBox.Parent" xml:space="preserve">
+    <value>headerLayout</value>
+  </data>
+  <data name="&gt;&gt;themeComboBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="languageComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="languageComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1242, 13</value>
+  </data>
+  <data name="languageComboBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 1, 2, 1</value>
+  </data>
+  <data name="languageComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 38</value>
+  </data>
+  <data name="languageComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Name" xml:space="preserve">
+    <value>languageComboBox</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.Parent" xml:space="preserve">
+    <value>headerLayout</value>
+  </data>
+  <data name="&gt;&gt;languageComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="headerLayout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="headerLayout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 0</value>
+  </data>
+  <data name="headerLayout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="headerLayout.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>14, 12, 14, 2</value>
+  </data>
+  <data name="headerLayout.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="headerLayout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1524, 54</value>
+  </data>
+  <data name="headerLayout.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;headerLayout.Name" xml:space="preserve">
+    <value>headerLayout</value>
+  </data>
+  <data name="&gt;&gt;headerLayout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;headerLayout.Parent" xml:space="preserve">
+    <value>rootLayout</value>
+  </data>
+  <data name="&gt;&gt;headerLayout.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="headerLayout.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="themeComboBox" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="languageComboBox" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="groupBoxDevice.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBoxDevice.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="groupBoxDeviceLayout.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBoxDeviceLayout.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="groupBoxDeviceLayout.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupBoxDeviceLayout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="groupBoxDeviceLayout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 30</value>
+  </data>
+  <data name="groupBoxDeviceLayout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="groupBoxDeviceLayout.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 1, 5, 1</value>
+  </data>
+  <data name="groupBoxDeviceLayout.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="groupBoxDeviceLayout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1135, 40</value>
+  </data>
+  <data name="groupBoxDeviceLayout.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDeviceLayout.Name" xml:space="preserve">
+    <value>groupBoxDeviceLayout</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDeviceLayout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDeviceLayout.Parent" xml:space="preserve">
+    <value>groupBoxDevice</value>
+  </data>
+  <data name="&gt;&gt;groupBoxDeviceLayout.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBoxDeviceLayout.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="currentDeviceLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="ignoreCurrentDeviceCheckBox" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="groupBoxDevice.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="groupBoxDevice.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 82</value>
+    <value>14, 59</value>
+  </data>
+  <data name="groupBoxDevice.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 5, 0, 0</value>
+  </data>
+  <data name="groupBoxDevice.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 4</value>
   </data>
   <data name="groupBoxDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>932, 68</value>
+    <value>1139, 74</value>
   </data>
   <data name="groupBoxDevice.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
+  </data>
+  <data name="groupBoxDevice.Text" xml:space="preserve">
+    <value>Current device</value>
   </data>
   <data name="&gt;&gt;groupBoxDevice.Name" xml:space="preserve">
     <value>groupBoxDevice</value>
@@ -5601,16 +5956,76 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBoxDevice.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>rootLayout</value>
   </data>
   <data name="&gt;&gt;groupBoxDevice.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>1</value>
+  </data>
+  <data name="groupBoxGeneral.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBoxGeneral.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="groupBoxGeneralLayout.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBoxGeneralLayout.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="groupBoxGeneralLayout.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupBoxGeneralLayout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="groupBoxGeneralLayout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 30</value>
+  </data>
+  <data name="groupBoxGeneralLayout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="groupBoxGeneralLayout.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="groupBoxGeneralLayout.RowCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupBoxGeneralLayout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1135, 98</value>
+  </data>
+  <data name="groupBoxGeneralLayout.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeneralLayout.Name" xml:space="preserve">
+    <value>groupBoxGeneralLayout</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeneralLayout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeneralLayout.Parent" xml:space="preserve">
+    <value>groupBoxGeneral</value>
+  </data>
+  <data name="&gt;&gt;groupBoxGeneralLayout.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBoxGeneralLayout.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="remoteDesktopCheckBox" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="resetButton" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="runAtStartupCheckBox" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="groupBoxGeneral.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="groupBoxGeneral.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 448</value>
+    <value>14, 409</value>
+  </data>
+  <data name="groupBoxGeneral.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 5, 0, 0</value>
+  </data>
+  <data name="groupBoxGeneral.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="groupBoxGeneral.Size" type="System.Drawing.Size, System.Drawing">
-    <value>932, 125</value>
+    <value>1139, 130</value>
   </data>
   <data name="groupBoxGeneral.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -5625,79 +6040,79 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBoxGeneral.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>rootLayout</value>
   </data>
   <data name="&gt;&gt;groupBoxGeneral.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>3</value>
   </data>
-  <data name="versionLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="versionLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="versionLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1214, 12</value>
-  </data>
-  <data name="versionLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 25</value>
-  </data>
-  <data name="versionLabel.TabIndex" type="System.Int32, mscorlib">
+  <data name="middleLayout.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="versionLabel.Text" xml:space="preserve">
-    <value>version</value>
+  <data name="middleLayout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
-  <data name="&gt;&gt;versionLabel.Name" xml:space="preserve">
-    <value>versionLabel</value>
+  <data name="middleLayout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 539</value>
   </data>
-  <data name="&gt;&gt;versionLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="middleLayout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
-  <data name="&gt;&gt;versionLabel.Parent" xml:space="preserve">
-    <value>bottomPanel</value>
+  <data name="middleLayout.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 7, 0, 0</value>
   </data>
-  <data name="&gt;&gt;versionLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="middleLayout.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="updateLinkLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="middleLayout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1139, 712</value>
   </data>
-  <data name="updateLinkLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="middleLayout.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;middleLayout.Name" xml:space="preserve">
+    <value>middleLayout</value>
+  </data>
+  <data name="&gt;&gt;middleLayout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;middleLayout.Parent" xml:space="preserve">
+    <value>rootLayout</value>
+  </data>
+  <data name="&gt;&gt;middleLayout.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="middleLayout.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox2" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox3" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,42,Percent,58" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="bottomPanel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="updateLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1065, 12</value>
+  <data name="bottomPanel.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
-  <data name="updateLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 25</value>
+  <data name="bottomLayout.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="updateLinkLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="bottomLayout.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
-  <data name="updateLinkLabel.Text" xml:space="preserve">
-    <value>Update available</value>
+  <data name="bottomLayout.ColumnCount" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;updateLinkLabel.Name" xml:space="preserve">
-    <value>updateLinkLabel</value>
-  </data>
-  <data name="&gt;&gt;updateLinkLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;updateLinkLabel.Parent" xml:space="preserve">
-    <value>bottomPanel</value>
-  </data>
-  <data name="&gt;&gt;updateLinkLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="gitLinkLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
   </data>
   <data name="gitLinkLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="gitLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 12</value>
+    <value>14, 6</value>
+  </data>
+  <data name="gitLinkLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 5, 11, 5</value>
   </data>
   <data name="gitLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 25</value>
+    <value>413, 30</value>
   </data>
   <data name="gitLinkLabel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -5712,70 +6127,127 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;gitLinkLabel.Parent" xml:space="preserve">
-    <value>bottomPanel</value>
+    <value>bottomLayout</value>
   </data>
   <data name="&gt;&gt;gitLinkLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="themeComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="updateLinkLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="themeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>926, 28</value>
+  <data name="updateLinkLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="themeComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 33</value>
+  <data name="updateLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1228, 6</value>
   </data>
-  <data name="themeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+  <data name="updateLinkLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 5, 11, 5</value>
   </data>
-  <data name="&gt;&gt;themeComboBox.Name" xml:space="preserve">
-    <value>themeComboBox</value>
+  <data name="updateLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 30</value>
   </data>
-  <data name="&gt;&gt;themeComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;themeComboBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;themeComboBox.ZOrder" xml:space="preserve">
+  <data name="updateLinkLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="languageComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="updateLinkLabel.Text" xml:space="preserve">
+    <value>Update available</value>
   </data>
-  <data name="languageComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1062, 28</value>
+  <data name="&gt;&gt;updateLinkLabel.Name" xml:space="preserve">
+    <value>updateLinkLabel</value>
   </data>
-  <data name="languageComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 33</value>
+  <data name="&gt;&gt;updateLinkLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="languageComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+  <data name="&gt;&gt;updateLinkLabel.Parent" xml:space="preserve">
+    <value>bottomLayout</value>
   </data>
-  <data name="&gt;&gt;languageComboBox.Name" xml:space="preserve">
-    <value>languageComboBox</value>
+  <data name="&gt;&gt;updateLinkLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;languageComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="versionLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;languageComboBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="versionLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;languageComboBox.ZOrder" xml:space="preserve">
+  <data name="versionLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1417, 6</value>
+  </data>
+  <data name="versionLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>11, 5, 14, 5</value>
+  </data>
+  <data name="versionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 30</value>
+  </data>
+  <data name="versionLabel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
+  <data name="versionLabel.Text" xml:space="preserve">
+    <value>version</value>
+  </data>
+  <data name="&gt;&gt;versionLabel.Name" xml:space="preserve">
+    <value>versionLabel</value>
+  </data>
+  <data name="&gt;&gt;versionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;versionLabel.Parent" xml:space="preserve">
+    <value>bottomLayout</value>
+  </data>
+  <data name="&gt;&gt;versionLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="bottomLayout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="bottomLayout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="bottomLayout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="bottomLayout.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>14, 1, 14, 1</value>
+  </data>
+  <data name="bottomLayout.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="bottomLayout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1524, 42</value>
+  </data>
+  <data name="bottomLayout.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;bottomLayout.Name" xml:space="preserve">
+    <value>bottomLayout</value>
+  </data>
+  <data name="&gt;&gt;bottomLayout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bottomLayout.Parent" xml:space="preserve">
+    <value>bottomPanel</value>
+  </data>
+  <data name="&gt;&gt;bottomLayout.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="bottomLayout.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="gitLinkLabel" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="updateLinkLabel" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="versionLabel" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,AutoSize,0,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
   <data name="bottomPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
+    <value>Top</value>
   </data>
   <data name="bottomPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 1047</value>
+    <value>14, 1251</value>
+  </data>
+  <data name="bottomPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="bottomPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1305, 50</value>
+    <value>1524, 42</value>
   </data>
   <data name="bottomPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;bottomPanel.Name" xml:space="preserve">
     <value>bottomPanel</value>
@@ -5784,19 +6256,76 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;bottomPanel.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>rootLayout</value>
   </data>
   <data name="&gt;&gt;bottomPanel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="rootLayout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="rootLayout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="rootLayout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="rootLayout.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>14, 0, 14, 0</value>
+  </data>
+  <data name="rootLayout.RowCount" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="rootLayout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1552, 1293</value>
+  </data>
+  <data name="rootLayout.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;rootLayout.Name" xml:space="preserve">
+    <value>rootLayout</value>
+  </data>
+  <data name="&gt;&gt;rootLayout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rootLayout.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;rootLayout.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rootLayout.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="headerLayout" Row="0" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="groupBoxDevice" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox1" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBoxGeneral" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="middleLayout" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="bottomPanel" Row="5" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="groupBox4" Row="1" RowSpan="4" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Percent,100,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>361, 1187</value>
+  </data>
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>rootLayout</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>10, 25</value>
+    <value>12, 30</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1305, 1097</value>
+    <value>1552, 1293</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -7131,8 +7660,11 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
         s9cP8HVWAZy9zl4/wNf/AhGSNciD0L0zAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>980, 700</value>
+    <value>1171, 821</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Double-click fix</value>

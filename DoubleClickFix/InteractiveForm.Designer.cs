@@ -35,15 +35,16 @@
 			resetButton = new Button();
 			runAtStartupCheckBox = new CheckBox();
 			groupBox1 = new GroupBox();
-			dragEndDelayTextBox = new TextBox();
-			dragEndDelayLabel = new Label();
-			dragStartDelayTextBox = new TextBox();
-			dragStartDelayLabel = new Label();
-			fixDraggingCheckBox = new CheckBox();
-			useMinDelayCheckBox = new CheckBox();
-			thresholdSlider = new TrackBar();
-			buttonEnabledCheckBox = new CheckBox();
+			groupBox1Layout = new TableLayoutPanel();
 			mouseButtonComboBox = new ComboBox();
+			buttonEnabledCheckBox = new CheckBox();
+			thresholdSlider = new TrackBar();
+			useMinDelayCheckBox = new CheckBox();
+			fixDraggingCheckBox = new CheckBox();
+			dragStartDelayLabel = new Label();
+			dragStartDelayTextBox = new TextBox();
+			dragEndDelayLabel = new Label();
+			dragEndDelayTextBox = new TextBox();
 			remoteDesktopCheckBox = new CheckBox();
 			currentDeviceLabel = new Label();
 			ignoreCurrentDeviceCheckBox = new CheckBox();
@@ -64,8 +65,11 @@
 			groupBox2 = new GroupBox();
 			groupBox3 = new GroupBox();
 			groupBox4 = new GroupBox();
+			testPicturePanel = new Panel();
 			groupBoxDevice = new GroupBox();
+			groupBoxDeviceLayout = new TableLayoutPanel();
 			groupBoxGeneral = new GroupBox();
+			groupBoxGeneralLayout = new TableLayoutPanel();
 			toolTip1 = new ToolTip(components);
 			versionLabel = new Label();
 			updateLinkLabel = new LinkLabel();
@@ -73,16 +77,28 @@
 			themeComboBox = new ComboBox();
 			languageComboBox = new ComboBox();
 			bottomPanel = new Panel();
+			bottomLayout = new TableLayoutPanel();
+			rootLayout = new TableLayoutPanel();
+			headerLayout = new TableLayoutPanel();
+			middleLayout = new TableLayoutPanel();
 			groupBox1.SuspendLayout();
+			groupBox1Layout.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)thresholdSlider).BeginInit();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			notifyMenuStrip.SuspendLayout();
 			groupBox2.SuspendLayout();
 			groupBox3.SuspendLayout();
 			groupBox4.SuspendLayout();
+			testPicturePanel.SuspendLayout();
 			groupBoxDevice.SuspendLayout();
+			groupBoxDeviceLayout.SuspendLayout();
 			groupBoxGeneral.SuspendLayout();
+			groupBoxGeneralLayout.SuspendLayout();
 			bottomPanel.SuspendLayout();
+			bottomLayout.SuspendLayout();
+			rootLayout.SuspendLayout();
+			headerLayout.SuspendLayout();
+			middleLayout.SuspendLayout();
 			SuspendLayout();
 			// 
 			// logTextBox
@@ -109,8 +125,6 @@
 			// 
 			resources.ApplyResources(resetButton, "resetButton");
 			resetButton.Name = "resetButton";
-			resetButton.UseVisualStyleBackColor = true;
-			resetButton.Click += OnResetButtonClicked;
 			// 
 			// runAtStartupCheckBox
 			// 
@@ -121,70 +135,34 @@
 			// 
 			// groupBox1
 			// 
-			groupBox1.Controls.Add(dragEndDelayTextBox);
-			groupBox1.Controls.Add(dragEndDelayLabel);
-			groupBox1.Controls.Add(dragStartDelayTextBox);
-			groupBox1.Controls.Add(dragStartDelayLabel);
-			groupBox1.Controls.Add(fixDraggingCheckBox);
-			groupBox1.Controls.Add(useMinDelayCheckBox);
-			groupBox1.Controls.Add(thresholdSlider);
-			groupBox1.Controls.Add(buttonEnabledCheckBox);
-			groupBox1.Controls.Add(mouseButtonComboBox);
-			groupBox1.Controls.Add(delayTextBox);
-			groupBox1.Controls.Add(delayLabel);
 			resources.ApplyResources(groupBox1, "groupBox1");
+			groupBox1.Controls.Add(groupBox1Layout);
 			groupBox1.Name = "groupBox1";
 			groupBox1.TabStop = false;
 			// 
-			// dragEndDelayTextBox
+			// groupBox1Layout
 			// 
-			resources.ApplyResources(dragEndDelayTextBox, "dragEndDelayTextBox");
-			dragEndDelayTextBox.Name = "dragEndDelayTextBox";
-			dragEndDelayTextBox.TextChanged += OnDragStopDelayTextChanged;
+			resources.ApplyResources(groupBox1Layout, "groupBox1Layout");
+			groupBox1Layout.Controls.Add(mouseButtonComboBox, 0, 0);
+			groupBox1Layout.Controls.Add(buttonEnabledCheckBox, 1, 0);
+			groupBox1Layout.Controls.Add(delayLabel, 0, 1);
+			groupBox1Layout.Controls.Add(thresholdSlider, 1, 1);
+			groupBox1Layout.Controls.Add(delayTextBox, 2, 1);
+			groupBox1Layout.Controls.Add(useMinDelayCheckBox, 0, 2);
+			groupBox1Layout.Controls.Add(fixDraggingCheckBox, 0, 3);
+			groupBox1Layout.Controls.Add(dragStartDelayLabel, 1, 3);
+			groupBox1Layout.Controls.Add(dragStartDelayTextBox, 2, 3);
+			groupBox1Layout.Controls.Add(dragEndDelayLabel, 1, 4);
+			groupBox1Layout.Controls.Add(dragEndDelayTextBox, 2, 4);
+			groupBox1Layout.Name = "groupBox1Layout";
 			// 
-			// dragEndDelayLabel
+			// mouseButtonComboBox
 			// 
-			resources.ApplyResources(dragEndDelayLabel, "dragEndDelayLabel");
-			dragEndDelayLabel.Name = "dragEndDelayLabel";
-			toolTip1.SetToolTip(dragEndDelayLabel, resources.GetString("dragEndDelayLabel.ToolTip"));
-			// 
-			// dragStartDelayTextBox
-			// 
-			resources.ApplyResources(dragStartDelayTextBox, "dragStartDelayTextBox");
-			dragStartDelayTextBox.Name = "dragStartDelayTextBox";
-			dragStartDelayTextBox.TextChanged += OnDragStartDelayTextChanged;
-			// 
-			// dragStartDelayLabel
-			// 
-			resources.ApplyResources(dragStartDelayLabel, "dragStartDelayLabel");
-			dragStartDelayLabel.Name = "dragStartDelayLabel";
-			toolTip1.SetToolTip(dragStartDelayLabel, resources.GetString("dragStartDelayLabel.ToolTip"));
-			// 
-			// fixDraggingCheckBox
-			// 
-			resources.ApplyResources(fixDraggingCheckBox, "fixDraggingCheckBox");
-			fixDraggingCheckBox.Name = "fixDraggingCheckBox";
-			toolTip1.SetToolTip(fixDraggingCheckBox, resources.GetString("fixDraggingCheckBox.ToolTip"));
-			fixDraggingCheckBox.UseVisualStyleBackColor = true;
-			fixDraggingCheckBox.CheckedChanged += OnFixDraggingCheckBoxChanged;
-			// 
-			// useMinDelayCheckBox
-			// 
-			resources.ApplyResources(useMinDelayCheckBox, "useMinDelayCheckBox");
-			useMinDelayCheckBox.Name = "useMinDelayCheckBox";
-			toolTip1.SetToolTip(useMinDelayCheckBox, resources.GetString("useMinDelayCheckBox.ToolTip"));
-			useMinDelayCheckBox.UseVisualStyleBackColor = true;
-			useMinDelayCheckBox.CheckedChanged += UseMinDelayCheckBoxCheckedChanged;
-			// 
-			// thresholdSlider
-			// 
-			resources.ApplyResources(thresholdSlider, "thresholdSlider");
-			thresholdSlider.LargeChange = 20;
-			thresholdSlider.Maximum = 200;
-			thresholdSlider.Minimum = -1;
-			thresholdSlider.Name = "thresholdSlider";
-			thresholdSlider.TickFrequency = 10;
-			thresholdSlider.ValueChanged += OnThresholdValueChanged;
+			mouseButtonComboBox.FormattingEnabled = true;
+			mouseButtonComboBox.Items.AddRange(new object[] { resources.GetString("mouseButtonComboBox.Items"), resources.GetString("mouseButtonComboBox.Items1"), resources.GetString("mouseButtonComboBox.Items2"), resources.GetString("mouseButtonComboBox.Items3"), resources.GetString("mouseButtonComboBox.Items4"), resources.GetString("mouseButtonComboBox.Items5") });
+			resources.ApplyResources(mouseButtonComboBox, "mouseButtonComboBox");
+			mouseButtonComboBox.Name = "mouseButtonComboBox";
+			mouseButtonComboBox.SelectedIndexChanged += OnSelectedMouseButtonChanged;
 			// 
 			// buttonEnabledCheckBox
 			// 
@@ -194,13 +172,56 @@
 			buttonEnabledCheckBox.UseVisualStyleBackColor = true;
 			buttonEnabledCheckBox.CheckedChanged += OnButtonEnabledCheckedChanged;
 			// 
-			// mouseButtonComboBox
+			// thresholdSlider
 			// 
-			mouseButtonComboBox.FormattingEnabled = true;
-			mouseButtonComboBox.Items.AddRange(new object[] { resources.GetString("mouseButtonComboBox.Items"), resources.GetString("mouseButtonComboBox.Items1"), resources.GetString("mouseButtonComboBox.Items2"), resources.GetString("mouseButtonComboBox.Items3"), resources.GetString("mouseButtonComboBox.Items4"), resources.GetString("mouseButtonComboBox.Items5") });
-			resources.ApplyResources(mouseButtonComboBox, "mouseButtonComboBox");
-			mouseButtonComboBox.Name = "mouseButtonComboBox";
-			mouseButtonComboBox.SelectedIndexChanged += OnSelectedMouseButtonChanged;
+			resources.ApplyResources(thresholdSlider, "thresholdSlider");
+			thresholdSlider.LargeChange = 20;
+			thresholdSlider.Maximum = 200;
+			thresholdSlider.Minimum = -1;
+			thresholdSlider.Name = "thresholdSlider";
+			groupBox1Layout.SetRowSpan(thresholdSlider, 2);
+			thresholdSlider.TickFrequency = 10;
+			thresholdSlider.ValueChanged += OnThresholdValueChanged;
+			// 
+			// useMinDelayCheckBox
+			// 
+			resources.ApplyResources(useMinDelayCheckBox, "useMinDelayCheckBox");
+			useMinDelayCheckBox.Name = "useMinDelayCheckBox";
+			toolTip1.SetToolTip(useMinDelayCheckBox, resources.GetString("useMinDelayCheckBox.ToolTip"));
+			useMinDelayCheckBox.UseVisualStyleBackColor = true;
+			useMinDelayCheckBox.CheckedChanged += UseMinDelayCheckBoxCheckedChanged;
+			// 
+			// fixDraggingCheckBox
+			// 
+			resources.ApplyResources(fixDraggingCheckBox, "fixDraggingCheckBox");
+			fixDraggingCheckBox.Name = "fixDraggingCheckBox";
+			toolTip1.SetToolTip(fixDraggingCheckBox, resources.GetString("fixDraggingCheckBox.ToolTip"));
+			fixDraggingCheckBox.UseVisualStyleBackColor = true;
+			fixDraggingCheckBox.CheckedChanged += OnFixDraggingCheckBoxChanged;
+			// 
+			// dragStartDelayLabel
+			// 
+			resources.ApplyResources(dragStartDelayLabel, "dragStartDelayLabel");
+			dragStartDelayLabel.Name = "dragStartDelayLabel";
+			toolTip1.SetToolTip(dragStartDelayLabel, resources.GetString("dragStartDelayLabel.ToolTip"));
+			// 
+			// dragStartDelayTextBox
+			// 
+			resources.ApplyResources(dragStartDelayTextBox, "dragStartDelayTextBox");
+			dragStartDelayTextBox.Name = "dragStartDelayTextBox";
+			dragStartDelayTextBox.TextChanged += OnDragStartDelayTextChanged;
+			// 
+			// dragEndDelayLabel
+			// 
+			resources.ApplyResources(dragEndDelayLabel, "dragEndDelayLabel");
+			dragEndDelayLabel.Name = "dragEndDelayLabel";
+			toolTip1.SetToolTip(dragEndDelayLabel, resources.GetString("dragEndDelayLabel.ToolTip"));
+			// 
+			// dragEndDelayTextBox
+			// 
+			resources.ApplyResources(dragEndDelayTextBox, "dragEndDelayTextBox");
+			dragEndDelayTextBox.Name = "dragEndDelayTextBox";
+			dragEndDelayTextBox.TextChanged += OnDragStopDelayTextChanged;
 			// 
 			// remoteDesktopCheckBox
 			// 
@@ -299,8 +320,8 @@
 			// 
 			// descriptionTextBox
 			// 
-			resources.ApplyResources(descriptionTextBox, "descriptionTextBox");
 			descriptionTextBox.BackColor = SystemColors.Control;
+			resources.ApplyResources(descriptionTextBox, "descriptionTextBox");
 			descriptionTextBox.Name = "descriptionTextBox";
 			descriptionTextBox.ReadOnly = true;
 			descriptionTextBox.TabStop = false;
@@ -315,48 +336,67 @@
 			// 
 			// groupBox2
 			// 
-			resources.ApplyResources(groupBox2, "groupBox2");
 			groupBox2.Controls.Add(descriptionTextBox);
+			resources.ApplyResources(groupBox2, "groupBox2");
 			groupBox2.Name = "groupBox2";
 			groupBox2.TabStop = false;
 			// 
 			// groupBox3
 			// 
-			resources.ApplyResources(groupBox3, "groupBox3");
 			groupBox3.Controls.Add(logTextBox);
+			resources.ApplyResources(groupBox3, "groupBox3");
 			groupBox3.Name = "groupBox3";
 			groupBox3.TabStop = false;
 			// 
 			// groupBox4
 			// 
-			resources.ApplyResources(groupBox4, "groupBox4");
-			groupBox4.Controls.Add(x2);
-			groupBox4.Controls.Add(x1);
-			groupBox4.Controls.Add(middle);
-			groupBox4.Controls.Add(left);
-			groupBox4.Controls.Add(right);
-			groupBox4.Controls.Add(wheel);
 			groupBox4.Controls.Add(richTextBox1);
-			groupBox4.Controls.Add(pictureBox1);
+			groupBox4.Controls.Add(testPicturePanel);
+			resources.ApplyResources(groupBox4, "groupBox4");
 			groupBox4.Name = "groupBox4";
+			rootLayout.SetRowSpan(groupBox4, 4);
 			groupBox4.TabStop = false;
+			// 
+			// testPicturePanel
+			// 
+			testPicturePanel.Controls.Add(x2);
+			testPicturePanel.Controls.Add(x1);
+			testPicturePanel.Controls.Add(middle);
+			testPicturePanel.Controls.Add(left);
+			testPicturePanel.Controls.Add(right);
+			testPicturePanel.Controls.Add(wheel);
+			testPicturePanel.Controls.Add(pictureBox1);
+			resources.ApplyResources(testPicturePanel, "testPicturePanel");
+			testPicturePanel.Name = "testPicturePanel";
 			// 
 			// groupBoxDevice
 			// 
-			groupBoxDevice.Controls.Add(currentDeviceLabel);
-			groupBoxDevice.Controls.Add(ignoreCurrentDeviceCheckBox);
 			resources.ApplyResources(groupBoxDevice, "groupBoxDevice");
+			groupBoxDevice.Controls.Add(groupBoxDeviceLayout);
 			groupBoxDevice.Name = "groupBoxDevice";
 			groupBoxDevice.TabStop = false;
 			// 
+			// groupBoxDeviceLayout
+			// 
+			resources.ApplyResources(groupBoxDeviceLayout, "groupBoxDeviceLayout");
+			groupBoxDeviceLayout.Controls.Add(currentDeviceLabel, 0, 0);
+			groupBoxDeviceLayout.Controls.Add(ignoreCurrentDeviceCheckBox, 1, 0);
+			groupBoxDeviceLayout.Name = "groupBoxDeviceLayout";
+			// 
 			// groupBoxGeneral
 			// 
-			groupBoxGeneral.Controls.Add(remoteDesktopCheckBox);
-			groupBoxGeneral.Controls.Add(runAtStartupCheckBox);
-			groupBoxGeneral.Controls.Add(resetButton);
 			resources.ApplyResources(groupBoxGeneral, "groupBoxGeneral");
+			groupBoxGeneral.Controls.Add(groupBoxGeneralLayout);
 			groupBoxGeneral.Name = "groupBoxGeneral";
 			groupBoxGeneral.TabStop = false;
+			// 
+			// groupBoxGeneralLayout
+			// 
+			resources.ApplyResources(groupBoxGeneralLayout, "groupBoxGeneralLayout");
+			groupBoxGeneralLayout.Controls.Add(remoteDesktopCheckBox, 0, 0);
+			groupBoxGeneralLayout.Controls.Add(resetButton, 1, 0);
+			groupBoxGeneralLayout.Controls.Add(runAtStartupCheckBox, 0, 1);
+			groupBoxGeneralLayout.Name = "groupBoxGeneralLayout";
 			// 
 			// versionLabel
 			// 
@@ -393,30 +433,58 @@
 			// 
 			// bottomPanel
 			// 
-			bottomPanel.Controls.Add(gitLinkLabel);
-			bottomPanel.Controls.Add(updateLinkLabel);
-			bottomPanel.Controls.Add(versionLabel);
 			resources.ApplyResources(bottomPanel, "bottomPanel");
+			rootLayout.SetColumnSpan(bottomPanel, 2);
+			bottomPanel.Controls.Add(bottomLayout);
 			bottomPanel.Name = "bottomPanel";
+			// 
+			// bottomLayout
+			// 
+			resources.ApplyResources(bottomLayout, "bottomLayout");
+			bottomLayout.Controls.Add(gitLinkLabel, 0, 0);
+			bottomLayout.Controls.Add(updateLinkLabel, 1, 0);
+			bottomLayout.Controls.Add(versionLabel, 2, 0);
+			bottomLayout.Name = "bottomLayout";
+			// 
+			// rootLayout
+			// 
+			resources.ApplyResources(rootLayout, "rootLayout");
+			rootLayout.Controls.Add(headerLayout, 0, 0);
+			rootLayout.Controls.Add(groupBoxDevice, 0, 1);
+			rootLayout.Controls.Add(groupBox1, 0, 2);
+			rootLayout.Controls.Add(groupBoxGeneral, 0, 3);
+			rootLayout.Controls.Add(middleLayout, 0, 4);
+			rootLayout.Controls.Add(bottomPanel, 0, 5);
+			rootLayout.Controls.Add(groupBox4, 1, 1);
+			rootLayout.Name = "rootLayout";
+			// 
+			// headerLayout
+			// 
+			resources.ApplyResources(headerLayout, "headerLayout");
+			rootLayout.SetColumnSpan(headerLayout, 2);
+			headerLayout.Controls.Add(label1, 0, 0);
+			headerLayout.Controls.Add(themeComboBox, 1, 0);
+			headerLayout.Controls.Add(languageComboBox, 2, 0);
+			headerLayout.Name = "headerLayout";
+			// 
+			// middleLayout
+			// 
+			resources.ApplyResources(middleLayout, "middleLayout");
+			middleLayout.Controls.Add(groupBox2, 0, 0);
+			middleLayout.Controls.Add(groupBox3, 1, 0);
+			middleLayout.Name = "middleLayout";
 			// 
 			// InteractiveForm
 			// 
 			resources.ApplyResources(this, "$this");
 			AutoScaleMode = AutoScaleMode.Font;
-			Controls.Add(themeComboBox);
-			Controls.Add(languageComboBox);
-			Controls.Add(groupBox3);
-			Controls.Add(label1);
-			Controls.Add(groupBox2);
-			Controls.Add(groupBoxGeneral);
-			Controls.Add(groupBox1);
-			Controls.Add(groupBoxDevice);
-			Controls.Add(groupBox4);
-			Controls.Add(bottomPanel);
+			Controls.Add(rootLayout);
 			Name = "InteractiveForm";
 			Load += InteractiveForm_Load;
 			groupBox1.ResumeLayout(false);
 			groupBox1.PerformLayout();
+			groupBox1Layout.ResumeLayout(false);
+			groupBox1Layout.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)thresholdSlider).EndInit();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
 			notifyMenuStrip.ResumeLayout(false);
@@ -425,15 +493,26 @@
 			groupBox3.ResumeLayout(false);
 			groupBox3.PerformLayout();
 			groupBox4.ResumeLayout(false);
-			groupBox4.PerformLayout();
+			testPicturePanel.ResumeLayout(false);
+			testPicturePanel.PerformLayout();
 			groupBoxDevice.ResumeLayout(false);
 			groupBoxDevice.PerformLayout();
+			groupBoxDeviceLayout.ResumeLayout(false);
+			groupBoxDeviceLayout.PerformLayout();
 			groupBoxGeneral.ResumeLayout(false);
 			groupBoxGeneral.PerformLayout();
+			groupBoxGeneralLayout.ResumeLayout(false);
+			groupBoxGeneralLayout.PerformLayout();
 			bottomPanel.ResumeLayout(false);
 			bottomPanel.PerformLayout();
+			bottomLayout.ResumeLayout(false);
+			bottomLayout.PerformLayout();
+			rootLayout.ResumeLayout(false);
+			rootLayout.PerformLayout();
+			headerLayout.ResumeLayout(false);
+			headerLayout.PerformLayout();
+			middleLayout.ResumeLayout(false);
 			ResumeLayout(false);
-			PerformLayout();
 		}
 
 		#endregion
@@ -444,6 +523,7 @@
         private Button resetButton;
         private CheckBox runAtStartupCheckBox;
         private GroupBox groupBox1;
+        private TableLayoutPanel groupBox1Layout;
         private PictureBox pictureBox1;
         private NotifyIcon notifyIcon;
         private ContextMenuStrip notifyMenuStrip;
@@ -455,6 +535,7 @@
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private GroupBox groupBox4;
+        private Panel testPicturePanel;
         private CheckBox right;
         private CheckBox left;
         private CheckBox x2;
@@ -480,7 +561,13 @@
         private ComboBox themeComboBox;
         private ComboBox languageComboBox;
         private GroupBox groupBoxDevice;
+        private TableLayoutPanel groupBoxDeviceLayout;
         private GroupBox groupBoxGeneral;
+        private TableLayoutPanel groupBoxGeneralLayout;
         private Panel bottomPanel;
+        private TableLayoutPanel bottomLayout;
+        private TableLayoutPanel rootLayout;
+        private TableLayoutPanel headerLayout;
+        private TableLayoutPanel middleLayout;
     }
 }

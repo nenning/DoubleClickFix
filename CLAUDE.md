@@ -24,26 +24,7 @@ dotnet test DoubleClickFix.Tests/DoubleClickFix.Tests.csproj --filter "FullyQual
 
 **Important:** Always keep C# file encodings as UTF-8 with BOM (code page 65001) when editing.
 
-## Creating Releases
-
-**GitHub release (standalone ZIP):**
-```bash
-git tag -a v1.x.x.x
-git push origin v1.x.x.x
-```
-This triggers the GitHub Action that builds and publishes the release. Add release notes on GitHub afterward.
-
-**Microsoft Store package:** Use Visual Studio → Publish → Create App Packages (builds `.msixbundle` for x86/x64/arm64). Upload via Partner Portal.
-
 ## Architecture
-
-### Solution Structure
-
-- **`DoubleClickFix/`** – Main WinForms app (core logic + UI)
-- **`DoubleClickFix.Tests/`** – xUnit tests with mock infrastructure
-- **`DoubleClickFix.Package/`** – MSIX packaging for the Store
-- **`DoubleClickFix.Benchmarks/`** – BenchmarkDotNet benchmarks
-- **`Directory.Build.props`** – Shared version number (currently 1.4.13.0)
 
 ### Core Components and Data Flow
 

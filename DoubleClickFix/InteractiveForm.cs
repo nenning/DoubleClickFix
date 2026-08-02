@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Text.Json;
 using DoubleClickFix.Properties;
@@ -17,6 +18,12 @@ internal partial class InteractiveForm : Form {
 	private readonly System.Windows.Forms.Timer wheelResetTimer;
 	private readonly System.Windows.Forms.Timer saveTimer;
 	private bool suppressNextShow;
+	// True from construction until ShowFromTray() legitimately reveals the window.
+	// Guards against a runtime DPI-bounds recalculation (PerMonitorV2) sneaking a
+	// WS_VISIBLE onto the handle that was deliberately created hidden.
+	private bool blockShowWhileHidden;
+	private Icon? currentFormIcon;
+	private Icon? currentTrayIcon;
 	private readonly bool isStore;
 	internal string? RestartArgs { get; private set; }
 	private string[] sortedLanguageCodes = [];
@@ -65,7 +72,7 @@ internal partial class InteractiveForm : Form {
 			} catch { }
 		};
 		descriptionTextBox.Text = descriptionTextBox.Text.Replace("\n", "\r\n");
-		notifyIcon.Icon = Properties.Resources.AppIcon;
+		RefreshAppIcon();
 		pictureBox1.Image = isDark
 			? Properties.Resources.new_dark
 			: Properties.Resources.new_bright;
@@ -112,6 +119,7 @@ internal partial class InteractiveForm : Form {
 		this.dragStartDelayTextBox.Text = fixDragging ? settings.DragStartTimeMilliseconds.ToString() : string.Empty;
 		this.dragEndDelayTextBox.Text = fixDragging ? settings.DragStopTimeMilliseconds.ToString() : string.Empty;
 
+		groupBoxDevice.Text = Resources.CurrentDevice;
 		ignoreCurrentDeviceCheckBox.Text = Resources.IgnoreCurrentDevice;
 		UpdateIgnoreDeviceControls();
 		mouseHook.CurrentDeviceChanged += () => {
@@ -126,6 +134,7 @@ internal partial class InteractiveForm : Form {
 		this.versionLabel.Text = version;
 		this.mouseButtonComboBox.SelectedIndex = 0;
 		suppressNextShow = !settings.IsInteractive;
+		blockShowWhileHidden = suppressNextShow;
 
 		themeComboBox.Items.AddRange([Resources.ThemeSystem, Resources.ThemeLight, Resources.ThemeDark]);
 		themeComboBox.SelectedIndex = settings.ColorMode switch {
@@ -182,13 +191,55 @@ internal partial class InteractiveForm : Form {
 	}
 
 	protected override void WndProc(ref Message m) {
+		if (m.Msg == NativeMethods.WM_WINDOWPOSCHANGING && blockShowWhileHidden) {
+			var pos = Marshal.PtrToStructure<NativeMethods.WINDOWPOS>(m.LParam);
+			if ((pos.flags & NativeMethods.SWP_SHOWWINDOW) != 0) {
+				pos.flags &= ~NativeMethods.SWP_SHOWWINDOW;
+				Marshal.StructureToPtr(pos, m.LParam, false);
+			}
+		}
+
+		base.WndProc(ref m);
+
 		if (m.Msg == NativeMethods.WM_SHOWME) {
 			ShowFromTray();
+		} else if (m.Msg == NativeMethods.WM_DPICHANGED) {
+			// Run after base.WndProc: WinForms' own DPI-change handling (icon rescale
+			// included) runs first, then we re-apply our icon so we have the last word
+			// instead of racing whatever it does internally.
+			RefreshAppIcon();
 		}
-		base.WndProc(ref m);
+	}
+
+	// Properties.Resources.AppIcon is a cached singleton from the ResourceManager: reassigning
+	// it to Icon/notifyIcon.Icon is a same-reference no-op for the setters, so the shell never
+	// sees a change. Cloning gives each call a distinct Icon (and native HICON), and toggling
+	// notifyIcon.Visible forces a full NIM_DELETE+NIM_ADD instead of a NIM_MODIFY the shell can
+	// ignore. Together these work around a long-standing shell bug where the taskbar/tray icon
+	// reverts to a generic icon after repeated DPI changes.
+	private void RefreshAppIcon() {
+		var oldFormIcon = currentFormIcon;
+		currentFormIcon = CloneAppIcon();
+		Icon = currentFormIcon;
+		oldFormIcon?.Dispose();
+
+		var oldTrayIcon = currentTrayIcon;
+		currentTrayIcon = CloneAppIcon();
+		notifyIcon.Icon = currentTrayIcon;
+		notifyIcon.Visible = false;
+		notifyIcon.Visible = true;
+		oldTrayIcon?.Dispose();
+	}
+
+	private static Icon CloneAppIcon() {
+		using MemoryStream ms = new();
+		Properties.Resources.AppIcon.Save(ms);
+		ms.Position = 0;
+		return new Icon(ms);
 	}
 
 	internal void ShowFromTray() {
+		blockShowWhileHidden = false;
 		var extendedStyle = NativeMethods.GetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE);
 		_ = NativeMethods.SetWindowLong(this.Handle, NativeMethods.GWL_EXSTYLE, extendedStyle & ~NativeMethods.WS_EX_TOOLWINDOW);
 
@@ -468,7 +519,7 @@ internal partial class InteractiveForm : Form {
 
 	private void UpdateIgnoreDeviceControls() {
 		var path = mouseHook.CurrentDevicePath;
-		currentDeviceLabel.Text = Resources.CurrentDevice + " " + FormatDevicePath(path);
+		currentDeviceLabel.Text = FormatDevicePath(path);
 		ignoreCurrentDeviceCheckBox.Enabled = path != null;
 		ignoreCurrentDeviceCheckBox.CheckedChanged -= OnIgnoreCurrentDeviceCheckBoxChanged;
 		ignoreCurrentDeviceCheckBox.Checked = path != null && settings.IgnoredDevicePaths.Contains(path);

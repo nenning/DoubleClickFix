@@ -179,7 +179,7 @@
     <value>Mouse wheel delta</value>
   </data>
   <data name="CurrentDevice" xml:space="preserve">
-    <value>Current device:</value>
+    <value>Current device</value>
   </data>
   <data name="IgnoreCurrentDevice" xml:space="preserve">
     <value>Ignore this device</value>

@@ -107,7 +107,7 @@
     <value>X2</value>
   </data>
   <data name="CurrentDevice" xml:space="preserve">
-    <value>Ағымдағы құрылғы:</value>
+    <value>Ағымдағы құрылғы</value>
   </data>
   <data name="IgnoreCurrentDevice" xml:space="preserve">
     <value>Бұл құрылғыны елемеу</value>
