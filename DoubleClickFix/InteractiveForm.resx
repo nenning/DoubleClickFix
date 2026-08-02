@@ -137,7 +137,7 @@
     <value>Vertical</value>
   </data>
   <data name="logTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>631, 649</value>
+    <value>631, 647</value>
   </data>
   <data name="logTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -380,7 +380,7 @@
     <value>11, 2, 11, 2</value>
   </data>
   <data name="thresholdSlider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>650, 69</value>
+    <value>650, 80</value>
   </data>
   <data name="thresholdSlider.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -635,7 +635,7 @@
     <value>Top</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 136</value>
+    <value>14, 138</value>
   </data>
   <data name="groupBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 5, 0, 0</value>
@@ -1016,19 +1016,19 @@
     <value>285, 22</value>
   </metadata>
   <data name="showUiMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
+    <value>268, 36</value>
   </data>
   <data name="showUiMenu.Text" xml:space="preserve">
     <value>Show user interface</value>
   </data>
   <data name="exitMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 32</value>
+    <value>268, 36</value>
   </data>
   <data name="exitMenu.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
   <data name="notifyMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>239, 68</value>
+    <value>269, 76</value>
   </data>
   <data name="&gt;&gt;notifyMenuStrip.Name" xml:space="preserve">
     <value>notifyMenuStrip</value>
@@ -5605,7 +5605,7 @@
     <value>Vertical</value>
   </data>
   <data name="descriptionTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>453, 649</value>
+    <value>453, 647</value>
   </data>
   <data name="descriptionTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -5683,7 +5683,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>10, 10, 10, 10</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>473, 697</value>
+    <value>473, 695</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -5716,7 +5716,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>10, 10, 10, 10</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>651, 697</value>
+    <value>651, 695</value>
   </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -5938,10 +5938,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>0, 5, 0, 0</value>
   </data>
   <data name="groupBoxDevice.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+    <value>2, 2, 2, 4</value>
   </data>
   <data name="groupBoxDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1139, 72</value>
+    <value>1139, 74</value>
   </data>
   <data name="groupBoxDevice.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -6016,7 +6016,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>Top</value>
   </data>
   <data name="groupBoxGeneral.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 407</value>
+    <value>14, 409</value>
   </data>
   <data name="groupBoxGeneral.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 5, 0, 0</value>
@@ -6052,7 +6052,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>Fill</value>
   </data>
   <data name="middleLayout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 537</value>
+    <value>14, 539</value>
   </data>
   <data name="middleLayout.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -6064,7 +6064,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <value>1</value>
   </data>
   <data name="middleLayout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1139, 714</value>
+    <value>1139, 712</value>
   </data>
   <data name="middleLayout.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
