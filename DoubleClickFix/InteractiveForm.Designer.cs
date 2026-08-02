@@ -125,9 +125,6 @@
 			// 
 			resources.ApplyResources(resetButton, "resetButton");
 			resetButton.Name = "resetButton";
-			groupBoxGeneralLayout.SetRowSpan(resetButton, 2);
-			resetButton.UseVisualStyleBackColor = true;
-			resetButton.Click += OnResetButtonClicked;
 			// 
 			// runAtStartupCheckBox
 			// 

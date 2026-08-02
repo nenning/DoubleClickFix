@@ -260,6 +260,23 @@ internal class NativeMethods : INativeMethods {
 
 	internal const int SW_RESTORE = 9;
 	internal const uint WM_SHOWME = 0x8001; // Custom message
+	internal const int WM_DPICHANGED = 0x02E0;
+	internal const int WM_WINDOWPOSCHANGING = 0x0046;
+	internal const uint SWP_SHOWWINDOW = 0x0040;
+
+	// PerMonitorV2 DPI-driven bounds recalculation can request SWP_SHOWWINDOW on a
+	// form that was deliberately created hidden (see InteractiveForm.blockShowWhileHidden);
+	// that flag is stripped here before Windows applies the position change.
+	[StructLayout(LayoutKind.Sequential)]
+	internal struct WINDOWPOS {
+		public nint hwnd;
+		public nint hwndInsertAfter;
+		public int x;
+		public int y;
+		public int cx;
+		public int cy;
+		public uint flags;
+	}
 
 	// For hiding the window from alt-tab
 	internal const int GWL_EXSTYLE = -20;
