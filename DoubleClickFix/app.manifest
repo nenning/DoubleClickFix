@@ -45,20 +45,17 @@
     </application>
   </compatibility>
 
-  <!-- Indicates that the application is DPI-aware and will not be automatically scaled by Windows at higher
-       DPIs. Windows Presentation Foundation (WPF) applications are automatically DPI-aware and do not need 
-       to opt in. Windows Forms applications targeting .NET Framework 4.6 that opt into this setting, should 
-       also set the 'EnableWindowsFormsHighDpiAutoResizing' setting to 'true' in their app.config. 
-       
-       Makes the application long-path aware. See https://docs.microsoft.com/windows/win32/fileio/maximum-file-path-limitation -->
-  <!--
+  <!-- Declares per-monitor-v2 DPI awareness statically so tools that inspect the manifest
+       (e.g. the Windows App Certification Kit) recognize the app as DPI-aware. Setting
+       ApplicationHighDpiMode via MSBuild only configures this at runtime, which WACK's
+       manifest scan does not detect. The dpiAware fallback covers OS versions that
+       predate the dpiAwareness element. -->
   <application xmlns="urn:schemas-microsoft-com:asm.v3">
     <windowsSettings>
-      <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</dpiAware>
-      <longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
+      <dpiAwareness xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">PerMonitorV2</dpiAwareness>
+      <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true/PM</dpiAware>
     </windowsSettings>
   </application>
-  -->
 
   <!-- Enable themes for Windows common controls and dialogs (Windows XP and later) -->
   <!--

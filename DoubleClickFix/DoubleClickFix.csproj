@@ -10,9 +10,12 @@
 		<Platforms>AnyCPU;x86;x64;ARM64</Platforms>
 		<ApplicationVisualStyles>true</ApplicationVisualStyles>
 		<ApplicationUseCompatibleTextRendering>false</ApplicationUseCompatibleTextRendering>
-		<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Prefer32Bit>false</Prefer32Bit>
+		<!-- app.manifest declares PerMonitorV2 DPI awareness statically so WACK's manifest scan
+		     recognizes the app as DPI-aware; the API/property alternative WFO0003 suggests isn't
+		     visible to that static check. -->
+		<NoWarn>$(NoWarn);WFO0003</NoWarn>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
