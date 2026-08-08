@@ -12,6 +12,8 @@
 		<ApplicationUseCompatibleTextRendering>false</ApplicationUseCompatibleTextRendering>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Prefer32Bit>false</Prefer32Bit>
+		<Product>DoubleClickFix</Product>
+		<Description>Fixes accidental double-clicks caused by a worn-out or faulty mouse.</Description>
 		<!-- app.manifest declares PerMonitorV2 DPI awareness statically so WACK's manifest scan
 		     recognizes the app as DPI-aware; the API/property alternative WFO0003 suggests isn't
 		     visible to that static check. -->

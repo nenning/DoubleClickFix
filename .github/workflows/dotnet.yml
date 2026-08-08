@@ -35,6 +35,7 @@ jobs:
         mkdir Release
         Copy-Item -Path DoubleClickFix/bin/Release/net10.0-windows10.0.17763.0/* -Destination Release/ -Recurse
         Copy-Item -Path update.bat -Destination Release/
+        Copy-Item -Path uninstall.bat -Destination Release/
       shell: pwsh
 
     - name: Upload unsigned artifact
@@ -81,6 +82,8 @@ jobs:
           Alternatively, exit the application manually (right-click the tray icon), copy the files, and restart.
           If you start the updated application from a different directory, you have to unregister and re-register
           the app to launch at Windows startup.
+          *Uninstall*: Run `uninstall.bat` from the extracted zip — it stops the app, removes the startup entry,
+          and deletes its registry settings and crash log.
         draft: false
         prerelease: false
         files: ./DoubleClickFix.zip

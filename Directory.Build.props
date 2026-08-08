@@ -5,5 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <WarningLevel>9999</WarningLevel>
+    <Company>Christopher Nenning</Company>
+    <Copyright>Copyright © Christopher Nenning $([System.DateTime]::Now.Year)</Copyright>
   </PropertyGroup>
 </Project>

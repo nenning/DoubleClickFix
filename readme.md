@@ -8,7 +8,8 @@ A lightweight tool that fixes accidental double-clicks caused by a worn-out or f
 > Mentioned in [PCWorld](https://www.pcworld.com/article/2687259/what-to-do-if-your-mouse-is-double-clicking-when-you-dont-mean-it.html#:~:text=If%20the%20accidental%20double%2Dclicks%20persist%2C%20you%20can%20try%20using%20free%20software%20solutions%20such%20as%20Double%2DClick%20Fix%20(also%20available%20via%20the%20Microsoft%20Store)) and [PC-Welt (German)](https://www.pcwelt.de/article/2638630/so-vermeiden-sie-ungewollte-doppel-klicks-der-maus.html#:~:text=Sollte%20das%20Problem%20weiterhin%20bestehen%2C%20k%C3%B6nnen%20Sie%20auf%20kostenlose%20Softwarel%C3%B6sungen%20wie%20%E2%80%9EDoubleClickFix%E2%80%9C%20zur%C3%BCckgreifen.): *"you can try using free software solutions such as Double-Click Fix"*
 
 **New in release 1.6:**
-- 🖼️ **Per-Monitor DPI Awareness** – the settings UI now scales sharply and lays out correctly on high-DPI displays and when dragged between monitors with different scaling.
+- ✅ **Signed Binaries** – (1.6.10, github release only) `DoubleClickFix.exe` and `.dll` are Authenticode-signed via [SignPath](https://signpath.io).
+- 🖼️ **Per-Monitor DPI Awareness** – (1.6.9.0) the settings UI now scales sharply and lays out correctly on high-DPI displays and when dragged between monitors with different scaling.
 - 🚫 **Per-device Ignore List** – move the cursor with a second mouse or touchpad and check "Ignore this device" to exclude it from filtering. Saved permanently.
 - 🖥️ **Remote Desktop Support** – enable the option in the UI to disable click filtering during RDP sessions.
 - 🌗 **Dark / Light Theme** – choose between dark, light, or system theme in the settings.
@@ -30,6 +31,7 @@ A lightweight tool that fixes accidental double-clicks caused by a worn-out or f
 - [Troubleshooting & Error Reporting](#-troubleshooting--error-reporting)
 - [Contributions](#-contributions)
 - [License](#-license)
+- [Code Signing Policy](#-code-signing-policy)
 - [Compatibility with Anti-Cheat Software](#️-compatibility-with-anti-cheat-software-vac-eac-battleye-etc)
 - [Technical Notes](#️-technical-notes)
 - [Usage by Country](#-usage-by-country)
@@ -77,6 +79,7 @@ The UI is available in the following languages (translated with AI):
     - Settings are stored in the registry under `HKEY_CURRENT_USER\Software\DoubleClickFix`.
     - If you move the app to a different folder, deregister and re-register it to restore the startup entry.
 3. **Update**: Extract the new release and run `update.bat` — it finds the running application, copies the new files over, and restarts it automatically.
+4. **Uninstall**: Run `uninstall.bat` from the install folder — it stops the app, removes the startup entry, and deletes its registry settings and crash log. Then delete the install folder to remove the remaining program files.
 
 ### Build from Source
 Clone the repository and build with Visual Studio or the .NET CLI.
@@ -144,6 +147,15 @@ Contributions are welcome! Feel free to open issues, submit pull requests, or su
 
 ## 📜 License
 This project is distributed under the [MIT License](LICENSE.txt).
+
+---
+
+## 🔏 Code Signing Policy
+Free code signing provided by [SignPath.io](https://about.signpath.io), certificate by [SignPath Foundation](https://signpath.org).
+
+- **Team**: [Christopher Nenning](https://github.com/nenning) is the sole author, reviewer, and approver for this project and its source code repository.
+- **Privacy**: This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it. The only automatic network request is a check against GitHub's public releases API on startup (standalone build only) to notify you of new versions — no personal or usage data is sent.
+- **Scope**: Only binaries built from this repository's source and distributed via the [GitHub Releases page](https://github.com/nenning/DoubleClickFix/releases) are signed under this policy.
 
 ---
 
