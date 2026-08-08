@@ -154,7 +154,7 @@ This project is distributed under the [MIT License](LICENSE.txt).
 Free code signing provided by [SignPath.io](https://about.signpath.io), certificate by [SignPath Foundation](https://signpath.org).
 
 - **Team**: [Christopher Nenning](https://github.com/nenning) is the sole author, reviewer, and approver for this project and its source code repository.
-- **Privacy**: This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it. The only automatic network request is a check against GitHub's public releases API on startup (standalone build only) to notify you of new versions — no personal or usage data is sent.
+- **Privacy**: See the [Privacy Policy](privacy_policy.md).
 - **Scope**: Only binaries built from this repository's source and distributed via the [GitHub Releases page](https://github.com/nenning/DoubleClickFix/releases) are signed under this policy.
 
 ---

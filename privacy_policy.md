@@ -6,6 +6,8 @@ This Privacy Policy explains how **Double-click Fix** ("the App") collects, uses
 
 ## 1. Information Collection and Use
 
+**This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.**
+
 **Double-click Fix** is designed with your privacy in mind. This App **does not collect any personal information** from its users. It does not access any special features on your computer such as photos, contacts, or other sensitive data.
 
 ### Locally Stored Data
