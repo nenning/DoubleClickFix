@@ -182,6 +182,27 @@ Run `release.ps1` to auto-increment the version, build, commit, and tag:
 ```
 The script automatically pushes the commit and tag to origin, triggering the GitHub Action that creates the release. Add the release notes on GitHub afterward.
 
+#### Code Signing (Standalone Release)
+The standalone ZIP's `DoubleClickFix.exe` and `DoubleClickFix.dll` are Authenticode-signed via [SignPath](https://signpath.io), free code signing for open-source projects.
+
+- The workflow uploads the unsigned build as a GitHub workflow artifact, then submits it to SignPath via `signpath/github-action-submit-signing-request@v2`. SignPath verifies the request actually originated from this repo's GitHub Actions workflow before signing.
+- The [SignPath GitHub App](https://github.com/apps/signpath) is installed on this repo (scoped to this repo only) to support SignPath's build policy verification alongside the origin check.
+- The signing policy is picked automatically: `release-signing` for `v*` tags, `test-signing` for manual (`workflow_dispatch`) runs. The `Create Release` step itself only runs on tags, so a manual run never publishes a test-signed build.
+- Required repository secrets/variables: `SIGNPATH_API_TOKEN` (secret), `SIGNPATH_ORGANIZATION_ID` (variable).
+- Which files get signed, and how they're addressed inside the uploaded ZIP, is defined by the `standalone-zip` artifact configuration in the SignPath project (slug `DoubleClickFix`). It only signs the app's own binaries — not the third-party/Microsoft-signed DLLs or the localized satellite resource assemblies:
+  ```xml
+  <artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
+    <zip-file>
+      <pe-file path="DoubleClickFix.exe">
+        <authenticode-sign/>
+      </pe-file>
+      <pe-file path="DoubleClickFix.dll">
+        <authenticode-sign/>
+      </pe-file>
+    </zip-file>
+  </artifact-configuration>
+  ```
+
 #### Microsoft Store
 - If needed, adjust the version in `Package.appxmanifest`.
 - To create a store package, use **Publish** → **Create App Packages** in Visual Studio.
