@@ -72,6 +72,7 @@ The UI is available in the following languages (translated with AI):
 
 ### Install from Microsoft Store (recommended)
 1. Go to the [Store page](https://apps.microsoft.com/detail/9PDGM7NL2FF2?hl=en-us&gl=CH&ocid=pdpshare) and install it.
+2. Or, from a terminal: `winget install --id 9PDGM7NL2FF2 --source msstore`
 
 ### Manual Setup
 1. **Download**: Grab the latest release from the [Releases page](https://github.com/nenning/DoubleClickFix/releases).
