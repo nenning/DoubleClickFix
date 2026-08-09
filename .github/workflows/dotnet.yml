@@ -40,7 +40,7 @@ jobs:
 
     - name: Upload unsigned artifact
       id: upload-unsigned-artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: DoubleClickFix-unsigned
         path: Release/
@@ -63,7 +63,7 @@ jobs:
       shell: pwsh
 
     - name: Upload signed ZIP
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: DoubleClickFix-signed
         path: DoubleClickFix.zip
