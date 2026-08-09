@@ -7,5 +7,6 @@
     <WarningLevel>9999</WarningLevel>
     <Company>Christopher Nenning</Company>
     <Copyright>Copyright © Christopher Nenning $([System.DateTime]::Now.Year)</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 </Project>
