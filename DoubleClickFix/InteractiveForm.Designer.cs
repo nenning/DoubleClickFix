@@ -125,6 +125,7 @@
 			// 
 			resources.ApplyResources(resetButton, "resetButton");
 			resetButton.Name = "resetButton";
+			resetButton.Click += OnResetButtonClicked;
 			// 
 			// runAtStartupCheckBox
 			// 

@@ -232,6 +232,9 @@
   <data name="resetButton.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
+  <data name="resetButton.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
   <data name="&gt;&gt;resetButton.Name" xml:space="preserve">
     <value>resetButton</value>
   </data>
