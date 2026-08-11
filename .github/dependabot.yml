@@ -9,6 +9,18 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    ignore:
+      # Implicit runtime packs pulled in by <RuntimeIdentifiers> + PublishReadyToRun.
+      # No PackageReference exists for these, so Dependabot can't open a fix PR anyway —
+      # their version tracks whatever .NET SDK performs the restore, and the app is
+      # framework-dependent (not self-contained), so they never ship to users.
+      # See "Technical Notes" in readme.md for how to revert this if that changes.
+      - dependency-name: "Microsoft.NETCore.App.Runtime.win-x64"
+      - dependency-name: "Microsoft.NETCore.App.Runtime.win-x86"
+      - dependency-name: "Microsoft.NETCore.App.Runtime.win-arm64"
+      - dependency-name: "Microsoft.WindowsDesktop.App.Runtime.win-x64"
+      - dependency-name: "Microsoft.WindowsDesktop.App.Runtime.win-x86"
+      - dependency-name: "Microsoft.WindowsDesktop.App.Runtime.win-arm64"
 
   - package-ecosystem: "github-actions"
     directory: "/"

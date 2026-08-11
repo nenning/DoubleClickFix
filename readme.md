@@ -182,6 +182,10 @@ Technical details — mostly for development.
 - **`-nohook`** – Runs the app without registering the mouse hook. Useful for UI testing or debugging (automatically applied in debug mode).
 - **`-interactive`** or **`-i`** – Displays the UI on startup. Useful for testing (automatically applied in debug mode).
 
+### 🔕 Ignored Dependabot Alerts: .NET Runtime Packs
+`Microsoft.NETCore.App.Runtime.win-*` and `Microsoft.WindowsDesktop.App.Runtime.win-*` are ignored in `.github/dependabot.yml`. They aren't `PackageReference`s in the project — they're implicit runtime packs restored because of `<RuntimeIdentifiers>` + `PublishReadyToRun`, pinned to whatever version ships with the .NET SDK doing the restore. Since there's no manifest line to bump, Dependabot can't open a fix PR for them anyway; they get resolved automatically the next time a newer SDK performs the restore. The app is framework-dependent (users install the .NET Desktop Runtime separately, see [System Requirements](#-system-requirements)), so these packs never ship in the distributed binaries — real-world exposure is effectively nil.
+If the project ever switches to a self-contained publish (bundling the runtime into the release), remove the `ignore` entries for these packages from `dependabot.yml` — at that point the resolved runtime version does ship to users and should be tracked/patched normally.
+
 ### 📦 Creating a Release
 
 #### GitHub
