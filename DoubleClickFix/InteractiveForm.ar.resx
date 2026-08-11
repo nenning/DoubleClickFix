@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>الحد الأدنى لفترة النقر المزدوج [ms]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>اضبط الحد الأدنى للوقت بين النقرات لزر الفأرة المحدد. الافتراضي: 50 ms.</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>ستُعامَل النقرات ضمن هذه الفترة على أنها نقرات مزدوجة عرضية وستُرشَّح.</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>حفظ</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>إعادة تعيين</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>حفظ الإعدادات</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>التشغيل عند بدء تشغيل Windows</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>تشغيل هذا التطبيق دائمًا في الخلفية.</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>تأخير النهاية [ms]</value></data>

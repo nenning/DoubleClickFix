@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>ন্যূনতম ডাবল-ক্লিক বিরতি [ms]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>নির্বাচিত মাউস বোতামের জন্য ক্লিকের মধ্যে ন্যূনতম সময় সেট করুন। ডিফল্ট: 50 ms।</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>এই বিরতির মধ্যে ক্লিকগুলি দুর্ঘটনাবশত ডাবল-ক্লিক হিসাবে বিবেচিত হবে এবং ফিল্টার করা হবে।</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>সংরক্ষণ করুন</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>রিসেট</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>সেটিংস সংরক্ষণ করুন</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Windows চালু হওয়ার সময় চালান</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>সবসময় এই অ্যাপ্লিকেশনটি পটভূমিতে চালান।</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>সমাপ্তি বিলম্ব [ms]</value></data>

@@ -126,14 +126,8 @@
   <data name="delayTextBox.ToolTip" xml:space="preserve">
     <value>Klicks innerhalb dieses Intervalls werden als versehentliche Doppelklicks behandelt und herausgefiltert.</value>
   </data>
-  <data name="saveButton.Text" xml:space="preserve">
-    <value>Speichern</value>
-  </data>
   <data name="resetButton.Text" xml:space="preserve">
     <value>Zurücksetzen</value>
-  </data>
-  <data name="saveButton.ToolTip" xml:space="preserve">
-    <value>Einstellungen speichern</value>
   </data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve">
     <value>Beim Starten von Windows ausführen</value>

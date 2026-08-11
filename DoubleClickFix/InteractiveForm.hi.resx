@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>न्यूनतम डबल-क्लिक अंतराल [ms]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>चयनित माउस बटन के लिए क्लिक के बीच न्यूनतम समय सेट करें। डिफ़ॉल्ट: 50 ms।</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>इस अंतराल में क्लिक को आकस्मिक डबल-क्लिक माना जाएगा और फ़िल्टर किया जाएगा।</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>सहेजें</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>रीसेट</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>सेटिंग्स सहेजें</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Windows स्टार्टअप पर चलाएं</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>इस एप्लिकेशन को हमेशा पृष्ठभूमि में चलाएं।</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>समाप्ति विलंब [ms]</value></data>

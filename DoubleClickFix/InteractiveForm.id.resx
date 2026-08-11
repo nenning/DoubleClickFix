@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>Interval klik ganda minimum [ms]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>Atur waktu minimum antara klik untuk tombol mouse yang dipilih. Default: 50 ms.</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Klik dalam interval ini akan dianggap sebagai klik ganda yang tidak disengaja dan difilter.</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>Simpan</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>Atur Ulang</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>Simpan pengaturan</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Jalankan saat startup Windows</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Selalu jalankan aplikasi ini di latar belakang.</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Penundaan akhir [ms]</value></data>

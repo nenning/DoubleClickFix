@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>Мінімальний інтервал подвійного кліку [мс]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>Встановіть мінімальний час між кліками для вибраної кнопки миші. За замовчуванням: 50 мс.</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Кліки в цьому інтервалі вважаються випадковими подвійними кліками та фільтруються.</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>Зберегти</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>Скинути</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>Зберегти налаштування</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Запускати при старті Windows</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Завжди запускати цю програму у фоновому режимі.</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Затримка завершення [мс]</value></data>

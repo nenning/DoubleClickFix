@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>最小双击间隔 [ms]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>设置所选鼠标按钮的点击之间的最短时间。默认值：50 ms。</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>在此间隔内的点击将被视为意外双击并被过滤。</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>保存</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>重置</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>保存设置</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>在 Windows 启动时运行</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>始终在后台运行此应用程序。</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>结束延迟 [ms]</value></data>

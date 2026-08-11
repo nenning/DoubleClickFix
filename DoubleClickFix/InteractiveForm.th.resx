@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>ช่วงเวลาดับเบิลคลิกขั้นต่ำ [ms]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>ตั้งค่าเวลาขั้นต่ำระหว่างการคลิกสำหรับปุ่มเมาส์ที่เลือก ค่าเริ่มต้น: 50 ms</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>การคลิกในช่วงเวลานี้จะถือว่าเป็นดับเบิลคลิกโดยไม่ตั้งใจและจะถูกกรอง</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>บันทึก</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>รีเซ็ต</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>บันทึกการตั้งค่า</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>เรียกใช้เมื่อเริ่ม Windows</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>เรียกใช้แอปพลิเคชันนี้ในพื้นหลังเสมอ</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>หน่วงเวลาสิ้นสุด [ms]</value></data>

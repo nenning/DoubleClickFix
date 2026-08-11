@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>Minimum çift tıklama aralığı [ms]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>Seçili fare düğmesi için tıklamalar arasındaki minimum süreyi ayarlayın. Varsayılan: 50 ms.</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Bu aralıktaki tıklamalar yanlışlıkla yapılan çift tıklamalar olarak kabul edilir ve filtrelenir.</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>Kaydet</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>Sıfırla</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>Ayarları kaydet</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Windows başlangıcında çalıştır</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Bu uygulamayı her zaman arka planda çalıştır.</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Bitiş gecikmesi [ms]</value></data>

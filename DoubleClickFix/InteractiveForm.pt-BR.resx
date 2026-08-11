@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>Intervalo mínimo de clique duplo [ms]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>Defina o tempo mínimo entre cliques para o botão do mouse selecionado. Padrão: 50 ms.</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Cliques dentro deste intervalo serão tratados como cliques duplos acidentais e filtrados.</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>Salvar</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>Redefinir</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>Salvar configurações</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Executar na inicialização do Windows</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Sempre executar este aplicativo em segundo plano.</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Atraso final [ms]</value></data>

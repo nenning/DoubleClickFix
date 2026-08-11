@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>Минимальный интервал двойного клика [мс]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>Установите минимальное время между кликами для выбранной кнопки мыши. По умолчанию: 50 мс.</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Клики в этом интервале считаются случайными двойными кликами и фильтруются.</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>Сохранить</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>Сбросить</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>Сохранить настройки</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Запускать при старте Windows</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Всегда запускать это приложение в фоновом режиме.</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Задержка завершения [мс]</value></data>

@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>Minimum na agwat ng double-click [ms]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>Itakda ang minimum na oras sa pagitan ng mga click para sa napiling pindutan ng mouse. Default: 50 ms.</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Ang mga click sa loob ng agwat na ito ay ituturing na aksidenteng double-click at ifi-filter.</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>I-save</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>I-reset</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>I-save ang mga setting</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Patakbuhin sa pagsisimula ng Windows</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Palaging patakbuhin ang application na ito sa background.</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Pagkaantala sa pagtatapos [ms]</value></data>

@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>Khoảng thời gian nhấp đúp tối thiểu [ms]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>Đặt thời gian tối thiểu giữa các lần nhấp cho nút chuột đã chọn. Mặc định: 50 ms.</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Các lần nhấp trong khoảng thời gian này sẽ được coi là nhấp đúp ngẫu nhiên và bị lọc.</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>Lưu</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>Đặt lại</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>Lưu cài đặt</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Chạy khi khởi động Windows</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Luôn chạy ứng dụng này trong nền.</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Độ trễ kết thúc [ms]</value></data>

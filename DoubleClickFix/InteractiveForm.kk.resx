@@ -20,9 +20,7 @@
   <data name="delayLabel.Text" xml:space="preserve"><value>Екі рет басудың ең аз аралығы [мс]</value></data>
   <data name="delayLabel.ToolTip" xml:space="preserve"><value>Таңдалған тінтуір түймесі үшін басулар арасындағы ең аз уақытты орнатыңыз. Әдепкі: 50 мс.</value></data>
   <data name="delayTextBox.ToolTip" xml:space="preserve"><value>Осы аралықтағы басулар кездейсоқ екі рет басу ретінде қарастырылып, сүзіледі.</value></data>
-  <data name="saveButton.Text" xml:space="preserve"><value>Сақтау</value></data>
   <data name="resetButton.Text" xml:space="preserve"><value>Қалпына келтіру</value></data>
-  <data name="saveButton.ToolTip" xml:space="preserve"><value>Параметрлерді сақтау</value></data>
   <data name="runAtStartupCheckBox.Text" xml:space="preserve"><value>Windows жүктелгенде іске қосу</value></data>
   <data name="runAtStartupCheckBox.ToolTip" xml:space="preserve"><value>Бұл қолданбаны әрқашан фонда іске қосу.</value></data>
   <data name="dragEndDelayLabel.Text" xml:space="preserve"><value>Аяқталу кідірісі [мс]</value></data>
