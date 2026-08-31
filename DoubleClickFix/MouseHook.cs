@@ -169,7 +169,7 @@ internal class MouseHook : IDisposable {
 		try {
 			nativeMethods.RegisterForRawInput(hwnd);
 		} catch (Win32Exception ex) {
-			logger.Log($"Failed to register raw input device. {ex.Message}");  // TODO translate.
+			logger.Log($"Failed to register raw input device. {ex.Message}");
 		}
 	}
 

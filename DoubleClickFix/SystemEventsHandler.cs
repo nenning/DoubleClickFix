@@ -3,7 +3,6 @@ using Microsoft.Win32;
 
 namespace DoubleClickFix;
 
-// TODO: could translate.
 internal class SystemEventsHandler : IDisposable {
 	private readonly MouseHook mouseHook;
 	private readonly ILogger logger;
