@@ -193,6 +193,33 @@ public class MouseHookTests {
 	}
 
 	[Fact]
+	public void TestReconnectedDeviceReusesCachedTypeAndEvictsStaleHandle() {
+		const string devicePath = "/dev/test_touchpad";
+		TestNativeMethods nativeMethods = new TestNativeMethods {
+			TryGetDevicePathFunc = _ => devicePath,
+			ProcessRawInputFunc = _ => (true, 0, true) // DeviceType.TouchPad
+		};
+		MouseHook hook = new(new TestSettings(), new TestLogger(), nativeMethods);
+
+		hook.ProcessRawInput(123); // first connection: classified via TryProcessRawInput
+		Assert.Equal(1, nativeMethods.ProcessRawInputCounter);
+
+		hook.ProcessRawInput(456); // reconnect: new raw-input handle, same device path
+		Assert.Equal(1, nativeMethods.ProcessRawInputCounter); // cached type reused, not re-classified
+
+		// Confirm the reused type actually took effect: touch devices bypass filtering.
+		using (HookStruct data = HookStruct.Create(100)) {
+			Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer));
+		}
+		using (HookStruct data = HookStruct.Create(110)) {
+			Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONUP, data.Pointer));
+		}
+		using (HookStruct data = HookStruct.Create(120)) {
+			Assert.Equal(0, hook.HookCallback(0, WM_LBUTTONDOWN, data.Pointer)); // would be ignored if not touch
+		}
+	}
+
+	[Fact]
 	public void TestIgnoredDeviceByPathPassesThrough() {
 		const string devicePath = "/dev/test_mouse";
 		TestNativeMethods nativeMethods = new TestNativeMethods {

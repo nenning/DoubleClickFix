@@ -62,6 +62,10 @@ internal class MouseHook : IDisposable {
 	private readonly Dictionary<nint, DeviceType> knownDeviceTypes = [];
 
 	private readonly Dictionary<nint, string> knownDevicePaths = [];
+	// Raw input handles are ephemeral (e.g. a Bluetooth mouse gets a new handle on every
+	// reconnect) while the device path is stable, so this lets us recognize "same physical
+	// device, new handle" and evict the stale handle's entries above instead of leaking them.
+	private readonly Dictionary<string, nint> knownHandleByPath = [];
 	public string? CurrentDevicePath { get; private set; }
 	public event Action? CurrentDeviceChanged;
 	public bool IsInstalled => hookHandle != nint.Zero;
@@ -178,16 +182,28 @@ internal class MouseHook : IDisposable {
 			return;
 		}
 
+		if (!knownDevicePaths.ContainsKey(device)) {
+			string path = nativeMethods.TryGetDevicePath(device) ?? string.Empty;
+			knownDevicePaths[device] = path;
+
+			if (path.Length > 0 && knownHandleByPath.TryGetValue(path, out var staleHandle) && staleHandle != device) {
+				if (knownDeviceTypes.TryGetValue(staleHandle, out var cachedType)) {
+					knownDeviceTypes[device] = cachedType;
+				}
+				knownDeviceTypes.Remove(staleHandle);
+				knownDevicePaths.Remove(staleHandle);
+			}
+			if (path.Length > 0) {
+				knownHandleByPath[path] = device;
+			}
+		}
+
 		if (!knownDeviceTypes.ContainsKey(device)) {
 			if (nativeMethods.TryProcessRawInput(hRawInput, out _, out var deviceType)) {
 				knownDeviceTypes[device] = deviceType;
 			} else {
 				knownDeviceTypes[device] = DeviceType.Mouse;
 			}
-		}
-
-		if (!knownDevicePaths.ContainsKey(device)) {
-			knownDevicePaths[device] = nativeMethods.TryGetDevicePath(device) ?? string.Empty;
 		}
 
 		if (currentDevice != device) {

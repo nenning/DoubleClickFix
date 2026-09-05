@@ -11,7 +11,6 @@ Architecture/testability
 - InteractiveForm.cs is a 750+ line God-object (UI wiring, update-check HTTP calls, toast notifications, language/theme management). Update-checking and language handling are natural extraction candidates.
 - SystemEventsHandler couples directly to static Microsoft.Win32.SystemEvents with no interface — zero test coverage, unlike everything else which follows the INativeMethods-style mockable pattern.
 - StandaloneSettings/StoreSettings duplicate near-identical save/load boilerplate per field; a shared IPropertyStore (Get<T>/Set<T>) would cut this down significantly.
-- knownDeviceTypes/knownDevicePaths (MouseHook.cs:62,64) grow unbounded for the process lifetime — every new raw-input device handle adds an entry that's never evicted (e.g. a Bluetooth mouse gets a fresh handle each reconnect).
 - Dark-mode/theme calls (NativeMethods.IsDarkMode/ApplyDarkTitleBar, NativeMethods.cs:314,330) are called directly as statics from Program.cs, bypassing the INativeMethods mockable pattern the rest of the code follows — theme logic has no test path.
 - TestNativeMethods.GetWindowLong/SetWindowLong throw NotImplementedException (TestNativeMethods.cs:74,76) — a future InteractiveForm test touching DPI/WS_EX_TOOLWINDOW code will crash instead of no-op.
 - TestNativeMethods.TryProcessRawInput can only simulate Mouse or TouchPad, never TouchScreen — the touchscreen bypass path (MouseHook.cs:196) has zero test coverage despite mock scaffolding existing for the other two device types.
