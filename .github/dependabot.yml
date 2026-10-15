@@ -21,6 +21,9 @@ updates:
       - dependency-name: "Microsoft.WindowsDesktop.App.Runtime.win-x64"
       - dependency-name: "Microsoft.WindowsDesktop.App.Runtime.win-x86"
       - dependency-name: "Microsoft.WindowsDesktop.App.Runtime.win-arm64"
+      - dependency-name: "Microsoft.AspNetCore.App.Runtime.win-x64"
+      - dependency-name: "Microsoft.AspNetCore.App.Runtime.win-x86"
+      - dependency-name: "Microsoft.AspNetCore.App.Runtime.win-arm64"
 
   # Bumps global.json when a new .NET SDK ships. The SDK version determines the implicit
   # runtime pack versions above, so merging these PRs is what clears their security alerts.
