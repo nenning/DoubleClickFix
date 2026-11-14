@@ -7,7 +7,7 @@
 		<Platforms>AnyCPU;x86;x64;ARM64</Platforms>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="coverlet.collector" Version="8.0.1">
+		<PackageReference Include="coverlet.collector" Version="10.1.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
